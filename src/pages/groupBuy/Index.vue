@@ -1,26 +1,26 @@
 <template>
     <div id="app">
-        <h3 class="normal" v-if="status=='doing'">拼团中</h3>
-        <h3 class="fail" v-if="status=='fail'">拼团失败</h3>
-        <h3 class="success" v-if="status=='success'">拼团成功</h3>
+        <h3 class="normal" v-if="status==0">拼团中</h3>
+        <h3 class="fail" v-if="status==1">拼团失败</h3>
+        <h3 class="success" v-if="status==2">拼团成功</h3>
         <div class="goods">
             <img src="./img/2.jpg" alt="">
             <div class="desc">
                 <div class="title">
-                    <h3>健康管理师+护理评估师 还可以看看看看<span>2人可成团</span></h3>
+                    <h3>健康管理师+护理评估师 还可以看看看看<span>{{activity.minCount || 0  }}人可成团</span></h3>
                 </div>
                 <div class="price">
                     价格
-                    <span>￥4860</span>
+                    <span>{{goodsInfo.sellPrice || 0   | Money}}</span>
                 </div>
                 <div class="sale">
-                    <span>￥3383</span>
-                    <span>省 ￥1147</span>
+                    <span>{{goodsInfo.originPrice || 0   | Money}}</span>
+                    <span>省 {{goodsInfo.saveMoney || 0   | Money}}</span>
                 </div>
             </div>
         </div>
         <div class="groupProgress">
-            <h3>当前有<span>{{groupNum}}</span>人参团，倒计时结束48小时后：</h3>
+            <h3>当前有<span>{{ groupNum || 0}}</span>人参团，倒计时结束48小时后：</h3>
             <div class="progress">
                 <div class="box">不返利</div>
                 <div class="line"></div>
@@ -52,7 +52,7 @@
                     <img style="right:72px" src="./img/1.jpg" alt="">
                 </div>
             </div>
-            <Button class="indexBtn">一键参团 ￥520</Button>
+            <Button class="indexBtn">一键参团 {{goodsInfo.originPrice || 0   | Money}}</Button>
             <em>好友拼团·人满发货·不满退款</em>
         </div>
         <div class="playGuide">
@@ -66,7 +66,7 @@
         </div>
         <div class="goodDetails">
             <h3>商品详情</h3>
-            <img src="./img/4.jpg" alt="">
+            <img :src="goodsInfo.imageUrl" alt="">
         </div>
         <div class="income" @click="goIncome">
             <img src="./img/2.png" alt="">
@@ -79,14 +79,26 @@
     import groupProgress from "./groupProgress";
     import CommonMixin from '../commonMixin.js'
     import {userActivity} from "../../api/activity";
+    import {getUrlInfo} from "../../utils/dataStorage";
     export default {
         name: 'app',
         mixins:[groupProgress,CommonMixin],
         data: function () {
             return {
-                status:'success',
+                status:'',
                 active:-1,
-                groupNum:10
+                groupNum:'',
+                goodsInfo: {},
+                activity:{},
+                groupInfo:{},
+                leaderHeadImg:'',
+                regularLIst:[],
+                headList:[]
+            }
+        },
+        filters:{
+            Money:function(value){
+                return '￥'+ parseInt(value)/100
             }
         },
         methods: {
@@ -95,8 +107,14 @@
             }
         },
         mounted() {
-            userActivity({groupId:1}).then(r=>{
-
+            this.id = getUrlInfo('id');
+            this.status = getUrlInfo('status');
+            userActivity({groupId:this.id}).then(r=>{
+                this.groupNum = r.orderCount;
+                this.leaderHasBuy = r.leaderHasBuy;
+                this.goodsInfo = {...r.goodsInfo};
+                this.activity = {...r.activity};
+                this.groupInfo = {...r.groupInfo}
             }).catch(_=>{})
         },
         beforeDestroy: function () {

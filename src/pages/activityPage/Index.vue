@@ -35,7 +35,7 @@
                 <span>4.拼团结束48小时后，推广返佣会划入到账户余额，支持提现</span>
                 <span>5.工作人员会在每月1号处理上个月的提现申请，1-3天内到账</span>
             </div>
-            <div class="goodDetails" @click="goGroupBuy">
+            <div class="goodDetails">
                 <h3>商品详情</h3>
                 <img :src="goodsInfo.imageUrl" alt="" >
             </div>
@@ -53,7 +53,7 @@
             <div class="wrap">
                 <h3>开团方式</h3>
                 <Button class="indexBtn" @click="goCheckMobile">A：购买商品，并成为团长</Button>
-                <Button class="indexBtn">B：通过邀请好友成为团长</Button>
+                <Button class="indexBtn" @click="goGroupBuy">B：通过邀请好友成为团长</Button>
                 <Button class="bottomBtn" @click="showOpen = false">取消</Button>
             </div>
         </Popup>
@@ -83,7 +83,8 @@
                 orderCount:'',// 成功购买人数
                 leaderHasBuy:'',
                 goodsInfo: {},
-                activity:{}
+                activity:{},
+                groupInfo:{}
             }
         },
         filters:{
@@ -93,7 +94,8 @@
         },
         methods: {
             goGroupBuy(){
-                window.location.href = './groupBuy.html'
+
+                window.location.href = './groupBuy.html?id='+this.groupInfo.id + '&status=' + this.groupInfo.status
             },
             goIncome(){
                 window.location.href = './incomeDetails.html'
@@ -108,7 +110,8 @@
                 this.orderCount = r.orderCount;
                 this.leaderHasBuy = r.leaderHasBuy;
                 this.goodsInfo = {...r.goodsInfo};
-                this.activity = {...r.activity}
+                this.activity = {...r.activity};
+                this.groupInfo = {...r.groupInfo}
             }).catch(_=>{})
         },
         beforeDestroy: function () {

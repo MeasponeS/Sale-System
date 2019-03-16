@@ -2,9 +2,6 @@ export default {
     name: 'app',
     data: function () {
         return {
-            status:'success',
-            active:-1,
-            groupNum:10
         }
     },
     methods: {
