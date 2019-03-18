@@ -2,56 +2,105 @@ export default {
     name: 'app',
     data: function () {
         return {
+            //regularLIst:[],   // 返利规则列表
         }
     },
     methods: {
+        className(step){
+            let num = this.groupNum;
+            let list = this.regularLIst;
+            switch (step) {
+                case 0:
+                    if(num < list[0].highCount){
+                        return 'active'
+                    } else {
+                        return ''
+                    };
+                break;
+                case 1:
+                    if(num < list[0].highCount){
+                        return 'unActive'
+                    } else if(num > list[1].lowCount && num < list[1].highCount){
+                        return 'active'
+                    } else {
+                        return ''
+                    };
+                break;
+                case 2:
+                    if(num < list[0].highCount){
+                        return 'unActive'
+                    } else if(num > list[1].lowCount && num < list[1].highCount){
+                        return 'unActive'
+                    } if(num > list[2].lowCount && num < list[2].highCount){
+                        return 'active'
+                    } else {
+                        return ''
+                    };
+                break;
+                case 3:
+                    if(num < list[0].highCount){
+                        return 'unActive'
+                    } else if(num > list[1].lowCount && num < list[1].highCount){
+                        return 'unActive'
+                    } if(num > list[2].lowCount && num < list[2].highCount){
+                        return 'unActive'
+                    } else {
+                        return 'active'
+                    }
+            }
+            
+        },
 
+        className1(step){
+            let num = this.groupNum;
+            let list = this.regularLIst;
+            switch (step) {
+                case 0:
+                    if(num < list[0].highCount){
+                        return 'numActive'
+                    }
+                    break;
+                case 1:
+                    if(num > list[1].lowCount && num < list[1].highCount){
+                        return 'numActive'
+                    }
+                    break;
+                case 2:
+                    if(num > list[2].lowCount && num < list[2].highCount){
+                        return 'numActive'
+                    }
+                    break;
+                case 3:
+                    if(num > list[3].lowCount){
+                        return 'numActive'
+                    }
+            }
+        },
+
+        className2(step){
+            let num = this.groupNum;
+            let list = this.regularLIst;
+            switch (step) {
+                case 0:
+                    if(num < list[0].highCount){
+                        return ''
+                    } else {
+                        return 'lineActive'
+                    }
+                    break;
+                case 1:
+                    if(num > list[2].lowCount ){
+                        return 'lineActive'
+                    }
+                    break;
+                case 2:
+                    if(num > list[3].lowCount){
+                        return 'lineActive'
+                    }
+            }
+        }
     },
     mounted() {
-        let boxs = document.getElementsByClassName('box');
-        if(this.groupNum < 2){
-            boxs[0].className = 'box active';
-            boxs[1].className = 'box unActive';
-            boxs[2].className = 'box unActive';
-            boxs[3].className = 'box unActive';
-        } else if (this.groupNum > 1 && this.groupNum < 6) {
-            boxs[0].className = 'box';
-            boxs[1].className = 'box active';
-            boxs[2].className = 'box unActive';
-            boxs[3].className = 'box unActive';
-        } else if ( this.groupNum > 5 && this.groupNum < 10){
-            boxs[0].className = 'box';
-            boxs[1].className = 'box';
-            boxs[2].className = 'box active';
-            boxs[3].className = 'box unActive';
-        } else if ( this.groupNum >9) {
-            boxs[0].className = 'box';
-            boxs[1].className = 'box';
-            boxs[2].className = 'box';
-            boxs[3].className = 'box active';
-        }
-        let lines = document.getElementsByClassName('line');
-        if(this.groupNum < 2){
-        } else if (this.groupNum > 1 && this.groupNum < 6) {
-            lines[0].className = 'line lineActive';
-        } else if ( this.groupNum > 5 && this.groupNum < 10){
-            lines[0].className = 'line lineActive';
-            lines[1].className = 'line lineActive';
-        } else if ( this.groupNum >9) {
-            lines[0].className = 'line lineActive';
-            lines[1].className = 'line lineActive';
-            lines[2].className = 'line lineActive';
-        }
-        let nums = document.getElementsByClassName('progressNum')[0].children;
-        if(this.groupNum < 2){
-            nums[0].className = 'numActive';
-        } else if (this.groupNum > 1 && this.groupNum < 6) {
-            nums[1].className = 'numActive';
-        } else if ( this.groupNum > 5 && this.groupNum < 10){
-            nums[2].className = 'numActive';
-        } else if ( this.groupNum >9) {
-            nums[3].className = 'numActive';
-        }
     },
     beforeDestroy: function () {
 

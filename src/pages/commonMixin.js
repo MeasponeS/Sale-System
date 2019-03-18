@@ -1,5 +1,6 @@
 import {getToken,getUserInfo,getUrlInfo} from '../utils/dataStorage.js'
 import {wechatSignature,shareFriendQ,shareFriend} from '../utils/weixin.js'
+import {signature} from "../api/wechat";
 export default {
     data: function () {
         return {
@@ -21,6 +22,12 @@ export default {
         }else{
             this.USERINFO = false
         }
+
+
+        // signature({}).then(r=>{
+        //
+        // }).catch(_=>{})
+
     },
     beforeDestroy: function () {
 

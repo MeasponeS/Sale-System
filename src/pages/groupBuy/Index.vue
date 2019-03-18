@@ -1,10 +1,10 @@
 <template>
     <div id="app">
-        <h3 class="normal" v-if="status==0">拼团中</h3>
-        <h3 class="fail" v-if="status==1">拼团失败</h3>
-        <h3 class="success" v-if="status==2">拼团成功</h3>
+        <h3 class="normal" v-if="groupInfo.status==1">拼团中</h3>
+        <h3 class="fail" v-if="groupInfo.status==3">拼团失败</h3>
+        <h3 class="success" v-if="groupInfo.status==2">拼团成功</h3>
         <div class="goods">
-            <img src="./img/2.jpg" alt="">
+            <img :src="activity.imageUrl" alt="">
             <div class="desc">
                 <div class="title">
                     <h3>健康管理师+护理评估师 还可以看看看看<span>{{activity.minCount || 0  }}人可成团</span></h3>
@@ -22,19 +22,17 @@
         <div class="groupProgress">
             <h3>当前有<span>{{ groupNum || 0}}</span>人参团，倒计时结束48小时后：</h3>
             <div class="progress">
-                <div class="box">不返利</div>
-                <div class="line"></div>
-                <div class="box">返￥200</div>
-                <div class="line"></div>
-                <div class="box">返￥300</div>
-                <div class="line"></div>
-                <div class="box">返￥400</div>
+                <div class="box" :class="className(0)">不返利</div>
+                <div class="line" :class="className2(0)"></div>
+                <div class="box" :class="className(1)">返{{regularLIst[1].rebaseMoney}}</div>
+                <div class="line" :class="className2(1)"></div>
+                <div class="box" :class="className(2)">返{{regularLIst[2].rebaseMoney}}</div>
+                <div class="line" :class="className2(2)"></div>
+                <div class="box" :class="className(3)">返{{regularLIst[3].rebaseMoney}}</div>
+
             </div>
             <div class="progressNum">
-                <div>少于2人参团</div>
-                <div>2-5人参团</div>
-                <div>6-9人参团</div>
-                <div>9人以上参团</div>
+                <div v-for="(item,index) in regularLIst" :class="className2(index)">{{item.content}}</div>
             </div>
         </div>
         <div class="groupDetails">
@@ -53,6 +51,8 @@
                 </div>
             </div>
             <Button class="indexBtn">一键参团 {{goodsInfo.originPrice || 0   | Money}}</Button>
+            <Button class="indexBtn">邀请好友团购，拿更高返利</Button>
+            <Button class="indexBtn">团购已结束</Button>
             <em>好友拼团·人满发货·不满退款</em>
         </div>
         <div class="playGuide">
@@ -85,15 +85,14 @@
         mixins:[groupProgress,CommonMixin],
         data: function () {
             return {
-                status:'',
                 active:-1,
-                groupNum:'',
+                groupNum:8,
                 goodsInfo: {},
                 activity:{},
-                groupInfo:{},
-                leaderHeadImg:'',
-                regularLIst:[],
-                headList:[]
+                groupInfo:{},   // 团信息
+                leaderHeadImg:'', // 团长头像
+                headList:{}, // 团员头像
+                regularLIst:[]
             }
         },
         filters:{
@@ -107,14 +106,18 @@
             }
         },
         mounted() {
+
             this.id = getUrlInfo('id');
-            this.status = getUrlInfo('status');
             userActivity({groupId:this.id}).then(r=>{
-                this.groupNum = r.orderCount;
+                console.log(r.regularLIst,'接口数据');
+                //this.groupNum = r.orderCount;
                 this.leaderHasBuy = r.leaderHasBuy;
                 this.goodsInfo = {...r.goodsInfo};
                 this.activity = {...r.activity};
-                this.groupInfo = {...r.groupInfo}
+                this.groupInfo = {...r.groupInfo};
+                this.regularLIst = r.regularLIst;
+                console.log(this.regularLIst,'index');
+
             }).catch(_=>{})
         },
         beforeDestroy: function () {

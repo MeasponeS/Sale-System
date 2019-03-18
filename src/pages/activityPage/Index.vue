@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <img src="./img/2.jpg" alt="">
+        <img :src="activity.imageUrl" alt="">
         <div class="title">
             <img src="./img/long.png" alt="">
         </div>
@@ -20,13 +20,6 @@
                     </div>
                 </div>
             </div>
-            <div class="info">
-                <div class="myInfo">
-                    <img src="./img/2.jpg" alt="">
-                    <h3>张小黑的团还差1人</h3>
-                </div>
-                <span>快速参团</span>
-            </div>
             <div class="rules">
                 <h3>活动规则</h3>
                 <span>1. 一键开团成为团长，享受折扣优惠；</span>
@@ -40,8 +33,11 @@
                 <img :src="goodsInfo.imageUrl" alt="" >
             </div>
         </div>
-        <div class="start" @click="showOpen = true">
+        <div class="start" @click="showOpen = true" v-if="groupInfo && groupInfo.status == 0">
            我要开团
+        </div>
+        <div class="start" @click="showOpen = true" v-else>
+            查看团详情
         </div>
         <div class="end" >
             <h3>本次活动已结束</h3>

@@ -1,5 +1,5 @@
 
-const devApiUrl = 'http://192.168.49.82:8081';
+const devApiUrl = 'http://192.168.50.104:8081';
 
 //正式环境变量,注意修改
 const proApiUrl = 'https://pro.web.com';
