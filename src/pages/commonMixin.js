@@ -23,9 +23,9 @@ export default {
     },
     mounted() {
         let userToken = getToken();
-        if(!userToken ){
-            window.location.href = './beforeLogin.html';
-            return
+        if(!userToken){
+            // window.location.href = './beforeLogin.html';
+            // return
         }
 
 
