@@ -22,13 +22,11 @@
 <script>
     import {Button as vantButton,Toast} from 'vant';
     import {Icon as vantIcon} from 'vant';
-    import CommonMixin from '../commonMixin.js'
     import {sendSmsCode,checkSmsCode} from '../../api/recommender'
     import Config from '../../config/app'
     import {getUrlInfo,setToken} from "../../utils/dataStorage";
     export default {
         name: 'app',
-        mixins: [CommonMixin],
         data: function () {
             return {
                 countDown:Config.countDown,

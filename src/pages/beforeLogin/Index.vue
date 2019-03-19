@@ -14,12 +14,10 @@
 <script>
     import {Button as vantButton,Toast} from 'vant';
     import {Icon as vantIcon} from 'vant';
-    import CommonMixin from '../commonMixin.js'
     import {sendSmsCode} from '../../api/recommender'
     import Config from '../../config/app'
     export default {
         name: 'app',
-        mixins: [CommonMixin],
         data: function () {
             return {
                 mobile:''
@@ -32,7 +30,7 @@
                     return;
                 }
                 sendSmsCode({mobile:this.mobile,activityId: Config.activityId}).then(r=>{
-                    window.location.href = './login.html?mobile=' + this.mobile
+                    window.location.href = './login.html?mobile=' + this.mobile + '&code=' + window.URLPARAMS.code;
                 }).catch(_=>{});
             }
         },
