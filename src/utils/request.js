@@ -28,6 +28,7 @@ service.interceptors.request.use(
 
         let noParameters = config.url.indexOf('?')  == -1;
         //config.headers['X-Token'] = getToken() //
+
         config.url = noParameters ? config.url+'?access_token=' + getToken(): config.url+'&access_token='+ getToken();
 
         return config
