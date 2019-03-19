@@ -24,8 +24,8 @@ export default {
     mounted() {
         let userToken = getToken();
         if(!userToken ){
-            //window.location.href = './beforeLogin.html';
-            //return
+            window.location.href = './beforeLogin.html';
+            return
         }
 
 
@@ -47,7 +47,7 @@ export default {
                 wx.hideOptionMenu();
             });
             wx.error(function(){
-                Toast('微信签名失败');
+                // Toast('微信签名失败');
             });
         }).catch(_=>{Toast('获取签名信息失败')})
 
