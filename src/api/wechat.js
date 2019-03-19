@@ -12,7 +12,15 @@ export function wxLogin(params) {
 
 export function wxSignature(params) {
     return request({
-        url: 'http://wxauth.hulian120.com/open/wxSignature',
+        url: 'https://wxauth.hulian120.com/open/wxSignature',
+        method: 'get',
+        params:params
+    })
+}
+
+export function getTokenMethods(params) {
+    return request({
+        url: 'http://wxauth.hulian120.com/open/getToken',
         method: 'get',
         params:params
     })

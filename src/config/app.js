@@ -3,7 +3,8 @@
 // const devApiUrl = 'http://192.168.48.133:8081'; // 峰峰
 
 //正式环境变量,注意修改
-const proApiUrl = 'https://pro.web.com';
+const proApiUrl = 'http://192.168.50.104:8081';
+
 
 
 const nodeDevEnv = process.env.NODE_ENV=='development' ? true : false;
@@ -18,5 +19,6 @@ export default {
     tokenKey:'ACTIVITY_ACCESS_TOKEN',
     storageUserKey:'ACTIVITY_USER_STORAGE',
     requestRetry:4,
+    //staticUrl:'https://hsj.hulian120.com',
     requestRetryDelay:800,
 }

@@ -1,11 +1,12 @@
 <template>
-
+    <Popup v-model="share" :close-on-click-overlay="false">
         <div class="share">
             <img class="yd" src="./img/fenxiang.png" alt="">
             <div class="tipp">点击右上角的“...”,开始分享吧！</div>
-            <button class="Iknown" onclick="fadeOut">我知道了</button>
+            <button class="Iknown" @click="know">我知道了</button>
         </div>
 
+    </Popup>
 </template>
 
 <script>
@@ -17,7 +18,7 @@
             Popup
         },
         methods:{
-            fadeOut(){
+            know(){
                 this.$emit('know')
             }
         },
@@ -26,47 +27,40 @@
 
 <style scoped lang="less">
     .share{
-        width: 100%;
-        height: 100%;
+        width: 100vw;
+        height: 100vh;
         background: #000;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        color: #fff;
-        opacity: 0.5;
-        overflow: hidden;
+        opacity: 0.7;
     }
     .yd{
-        width: 34px;
+        width: 60px;
         position: absolute;
-        right: 2px;
-        top: 2px;
+        right: 20px;
+        top: 10px;
     }
     .tipp{
-        font-size: 32px;
+        font-size: 22px;
         line-height: 10px;
         color: #fff;
         width: 100%;
         position: absolute;
-        top: 2.2px;
+        top: 100px;
         left: 0;
         text-align: center;
     }
     button{
         cursor: pointer;
-        width: 30px;
-        height: 17px;
+        width: 100px;
+        height: 50px;
         background: none;
         border: 1px solid #fff;
-        font-size:28px;
-        line-height: 27px;
+        font-size:20px;
+        line-height: 46px;
         text-align: center;
         color: #fff;
         position: absolute;
-        top: 54.2px;
-        left: 22px;
+        top: 140px;
+        left: 127px;
         border-radius:5px;
         z-index: 999;
     }

@@ -50,7 +50,7 @@
                 <Button class="bottomBtn" @click="show = false">取消</Button>
             </div>
         </Popup>
-        <!--<Share :share="share" @know="share = false"></Share>-->
+        <Share :share="share" @know="share = false"></Share>
     </div>
 </template>
 
@@ -68,7 +68,7 @@
             return {
                 show:false,
                 orderCount:0,// 成功购买人数
-                share:true,
+                share:false,
                 goodsInfo: {},
                 activity:{}
             }
@@ -86,13 +86,15 @@
                 window.location.href = './activityPage.html'
             },
             openGroupByShare(){
-                crtGroupOpen({
-                    activityId: Config.activityId,
-                    mobile:'18513891718',
-                    recommenderUserId:8,
-                    groupId:''
-                }).then(r=>{}).catch(_=>{
-                })
+                this.share = true;
+                this.show = false;
+                // crtGroupOpen({
+                //     activityId: Config.activityId,
+                //     mobile:'18513891718',
+                //     recommenderUserId:8,
+                //     groupId:''
+                // }).then(r=>{}).catch(_=>{
+                // })
             }
         },
         mounted() {

@@ -32,7 +32,7 @@
                     return;
                 }
                 sendSmsCode({mobile:this.mobile,activityId: Config.activityId}).then(r=>{
-                    window.location.href = './login.html?mobile='+this.mobile
+                    window.location.href = './login.html?mobile=' + this.mobile
                 }).catch(_=>{});
             }
         },
