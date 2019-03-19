@@ -59,7 +59,11 @@
                     mp:'hushijia',
                     serverUrl:server_url
                 }).then(r=>{
-                    console.log(r);
+                    setToken(r);
+                    Toast('登陆成功');
+                    window.setTimeout(()=>{
+                        window.location.href = './mainPage.html'
+                    },200);
                 }).catch(_=>{})
             },
             getCode(){
