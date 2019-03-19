@@ -8,10 +8,12 @@ export function wxLogin(params) {
     })
 }
 
-export function signature(params) {
+
+
+export function wxSignature(params) {
     return request({
-        url: '/sale/api/wx/signature',
+        url: 'http://wxauth.hulian120.com/open/wxSignature',
         method: 'get',
-        data: params
+        params:params
     })
 }
