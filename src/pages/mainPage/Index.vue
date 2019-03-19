@@ -35,18 +35,18 @@
                 <img :src="goodsInfo.imageUrl" alt="">
             </div>
         </div>
-        <div class="start" @click="show = true">
+        <div class="start" @click="openGroupByShare">
             <h3>邀请好友开团</h3>
             <span>每成交一人获得返佣{{activity.leaderReward || 0 | Money}}</span>
         </div>
-        <div class="end">
+        <div class="end" @click="show = true">
             <h3>本次活动已结束</h3>
         </div>
         <Popup v-model="show" :close-on-click-overlay="false" >
             <div class="wrap">
                 <h3>开团方式</h3>
                 <Button class="indexBtn" @click="goActivityPage">A：分享到朋友圈</Button>
-                <Button class="indexBtn" @click="openGroupByShare">B：分享给好友</Button>
+                <Button class="indexBtn" >B：分享给好友</Button>
                 <Button class="bottomBtn" @click="show = false">取消</Button>
             </div>
         </Popup>

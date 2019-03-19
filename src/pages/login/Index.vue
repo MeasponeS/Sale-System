@@ -25,6 +25,7 @@
     import {sendSmsCode,checkSmsCode} from '../../api/recommender'
     import Config from '../../config/app'
     import {getUrlInfo,setToken} from "../../utils/dataStorage";
+    import {getTokenMethods} from "../../api/wechat";
     export default {
         name: 'app',
         data: function () {
@@ -33,6 +34,7 @@
                 initCountDown:Config.countDown,
                 mobile:'',
                 code:'',
+                wxCode:''
             }
         },
         methods: {
@@ -41,20 +43,23 @@
                     Toast('请输入正确的手机号');
                     return;
                 }
-                this.login(this.mobile,this.code)
+                checkSmsCode({mobile:this.mobile,smsCode:this.code,activityId:Config.activityId}).then(r=>{
+                    this.login()
+                    //setToken('a9885edb4be447189c3352b419f586f4_2')
+                    //window.location.href = './mainPage.html'
+                }).catch(err=>{
+                    Toast(err)
+                })
             },
-            login(mobile,code){
-                checkSmsCode({mobile:mobile,smsCode:code,activityId:Config.activityId}).then(r=>{
-                    setToken('5d3d8375a0674c01a628b9c9896cbbd3_2');
-                    setTimeout(_=>{
-                        let fromPage = getUrlInfo('from');
-                        if(fromPage){
-                            window.location.href = './'+fromPage+'.html'
-                        }else {
-                            window.location.href = './mainPage.html'
-                        }
-                    },200)
-
+            login(){
+                let server_url = encodeURIComponent('https://testsale.hulian120.com/sale/api/wx/login');
+                getTokenMethods({
+                    actId:Config.activityId,
+                    code:this.wxCode,
+                    mp:'hushijia',
+                    serverUrl:server_url
+                }).then(r=>{
+                    console.log(r);
                 }).catch(_=>{})
             },
             getCode(){
@@ -73,6 +78,7 @@
         },
         mounted() {
             this.mobile = getUrlInfo('mobile');
+            this.wxCode = getUrlInfo('code');
             if(this.mobile.length > 0 && this.mobile != ''){
                 this.countDown = 59;
                 let SMS = setInterval(() => {

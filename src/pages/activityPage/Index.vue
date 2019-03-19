@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <img :src="activity.imageUrl" alt="">
+        <img class="topImg" :src="activity.imageUrl" alt="">
         <div class="title">
             <img src="./img/long.png" alt="">
         </div>
@@ -47,16 +47,17 @@
         </div>
         <Popup v-model="showOpen" :close-on-click-overlay="false">
             <div class="wrap">
-                <h3>开团方式</h3>
+                <h3 @click="goGroupBuy">开团方式</h3>
                 <Button class="indexBtn"
                         @click="goCheckMobile"
                         :disabled="!groupInfo || !groupInfo.status == 0"
                 >A：购买商品，并成为团长</Button>
-                <Button class="indexBtn" @click="goGroupBuy">B：通过邀请好友成为团长</Button>
+                <Button class="indexBtn" @click="share = true" >B：通过邀请好友成为团长</Button>
                 <Button class="bottomBtn" @click="showOpen = false">取消</Button>
             </div>
         </Popup>
         <PayPopup :showMobile="showMobile" @closePay="showMobile = false "></PayPopup>
+        <Share :share="share" @know="know"></Share>
     </div>
 </template>
 
@@ -66,6 +67,7 @@
     import Config from '../../config/app'
     import {Popup,Button} from 'vant';
     import PayPopup from '../../components/PayPopup'
+    import Share from '../../components/Share'
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -73,6 +75,7 @@
             return {
                 showOpen:false,
                 showMobile:false,
+                share:false,
                 mobile:'',    // 用于支付前填写的手机号
                 orderCount:'',// 成功购买人数
                 leaderHasBuy:'',
@@ -97,6 +100,10 @@
             goCheckMobile(){
                 this.showOpen = false;
                 this.showMobile = true;
+            },
+            know(){
+                this.showOpen = false;
+                this.share = false
             }
         },
         mounted() {
@@ -111,7 +118,7 @@
         beforeDestroy: function () {
 
         },
-        components: {Popup,Button,PayPopup}
+        components: {Popup,Button,PayPopup,Share}
     }
 </script>
 <style>

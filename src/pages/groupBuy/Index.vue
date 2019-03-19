@@ -72,7 +72,7 @@
         <div class="income" @click="goIncome">
             <img src="./img/2.png" alt="">
         </div>
-        <PayPopup :showMobile="showMobile" @closePay="showMobile = false "></PayPopup>
+        <PayPopup :showMobile="showMobile" @closePay="showMobile = false"></PayPopup>
     </div>
 </template>
 
