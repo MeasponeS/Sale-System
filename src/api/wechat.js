@@ -20,7 +20,7 @@ export function wxSignature(params) {
 
 export function getTokenMethods(params) {
     return request({
-        url: 'http://wxauth.hulian120.com/open/getToken',
+        url: 'https://wxauth.hulian120.com/open/getToken',
         method: 'get',
         params:params
     })

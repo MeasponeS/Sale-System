@@ -1,12 +1,4 @@
 
-
-
-
-
-
-
-
-
 import Vue from 'vue'
 import App from './Index.vue'
 import '../common'
