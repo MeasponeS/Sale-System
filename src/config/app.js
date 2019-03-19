@@ -3,7 +3,7 @@
 // const devApiUrl = 'http://192.168.48.133:8081'; // 峰峰
 
 //正式环境变量,注意修改
-const proApiUrl = 'http://192.168.50.104:8081';
+const proApiUrl = 'https://testsale.hulian120.com'; 
 
 
 
