@@ -26,9 +26,48 @@ export function userActivity(params) {
     })
 }
 
+// 活动收益页
 export function rewardList(params) {
     return request({
         url: '/sale/api/activity/rewardList',
+        method: 'get',
+        params: params
+    })
+}
+
+
+// 提现记录
+export function withdrawList(params) {
+    return request({
+        url: '/sale/api/activity/withdrawList',
+        method: 'get',
+        params: params
+    })
+}
+
+// 实名认证
+
+export function realNameAuth(params) {
+    return request({
+        url: '/sale/api/activity/realNameAuth',
+        method: 'post',
+        data: params
+    })
+}
+
+// 登陆时获取图形验证码
+export function randomImg(params) {
+    return request({
+        url: '/sale/api/activity/randomImg',
+        method: 'get',
+        params: params
+    })
+}
+
+// 实名认证发送短信
+export function sendMsgCode(params) {
+    return request({
+        url: '/sale/api/activity/sendMsgCode',
         method: 'get',
         params: params
     })

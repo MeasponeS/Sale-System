@@ -48,18 +48,15 @@
         <Popup v-model="showOpen" :close-on-click-overlay="false">
             <div class="wrap">
                 <h3>开团方式</h3>
-                <Button class="indexBtn" @click="goCheckMobile">A：购买商品，并成为团长</Button>
+                <Button class="indexBtn"
+                        @click="goCheckMobile"
+                        :disabled="!groupInfo || !groupInfo.status == 0"
+                >A：购买商品，并成为团长</Button>
                 <Button class="indexBtn" @click="goGroupBuy">B：通过邀请好友成为团长</Button>
                 <Button class="bottomBtn" @click="showOpen = false">取消</Button>
             </div>
         </Popup>
-        <Popup v-model="showMobile" :close-on-click-overlay="false">
-            <div class="wrapMobile">
-                <h3>填写手机号</h3>
-                <input type="number" placeholder="用于获取课程卡号/密码，请务必确认">
-                <Button class="bottomBtn" @click="showMobile = false">去支付</Button>
-            </div>
-        </Popup>
+        <PayPopup :showMobile="showMobile" @closePay="showMobile = false "></PayPopup>
     </div>
 </template>
 
@@ -68,6 +65,7 @@
     import {leaderActivity} from "../../api/activity";
     import Config from '../../config/app'
     import {Popup,Button} from 'vant';
+    import PayPopup from '../../components/PayPopup'
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -113,7 +111,7 @@
         beforeDestroy: function () {
 
         },
-        components: {Popup,Button}
+        components: {Popup,Button,PayPopup}
     }
 </script>
 <style>

@@ -1,30 +1,17 @@
 <template>
     <div id="app">
         <ul v-if="list.length">
-            <li>
+            <li v-for="item in list">
                 <div class="header">
                     <div class="count">
                         <em><img src="./img/gold.png" alt=""></em>
                         <span class="countMoney">账户余额</span>
-                        <span>+338.3</span>
+                        <span>+{{item.money | Money}}</span>
                     </div>
-                    <div>20190310 18:00:00</div>
+                    <div>{{item.createTime}}</div>
                 </div>
                 <div class="order">订单号:
-                <span>3291380213218308</span>
-                </div>
-            </li>
-            <li>
-                <div class="header">
-                    <div class="count">
-                        <em><img src="./img/gold.png" alt=""></em>
-                        <span class="countMoney">账户余额</span>
-                        <span>+338.3</span>
-                    </div>
-                    <div>20190310 18:00:00</div>
-                </div>
-                <div class="order">订单号:
-                <span>3291380213218308</span>
+                <span>{{item.orderNum}}</span>
                 </div>
             </li>
         </ul>
@@ -50,9 +37,14 @@
         methods: {
 
         },
+        filters:{
+            Money:function(value){
+                return '￥' + parseInt(value)/100
+            }
+        },
         mounted() {
             rewardList({activityId:Config.activityId}).then(r=>{
-                console.log(r);
+                this.list = r
             }).catch(_=>{})
         },
         beforeDestroy: function () {

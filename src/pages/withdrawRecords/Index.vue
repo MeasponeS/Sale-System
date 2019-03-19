@@ -1,34 +1,22 @@
 <template>
     <div id="app">
         <ul v-if="list.length">
-            <li>
+            <li v-for="item in list">
                 <div class="top">
-                    <div class="left">
-                        <img src="./img/gray.png" alt="">
-                        提现<span>39.00</span>元
+                    <div class="left" :style="'color:'+ item.status == 2? '#999':'#333' ">
+                        <img v-if="item.status == 1" src="./img/ticket.png" alt="">
+                        <img v-else  src="./img/gray.png" alt="">
+                        提现<span>{{item.applyMoney | Money}}</span>元
                     </div>
                     <div class="right">
-                        20190310 18:00:00
+                        {{item.createTime}}
                     </div>
                 </div>
                 <div class="bottom">
-                    <em>扣税3.5元</em>
-                    <span>提现中</span>
-                </div>
-            </li>
-            <li>
-                <div class="top">
-                    <div class="left">
-                        <img src="./img/ticket.png" alt="">
-                        提现<span>39.00</span>元
-                    </div>
-                    <div class="right">
-                        20190310 18:00:00
-                    </div>
-                </div>
-                <div class="bottom">
-                    <em>扣税3.5元</em>
-                    <span>提现中</span>
+                    <em>扣税{{item.tax}}元</em>
+                    <span v-if="item.status == 0">提现中</span>
+                    <span v-if="item.status == 2" style="color: #999999">提现失败</span>
+                    <span v-if="item.status == 1" style="color: #FF4000">提现成功</span>
                 </div>
             </li>
         </ul>
@@ -41,19 +29,28 @@
 
 <script>
     import CommonMixin from '../commonMixin.js'
+    import {withdrawList} from '../../api/activity'
+    import Config from '../../config/app'
     export default {
         name: 'app',
         mixins: [CommonMixin],
         data: function () {
             return {
-                list:[1]
+                list:[]
             }
         },
         methods: {
 
         },
+        filters:{
+            Money:function(value){
+                return (parseInt(value)/100).toFixed(2)
+            }
+        },
         mounted() {
-
+            withdrawList({activityId:Config.activityId}).then(r=>{
+                this.list = r
+            }).catch(_=>{})
         },
         beforeDestroy: function () {
 

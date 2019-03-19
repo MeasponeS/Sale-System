@@ -2,22 +2,22 @@
     <div id="app">
         <div class="money">
             <span>账户余额</span>
-            <span>￥98.00</span>
+            <span>{{income.surplusMoney || 0  |Money}}</span>
         </div>
         <div class="money">
             <span>申请中金额</span>
-            <span>￥18.00</span>
+            <span>{{income.applyingMoney || 0  |Money}}</span>
         </div>
         <div class="money">
             <span>已提现金额</span>
-            <span>￥6.00</span>
+            <span>{{income.withdrawMoney || 0  |Money}}</span>
         </div>
         <div class="money">
             <span>提现金额</span>
-            <input type="number" placeholder="不能超过账户余额">
+            <input type="number" placeholder="不能超过账户余额" @input="checkMoney" v-model="getMoney">
             <em @click="rulesShow = true"><img src="./img/green.png" alt=""></em>
         </div>
-        <Button class="indexBtn" @click="idShow = true">提现</Button>
+        <Button class="indexBtn" @click="withdraw" :disabled="!getMoney">提现</Button>
         <div class="money" @click="goDetails">
             <span>收支明细</span>
             <img src="./img/right.png" alt="">
@@ -31,51 +31,21 @@
                 <h4>提现规则</h4>
                 <span>1.每月1号结算上个月的提现申请，1-5个工作日到账</span>
                 <span>2.一个自然月内累计申请提现金额≧800时，需按照国家税务规定缴纳相关税费</span>
-                <span>3.如有任何疑问，请拨打客服电话400-8650-512</span>
+                <span>3.如有任拨打客服电话400-8650-512</span>何疑问，请
                 <span class="botSpan">最终解释权归护士加所有</span>
                 <Button class="ruleBtn" @click="rulesShow = false">知道了</Button>
             </div>
         </Popup>
-        <Popup v-model="idShow" :close-on-click-overlay="false">
-            <div class="idBox">
-                <h4>实名认证</h4>
-                <img src="./img/guanbi.png" alt="" @click="idShow = false">
-                <ul class="idContent">
-                    <li style="border-top:1px solid rgba(229,229,229,1)">
-                        <span>手机号码</span>
-                        <input type="number" placeholder="请输入当前微信绑定的手机号">
-                    </li>
-                    <li>
-                        <div>
-                            <span>验证码</span>
-                            <input type="number" placeholder="请输入验证码">
-                        </div>
-                        <div class="code">
-                            <i></i>
-                            <em @click="getCode" :style="{color:countDown != initCountDown ?'#999':'#F46A21'}">
-                                {{ countDown != initCountDown ? countDown+'s' : '获取验证码' }}
-                            </em>
-                        </div>
-
-                    </li>
-                    <li>
-                        <span>真实姓名</span>
-                        <input type="text" placeholder="请输入真实姓名">
-                    </li>
-                    <li style="border-bottom:1px solid rgba(229,229,229,1)">
-                        <span>身份证号码</span>
-                        <input type="number" placeholder="填写错误会导致提现失败">
-                    </li>
-                </ul>
-                <Button class="idBtn" @click="rulesShow = false">提交认证</Button>
-            </div>
-        </Popup>
+        <RealNameAuth :idShow="idShow" @submit="submit" @closeId="closeId"></RealNameAuth>
     </div>
 </template>
 
 <script>
-    import {Button,Popup} from 'vant'
+    import {Button,Popup,Toast} from 'vant'
     import CommonMixin from '../commonMixin.js'
+    import RealNameAuth from '../../components/RealNameAuth'
+    import {activityReward,realNameAuth} from "../../api/activity";
+    import Config from '../../config/app'
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -83,36 +53,69 @@
             return {
                 rulesShow:false,
                 idShow:false,
-                countDown:60,
-                initCountDown:60
+                income:{},
+                getMoney:''
+            }
+        },
+        filters:{
+            Money:function(value){
+                return '￥'+ parseInt(value)/100
             }
         },
         methods: {
+            checkMoney(){
+                // 提现金额输入极值
+                if(this.getMoney > this.income.surplusMoney/100){
+                    this.getMoney = this.income.surplusMoney/100
+                }
+            },
             goDetails(){
+                // 去收支明细页
                 window.location.href = './withdrawDetails.html'
             },
             goRecords(){
+                // 去提现记录页
                 window.location.href = './withdrawRecords.html'
             },
-            getCode(){
-                if(this.countDown < 60) return;
-                let SMS = setInterval(() => {
-                    if(this.countDown <= 0) {
-                        clearInterval(SMS);
-                        this.countDown = this.initCountDown;
-                        return;
-                    }
-                    this.countDown --
-                }, 1000)
+            closeId(){
+                // 关闭实名认证弹窗
+                this.idShow = false
+            },
+            submit(data){
+                // 提交实名认证
+                realNameAuth({
+                        idCard: data.id,
+                        mobile: data.mobile,
+                        realName: data.name,
+                        smsCode: data.code
+                }).then(r=>{
+                    this.idShow = false
+                    Toast('认证成功，请继续提现')
+                }).catch(_=>{});
+
+
+
+            },
+            withdraw(){
+                // 提现
+                let name = this.income.userInfo.realName;
+                let idNum = this.income.userInfo.identityCard;
+                if(name && name != null && idNum && idNum != null){
+                    Toast('可以提现')
+                } else {
+                    this.idShow = true
+                }
             }
         },
         mounted() {
-
+            activityReward({activityId:Config.activityId}).then(r=>{
+                this.income = {...r}
+            }).catch(_=>{})
         },
         beforeDestroy: function () {
 
         },
-        components: {Button,Popup}
+        components: {Button,Popup,RealNameAuth}
     }
 </script>
 <style lang="less" scoped>

@@ -42,22 +42,25 @@
         <div class="end">
             <h3>本次活动已结束</h3>
         </div>
-        <Popup v-model="show" :close-on-click-overlay="false">
+        <Popup v-model="show" :close-on-click-overlay="false" >
             <div class="wrap">
                 <h3>开团方式</h3>
-                <Button class="indexBtn" @click="goActivityPage">A：购买商品，并成为团长</Button>
-                <Button class="indexBtn">B：通过邀请好友成为团长</Button>
+                <Button class="indexBtn" @click="goActivityPage">A：分享到朋友圈</Button>
+                <Button class="indexBtn" @click="openGroupByShare">B：分享给好友</Button>
                 <Button class="bottomBtn" @click="show = false">取消</Button>
             </div>
         </Popup>
+        <!--<Share :share="share" @know="share = false"></Share>-->
     </div>
 </template>
 
 <script>
-    import {Button,Popup} from 'vant';
+    import {Button,Popup,Toast} from 'vant';
     import CommonMixin from '../commonMixin.js'
     import {recommenderIndex} from "../../api/recommender";
     import Config from '../../config/app'
+    import {crtGroupOpen} from "../../api/group";
+    import Share from '../../components/Share'
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -65,6 +68,7 @@
             return {
                 show:false,
                 orderCount:0,// 成功购买人数
+                share:true,
                 goodsInfo: {},
                 activity:{}
             }
@@ -80,6 +84,15 @@
             },
             goActivityPage(){
                 window.location.href = './activityPage.html'
+            },
+            openGroupByShare(){
+                crtGroupOpen({
+                    activityId: Config.activityId,
+                    mobile:'18513891718',
+                    recommenderUserId:8,
+                    groupId:''
+                }).then(r=>{}).catch(_=>{
+                })
             }
         },
         mounted() {
@@ -92,7 +105,7 @@
         beforeDestroy: function () {
 
         },
-        components: {Button,Popup}
+        components: {Button,Popup,Share}
     }
 </script>
 <style lang="less" scoped>

@@ -7,7 +7,7 @@
             <img :src="activity.imageUrl" alt="">
             <div class="desc">
                 <div class="title">
-                    <h3>健康管理师+护理评估师 还可以看看看看<span>{{activity.minCount || 0  }}人可成团</span></h3>
+                    <h3>{{goodsInfo.name}}<span>{{activity.minCount || 0  }}人可成团</span></h3>
                 </div>
                 <div class="price">
                     价格
@@ -24,35 +24,36 @@
             <div class="progress">
                 <div class="box" :class="className(0)">不返利</div>
                 <div class="line" :class="className2(0)"></div>
-                <div class="box" :class="className(1)">返{{regularLIst[1].rebaseMoney}}</div>
+                <div class="box" :class="className(1)">返￥{{regularLIst[1].rebateMoney}}</div>
                 <div class="line" :class="className2(1)"></div>
-                <div class="box" :class="className(2)">返{{regularLIst[2].rebaseMoney}}</div>
+                <div class="box" :class="className(2)">返￥{{regularLIst[2].rebateMoney}}</div>
                 <div class="line" :class="className2(2)"></div>
-                <div class="box" :class="className(3)">返{{regularLIst[3].rebaseMoney}}</div>
+                <div class="box" :class="className(3)">返￥{{regularLIst[3].rebateMoney}}</div>
 
             </div>
             <div class="progressNum">
-                <div v-for="(item,index) in regularLIst" :class="className2(index)">{{item.content}}</div>
+                <div v-for="(item,index) in regularLIst" :class="className1(index)">{{item.content}}</div>
             </div>
         </div>
         <div class="groupDetails">
-            <h3>距结束只剩 <span>00</span> : <span>00</span> : <span>00</span> </h3>
+            <h3>距结束只剩 <Countdown :second="countDownSenconds" @toggle="countDownSenconds--" @end="timeOut"></Countdown> </h3>
             <div class="groupMember">
                 <div class="groupLeader">
                     <img src="./img/2.jpg" alt="">
                     <span>团长</span>
                 </div>
                 <div class="groupFriends">
-                    <img style="right:0" src="./img/7.jpg" alt="">
-                    <img style="right:18px" src="./img/3.jpg" alt="">
-                    <img style="right:36px" src="./img/5.jpg" alt="">
-                    <img style="right:54px" src="./img/6.jpg" alt="">
-                    <img style="right:72px" src="./img/1.jpg" alt="">
+                    <div class="emptyI">?</div>
+                    <!--<img style="right:0" src="./img/7.jpg" alt="">-->
+                    <!--<img style="right:18px" src="./img/3.jpg" alt="">-->
+                    <!--<img style="right:36px" src="./img/5.jpg" alt="">-->
+                    <!--<img style="right:54px" src="./img/6.jpg" alt="">-->
+                    <!--<img style="right:72px" src="./img/1.jpg" alt="">-->
                 </div>
             </div>
-            <Button class="indexBtn">一键参团 {{goodsInfo.originPrice || 0   | Money}}</Button>
+            <Button class="indexBtn" @click="showMobile = true">一键参团 {{goodsInfo.originPrice || 0   | Money}}</Button>
             <Button class="indexBtn">邀请好友团购，拿更高返利</Button>
-            <Button class="indexBtn">团购已结束</Button>
+            <Button class="indexBtn endBtn">团购已结束</Button>
             <em>好友拼团·人满发货·不满退款</em>
         </div>
         <div class="playGuide">
@@ -71,20 +72,24 @@
         <div class="income" @click="goIncome">
             <img src="./img/2.png" alt="">
         </div>
+        <PayPopup :showMobile="showMobile" @closePay="showMobile = false "></PayPopup>
     </div>
 </template>
 
 <script>
-    import {Button,Steps,Step} from 'vant'
+    import {Button,Steps,Step,Popup} from 'vant'
     import groupProgress from "./groupProgress";
     import CommonMixin from '../commonMixin.js'
     import {userActivity} from "../../api/activity";
     import {getUrlInfo} from "../../utils/dataStorage";
+    import Countdown from '../../components/Countdown'
+    import PayPopup from '../../components/PayPopup'
     export default {
         name: 'app',
         mixins:[groupProgress,CommonMixin],
         data: function () {
             return {
+                showMobile:false,
                 active:-1,
                 groupNum:8,
                 goodsInfo: {},
@@ -92,7 +97,8 @@
                 groupInfo:{},   // 团信息
                 leaderHeadImg:'', // 团长头像
                 headList:{}, // 团员头像
-                regularLIst:[]
+                regularLIst:[],
+                countDownSenconds:''
             }
         },
         filters:{
@@ -103,27 +109,33 @@
         methods: {
             goIncome(){
                 window.location.href = './incomeDetails.html'
+            },
+            timeOut(){
+
             }
         },
         mounted() {
 
             this.id = getUrlInfo('id');
             userActivity({groupId:this.id}).then(r=>{
-                console.log(r.regularLIst,'接口数据');
-                //this.groupNum = r.orderCount;
+                this.groupNum = r.orderCount;
+                this.countDownSenconds = r.countDownSenconds;
                 this.leaderHasBuy = r.leaderHasBuy;
                 this.goodsInfo = {...r.goodsInfo};
                 this.activity = {...r.activity};
                 this.groupInfo = {...r.groupInfo};
                 this.regularLIst = r.regularLIst;
-                console.log(this.regularLIst,'index');
 
             }).catch(_=>{})
+
+
+
+
         },
         beforeDestroy: function () {
 
         },
-        components: {Button,Steps,Step}
+        components: {Button,Steps,Step,Popup,Countdown,PayPopup}
     }
 </script>
 <style>

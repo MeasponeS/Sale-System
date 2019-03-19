@@ -2,7 +2,7 @@
     <div id="app">
         <div class="money">
             <span>购买人数</span>
-            <span>{{income.rewardCount || 0  }}人</span>
+            <span>{{income.orderCount || 0  }}人</span>
         </div>
         <div class="money">
             <span>账户余额</span>
@@ -21,7 +21,7 @@
             <input type="number" placeholder="不能超过账户余额" @input="checkMoney" v-model="getMoney">
             <em @click="rulesShow = true"><img src="./img/green.png" alt=""></em>
         </div>
-        <Button class="indexBtn">提现</Button>
+        <Button class="indexBtn" @click="withdraw" :disabled="!getMoney">提现</Button>
         <div class="money" @click="goDetails">
             <span>收支明细</span>
             <img src="./img/right.png" alt="">
@@ -40,19 +40,22 @@
                 <Button class="ruleBtn" @click="rulesShow = false">知道了</Button>
             </div>
         </Popup>
+        <RealNameAuth :idShow="idShow" @submit="submit" @closeId="closeId"></RealNameAuth>
     </div>
 </template>
 
 <script>
-    import {Button,Popup} from 'vant'
+    import {Button,Popup,Toast} from 'vant'
     import CommonMixin from '../commonMixin.js'
-    import {activityReward} from "../../api/activity";
+    import {activityReward,realNameAuth} from "../../api/activity";
     import Config from '../../config/app'
+    import RealNameAuth from '../../components/RealNameAuth'
     export default {
         name: 'app',
         mixins: [CommonMixin],
         data: function () {
             return {
+                idShow:false,
                 rulesShow:false,
                 income:{},
                 getMoney:''
@@ -65,16 +68,46 @@
         },
         methods: {
             checkMoney(){
+                // 提现金额输入极值
                 if(this.getMoney > this.income.surplusMoney){
                     this.getMoney = this.income.surplusMoney
                 }
             },
             goDetails(){
+                // 去收支明细页
                 window.location.href = './withdrawDetails.html'
             },
             goRecords(){
+                // 去提现记录页
                 window.location.href = './withdrawRecords.html'
+            },
+            closeId(){
+                // 关闭实名认证弹窗
+                this.idShow = false
+            },
+            submit(){
+                // 提交实名认证
+                realNameAuth({
+                    idCard: data.id,
+                    mobile: data.mobile,
+                    realName: data.name,
+                    smsCode: data.code
+                }).then(r=>{
+                    this.idShow = false
+                    Toast('认证成功，请继续提现')
+                }).catch(_=>{});
+            },
+            withdraw(){
+                // 提现
+                let name = this.income.userInfo.realName;
+                let idNum = this.income.userInfo.identityCard;
+                if(name && name != null && idNum && idNum != null){
+                    Toast('可以提现')
+                } else {
+                    this.idShow = true
+                }
             }
+
         },
         mounted() {
             activityReward({activityId:Config.activityId}).then(r=>{
@@ -84,7 +117,7 @@
         beforeDestroy: function () {
 
         },
-        components: {Button,Popup}
+        components: {Button,Popup,RealNameAuth}
     }
 </script>
 <style lang="less" scoped>

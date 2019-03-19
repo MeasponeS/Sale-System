@@ -31,7 +31,7 @@ export default {
                         return 'unActive'
                     } else if(num > list[1].lowCount && num < list[1].highCount){
                         return 'unActive'
-                    } if(num > list[2].lowCount && num < list[2].highCount){
+                    } else if(num > list[2].lowCount && num < list[2].highCount){
                         return 'active'
                     } else {
                         return ''
@@ -42,13 +42,13 @@ export default {
                         return 'unActive'
                     } else if(num > list[1].lowCount && num < list[1].highCount){
                         return 'unActive'
-                    } if(num > list[2].lowCount && num < list[2].highCount){
+                    } else if(num > list[2].lowCount && num < list[2].highCount){
                         return 'unActive'
                     } else {
                         return 'active'
                     }
             }
-            
+
         },
 
         className1(step){
