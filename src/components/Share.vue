@@ -5,7 +5,6 @@
             <div class="tipp">点击右上角的“...”,开始分享吧！</div>
             <button class="Iknown" @click="know">我知道了</button>
         </div>
-
     </Popup>
 </template>
 

@@ -26,6 +26,8 @@ export default {
         if(!userToken){
             window.location.href = './beforeLogin.html';
             return
+        } else {
+            window.location.href = './mainPage.html';
         }
 
 
@@ -50,6 +52,30 @@ export default {
                 // Toast('微信签名失败');
             });
         }).catch(_=>{Toast('获取签名信息失败')})
+
+        wx.ready(function () {
+            let shareData = {
+                title:'',
+                link:'',
+                imgUrl:'',
+                success:function () {
+
+                },
+                cancel:function () {
+
+                }
+            }
+            wx.onMenuShareTimeline(shareData)
+            wx.onMenuShareTimeline(shareData);
+        });
+
+        wx.error(function (res) {
+            alert('error:'+res.msg)
+        })
+
+
+
+
 
 
 

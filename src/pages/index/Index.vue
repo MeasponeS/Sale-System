@@ -7,9 +7,9 @@
             <input type="number" v-model="inviteCode">
             <vantButton class="indexBtn" @click="createRecommender">生成邀请人</vantButton>
             <div>
-                <a href="./beforeLogin.html" @click="shareActivity">分享活动链接给邀请人</a>
+                <a href="##" @click="share = true">分享活动链接给邀请人</a>
             </div>
-
+            <Share :share="share" @know="know"></Share>
         </div>
     </div>
 </template>
@@ -20,6 +20,7 @@
     import {generateRecommender} from '../../api/recommender'
     import {wechatSignature} from "../../utils/weixin";
     import Config from '../../config/app'
+    import Share from '../../components/Share'
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -27,6 +28,7 @@
             return {
                 mobile:'',
                 inviteCode:'',
+                share:false
             }
         },
         methods: {
@@ -43,9 +45,9 @@
                     console.log(r);
                     Toast('生成邀请人成功，请分享链接给邀请人');
                 }).catch(_=>{})
-            },
-            shareActivity(){
-                alert(111)
+            }
+            know(){
+                this.share = false
             }
         },
         mounted() {
@@ -54,7 +56,7 @@
         beforeDestroy: function () {
 
         },
-        components: {vantButton}
+        components: {vantButton,Share}
     }
 </script>
 <style lang="less" scoped>
