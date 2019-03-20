@@ -20,7 +20,7 @@
         },
         methods:{
             goPay(){
-                let phoneReg = /^(13[0-9]|14[0-9]|15[0-9]|17[0-9]|18[0-9])\d{8}$/;
+                //let phoneReg = /^(13[0-9]|14[0-9]|15[0-9]|17[0-9]|18[0-9])\d{8}$/;
                 if(this.mobile.length == 0 || !this.mobile || this.mobile == null){
                     Toast('请填写手机号')
                     return
