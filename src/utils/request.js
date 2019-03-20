@@ -70,7 +70,7 @@ service.interceptors.response.use(
         setTimeout(_=>{
             //window.loadingInstance.clear();
         },300)
-        Toast("请求未响应");
+        Toast(error.message);
         return Promise.reject(error)
     }
 )

@@ -38,15 +38,15 @@ export default {
                     nonceStr:r.signature.nonceStr,
                     timestamp:r.signature.timestamp,
                     signature : r.signature.signature,
-                    jsApiList: ['updateTimelineShareData','updateAppMessageShareData','checkJsApi','hideMenuItems','chooseWXPay'] // 必填，需要使用的JS接口列表
+                    jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage','checkJsApi','hideMenuItems','chooseWXPay'] // 必填，需要使用的JS接口列表
                 });
 
                 wx.ready(function () {
                     Toast('签名成功')
                     wx.checkJsApi({
                         jsApiList: [
-                            'updateTimelineShareData',
-                            'updateAppMessageShareData',
+                            'onMenuShareTimeline',
+                            'onMenuShareAppMessage',
                             'chooseWXPay',
                             'hideMenuItems'
                         ],

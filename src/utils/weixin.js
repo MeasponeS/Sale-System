@@ -13,7 +13,8 @@ import {Toast} from 'vant'
 
 
 function shareFriend(config){
-    wx.updateAppMessageShareData({
+    console.log(config);
+    wx.onMenuShareAppMessage({
         title: config.shareTitle, // 分享标题
         desc: config.shareBody, // 分享描述
         link: config.shareUrl, // 分享链接
@@ -31,12 +32,12 @@ function shareFriend(config){
 
 function shareFriendQ(config){
     setTimeout(()=>{
-        wx.updateTimelineShareData({
+        console.log(config);
+        wx.onMenuShareTimeline({
             title: config.shareTitle, // 分享标题
             link: config.shareUrl, // 分享链接
             imgUrl: config.shareImg, // 分享图标
             success: function () {
-
                 Toast('分享成功');
             },
             cancel: function () {
@@ -49,23 +50,6 @@ function shareFriendQ(config){
 
 
 function vxPay(r) {
-    // let c = {
-    //     timestamp: r.timeStamp,
-    //     nonceStr: r.nonceStr,
-    //     package: r.packageValue,
-    //     signType:'MD5',
-    //     paySign: r.paySign,}
-    // console.log(c,'rrrrrrr');
-
-    // wx.chooseWXPay({
-    //     ...c,
-    //     success:function () {
-    //         alert(99)
-    //     }
-    // });
-
-
-
     WeixinJSBridge.invoke(
         'getBrandWCPayRequest', {
             "appId": r.appId,
