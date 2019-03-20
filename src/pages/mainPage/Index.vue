@@ -103,6 +103,7 @@
                 this.orderCount = r.orderCount;
                 this.goodsInfo = {...r.goodsInfo};
                 this.activity = {...r.activity};
+                this.recommenderId = r.recommenderUserId
             }).catch(_=>{})
         },
         beforeDestroy: function () {
