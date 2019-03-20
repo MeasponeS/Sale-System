@@ -37,10 +37,11 @@ export default {
                     appId:r.signature.appId,
                     nonceStr:r.signature.nonceStr,
                     signature : r.signature.signature,
-                    jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage','showMenuItems','hideOptionMenu','closeWindow'] // 必填，需要使用的JS接口列表
+                    jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage'] // 必填，需要使用的JS接口列表
                 });
 
                 wx.ready(function () {
+                    Toast('配置成功')
                     wx.checkJsApi({
                         jsApiList: [
                             'onMenuShareTimeline',
@@ -51,7 +52,7 @@ export default {
 
                         },
                         fail: function (res) {
-
+                            Toast('配置失败')
                         }
                     });
                 });

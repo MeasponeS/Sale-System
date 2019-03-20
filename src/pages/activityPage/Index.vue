@@ -116,6 +116,7 @@
                     mobile:mobile,
                     recommenderUserId:window.URLPARAMS.id
                 }).then(r=>{
+
                 }).catch(_=>{})
             },
             openGroup(){
