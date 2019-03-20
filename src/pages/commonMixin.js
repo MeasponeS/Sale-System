@@ -22,7 +22,7 @@ export default {
 
     },
     mounted() {
-        wxSignature({url:window.location.href.split('?')[0]}).then(r=>{
+        wxSignature({url:window.location.href}).then(r=>{
             if (r.resultCode == 500) return;
             if (r.signature.appId == null || r.signature.appId == 0) {
 
