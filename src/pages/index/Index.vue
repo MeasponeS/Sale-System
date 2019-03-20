@@ -45,7 +45,7 @@
                     console.log(r);
                     Toast('生成邀请人成功，请分享链接给邀请人');
                 }).catch(_=>{})
-            }
+            },
             know(){
                 this.share = false
             }
