@@ -84,7 +84,7 @@
                 window.location.href = './withdraw.html'
             },
             goActivityPage(){
-                window.location.href = './activityPage.html&id='+this.recommenderId
+                window.location.href = './activityPage.html?id='+this.recommenderId
             },
             openGroupByShare(){
                 this.share = true;
