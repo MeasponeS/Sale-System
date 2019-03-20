@@ -10,13 +10,7 @@ if(!window.URLPARAMS.hasOwnProperty('code')){
         window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="  +
             r.signature.appId  + "&redirect_uri=" + encodeURIComponent('https://wxauth.hulian120.com/open/getCodeFor')  +   "&response_type=code&scope=snsapi_userinfo&state=hushijia#wechat_redirect"
     }).catch(_=>{})
-}
-
-let show = window.URLPARAMS.student;
-console.log(show);
-if(show){
-    console.log(1);
-    this.showBlock = show;
+} else {
     let server_url = encodeURIComponent('https://testsale.hulian120.com/sale/api/wx/login');
     getTokenMethods({
         actId:Config.activityId,
