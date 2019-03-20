@@ -22,19 +22,28 @@ export default {
 
     },
     mounted() {
-        let userToken = getToken();
-        if(!userToken){
-            window.location.href = './beforeLogin.html';
-            return
-        }
+
+
 
 
         wxSignature({url:window.location.href.split('?')[0]}).then(r=>{
+
+
+
 
             if (r.resultCode == 500) return;
             if (r.appId == null || r.appId == 0) {
                 console.log('获取分享配置信息失败');
             } else {
+
+                if(!getToken()){
+                    window.location.href =  "https://open.weixin.qq.com/connect/oauth2/authorize?appid="  +
+                        r.signature.appId  + "&redirect_uri=" + encodeURIComponent('https://wxauth.hulian120.com/open/getCodeFor')  +   "&response_type=code&scope=snsapi_userinfo&state=student#wechat_redirect";
+                    return
+                }
+
+
+
                     wx.config({
                         debug:false,
                         appId:r.signature.appId,

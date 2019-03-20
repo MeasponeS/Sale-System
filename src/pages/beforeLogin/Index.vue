@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app" :style="'display:'+ showBlock">
         <div class="main">
             <h2>您好，请登录！</h2>
             <div class="phone">
@@ -16,11 +16,15 @@
     import {Icon as vantIcon} from 'vant';
     import {sendSmsCode} from '../../api/recommender'
     import Config from '../../config/app'
+    import {getUrlInfo,setToken} from "../../utils/dataStorage";
+    import {getTokenMethods} from "../../api/wechat";
+
     export default {
         name: 'app',
         data: function () {
             return {
-                mobile:''
+                mobile:'',
+                showBlock:'block',
             }
         },
         methods: {
@@ -35,6 +39,7 @@
             }
         },
         mounted() {
+            this.showBlock = window.URLPARAMS.hasOwnProperty('student')?'none':'block'
         },
         beforeDestroy: function () {
 

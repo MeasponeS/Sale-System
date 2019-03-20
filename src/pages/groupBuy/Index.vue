@@ -91,7 +91,8 @@
             return {
                 showMobile:false,
                 active:-1,
-                groupNum:8,
+                groupNum:'' +
+                    '',
                 goodsInfo: {},
                 activity:{},
                 groupInfo:{},   // 团信息
