@@ -39,11 +39,18 @@
             <h3>距结束只剩 <Countdown :second="countDownSenconds" @toggle="countDownSenconds--" @end="timeOut"></Countdown> </h3>
             <div class="groupMember">
                 <div class="groupLeader">
-                    <img src="./img/2.jpg" alt="">
+                    <img :src="leaderHeadImg" alt="">
                     <span>团长</span>
                 </div>
                 <div class="groupFriends">
-                    <div class="emptyI">?</div>
+                    <div class="emptyI" v-if="headList.length == 0" style="margin-left:18px">?</div>
+                    <img
+                            v-else
+                            src=""
+                            alt=""
+                            v-for="(item,index) in headList"
+                            :style="'right:'+(index *18) + 'px'"
+                    >
                     <!--<img style="right:0" src="./img/7.jpg" alt="">-->
                     <!--<img style="right:18px" src="./img/3.jpg" alt="">-->
                     <!--<img style="right:36px" src="./img/5.jpg" alt="">-->
@@ -52,7 +59,7 @@
                 </div>
             </div>
             <Button class="indexBtn" @click="showMobile = true" v-if="!isLeader && !userHasBuy" >一键参团 {{goodsInfo.originPrice || 0   | Money}}</Button>
-            <Button class="indexBtn" v-else>邀请好友团购，拿更高返利</Button>
+            <Button class="indexBtn" v-else @click="share = true">邀请好友团购，拿更高返利</Button>
             <Button class="indexBtn endBtn">团购已结束</Button>
             <em>好友拼团·人满发货·不满退款</em>
         </div>
@@ -73,7 +80,7 @@
             <img src="./img/2.png" alt="">
         </div>
         <PayPopup :showMobile="showMobile" @closePay="showMobile = false" @wxPay="wxPay"></PayPopup>
-        <Share :share="share" @know="know"></Share>
+        <Share :share="share" @know="share = false"></Share>
     </div>
 </template>
 
@@ -95,12 +102,13 @@
             return {
                 showMobile:false,
                 active:-1,
+                share:false,
                 groupNum:'',
                 goodsInfo: {},
                 activity:{},
                 groupInfo:{},   // 团信息
                 leaderHeadImg:'', // 团长头像
-                headList:{}, // 团员头像
+                headList:[], // 团员头像
                 regularLIst:[],
                 countDownSenconds:'',
                 isLeader:'',
@@ -127,7 +135,105 @@
                 }).then(r=>{
                     console.log(r);
                 }).catch(_=>{})
-            }
+            },
+
+            className(step){
+                let num = this.groupNum;
+                let list = this.regularLIst;
+                switch (step) {
+                    case 0:
+                        if(num < list[0].highCount){
+                            return 'active'
+                        } else {
+                            return ''
+                        };
+                        break;
+                    case 1:
+                        if(num < list[0].highCount){
+                            return 'unActive'
+                        } else if(num > list[1].lowCount && num < list[1].highCount){
+                            return 'active'
+                        } else {
+                            return ''
+                        };
+                        break;
+                    case 2:
+                        if(num < list[0].highCount){
+                            return 'unActive'
+                        } else if(num > list[1].lowCount && num < list[1].highCount){
+                            return 'unActive'
+                        } else if(num > list[2].lowCount && num < list[2].highCount){
+                            return 'active'
+                        } else {
+                            return ''
+                        };
+                        break;
+                    case 3:
+                        if(num < list[0].highCount){
+                            return 'unActive'
+                        } else if(num > list[1].lowCount && num < list[1].highCount){
+                            return 'unActive'
+                        } else if(num > list[2].lowCount && num < list[2].highCount){
+                            return 'unActive'
+                        } else {
+                            return 'active'
+                        }
+                }
+
+            },
+
+            className1(step){
+                let num = this.groupNum;
+                let list = this.regularLIst;
+                switch (step) {
+                    case 0:
+                        if(num < list[0].highCount){
+                            return 'numActive'
+                        }
+                        break;
+                    case 1:
+                        if(num > list[1].lowCount && num < list[1].highCount){
+                            return 'numActive'
+                        }
+                        break;
+                    case 2:
+                        if(num > list[2].lowCount && num < list[2].highCount){
+                            return 'numActive'
+                        }
+                        break;
+                    case 3:
+                        if(num > list[3].lowCount){
+                            return 'numActive'
+                        }
+                }
+            },
+
+            className2(step){
+                let num = this.groupNum;
+                let list = this.regularLIst;
+                switch (step) {
+                    case 0:
+                        if(num < list[0].highCount){
+                            return ''
+                        } else {
+                            return 'lineActive'
+                        }
+                        break;
+                    case 1:
+                        if(num > list[2].lowCount ){
+                            return 'lineActive'
+                        }
+                        break;
+                    case 2:
+                        if(num > list[3].lowCount){
+                            return 'lineActive'
+                        }
+                }
+            },
+
+
+
+
         },
         mounted() {
             this.id = getUrlInfo('groupId');
@@ -139,7 +245,7 @@
                 this.activity = {...r.activity};
                 this.groupInfo = {...r.groupInfo};
                 this.regularLIst = r.regularLIst;
-
+                this.headList = r.headList.reverse()
             }).catch(_=>{})
 
 

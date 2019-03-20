@@ -22,9 +22,9 @@ if(!window.URLPARAMS.hasOwnProperty('code')){
     }).then(r=>{
         setToken(r);
         Toast('登陆成功');
-        window.setTimeout(()=>{
-             window.location.href = './groupBuy.html?activityId=1&groupId=1'
-        },200);
+        // window.setTimeout(()=>{
+        //      window.location.href = './groupBuy.html?activityId=1&groupId=1'
+        // },200);
     }).catch(_=>{})
 }
 
