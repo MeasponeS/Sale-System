@@ -145,38 +145,38 @@
                 }
                 switch (step) {
                     case 0:
-                        if(num < list[0].highCount){
+                        if(num <= list[0].highCount){
                             return 'active'
                         } else {
                             return ''
                         };
                         break;
                     case 1:
-                        if(num < list[0].highCount){
+                        if(num <= list[0].highCount){
                             return 'unActive'
-                        } else if(num > list[1].lowCount && num < list[1].highCount){
+                        } else if(num >= list[1].lowCount && num <= list[1].highCount){
                             return 'active'
                         } else {
                             return ''
                         };
                         break;
                     case 2:
-                        if(num < list[0].highCount){
+                        if(num <= list[0].highCount){
                             return 'unActive'
-                        } else if(num > list[1].lowCount && num < list[1].highCount){
+                        } else if(num >= list[1].lowCount && num <= list[1].highCount){
                             return 'unActive'
-                        } else if(num > list[2].lowCount && num < list[2].highCount){
+                        } else if(num >= list[2].lowCount && num <= list[2].highCount){
                             return 'active'
                         } else {
                             return ''
                         };
                         break;
                     case 3:
-                        if(num < list[0].highCount){
+                        if(num <= list[0].highCount){
                             return 'unActive'
-                        } else if(num > list[1].lowCount && num < list[1].highCount){
+                        } else if(num >= list[1].lowCount && num <= list[1].highCount){
                             return 'unActive'
-                        } else if(num > list[2].lowCount && num < list[2].highCount){
+                        } else if(num >= list[2].lowCount && num <= list[2].highCount){
                             return 'unActive'
                         } else {
                             return 'active'
@@ -193,22 +193,22 @@
                 }
                 switch (step) {
                     case 0:
-                        if(num < list[0].highCount){
+                        if(num <= list[0].highCount){
                             return 'numActive'
                         }
                         break;
                     case 1:
-                        if(num > list[1].lowCount && num < list[1].highCount){
+                        if(num >= list[1].lowCount && num <= list[1].highCount){
                             return 'numActive'
                         }
                         break;
                     case 2:
-                        if(num > list[2].lowCount && num < list[2].highCount){
+                        if(num >= list[2].lowCount && num <= list[2].highCount){
                             return 'numActive'
                         }
                         break;
                     case 3:
-                        if(num > list[3].lowCount){
+                        if(num >= list[3].lowCount){
                             return 'numActive'
                         }
                 }
@@ -222,19 +222,19 @@
                 }
                 switch (step) {
                     case 0:
-                        if(num < list[0].highCount){
+                        if(num <= list[0].highCount){
                             return ''
                         } else {
                             return 'lineActive'
                         }
                         break;
                     case 1:
-                        if(num > list[2].lowCount ){
+                        if(num >= list[2].lowCount ){
                             return 'lineActive'
                         }
                         break;
                     case 2:
-                        if(num > list[3].lowCount){
+                        if(num >= list[3].lowCount){
                             return 'lineActive'
                         }
                 }
@@ -256,10 +256,6 @@
                 this.regularLIst = r.regularLIst;
                 this.headList = r.headList.reverse()
             }).catch(_=>{})
-
-
-
-
         },
         beforeDestroy: function () {
 
