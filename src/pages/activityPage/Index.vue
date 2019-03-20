@@ -116,14 +116,8 @@
                     mobile:mobile,
                     recommenderUserId:window.URLPARAMS.id
                 }).then(r=>{
-                    let config = {
-                        timestamp: r.timestamp,
-                        nonceStr: r.nonceStr,
-                        package: r.packageValue,
-                        signType: r.signType,
-                        paySign: r.paySign,
-                    };
-                    vxPay(config)
+                    alert('123')
+                    vxPay(r)
 
                 }).catch(_=>{})
             },
