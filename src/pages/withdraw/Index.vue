@@ -107,7 +107,6 @@
                         applyMoney:this.getMoney
                     }).then(r=>{
                         Toast('申请提现成功')
-                        console.log(r);
                     }).catch(_=>{})
                 } else {
                     this.idShow = true

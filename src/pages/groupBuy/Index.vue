@@ -135,7 +135,7 @@
                     groupId:this.groupInfo.id,
                     mobile:mobile,
                 }).then(r=>{
-                    console.log(r);
+
                 }).catch(_=>{})
             },
 

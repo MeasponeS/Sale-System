@@ -116,7 +116,6 @@
                     mobile:mobile,
                     recommenderUserId:window.URLPARAMS.id
                 }).then(r=>{
-                    console.log(r);
                 }).catch(_=>{})
             },
             openGroup(){
@@ -126,7 +125,6 @@
                     groupId: this.groupInfo.id,
                     recommenderUserId: window.URLPARAMS.id
                 }).then(r=>{
-                    console.log(r);
                 }).catch(_=>{})
             }
 

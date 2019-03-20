@@ -42,7 +42,6 @@
                     return;
                 }
                 generateRecommender({mobile:this.mobile,inviteCode:this.inviteCode,activityId: Config.activityId}).then(r=>{
-                    console.log(r);
                     Toast('生成邀请人成功，请分享链接给邀请人');
                 }).catch(_=>{})
             },
@@ -51,7 +50,7 @@
             }
         },
         mounted() {
-            console.log(this.activityId);
+
         },
         beforeDestroy: function () {
 

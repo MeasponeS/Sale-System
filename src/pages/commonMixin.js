@@ -25,7 +25,7 @@ export default {
         wxSignature({url:window.location.href.split('?')[0]}).then(r=>{
             if (r.resultCode == 500) return;
             if (r.signature.appId == null || r.signature.appId == 0) {
-                console.log('获取分享配置信息失败');
+
             } else {
                 if(!getToken()){
                     window.location.href =  "https://open.weixin.qq.com/connect/oauth2/authorize?appid="  +
@@ -48,10 +48,10 @@ export default {
                             'hideMenuItems'
                         ],
                         success: function (res) {
-                            console.log('微信配置成功' + JSON.stringify(res));
+
                         },
                         fail: function (res) {
-                            console.log(JSON.stringify(res));
+
                         }
                     });
                 });
@@ -67,10 +67,10 @@ export default {
                         'menuItem:copyUrl' //复制链接
                     ],
                     success: function (res) {
-                        console.log('已隐藏“阅读模式”，“分享到朋友圈”，“复制链接”等按钮');
+
                     },
                     fail: function (res) {
-                        console.log(JSON.stringify(res));
+
                     }
 
                 });

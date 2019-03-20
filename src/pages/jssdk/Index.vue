@@ -150,7 +150,6 @@
                 });
             },
             openLocation(){
-                console.log(1);
                 alert(111111)
                 wx.openLocation({
                     latitude: 23.099994,
