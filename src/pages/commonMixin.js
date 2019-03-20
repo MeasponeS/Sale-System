@@ -56,31 +56,33 @@ export default {
                             Toast('配置失败')
                         }
                     });
+
+                    wx.hideMenuItems({
+                        menuList: [
+                            // 'menuItem:share:timeline',
+                            'menuItem:readMode', // 阅读模式
+                            "menuItem:share:qq", //分享到qq
+                            "menuItem:share:weiboApp", //分享到微博
+                            "menuItem:openWithQQBrowser", //qq浏览器打开
+                            "menuItem:openWithSafari", //safri打开
+                            "menuItem:share:QZone", //空间
+                            'menuItem:copyUrl' //复制链接
+                        ],
+                        success: function (res) {
+
+                        },
+                        fail: function (res) {
+
+                        }
+
+                    });
                 });
 
                 wx.error(function(res){
                     Toast('签名失败')
                 });
 
-                wx.hideMenuItems({
-                    menuList: [
-                        // 'menuItem:share:timeline',
-                        'menuItem:readMode', // 阅读模式
-                        "menuItem:share:qq", //分享到qq
-                        "menuItem:share:weiboApp", //分享到微博
-                        "menuItem:openWithQQBrowser", //qq浏览器打开
-                        "menuItem:openWithSafari", //safri打开
-                        "menuItem:share:QZone", //空间
-                        'menuItem:copyUrl' //复制链接
-                    ],
-                    success: function (res) {
 
-                    },
-                    fail: function (res) {
-
-                    }
-
-                });
 
 
 
