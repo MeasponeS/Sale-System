@@ -38,7 +38,7 @@ export default {
                     nonceStr:r.signature.nonceStr,
                     timestamp:r.signature.timestamp,
                     signature : r.signature.signature,
-                    jsApiList: ['updateTimelineShareData','updateAppMessageShareData','checkJsApi','hideMenuItems'] // 必填，需要使用的JS接口列表
+                    jsApiList: ['updateTimelineShareData','updateAppMessageShareData','checkJsApi','hideMenuItems','chooseWXPay'] // 必填，需要使用的JS接口列表
                 });
 
                 wx.ready(function () {
@@ -47,6 +47,7 @@ export default {
                         jsApiList: [
                             'updateTimelineShareData',
                             'updateAppMessageShareData',
+                            'chooseWXPay',
                             'hideMenuItems'
                         ],
                         success: function (res) {

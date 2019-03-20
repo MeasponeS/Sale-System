@@ -51,9 +51,13 @@ function shareFriendQ(config){
 function vxPay(config) {
     wx.chooseWXPay({
         timestamp: config.timestamp,
-        nonceStr: config.noncestr,
+        nonceStr: config.nonceStr,
         package: config.package,
-        paySign: config.paySign
+        signType:'MD5',
+        paySign: config.paySign,
+        success:function () {
+
+        }
     });
 
 }
