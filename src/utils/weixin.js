@@ -13,6 +13,7 @@ import {Toast} from 'vant'
 
 
 function shareFriend(config,callback){
+    console.log('shareFriend');
     wx.onMenuShareAppMessage({
         title: config.shareTitle, // 分享标题
         desc: config.shareBody, // 分享描述
@@ -21,7 +22,7 @@ function shareFriend(config,callback){
         //type: '', // 分享类型,music、video或link，不填默认为link
         //dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
         success: function () {
-            callback()
+            Toast('分享成功');
         },
         cancel: function () {
             Toast('分享失败');
@@ -29,15 +30,15 @@ function shareFriend(config,callback){
     });
 }
 
-function shareFriendQ(config,callback){
+function shareFriendQ(config){
     setTimeout(()=>{
         wx.onMenuShareTimeline({
             title: config.shareTitle, // 分享标题
             link: config.shareUrl, // 分享链接
             imgUrl: config.shareImg, // 分享图标
             success: function () {
-                callback()
-                //Toast('分享成功');
+
+                Toast('分享成功');
             },
             cancel: function () {
                 Toast('分享失败');
