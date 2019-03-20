@@ -48,18 +48,42 @@ function shareFriendQ(config){
 }
 
 
-function vxPay(config) {
-    console.log(config);
-    wx.chooseWXPay({
-        timestamp: config.timeStamp,
-        nonceStr: config.nonceStr,
-        package: config.packageValue,
-        signType:'MD5',
-        paySign: config.paySign,
-        success:function () {
+function vxPay(r) {
+    console.log(r);
+    // wx.chooseWXPay({
+    //     timestamp: config.timeStamp,
+    //     nonceStr: config.nonceStr,
+    //     package: config.packageValue,
+    //     signType:'MD5',
+    //     paySign: config.paySign,
+    //     success:function () {
+    //
+    //     }
+    // });
 
+
+
+    WeixinJSBridge.invoke(
+        'getBrandWCPayRequest', {
+            "appId": r.appId,
+            "timeStamp": r.timeStamp,
+            "nonceStr": r.nonceStr,
+            "package": r.packageValue,
+            "signType": "MD5",
+            "paySign": r.paySign
+        },
+        function (res) {
+            if (res.err_msg == "get_brand_wcpay_request:ok") {
+                alert('成功')
+            } else {
+                if (res.err_msg == "get_brand_wcpay_request:cancel") {
+                    Toast("您已取消支付。");
+                } else {
+                    Toast('充值失败，请稍后再试。');
+                }
+            }
         }
-    });
+    );
 
 }
 export {shareFriendQ,shareFriend,vxPay}
