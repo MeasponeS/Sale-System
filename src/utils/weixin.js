@@ -49,6 +49,7 @@ function shareFriendQ(config){
 
 
 function vxPay(config) {
+    alert('paypaypay')
     wx.chooseWXPay({
         timeStamp: config.timestamp,
         nonceStr: config.nonceStr,
