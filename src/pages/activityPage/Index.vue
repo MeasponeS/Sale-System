@@ -116,7 +116,6 @@
                     mobile:mobile,
                     recommenderUserId:window.URLPARAMS.id
                 }).then(r=>{
-                    alert('123')
                     vxPay(r)
 
                 }).catch(_=>{})

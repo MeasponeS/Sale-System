@@ -49,11 +49,11 @@ function shareFriendQ(config){
 
 
 function vxPay(config) {
-    alert('paypaypay')
+    console.log(config);
     wx.chooseWXPay({
         timestamp: config.timeStamp,
         nonceStr: config.nonceStr,
-        package: config.package,
+        package: config.packageValue,
         signType:'MD5',
         paySign: config.paySign,
         success:function () {

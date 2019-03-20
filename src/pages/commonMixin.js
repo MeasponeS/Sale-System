@@ -33,7 +33,7 @@ export default {
                     return
                 }
                 wx.config({
-                    debug:true,
+                    debug:false,
                     appId:r.signature.appId,
                     nonceStr:r.signature.nonceStr,
                     timestamp:r.signature.timestamp,
