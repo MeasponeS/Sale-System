@@ -32,7 +32,7 @@ export default {
 
 
             if (r.resultCode == 500) return;
-            if (r.appId == null || r.appId == 0) {
+            if (r.signature.appId == null || r.signature.appId == 0) {
                 console.log('获取分享配置信息失败');
             } else {
 
