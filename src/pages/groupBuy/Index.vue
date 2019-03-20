@@ -51,7 +51,7 @@
                     <!--<img style="right:72px" src="./img/1.jpg" alt="">-->
                 </div>
             </div>
-            <Button class="indexBtn" @click="showMobile = true">一键参团 {{goodsInfo.originPrice || 0   | Money}}</Button>
+            <Button class="indexBtn" @click="showMobile = true" >一键参团 {{goodsInfo.originPrice || 0   | Money}}</Button>
             <Button class="indexBtn">邀请好友团购，拿更高返利</Button>
             <Button class="indexBtn endBtn">团购已结束</Button>
             <em>好友拼团·人满发货·不满退款</em>
@@ -93,8 +93,7 @@
             return {
                 showMobile:false,
                 active:-1,
-                groupNum:'' +
-                    '',
+                groupNum:'',
                 goodsInfo: {},
                 activity:{},
                 groupInfo:{},   // 团信息
