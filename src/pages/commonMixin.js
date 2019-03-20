@@ -26,9 +26,7 @@ export default {
         if(!userToken){
             window.location.href = './beforeLogin.html';
             return
-        } else {
-            window.location.href = './mainPage.html';
-        }
+        } 
 
 
         wxSignature({url:window.location.href.split('?')[0]}).then(r=>{
