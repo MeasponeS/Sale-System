@@ -70,7 +70,8 @@
                 orderCount:0,// 成功购买人数
                 share:false,
                 goodsInfo: {},
-                activity:{}
+                activity:{},
+                recommenderId:''
             }
         },
         filters:{
@@ -83,7 +84,7 @@
                 window.location.href = './withdraw.html'
             },
             goActivityPage(){
-                window.location.href = './activityPage.html'
+                window.location.href = './activityPage.html&id='+this.recommenderId
             },
             openGroupByShare(){
                 this.share = true;

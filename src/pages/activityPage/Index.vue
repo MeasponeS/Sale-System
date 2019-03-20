@@ -56,7 +56,7 @@
                 <Button class="bottomBtn" @click="showOpen = false">取消</Button>
             </div>
         </Popup>
-        <PayPopup :showMobile="showMobile" @closePay="showMobile = false "></PayPopup>
+        <PayPopup :showMobile="showMobile" @closePay="showMobile = false " @wxPay="wxPay"></PayPopup>
         <Share :share="share" @know="know"></Share>
     </div>
 </template>
@@ -68,6 +68,7 @@
     import {Popup,Button} from 'vant';
     import PayPopup from '../../components/PayPopup'
     import Share from '../../components/Share'
+    import {creatLeaderOrder} from "../../api/order";
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -104,6 +105,16 @@
             know(){
                 this.showOpen = false;
                 this.share = false
+            },
+            wxPay(){
+                creatLeaderOrder({
+                    activityId: Config.activityId,
+                    groupId:this.groupInfo.id,
+                    mobile:this.mobile,
+                    recommenderUserId:window.URLPARAMS.id
+                }).then(r=>{
+                    console.log(r);
+                }).catch(_=>{})
             }
         },
         mounted() {

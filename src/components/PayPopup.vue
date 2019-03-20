@@ -30,6 +30,9 @@
                     return
                 }
 
+
+                this.$emit('wxPay',this.mobile)
+
             }
         },
         components:{

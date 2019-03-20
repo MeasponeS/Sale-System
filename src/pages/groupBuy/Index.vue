@@ -72,7 +72,7 @@
         <div class="income" @click="goIncome">
             <img src="./img/2.png" alt="">
         </div>
-        <PayPopup :showMobile="showMobile" @closePay="showMobile = false"></PayPopup>
+        <PayPopup :showMobile="showMobile" @closePay="showMobile = false" @wxPay="wxPay"></PayPopup>
     </div>
 </template>
 
@@ -83,7 +83,9 @@
     import {userActivity} from "../../api/activity";
     import {getUrlInfo} from "../../utils/dataStorage";
     import Countdown from '../../components/Countdown'
-    import PayPopup from '../../components/PayPopup'
+    import PayPopup from '../../components/PayPopup';
+    import Config from '../../config/app'
+    import {creatGeneralOrder} from "../../api/order";
     export default {
         name: 'app',
         mixins:[groupProgress,CommonMixin],
@@ -113,6 +115,15 @@
             },
             timeOut(){
 
+            },
+            wxPay(){
+                creatGeneralOrder({
+                    activityId: Config.activityId,
+                    groupId:this.groupInfo.id,
+                    mobile:this.mobile,
+                }).then(r=>{
+                    console.log(r);
+                }).catch(_=>{})
             }
         },
         mounted() {
