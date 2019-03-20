@@ -59,7 +59,6 @@
     import CommonMixin from '../commonMixin.js'
     import {recommenderIndex} from "../../api/recommender";
     import Config from '../../config/app'
-    import {crtGroupOpen} from "../../api/group";
     import Share from '../../components/Share'
     export default {
         name: 'app',

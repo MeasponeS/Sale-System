@@ -51,8 +51,8 @@
                     <!--<img style="right:72px" src="./img/1.jpg" alt="">-->
                 </div>
             </div>
-            <Button class="indexBtn" @click="showMobile = true" >一键参团 {{goodsInfo.originPrice || 0   | Money}}</Button>
-            <Button class="indexBtn">邀请好友团购，拿更高返利</Button>
+            <Button class="indexBtn" @click="showMobile = true" v-if="!isLeader && !userHasBuy" >一键参团 {{goodsInfo.originPrice || 0   | Money}}</Button>
+            <Button class="indexBtn" v-else>邀请好友团购，拿更高返利</Button>
             <Button class="indexBtn endBtn">团购已结束</Button>
             <em>好友拼团·人满发货·不满退款</em>
         </div>
@@ -73,6 +73,7 @@
             <img src="./img/2.png" alt="">
         </div>
         <PayPopup :showMobile="showMobile" @closePay="showMobile = false" @wxPay="wxPay"></PayPopup>
+        <Share :share="share" @know="know"></Share>
     </div>
 </template>
 
@@ -86,6 +87,7 @@
     import PayPopup from '../../components/PayPopup';
     import Config from '../../config/app'
     import {creatGeneralOrder} from "../../api/order";
+    import Share from '../../components/Share'
     export default {
         name: 'app',
         mixins:[groupProgress,CommonMixin],
@@ -100,7 +102,9 @@
                 leaderHeadImg:'', // 团长头像
                 headList:{}, // 团员头像
                 regularLIst:[],
-                countDownSenconds:''
+                countDownSenconds:'',
+                isLeader:'',
+                userHasBuy:''
             }
         },
         filters:{
@@ -146,7 +150,7 @@
         beforeDestroy: function () {
 
         },
-        components: {Button,Steps,Step,Popup,Countdown,PayPopup}
+        components: {Button,Steps,Step,Popup,Countdown,PayPopup,Share}
     }
 </script>
 <style>

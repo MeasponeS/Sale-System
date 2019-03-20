@@ -11,6 +11,7 @@ import {Toast} from 'vant'
 
 
 
+
 function shareFriend(config,callback){
     wx.onMenuShareAppMessage({
         title: config.shareTitle, // 分享标题
@@ -29,19 +30,21 @@ function shareFriend(config,callback){
 }
 
 function shareFriendQ(config,callback){
+    setTimeout(()=>{
+        wx.onMenuShareTimeline({
+            title: config.shareTitle, // 分享标题
+            link: config.shareUrl, // 分享链接
+            imgUrl: config.shareImg, // 分享图标
+            success: function () {
+                callback()
+                //Toast('分享成功');
+            },
+            cancel: function () {
+                Toast('分享失败');
+            }
+        });
+    },600)
 
-    wx.onMenuShareTimeline({
-        title: config.shareTitle, // 分享标题
-        link: config.shareUrl, // 分享链接
-        imgUrl: config.shareImg, // 分享图标
-        success: function () {
-            callback()
-            //Toast('分享成功');
-        },
-        cancel: function () {
-            Toast('分享失败');
-        }
-    });
 }
 
 export {shareFriendQ,shareFriend}

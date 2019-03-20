@@ -13,7 +13,9 @@ if(!window.URLPARAMS.hasOwnProperty('code')){
 }
 
 let show = window.URLPARAMS.student;
+console.log(show);
 if(show){
+    console.log(1);
     this.showBlock = show;
     let server_url = encodeURIComponent('https://testsale.hulian120.com/sale/api/wx/login');
     getTokenMethods({

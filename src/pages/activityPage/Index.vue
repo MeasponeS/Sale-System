@@ -52,7 +52,7 @@
                         @click="goCheckMobile"
                         :disabled="!groupInfo || !groupInfo.status == 0"
                 >A：购买商品，并成为团长</Button>
-                <Button class="indexBtn" @click="share = true" >B：通过邀请好友成为团长</Button>
+                <Button class="indexBtn" @click="openGroup">B：通过邀请好友成为团长</Button>
                 <Button class="bottomBtn" @click="showOpen = false">取消</Button>
             </div>
         </Popup>
@@ -69,6 +69,9 @@
     import PayPopup from '../../components/PayPopup'
     import Share from '../../components/Share'
     import {creatLeaderOrder} from "../../api/order";
+    import {crtGroupOpen} from "../../api/group";
+    import {shareFriend} from '../../utils/weixin'
+
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -93,7 +96,7 @@
         methods: {
             goGroupBuy(){
 
-                window.location.href = './groupBuy.html?id='+this.groupInfo.id + '&status=' + this.groupInfo.status
+                window.location.href = './groupBuy.html'
             },
             goIncome(){
                 window.location.href = './incomeDetails.html'
@@ -115,7 +118,18 @@
                 }).then(r=>{
                     console.log(r);
                 }).catch(_=>{})
+            },
+            openGroup(){
+                this.share = true
+                crtGroupOpen({
+                    activityId: Config.activityId,
+                    groupId: this.groupInfo.id,
+                    recommenderUserId: window.URLPARAMS.id
+                }).then(r=>{
+                    console.log(r);
+                }).catch(_=>{})
             }
+
         },
         mounted() {
             leaderActivity({activityId:Config.activityId}).then(r=>{
@@ -124,7 +138,18 @@
                 this.goodsInfo = {...r.goodsInfo};
                 this.activity = {...r.activity};
                 this.groupInfo = {...r.groupInfo}
-            }).catch(_=>{})
+            }).catch(_=>{});
+
+            let config = {
+                shareTitle:'分享给好友开团',
+                shareBody:'这是我分享给好友得团',
+                shareUrl:'./groupBuy.html?recommenderUserId='+window.URLPARAMS.id + 'activityId' + Config.activityId ,
+                shareImg:'//www.baidu.com/img/bd_logo1.png?where=super'
+            };
+
+
+            shareFriend(config)
+
         },
         beforeDestroy: function () {
 

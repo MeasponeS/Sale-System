@@ -22,27 +22,16 @@ export default {
 
     },
     mounted() {
-
-
-
-
         wxSignature({url:window.location.href.split('?')[0]}).then(r=>{
-
-
-
-
             if (r.resultCode == 500) return;
             if (r.signature.appId == null || r.signature.appId == 0) {
                 console.log('获取分享配置信息失败');
             } else {
-
                 if(!getToken()){
                     window.location.href =  "https://open.weixin.qq.com/connect/oauth2/authorize?appid="  +
                         r.signature.appId  + "&redirect_uri=" + encodeURIComponent('https://wxauth.hulian120.com/open/getCodeFor')  +   "&response_type=code&scope=snsapi_userinfo&state=student#wechat_redirect";
                     return
                 }
-
-
 
                     wx.config({
                         debug:false,
@@ -87,33 +76,6 @@ export default {
 
                     });
 
-                    wx.onMenuShareAppMessage({
-                        title: '分享给旁友',
-                        desc: '111111',
-                        link: '',
-                        imgUrl: '',
-                        success: function () {
-                            console.log("朋友成功");
-                        },
-                        cancel: function () {},
-                        fail: function (res) {}
-                    });
-                    wx.onMenuShareTimeline({
-                        title: '分享到旁友圈',
-                        link: '222',
-                        imgUrl: '',
-                        success: function () {
-                            console.log("分享到朋友圈成功");
-                        },
-                        cancel: function () {},
-                        fail: function (res) {
-                            console.log("朋友圈失败--" + JSON.stringify(res));
-                        }
-                    });
-
-                    wx.error(function (res) {
-                        console.log('微信分享错误' + res.errMsg);
-                    });
                 }
             }).catch(_=>{Toast('获取签名信息失败')});
 
