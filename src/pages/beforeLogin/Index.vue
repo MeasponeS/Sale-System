@@ -16,8 +16,6 @@
     import {Icon as vantIcon} from 'vant';
     import {sendSmsCode} from '../../api/recommender'
     import Config from '../../config/app'
-    import {getUrlInfo,setToken} from "../../utils/dataStorage";
-    import {getTokenMethods} from "../../api/wechat";
 
     export default {
         name: 'app',

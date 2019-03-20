@@ -47,4 +47,14 @@ function shareFriendQ(config,callback){
 
 }
 
-export {shareFriendQ,shareFriend}
+
+function vxPay(config) {
+    wx.chooseWXPay({
+        timestamp: config.timestamp,
+        nonceStr: config.noncestr,
+        package: config.package,
+        paySign: config.paySign
+    });
+
+}
+export {shareFriendQ,shareFriend,vxPay}
