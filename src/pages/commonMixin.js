@@ -51,18 +51,18 @@ export default {
             wx.error(function(){
                 // Toast('微信签名失败');
             });
-        }).catch(_=>{Toast('获取签名信息失败')})
+        }).catch(_=>{Toast('获取签名信息失败')});
 
         wx.ready(function () {
             let shareData = {
-                title:'',
+                title:'分享给旁友',
                 link:'',
                 imgUrl:'',
                 success:function () {
-
+                    alert(1111)
                 },
                 cancel:function () {
-
+                    alert(222)
                 }
             }
             wx.onMenuShareTimeline(shareData)
