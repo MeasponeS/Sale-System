@@ -25,10 +25,10 @@
                     Toast('请填写手机号')
                     return
                 }
-                if (phoneReg.test(this.mobile)) {
-                    Toast('请输入正确格式的手机号')
-                    return
-                }
+                // if (phoneReg.test(this.mobile)) {
+                //     Toast('请输入正确格式的手机号')
+                //     return
+                // }
 
 
                 this.$emit('wxPay',this.mobile)
