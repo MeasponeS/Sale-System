@@ -106,11 +106,11 @@
                 this.showOpen = false;
                 this.share = false
             },
-            wxPay(){
+            wxPay(mobile){
                 creatLeaderOrder({
                     activityId: Config.activityId,
                     groupId:this.groupInfo.id,
-                    mobile:this.mobile,
+                    mobile:mobile,
                     recommenderUserId:window.URLPARAMS.id
                 }).then(r=>{
                     console.log(r);
