@@ -46,6 +46,7 @@
     import RealNameAuth from '../../components/RealNameAuth'
     import {activityReward,realNameAuth} from "../../api/activity";
     import Config from '../../config/app'
+    import {withdraw} from "../../api/activity";
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -101,7 +102,13 @@
                 let name = this.income.userInfo.realName;
                 let idNum = this.income.userInfo.identityCard;
                 if(name && name != null && idNum && idNum != null){
-                    Toast('可以提现')
+                    withdraw({
+                        activityId:Config.activityId,
+                        applyMoney:this.getMoney
+                    }).then(r=>{
+                        Toast('申请提现成功')
+                        console.log(r);
+                    }).catch(_=>{})
                 } else {
                     this.idShow = true
                 }

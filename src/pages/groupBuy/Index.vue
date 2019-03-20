@@ -43,7 +43,7 @@
                     <span>团长</span>
                 </div>
                 <div class="groupFriends">
-                    <div class="emptyI" v-if="headList.length == 0" style="margin-left:18px">?</div>
+                    <div class="emptyI" v-if="headList[0] != null" style="margin-left:18px">?</div>
                     <img
                             v-else
                             src=""
@@ -140,6 +140,9 @@
             className(step){
                 let num = this.groupNum;
                 let list = this.regularLIst;
+                if(list.length == 0 || num == null){
+                    return
+                }
                 switch (step) {
                     case 0:
                         if(num < list[0].highCount){
@@ -185,6 +188,9 @@
             className1(step){
                 let num = this.groupNum;
                 let list = this.regularLIst;
+                if(list.length == 0 || num == null){
+                    return
+                }
                 switch (step) {
                     case 0:
                         if(num < list[0].highCount){
@@ -211,6 +217,9 @@
             className2(step){
                 let num = this.groupNum;
                 let list = this.regularLIst;
+                if(list.length == 0 || num == null){
+                    return
+                }
                 switch (step) {
                     case 0:
                         if(num < list[0].highCount){

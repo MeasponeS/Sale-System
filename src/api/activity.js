@@ -72,3 +72,13 @@ export function sendMsgCode(params) {
         params: params
     })
 }
+
+
+// 提现接口
+export function withdraw(params) {
+    return request({
+        url: '/sale/api/activity/withdraw',
+        method: 'post',
+        data: params
+    })
+}
