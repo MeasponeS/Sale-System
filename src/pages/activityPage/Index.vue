@@ -96,7 +96,7 @@
         methods: {
             goGroupBuy(){
 
-                window.location.href = './groupBuy.html?id='+this.groupInfo.id + '&status=' + this.groupInfo.status
+                window.location.href = './groupBuy.html?groupId='+this.groupInfo.id + '&status=' + this.groupInfo.status
             },
             goIncome(){
                 window.location.href = './incomeDetails.html'

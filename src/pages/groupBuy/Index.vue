@@ -130,8 +130,7 @@
             }
         },
         mounted() {
-
-            this.id = getUrlInfo('id');
+            this.id = getUrlInfo('groupId');
             userActivity({groupId:this.id}).then(r=>{
                 this.groupNum = r.orderCount;
                 this.countDownSenconds = r.countDownSenconds;
