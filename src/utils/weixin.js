@@ -71,6 +71,5 @@ function vxPay(r) {
             }
         }
     );
-
 }
 export {shareFriendQ,shareFriend,vxPay}
