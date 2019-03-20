@@ -51,7 +51,6 @@ function shareFriendQ(config){
 function vxPay(config) {
     console.log(config);
     wx.chooseWXPay({
-        appId:r.appId,
         timestamp: config.timeStamp,
         nonceStr: config.nonceStr,
         package: config.packageValue,
