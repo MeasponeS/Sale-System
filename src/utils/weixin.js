@@ -49,14 +49,16 @@ function shareFriendQ(config){
 
 
 function vxPay(r) {
-    console.log(r,'rrrrrrr');
-
-    wx.chooseWXPay({
-        timestamp: config.timeStamp,
-        nonceStr: config.nonceStr,
-        package: config.packageValue,
+    let c = {
+        timestamp: r.timeStamp,
+        nonceStr: r.nonceStr,
+        package: r.packageValue,
         signType:'MD5',
-        paySign: config.paySign,
+        paySign: r.paySign,}
+    console.log(c,'rrrrrrr');
+    
+    wx.chooseWXPay({
+        ...c,
         success:function () {
             alert(99)
         }
