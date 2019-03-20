@@ -43,7 +43,7 @@
                     <span>团长</span>
                 </div>
                 <div class="groupFriends">
-                    <div class="emptyI" v-if="headList[0] != null" style="margin-left:18px">?</div>
+                    <div class="emptyI" v-if="headList[0] == null" style="margin-left:18px">?</div>
                     <img
                             v-else
                             src=""
@@ -58,9 +58,11 @@
                     <!--<img style="right:72px" src="./img/1.jpg" alt="">-->
                 </div>
             </div>
-            <Button class="indexBtn" @click="showMobile = true" v-if="!isLeader && !userHasBuy" >一键参团 {{goodsInfo.originPrice || 0   | Money}}</Button>
-            <Button class="indexBtn" v-else @click="share = true">邀请好友团购，拿更高返利</Button>
-            <Button class="indexBtn endBtn">团购已结束</Button>
+            <Button class="indexBtn endBtn" v-if="countDownSenconds == 0">团购已结束</Button>
+            <div v-else>
+                <Button class="indexBtn" @click="showMobile = true" v-if="!isLeader && !userHasBuy" >一键参团 {{goodsInfo.originPrice || 0   | Money}}</Button>
+                <Button class="indexBtn" v-else @click="share = true">邀请好友团购，拿更高返利</Button>
+            </div>
             <em>好友拼团·人满发货·不满退款</em>
         </div>
         <div class="playGuide">
@@ -112,7 +114,7 @@
                 regularLIst:[],
                 countDownSenconds:'',
                 isLeader:'',
-                userHasBuy:''
+                userHasBuy:'',
             }
         },
         filters:{
