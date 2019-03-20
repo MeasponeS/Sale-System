@@ -117,6 +117,30 @@
                     recommenderUserId:window.URLPARAMS.id
                 }).then(r=>{
 
+                    WeixinJSBridge.invoke(
+                        'getBrandWCPayRequest', {
+                            "appId": param.appId,
+                            "timeStamp": param.timeStamp,
+                            "nonceStr": param.nonceStr,
+                            "package": param.packageValue,
+                            "signType": "MD5",
+                            "paySign": param.paySign
+                        },
+                        function (res) {
+                            if (res.err_msg == "get_brand_wcpay_request:ok") {
+                                callback(1);
+                            } else {
+                                if (res.err_msg == "get_brand_wcpay_request:cancel") {
+                                    layer.msg("您已取消支付。");
+                                } else {
+                                    layer.msg('充值失败，请稍后再试。');
+                                }
+                            }
+                        }
+                    );
+
+
+
                 }).catch(_=>{})
             },
             openGroup(){

@@ -33,15 +33,16 @@ export default {
                     return
                 }
                 wx.config({
-                    debug:false,
+                    debug:true,
                     appId:r.signature.appId,
                     nonceStr:r.signature.nonceStr,
+                    timestamp:r.signature.timestamp,
                     signature : r.signature.signature,
-                    jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage'] // 必填，需要使用的JS接口列表
+                    jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage','checkJsApi','hideMenuItems'] // 必填，需要使用的JS接口列表
                 });
 
                 wx.ready(function () {
-                    Toast('配置成功')
+                    Toast('签名成功')
                     wx.checkJsApi({
                         jsApiList: [
                             'onMenuShareTimeline',
@@ -56,6 +57,11 @@ export default {
                         }
                     });
                 });
+
+                wx.error(function(res){
+                    Toast('签名失败')
+                });
+
                 wx.hideMenuItems({
                     menuList: [
                         // 'menuItem:share:timeline',
@@ -75,6 +81,10 @@ export default {
                     }
 
                 });
+
+
+
+
 
             }
         }).catch(_=>{Toast('获取签名信息失败')});
