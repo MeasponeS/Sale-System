@@ -13,7 +13,7 @@ import {Toast} from 'vant'
 
 
 function shareFriend(config){
-    wx.onMenuShareAppMessage({
+    wx.updateAppMessageShareData({
         title: config.shareTitle, // 分享标题
         desc: config.shareBody, // 分享描述
         link: config.shareUrl, // 分享链接
@@ -31,7 +31,7 @@ function shareFriend(config){
 
 function shareFriendQ(config){
     setTimeout(()=>{
-        wx.onMenuShareTimeline({
+        wx.updateTimelineShareData({
             title: config.shareTitle, // 分享标题
             link: config.shareUrl, // 分享链接
             imgUrl: config.shareImg, // 分享图标
