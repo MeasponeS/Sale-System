@@ -116,11 +116,11 @@
             timeOut(){
 
             },
-            wxPay(){
+            wxPay(mobile){
                 creatGeneralOrder({
                     activityId: Config.activityId,
                     groupId:this.groupInfo.id,
-                    mobile:this.mobile,
+                    mobile:mobile,
                 }).then(r=>{
                     console.log(r);
                 }).catch(_=>{})
