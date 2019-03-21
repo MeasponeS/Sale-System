@@ -97,6 +97,7 @@
     import Config from '../../config/app'
     import {creatGeneralOrder} from "../../api/order";
     import Share from '../../components/Share'
+    import wx from 'weixin-js-sdk';
     export default {
         name: 'app',
         mixins:[groupProgress,CommonMixin],
@@ -131,7 +132,7 @@
                     shareImg:'//www.baidu.com/img/bd_logo1.png?where=super'
                 };
 
-                wx.updateAppMessageShareData({
+                wx.onMenuShareAppMessage({
                     title: config.shareTitle, // 分享标题
                     desc: config.shareBody, // 分享描述
                     link: config.shareUrl, // 分享链接

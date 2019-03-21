@@ -102,8 +102,8 @@
                     shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?recommenderUserId='+window.URLPARAMS.id + 'activityId' + Config.activityId ,
                     shareImg:'//www.baidu.com/img/bd_logo1.png?where=super'
                 };
-
-                wx.updateAppMessageShareData({
+                alert(333)
+                wx.onMenuShareAppMessage({
                     title: config.shareTitle, // 分享标题
                     desc: config.shareBody, // 分享描述
                     link: config.shareUrl, // 分享链接
