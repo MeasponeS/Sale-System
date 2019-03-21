@@ -65,12 +65,13 @@
     import CommonMixin from '../commonMixin.js'
     import {leaderActivity} from "../../api/activity";
     import Config from '../../config/app'
-    import {Popup,Button} from 'vant';
+    import {Popup,Button,Toast} from 'vant';
     import PayPopup from '../../components/PayPopup'
     import Share from '../../components/Share'
     import {creatLeaderOrder} from "../../api/order";
     import {crtGroupOpen} from "../../api/group";
-    import {shareFriend,vxPay} from '../../utils/weixin'
+    import {shareFriend,vxPay,shareFriendQ} from '../../utils/weixin'
+    import wx from 'weixin-js-sdk';
 
     export default {
         name: 'app',
@@ -148,7 +149,25 @@
             };
 
 
-            this.share(config)
+            window.setTimeout(()=>{
+                wx.updateAppMessageShareData({
+                    title: config.shareTitle, // 分享标题
+                    desc: config.shareBody, // 分享描述
+                    link: config.shareUrl, // 分享链接
+                    imgUrl: config.shareImg, // 分享图标
+                    //type: '', // 分享类型,music、video或link，不填默认为link
+                    //dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                    success: function () {
+                        Toast('分享成功');
+                    },
+                    cancel: function () {
+                        Toast('分享失败');
+                    }
+                });
+            },1000)
+
+
+            shareFriendQ(config)
 
         },
         beforeDestroy: function () {

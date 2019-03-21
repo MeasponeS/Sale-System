@@ -11,8 +11,7 @@ export default {
                 appId:'',
                 nonceStr:'',
                 signature:'',
-                timestamp:'',
-                signInfo:{}
+                timestamp:''
             }
         }
     },
@@ -20,80 +19,6 @@ export default {
 
     },
     methods: {
-        share(config){
-            wx.config({
-                debug:true,
-                appId:this.info.signInfo.appId,
-                nonceStr:this.info.signInfo.nonceStr,
-                timestamp:this.info.signInfo.timestamp,
-                signature : this.info.signInfo.signature,
-                jsApiList: ['updateTimelineShareData','updateAppMessageShareData','checkJsApi','hideMenuItems','chooseWXPay'] // 必填，需要使用的JS接口列表
-            });
-            wx.ready(function () {
-                wx.checkJsApi({
-                    jsApiList: [
-                        'updateTimelineShareData',
-                        'updateAppMessageShareData',
-                        'chooseWXPay',
-                        'hideMenuItems'
-                    ],
-                    success: function (res) {
-
-                    },
-                    fail: function (res) {
-                        Toast('配置失败')
-                    }
-                });
-
-                wx.hideMenuItems({
-                    menuList: [
-                        // 'menuItem:share:timeline',
-                        'menuItem:readMode', // 阅读模式
-                        "menuItem:share:qq", //分享到qq
-                        "menuItem:share:weiboApp", //分享到微博
-                        "menuItem:openWithQQBrowser", //qq浏览器打开
-                        "menuItem:openWithSafari", //safri打开
-                        "menuItem:share:QZone", //空间
-                        'menuItem:copyUrl' //复制链接
-                    ],
-                    success: function (res) {
-
-                    },
-                    fail: function (res) {
-
-                    }
-
-                });
-
-                wx.updateAppMessageShareData({
-                    title: config.shareTitle, // 分享标题
-                    desc: config.shareBody, // 分享描述
-                    link: config.shareUrl, // 分享链接
-                    imgUrl: config.shareImg, // 分享图标
-                    //type: '', // 分享类型,music、video或link，不填默认为link
-                    //dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-                    success: function () {
-                        Toast('分享成功');
-                    },
-                    cancel: function () {
-                        Toast('分享失败');
-                    }
-                });
-
-                wx.updateTimelineShareData({
-                    title: config.shareTitle, // 分享标题
-                    link: config.shareUrl, // 分享链接
-                    imgUrl: config.shareImg, // 分享图标
-                    success: function () {
-                        Toast('分享成功');
-                    },
-                    cancel: function () {
-                        Toast('分享失败');
-                    }
-                });
-            });
-
-        }
     },
     mounted() {
         wxSignature({url:window.location.href}).then(r=>{
@@ -106,7 +31,6 @@ export default {
                         r.signature.appId  + "&redirect_uri=" + encodeURIComponent('https://wxauth.hulian120.com/open/getCodeFor')  +   "&response_type=code&scope=snsapi_userinfo&state=student#wechat_redirect";
                     return
                 }
-                this.info.signInfo = {...r.signature};
 
                 wx.config({
                     debug:true,
