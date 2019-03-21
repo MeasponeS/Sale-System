@@ -21,7 +21,7 @@ export default {
     methods: {
     },
     mounted() {
-
+        let that = this;
 
         wxSignature({url:window.location.href}).then(r=>{
             if (r.resultCode == 500) return;
@@ -79,7 +79,7 @@ export default {
                         }
 
                     });
-                    this.wxSignatureCallback()
+                    that.wxSignatureCallback()
                 });
 
                 wx.error(function(res){
