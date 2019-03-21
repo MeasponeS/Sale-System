@@ -11,7 +11,9 @@ if(!window.URLPARAMS.hasOwnProperty('code')){
             r.signature.appId  + "&redirect_uri=" + encodeURIComponent('https://wxauth.hulian120.com/open/getCodeFor')  +   "&response_type=code&scope=snsapi_userinfo&state=hushijia#wechat_redirect"
     }).catch(_=>{})
 } else {
+    console.log('1111',getKey());
     if(getKey()){
+        console.log('2222');
         let server_url = encodeURIComponent('https://testsale.hulian120.com/sale/api/wx/login');
         getTokenMethods({
             actId:Config.activityId,
@@ -26,8 +28,6 @@ if(!window.URLPARAMS.hasOwnProperty('code')){
                 window.location.href = getKey()
             },200);
         }).catch(_=>{})
-    } else {
-        window.location.reload()
     }
 
 }
