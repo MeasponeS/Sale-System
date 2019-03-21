@@ -94,7 +94,7 @@
     import {getUrlInfo} from "../../utils/dataStorage";
     import Countdown from '../../components/Countdown'
     import PayPopup from '../../components/PayPopup';
-    import Config from '../../config/app'
+    import {vxPay} from "../../utils/weixin";
     import {creatGeneralOrder} from "../../api/order";
     import Share from '../../components/Share'
     import wx from 'weixin-js-sdk';
@@ -129,7 +129,7 @@
                 if(this.isLeader == 1){
                     shareLink = 'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + 'leaderId' + window.URLPARAMS.leaderId+'&actId=' + window.URLPARAMS.actId + '&status=' + window.URLPARAMS.status
                 } else {
-                    
+
                 }
                 let config = {
                     shareTitle:'分享给好友开团',
@@ -168,7 +168,7 @@
                     groupId:this.groupInfo.id,
                     mobile:mobile,
                 }).then(r=>{
-
+                    vxPay(r)
                 }).catch(_=>{})
             },
 

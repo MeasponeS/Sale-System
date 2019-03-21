@@ -33,10 +33,10 @@
                 <img :src="goodsInfo.imageUrl" alt="" >
             </div>
         </div>
-        <div class="start" @click="showOpen = true" v-if="groupInfo && groupInfo.status == 0">
+        <div class="start" @click="showOpen = true" v-if="leaderHasBuy == 0">
            我要开团
         </div>
-        <div class="start" @click="showOpen = true" v-else>
+        <div class="start" @click="share = true" v-else>
             邀请好友获得更多返利
         </div>
         <div class="end" >

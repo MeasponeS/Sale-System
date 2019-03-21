@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './Index.vue'
 import '../common'
-import {setToken} from "../../utils/dataStorage";
+import {setToken,getKey} from "../../utils/dataStorage";
 import Config from '../../config/app'
 import {Toast} from 'vant'
 import {wxSignature,getTokenMethods} from "../../api/wechat";
@@ -23,7 +23,7 @@ if(!window.URLPARAMS.hasOwnProperty('code')){
         setToken(r);
         Toast('登陆成功');
         window.setTimeout(()=>{
-             window.location.href = './groupBuy.html?activityId=1&groupId=21'
+             window.location.href = getKey()
         },200);
     }).catch(_=>{})
 }
