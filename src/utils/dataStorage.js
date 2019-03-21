@@ -42,7 +42,12 @@ export function getUrlInfo(key = null){
  * @returns {*}
  */
 export function getToken() {
-    return Cookies.get(Config.tokenKey) || "";
+    if(Cookies.get(Config.tokenKey) == 'null' || Cookies.get(Config.tokenKey) == null || Cookies.get(Config.tokenKey) == ''){
+        return ''
+    } else {
+        return Cookies.get(Config.tokenKey)
+    }
+
 }
 
 /**
