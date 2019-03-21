@@ -2,7 +2,7 @@
     <Popup v-model="showMobile" :close-on-click-overlay="false">
         <div class="wrapMobile">
             <h3>填写手机号</h3>
-            <input type="number" placeholder="用于获取课程卡号/密码，请务必确认" v-model="mobile">
+            <input type="number" placeholder="用于获取课程卡号/密码，请务必确认" v-model="mobile" maxlength="11">
             <Button class="bottomBtn" @click="goPay">去支付</Button>
         </div>
     </Popup>

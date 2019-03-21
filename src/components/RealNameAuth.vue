@@ -6,7 +6,7 @@
             <ul class="idContent">
                 <li style="border-top:1px solid rgba(229,229,229,1)">
                     <span>手机号码</span>
-                    <input type="number" placeholder="请输入当前微信绑定的手机号" @blur="changeMobile" v-model="userInfo.mobile">
+                    <input type="number" placeholder="请输入当前微信绑定的手机号" @blur="changeMobile" v-model="userInfo.mobile" maxlength="11">
                 </li>
                 <li>
                     <div>

@@ -26,7 +26,6 @@
                   deep:true,
                   handler:function (newVal,oldVal) {
                       if(newVal > 0){
-                          console.log(newVal);
                           this.initFn()
                       }
                   }

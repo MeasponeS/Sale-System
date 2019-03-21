@@ -4,7 +4,7 @@
             <h2>您好，请登录！</h2>
             <div class="phone">
                 <vantIcon name="phone" class="icon"></vantIcon>
-                <input type="number" class="tel" placeholder="手机号" v-model="mobile" :disabled="mobile != ''">
+                <input type="number" class="tel" maxlength="11" placeholder="手机号" v-model="mobile" :disabled="mobile != ''">
                 <div class="get-msg" @click="getCode" :style="{color:countDown != initCountDown ?'#DCDCDC':'#F46A21'}">
                     <div class="line"></div>
                     {{ countDown != initCountDown ? countDown+'s' : '重新发送' }}

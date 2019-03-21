@@ -4,7 +4,7 @@
             <h3>邀请人手机号</h3>
             <input type="number" v-model="mobile">
             <h3>您的销售推广码</h3>
-            <input type="number" v-model="inviteCode">
+            <input type="number" v-model="inviteCode" maxlength="11">
             <vantButton class="indexBtn" @click="createRecommender">生成邀请人</vantButton>
             <div>
                 <a href="##" @click="share = true">分享活动链接给邀请人</a>
