@@ -54,7 +54,6 @@
                             :src="item"
                             :style="'right:'+(index *18) + 'px'"
                     >
-
                 </div>
             </div>
             <div v-if="countDownSenconds > 0">
@@ -128,7 +127,7 @@
                 leaderHeadImg:'', // 团长头像
                 headList:[], // 团员头像
                 regularLIst:[],
-                countDownSenconds:'',
+                countDownSenconds:0,
                 isLeader:'',
                 userHasBuy:'',
             }
