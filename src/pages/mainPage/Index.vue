@@ -50,13 +50,13 @@
                 <img src="../../assets/img/16.png" alt="">
             </div>
         </div>
-        <div class="start" @click="share = true">
+        <div class="start" @click="share = true" >
             <h3>邀请好友开团</h3>
             <span>每成交一人获得返佣{{activity.leaderReward || 0 | Money}}</span>
         </div>
-        <div class="end" @click="show = true">
-            <h3>本次活动已结束</h3>
-        </div>
+        <!--<div class="end" @click="show = true">-->
+            <!--<h3>本次活动已结束</h3>-->
+        <!--</div>-->
         <Share :share="share" @know="share = false"></Share>
     </div>
 </template>
