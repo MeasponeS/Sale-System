@@ -1,5 +1,5 @@
 <template>
-    <div id="app" :style="'display:'+ showBlock">
+    <div id="app" :style="'display:'+ window.display">
         <div class="main">
             <h2>您好，请登录！</h2>
             <div class="phone">
@@ -15,14 +15,11 @@
     import {Button as vantButton,Toast} from 'vant';
     import {Icon as vantIcon} from 'vant';
     import {sendSmsCode} from '../../api/recommender'
-    import Config from '../../config/app'
-
     export default {
         name: 'app',
         data: function () {
             return {
-                mobile:'',
-                showBlock:'block',
+                mobile:''
             }
         },
         methods: {

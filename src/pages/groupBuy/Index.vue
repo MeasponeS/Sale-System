@@ -63,6 +63,7 @@
                 <Button class="indexBtn" @click="showMobile = true" v-if="!isLeader && !userHasBuy" >一键参团 {{goodsInfo.originPrice || 0   | Money}}</Button>
                 <Button class="indexBtn" v-else @click="share = true">邀请好友团购，拿更高返利</Button>
             </div>
+            <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0 && groupInfo.status == 3">请联系团长重新开团</Button>
             <em>好友拼团·人满发货·不满退款</em>
         </div>
         <div class="playGuide">
@@ -125,17 +126,11 @@
         },
         methods: {
             wxSignatureCallback(){
-                let shareLink = '';
-                if(this.isLeader == 1){
-                    shareLink = 'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + 'leaderId' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status
-                } else {
-
-                }
                 let config = {
-                    shareTitle:'分享给好友开团',
-                    shareBody:'这是我分享给好友得团',
+                    shareTitle:'『团购优惠』和好朋友一起领',
+                    shareBody:'健康管理师＆护理评估师，现在团购立减¥880',
                     shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + 'leaderId' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status,
-                    shareImg:'//www.baidu.com/img/bd_logo1.png?where=super'
+                    shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };
 
                 wx.onMenuShareAppMessage({

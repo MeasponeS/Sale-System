@@ -73,7 +73,7 @@
     import Share from '../../components/Share'
     import {creatLeaderOrder} from "../../api/order";
     import {crtGroupOpen} from "../../api/group";
-    import {shareFriend,vxPay,shareFriendQ} from '../../utils/weixin'
+    import {vxPay} from '../../utils/weixin'
     import wx from 'weixin-js-sdk';
     import Countdown from '../../components/Countdown'
 
@@ -102,10 +102,10 @@
         methods: {
             wxSignatureCallback(){
                 let config = {
-                    shareTitle:'分享给好友开团',
-                    shareBody:'这是我分享给好友得团',
+                    shareTitle:'团长主页',
+                    shareBody:'赶快进入主页参与活动吧',
                     shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+this.groupInfo.id + 'leaderId' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status ,
-                    shareImg:'//www.baidu.com/img/bd_logo1.png?where=super'
+                    shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };
                 wx.onMenuShareAppMessage({
                     title: config.shareTitle, // 分享标题

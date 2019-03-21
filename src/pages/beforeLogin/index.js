@@ -2,11 +2,14 @@ import Vue from 'vue'
 import App from './Index.vue'
 import '../common'
 import {setToken,getBeforePage} from "../../utils/dataStorage";
-import Config from '../../config/app'
 import {Toast} from 'vant'
 import {wxSignature,getTokenMethods} from "../../api/wechat";
 
-
+if(window.URLPARAMS.hasOwnProperty('state') && window.URLPARAMS.state == 'needJump'){
+    window.display = 'none'
+} else {
+    window.display = 'block'
+}
 
 
 if(!window.URLPARAMS.hasOwnProperty('code')){

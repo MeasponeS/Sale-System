@@ -48,7 +48,6 @@
     import {Button,Popup,Toast} from 'vant'
     import CommonMixin from '../commonMixin.js'
     import {activityReward,realNameAuth} from "../../api/activity";
-    import Config from '../../config/app'
     import RealNameAuth from '../../components/RealNameAuth'
     import {withdraw} from "../../api/activity";
     import wx from 'weixin-js-sdk';
@@ -71,10 +70,10 @@
         methods: {
             wxSignatureCallback(){
                 let config = {
-                    shareTitle:'分享给好友开团',
-                    shareBody:'这是我分享给好友得团',
-                    shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?recommenderUserId='+window.URLPARAMS.id + 'activityId' + window.actId ,
-                    shareImg:'//www.baidu.com/img/bd_logo1.png?where=super'
+                    shareTitle:'邀请人主页',
+                    shareBody:'赶快进入主页参与活动吧',
+                    shareUrl:'https://hsj.hulian120.com/pay/activityPage.html?recommenderUserId='+ this.recommenderId + '&actId=' + window.actId ,
+                    shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };
 
                 wx.onMenuShareAppMessage({
@@ -84,6 +83,18 @@
                     imgUrl: config.shareImg, // 分享图标
                     //type: '', // 分享类型,music、video或link，不填默认为link
                     //dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                    success: function () {
+                        console.log('配置分享成功');
+                    },
+                    cancel: function () {
+                        console.log('配置分享失败');
+                    }
+                });
+
+                wx.onMenuShareTimeline({
+                    title: config.shareTitle, // 分享标题
+                    link: config.shareUrl, // 分享链接
+                    imgUrl: config.shareImg, // 分享图标
                     success: function () {
                         console.log('配置分享成功');
                     },
