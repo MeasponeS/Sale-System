@@ -148,7 +148,7 @@
             };
 
 
-            shareFriend(config)
+            this.share(config)
 
         },
         beforeDestroy: function () {
