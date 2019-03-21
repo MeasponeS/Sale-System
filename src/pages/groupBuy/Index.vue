@@ -125,10 +125,16 @@
         },
         methods: {
             wxSignatureCallback(){
+                let shareLink = ''
+                if(this.isLeader == 1){
+                    shareLink = 'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + 'leaderId' + window.URLPARAMS.leaderId+'&actId=' + window.URLPARAMS.actId + '&status=' + window.URLPARAMS.status
+                } else {
+                    
+                }
                 let config = {
                     shareTitle:'分享给好友开团',
                     shareBody:'这是我分享给好友得团',
-                    shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?recommenderUserId='+window.URLPARAMS.id + 'activityId' + Config.activityId ,
+                    shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + 'leaderId' + window.URLPARAMS.leaderId+'&actId=' + window.URLPARAMS.actId + '&status=' + window.URLPARAMS.status,
                     shareImg:'//www.baidu.com/img/bd_logo1.png?where=super'
                 };
 
@@ -140,10 +146,10 @@
                     //type: '', // 分享类型,music、video或link，不填默认为link
                     //dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
                     success: function () {
-                        Toast('分享成功');
+                        console.log('配置分享成功');
                     },
                     cancel: function () {
-                        Toast('分享失败');
+                        console.log('配置分享失败');
                     }
                 });
 
@@ -158,7 +164,7 @@
             },
             wxPay(mobile){
                 creatGeneralOrder({
-                    activityId: Config.activityId,
+                    activityId: window.URLPARAMS.actId,
                     groupId:this.groupInfo.id,
                     mobile:mobile,
                 }).then(r=>{

@@ -42,14 +42,6 @@
         <div class="end" @click="show = true">
             <h3>本次活动已结束</h3>
         </div>
-        <Popup v-model="show" :close-on-click-overlay="false" >
-            <div class="wrap">
-                <h3>开团方式</h3>
-                <Button class="indexBtn" @click="goActivityPage">A：分享到朋友圈</Button>
-                <Button class="indexBtn" >B：分享给好友</Button>
-                <Button class="bottomBtn" @click="show = false">取消</Button>
-            </div>
-        </Popup>
         <Share :share="share" @know="share = false"></Share>
     </div>
 </template>
@@ -58,7 +50,6 @@
     import {Button,Popup,Toast} from 'vant';
     import CommonMixin from '../commonMixin.js'
     import {recommenderIndex} from "../../api/recommender";
-    import Config from '../../config/app'
     import Share from '../../components/Share'
     import wx from 'weixin-js-sdk';
     export default {
@@ -66,7 +57,6 @@
         mixins: [CommonMixin],
         data: function () {
             return {
-                show:false,
                 orderCount:0,// 成功购买人数
                 share:false,
                 goodsInfo: {},
@@ -84,7 +74,7 @@
                 let config = {
                     shareTitle:'分享给好友开团',
                     shareBody:'这是我分享给好友得团',
-                    shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?recommenderUserId='+window.URLPARAMS.id + 'activityId' + Config.activityId ,
+                    shareUrl:'https://hsj.hulian120.com/pay/activityPage.html?recommenderUserId='+ this.recommenderId + '&actId=' + window.URLPARAMS.actId ,
                     shareImg:'//www.baidu.com/img/bd_logo1.png?where=super'
                 };
 
@@ -96,10 +86,10 @@
                     //type: '', // 分享类型,music、video或link，不填默认为link
                     //dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
                     success: function () {
-                        Toast('分享成功');
+                        console.log('配置分享成功');
                     },
                     cancel: function () {
-                        Toast('分享失败');
+                        console.log('配置分享失败');
                     }
                 });
 
@@ -109,23 +99,19 @@
             goWithdraw(){
                 window.location.href = './withdraw.html'
             },
-            goActivityPage(){
-                window.location.href = './activityPage.html?id='+this.recommenderId
-            },
-            openGroupByShare(){
-                this.share = true;
-                this.show = false;
-                // crtGroupOpen({
-                //     activityId: Config.activityId,
-                //     mobile:'18513891718',
-                //     recommenderUserId:8,
-                //     groupId:''
-                // }).then(r=>{}).catch(_=>{
-                // })
-            }
+            // openGroupByShare(){
+            //     this.share = true;
+            //     // crtGroupOpen({
+            //     //     activityId: Config.activityId,
+            //     //     mobile:'18513891718',
+            //     //     recommenderUserId:8,
+            //     //     groupId:''
+            //     // }).then(r=>{}).catch(_=>{
+            //     // })
+            // }
         },
         mounted() {
-            recommenderIndex({activityId:Config.activityId}).then(r=>{
+            recommenderIndex({activityId:window.URLPARAMS.actId}).then(r=>{
                 this.orderCount = r.orderCount;
                 this.goodsInfo = {...r.goodsInfo};
                 this.activity = {...r.activity};

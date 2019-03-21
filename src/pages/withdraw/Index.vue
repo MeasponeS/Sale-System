@@ -81,10 +81,10 @@
                     //type: '', // 分享类型,music、video或link，不填默认为link
                     //dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
                     success: function () {
-                        Toast('分享成功');
+                        console.log('配置分享成功');
                     },
                     cancel: function () {
-                        Toast('分享失败');
+                        console.log('配置分享失败');
                     }
                 });
 

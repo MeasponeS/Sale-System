@@ -37,7 +37,7 @@
            我要开团
         </div>
         <div class="start" @click="showOpen = true" v-else>
-            查看团详情
+            邀请好友获得更多返利
         </div>
         <div class="end" >
             <h3>本次活动已结束</h3>
@@ -47,7 +47,7 @@
         </div>
         <Popup v-model="showOpen" :close-on-click-overlay="false">
             <div class="wrap">
-                <h3 @click="goGroupBuy">开团方式</h3>
+                <h3>开团方式</h3>
                 <Button class="indexBtn"
                         @click="goCheckMobile"
                         :disabled="(groupInfo&&groupInfo.status != 0) || groupInfo.status != 0"
@@ -64,7 +64,6 @@
 <script>
     import CommonMixin from '../commonMixin.js'
     import {leaderActivity} from "../../api/activity";
-    import Config from '../../config/app'
     import {Popup,Button,Toast} from 'vant';
     import PayPopup from '../../components/PayPopup'
     import Share from '../../components/Share'
@@ -99,10 +98,9 @@
                 let config = {
                     shareTitle:'分享给好友开团',
                     shareBody:'这是我分享给好友得团',
-                    shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?recommenderUserId='+window.URLPARAMS.id + 'activityId' + Config.activityId ,
+                    shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+this.groupInfo.id + 'leaderId' + this.groupInfo.leaderId+'&actId=' + window.URLPARAMS.actId + '&status=' + this.groupInfo.status ,
                     shareImg:'//www.baidu.com/img/bd_logo1.png?where=super'
                 };
-                alert(333)
                 wx.onMenuShareAppMessage({
                     title: config.shareTitle, // 分享标题
                     desc: config.shareBody, // 分享描述
@@ -111,19 +109,15 @@
                     //type: '', // 分享类型,music、video或link，不填默认为link
                     //dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
                     success: function () {
-                        Toast('分享给朋友成功');
+                        console.log('配置分享成功');
                     },
                     cancel: function () {
-                        Toast('分享失败');
+                        console.log('配置分享失败');
                     }
                 });
 
 
 
-            },
-            goGroupBuy(){
-
-                window.location.href = './groupBuy.html?groupId='+this.groupInfo.id + '&status=' + this.groupInfo.status
             },
             goIncome(){
                 window.location.href = './incomeDetails.html'
@@ -138,28 +132,28 @@
             },
             wxPay(mobile){
                 creatLeaderOrder({
-                    activityId: Config.activityId,
+                    activityId: window.URLPARAMS.actId,
                     groupId:this.groupInfo.id,
                     mobile:mobile,
                     recommenderUserId:window.URLPARAMS.id
                 }).then(r=>{
                     vxPay(r)
-
                 }).catch(_=>{})
             },
             openGroup(){
                 this.share = true
                 crtGroupOpen({
-                    activityId: Config.activityId,
+                    activityId: window.URLPARAMS.actId,
                     groupId: this.groupInfo.id,
                     recommenderUserId: window.URLPARAMS.id
                 }).then(r=>{
+                    console.log(r);
                 }).catch(_=>{})
             }
 
         },
         mounted() {
-            leaderActivity({activityId:Config.activityId}).then(r=>{
+            leaderActivity({activityId:window.URLPARAMS.actId}).then(r=>{
                 this.orderCount = r.orderCount;
                 this.leaderHasBuy = r.leaderHasBuy;
                 this.goodsInfo = {...r.goodsInfo};

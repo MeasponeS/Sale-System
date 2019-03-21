@@ -15,7 +15,6 @@
     import {Button as vantButton,Toast} from 'vant';
     import {Icon as vantIcon} from 'vant';
     import {sendSmsCode} from '../../api/recommender'
-    import Config from '../../config/app'
 
     export default {
         name: 'app',
@@ -31,8 +30,8 @@
                     Toast('请输入正确的手机号');
                     return;
                 }
-                sendSmsCode({mobile:this.mobile,activityId: Config.activityId}).then(r=>{
-                    window.location.href = './login.html?mobile=' + this.mobile + '&code=' + window.URLPARAMS.code;
+                sendSmsCode({mobile:this.mobile,activityId: window.URLPARAMS.actId}).then(r=>{
+                    window.location.href = './login.html?mobile=' + this.mobile + '&code=' + window.URLPARAMS.code + '&actId=' + window.URLPARAMS.actId;
                 }).catch(_=>{});
             }
         },

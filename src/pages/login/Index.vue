@@ -43,10 +43,8 @@
                     Toast('请输入正确的手机号');
                     return;
                 }
-                checkSmsCode({mobile:this.mobile,smsCode:this.code,activityId:Config.activityId}).then(r=>{
+                checkSmsCode({mobile:this.mobile,smsCode:this.code,activityId:window.URLPARAMS.actId}).then(r=>{
                     this.login()
-                    //setToken('a9885edb4be447189c3352b419f586f4_2')
-                    //window.location.href = './mainPage.html'
                 }).catch(err=>{
                     Toast(err)
                 })
@@ -54,7 +52,7 @@
             login(){
                 let server_url = encodeURIComponent('https://testsale.hulian120.com/sale/api/wx/login');
                 getTokenMethods({
-                    actId:Config.activityId,
+                    actId:window.URLPARAMS.actId,
                     code:this.wxCode,
                     mp:'hushijia',
                     serverUrl:server_url,
@@ -63,7 +61,7 @@
                     setToken(r);
                     Toast('登陆成功');
                     window.setTimeout(()=>{
-                        window.location.href = './mainPage.html'
+                        window.location.href = './mainPage.html?actId=' + window.URLPARAMS.actId
                     },200);
                 }).catch(_=>{})
             },
