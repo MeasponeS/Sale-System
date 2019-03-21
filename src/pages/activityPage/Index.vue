@@ -33,13 +33,14 @@
                 <img :src="goodsInfo.imageUrl" alt="" >
             </div>
         </div>
-        <div class="start" @click="showOpen = true" v-if="leaderHasBuy == 0">
-           我要开团
-        </div>
-        <div class="start" @click="share = true" v-else>
+        <div class="start" @click="share = true" v-if="groupInfo && groupInfo.status && groupInfo.status != 0 && groupInfo.status != null">
             邀请好友获得更多返利
             <h4><Countdown :second="countDownSenconds" @toggle="countDownSenconds--" @end="timeOut"></Countdown> </h4>
         </div>
+        <div class="start" @click="showOpen = true" v-else>
+           我要开团
+        </div>
+
         <div class="end" v-if="countDownSenconds == 0" >
             <h3>本次活动已结束</h3>
         </div>
@@ -133,7 +134,15 @@
             },
             know(){
                 this.showOpen = false;
-                this.share = false
+                this.share = false;
+                leaderActivity({activityId:window.actId}).then(r=>{
+                    this.orderCount = r.orderCount;
+                    this.leaderHasBuy = r.leaderHasBuy;
+                    this.goodsInfo = {...r.goodsInfo};
+                    this.activity = {...r.activity};
+                    this.groupInfo = {...r.groupInfo};
+                    this.countDownSenconds = r.countDownSenconds;
+                }).catch(_=>{});
             },
             wxPay(mobile){
                 creatLeaderOrder({
@@ -152,7 +161,7 @@
                     groupId: this.groupInfo.id,
                     recommenderUserId: window.URLPARAMS.recommenderUserId
                 }).then(r=>{
-                    console.log(r);
+
                 }).catch(_=>{})
             },
             timeOut(){
