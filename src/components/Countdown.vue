@@ -21,7 +21,7 @@
         mounted() {
             if (this.second == 0) return;
             let initSecond = this.second;
-
+            let that = this
             window.Countdown = setInterval(_ => {
                 if (initSecond <= 0) {
                     this.$emit('end');
@@ -34,12 +34,12 @@
                 let hour = Math.floor(initSecond / 3600);
                 let minute = Math.floor(initSecond % 3600 / 60);
                 let second = Math.floor(initSecond % 60);
+                console.log(this.h, this.m, this.s);
+                that.h = (hour < 10 ? '0' + hour : hour);
 
-                this.h = (hour < 10 ? '0' + hour : hour);
+                that.m = (minute < 10 ? '0' + minute : minute);
 
-                this.m = (minute < 10 ? '0' + minute : minute);
-
-                this.s = (second < 10 ? '0' + second : second);
+                that.s = (second < 10 ? '0' + second : second);
             }, 1000)
 
         },
