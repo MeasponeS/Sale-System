@@ -140,7 +140,7 @@
                     activityId: window.actId,
                     groupId:this.groupInfo.id,
                     mobile:mobile,
-                    recommenderUserId:window.URLPARAMS.id
+                    recommenderUserId:window.URLPARAMS.recommenderUserId
                 }).then(r=>{
                     vxPay(r)
                 }).catch(_=>{})
@@ -150,7 +150,7 @@
                 crtGroupOpen({
                     activityId: window.actId,
                     groupId: this.groupInfo.id,
-                    recommenderUserId: window.URLPARAMS.id
+                    recommenderUserId: window.URLPARAMS.recommenderUserId
                 }).then(r=>{
                     console.log(r);
                 }).catch(_=>{})

@@ -35,7 +35,7 @@
                 <img :src="goodsInfo.imageUrl" alt="">
             </div>
         </div>
-        <div class="start" @click="openGroupByShare">
+        <div class="start" @click="share = true">
             <h3>邀请好友开团</h3>
             <span>每成交一人获得返佣{{activity.leaderReward || 0 | Money}}</span>
         </div>
