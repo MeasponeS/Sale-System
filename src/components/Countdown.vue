@@ -33,6 +33,7 @@
         },
         methods:{
             initFn(){
+                if (this.second == 0) return;
                 let initSecond = this.second;
                 let that = this;
                 window.Countdown = setInterval(_ => {
@@ -47,7 +48,7 @@
                     let hour = Math.floor(initSecond / 3600);
                     let minute = Math.floor(initSecond % 3600 / 60);
                     let second = Math.floor(initSecond % 60);
-                    console.log(that.h, that.m, that.s);
+
                     that.h = (hour < 10 ? '0' + hour : hour);
 
                     that.m = (minute < 10 ? '0' + minute : minute);

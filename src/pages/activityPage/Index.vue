@@ -140,9 +140,6 @@
                         console.log('配置分享失败');
                     }
                 });
-
-
-
             },
             goIncome(){
                 window.location.href = './incomeDetails.html'
@@ -180,7 +177,14 @@
                     groupId: this.groupInfo.id,
                     recommenderUserId: window.URLPARAMS.recommenderUserId
                 }).then(r=>{
-
+                    leaderActivity({activityId:window.actId}).then(r=>{
+                        this.orderCount = r.orderCount;
+                        this.leaderHasBuy = r.leaderHasBuy;
+                        this.goodsInfo = {...r.goodsInfo};
+                        this.activity = {...r.activity};
+                        this.groupInfo = {...r.groupInfo};
+                        this.countDownSenconds = r.countDownSenconds;
+                    }).catch(_=>{});
                 }).catch(_=>{})
             },
             timeOut(){
