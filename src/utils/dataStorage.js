@@ -54,15 +54,6 @@ export function setToken(token) {
     return Cookies.set(Config.tokenKey, token ,{ expires: Config.cookiesExpires })
 }
 
-export function setKey(key) {
-    return Cookies.set(Config.key, key ,{ expires: Config.cookiesExpires })
-}
-
-
-export function getKey() {
-    return Cookies.get(Config.key) || "";
-}
-
 
 /**
  *
