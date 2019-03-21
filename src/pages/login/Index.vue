@@ -68,9 +68,9 @@
             getCode(){
                 if(this.countDown < 60) return;
                 sendSmsCode({mobile:this.mobile,activityId:window.actId}).then(r=>{
-                    let SMS = setInterval(() => {
+                    let codeSMS = setInterval(() => {
                         if(this.countDown <= 0) {
-                            clearInterval(SMS);
+                            clearInterval(codeSMS);
                             this.countDown = this.initCountDown;
                             return;
                         }

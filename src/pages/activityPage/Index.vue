@@ -5,6 +5,10 @@
             <img src="./img/long.png" alt="">
         </div>
         <div class="top">
+
+
+
+
             <div class="goods">
                 <h3>本次拼团商品</h3>
                 <div class="good">
