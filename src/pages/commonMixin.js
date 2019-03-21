@@ -21,6 +21,8 @@ export default {
     methods: {
     },
     mounted() {
+
+
         wxSignature({url:window.location.href}).then(r=>{
             if (r.resultCode == 500) return;
             if (r.signature.appId == null || r.signature.appId == 0) {
@@ -77,6 +79,7 @@ export default {
                         }
 
                     });
+                    this.wxSignatureCallback()
                 });
 
                 wx.error(function(res){
