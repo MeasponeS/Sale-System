@@ -54,18 +54,14 @@
                             :src="item"
                             :style="'right:'+(index *18) + 'px'"
                     >
-                    <!--<img style="right:0" src="./img/7.jpg" alt="">-->
-                    <!--<img style="right:18px" src="./img/3.jpg" alt="">-->
-                    <!--<img style="right:36px" src="./img/5.jpg" alt="">-->
-                    <!--<img style="right:54px" src="./img/6.jpg" alt="">-->
-                    <!--<img style="right:72px" src="./img/1.jpg" alt="">-->
+
                 </div>
             </div>
-            <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0">团购已结束</Button>
-            <div v-else>
+            <div v-if="countDownSenconds > 0">
                 <Button class="indexBtn" @click="showMobile = true" v-if="isLeader == '0' && userHasBuy == '0'" >一键参团 {{goodsInfo.originPrice || 0   | Money}}</Button>
                 <Button class="indexBtn" v-else @click="share = true">邀请好友团购，拿更高返利</Button>
             </div>
+            <Button class="indexBtn endBtn" v-else >团购已结束</Button>
             <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0 && groupInfo.status == 3">请联系团长重新开团</Button>
             <em>好友拼团·人满发货·不满退款</em>
         </div>
