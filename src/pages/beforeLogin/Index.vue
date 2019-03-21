@@ -1,5 +1,5 @@
 <template>
-    <div id="app" :style="'display:'+ window.display">
+    <div id="app">
         <div class="main">
             <h2>您好，请登录！</h2>
             <div class="phone">

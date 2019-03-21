@@ -6,9 +6,9 @@ import {Toast} from 'vant'
 import {wxSignature,getTokenMethods} from "../../api/wechat";
 
 if(window.URLPARAMS.hasOwnProperty('state') && window.URLPARAMS.state == 'needJump'){
-    window.display = 'none'
+    document.body.style.display = 'none'
 } else {
-    window.display = 'block'
+    document.body.style.display = 'block'
 }
 
 
