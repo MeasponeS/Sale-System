@@ -50,7 +50,7 @@
         </div>
         <div class="start" @click="share = true" v-if="groupInfo && groupInfo.status && groupInfo.status != 0 && groupInfo.status != null">
             邀请好友获得更多返利
-            <h4><Countdown :second="countDownSenconds" @toggle="countDownSenconds--" @end="timeOut"></Countdown> </h4>
+            <h4><Countdown :second="countDownSenconds" @toggle="countDownSenconds--" @end="timeOut"></Countdown></h4>
         </div>
         <div class="start" @click="showOpen = true" v-else>
            我要开团
@@ -119,7 +119,7 @@
                 let config = {
                     shareTitle:'团长主页',
                     shareBody:'赶快进入主页参与活动吧',
-                    shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+this.groupInfo.id + 'leaderId' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status ,
+                    shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status ,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };
                 wx.onMenuShareAppMessage({
