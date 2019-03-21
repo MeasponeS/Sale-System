@@ -5,6 +5,7 @@
 </template>
 
 <script>
+
     export default {
         name: 'Countdown',
         props: {
@@ -12,48 +13,37 @@
         },
         data: function () {
             return {
-                h:'',
-                m:'',
-                s:''
+                h: '',
+                m: '',
+                s: ''
             }
         },
         mounted() {
-            if(this.second == 0){
-                this.$emit('end');
-                return
-            };
+            if (this.second == 0) return;
+            let initSecond = this.second;
 
-
-            window.Countdown = setInterval(_=>{
-                if(this.second <= 0){
+            window.Countdown = setInterval(_ => {
+                if (initSecond <= 0) {
                     this.$emit('end');
                     clearInterval(window.Countdown);
                     return
                 }
-
+                initSecond--;
                 this.$emit('toggle');
 
-                let hour = Math.floor(this.second/3600);
-                let minute = Math.floor(this.second%3600/60);
-                let second = Math.floor(this.second%60);
+                let hour = Math.floor(initSecond / 3600);
+                let minute = Math.floor(initSecond % 3600 / 60);
+                let second = Math.floor(initSecond % 60);
 
-                // this.time = (hour < 10 ? '0'+ hour : hour )
-                //     +':'+
-                //     (minute< 10 ? '0'+ minute : minute)
-                //     +':'+
-                //     (second< 10 ? '0'+ second : second)
+                this.h = (hour < 10 ? '0' + hour : hour);
 
-                this.h = (hour < 10 ? '0'+ hour : hour );
+                this.m = (minute < 10 ? '0' + minute : minute);
 
-                this.m =    (minute< 10 ? '0'+ minute : minute);
-
-                this.s =  (second< 10 ? '0'+ second : second);
-
-
-
-            },1000)
+                this.s = (second < 10 ? '0' + second : second);
+            }, 1000)
 
         },
+
 
     }
 </script>
