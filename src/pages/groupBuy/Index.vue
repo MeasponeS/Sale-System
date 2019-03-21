@@ -125,7 +125,7 @@
         },
         methods: {
             wxSignatureCallback(){
-                let shareLink = ''
+                let shareLink = '';
                 if(this.isLeader == 1){
                     shareLink = 'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + 'leaderId' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status
                 } else {

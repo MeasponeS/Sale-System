@@ -58,11 +58,13 @@
                     serverUrl:server_url,
                     mobile:this.mobile
                 }).then(r=>{
+                    console.log(r);
+                    alert(r)
                     setToken(r);
                     Toast('登陆成功');
-                    window.setTimeout(()=>{
-                        window.location.href = './mainPage.html?actId=' + window.actId
-                    },200);
+                    // window.setTimeout(()=>{
+                    //     window.location.href = './mainPage.html?actId=' + window.actId
+                    // },200);
                 }).catch(_=>{})
             },
             getCode(){

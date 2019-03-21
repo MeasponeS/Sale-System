@@ -36,7 +36,7 @@ export default {
                 }
 
                 wx.config({
-                    debug:true,
+                    debug:false,
                     appId:r.signature.appId,
                     nonceStr:r.signature.nonceStr,
                     timestamp:r.signature.timestamp,
@@ -45,7 +45,6 @@ export default {
                 });
 
                 wx.ready(function () {
-                    Toast('签名成功');
                     wx.checkJsApi({
                         jsApiList: [
                             'onMenuShareTimeline',
