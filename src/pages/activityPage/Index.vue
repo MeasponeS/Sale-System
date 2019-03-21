@@ -50,7 +50,7 @@
                 <h3 @click="goGroupBuy">开团方式</h3>
                 <Button class="indexBtn"
                         @click="goCheckMobile"
-                        :disabled="!groupInfo || !groupInfo.status == 0"
+                        :disabled="(groupInfo&&groupInfo.status != 0) || groupInfo.status != 0"
                 >A：购买商品，并成为团长</Button>
                 <Button class="indexBtn" @click="openGroup">B：通过邀请好友成为团长</Button>
                 <Button class="bottomBtn" @click="showOpen = false">取消</Button>
@@ -143,7 +143,7 @@
             let config = {
                 shareTitle:'分享给好友开团',
                 shareBody:'这是我分享给好友得团',
-                shareUrl:'./groupBuy.html?recommenderUserId='+window.URLPARAMS.id + 'activityId' + Config.activityId ,
+                shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?recommenderUserId='+window.URLPARAMS.id + 'activityId' + Config.activityId ,
                 shareImg:'//www.baidu.com/img/bd_logo1.png?where=super'
             };
 
