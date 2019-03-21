@@ -74,7 +74,7 @@
                 let config = {
                     shareTitle:'分享给好友开团',
                     shareBody:'这是我分享给好友得团',
-                    shareUrl:'https://hsj.hulian120.com/pay/activityPage.html?recommenderUserId='+ this.recommenderId + '&actId=' + window.URLPARAMS.actId ,
+                    shareUrl:'https://hsj.hulian120.com/pay/activityPage.html?recommenderUserId='+ this.recommenderId + '&actId=' + window.actId ,
                     shareImg:'//www.baidu.com/img/bd_logo1.png?where=super'
                 };
 
@@ -102,7 +102,7 @@
             // openGroupByShare(){
             //     this.share = true;
             //     // crtGroupOpen({
-            //     //     activityId: Config.activityId,
+            //     //     activityId: window.actId,
             //     //     mobile:'18513891718',
             //     //     recommenderUserId:8,
             //     //     groupId:''
@@ -111,7 +111,7 @@
             // }
         },
         mounted() {
-            recommenderIndex({activityId:window.URLPARAMS.actId}).then(r=>{
+            recommenderIndex({activityId:window.actId}).then(r=>{
                 this.orderCount = r.orderCount;
                 this.goodsInfo = {...r.goodsInfo};
                 this.activity = {...r.activity};

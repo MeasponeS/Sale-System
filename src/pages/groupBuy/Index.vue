@@ -58,7 +58,7 @@
                     <!--<img style="right:72px" src="./img/1.jpg" alt="">-->
                 </div>
             </div>
-            <Button class="indexBtn endBtn" v-if="countDownSenconds == 0">团购已结束</Button>
+            <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0">团购已结束</Button>
             <div v-else>
                 <Button class="indexBtn" @click="showMobile = true" v-if="!isLeader && !userHasBuy" >一键参团 {{goodsInfo.originPrice || 0   | Money}}</Button>
                 <Button class="indexBtn" v-else @click="share = true">邀请好友团购，拿更高返利</Button>
@@ -127,14 +127,14 @@
             wxSignatureCallback(){
                 let shareLink = ''
                 if(this.isLeader == 1){
-                    shareLink = 'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + 'leaderId' + window.URLPARAMS.leaderId+'&actId=' + window.URLPARAMS.actId + '&status=' + window.URLPARAMS.status
+                    shareLink = 'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + 'leaderId' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status
                 } else {
 
                 }
                 let config = {
                     shareTitle:'分享给好友开团',
                     shareBody:'这是我分享给好友得团',
-                    shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + 'leaderId' + window.URLPARAMS.leaderId+'&actId=' + window.URLPARAMS.actId + '&status=' + window.URLPARAMS.status,
+                    shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + 'leaderId' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status,
                     shareImg:'//www.baidu.com/img/bd_logo1.png?where=super'
                 };
 
@@ -160,11 +160,11 @@
                 window.location.href = './incomeDetails.html'
             },
             timeOut(){
-
+                this.countDownSenconds = 0
             },
             wxPay(mobile){
                 creatGeneralOrder({
-                    activityId: window.URLPARAMS.actId,
+                    activityId: window.actId,
                     groupId:this.groupInfo.id,
                     mobile:mobile,
                 }).then(r=>{

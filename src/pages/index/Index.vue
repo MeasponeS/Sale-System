@@ -36,7 +36,7 @@
                 let config = {
                     shareTitle:'分享给好友开团',
                     shareBody:'这是我分享给好友得团',
-                    shareUrl:'https://hsj.hulian120.com/pay/beforeLogin.html?actId=' + Config.activityId ,
+                    shareUrl:'https://hsj.hulian120.com/pay/beforeLogin.html' ,
                     shareImg:'https://www.baidu.com/img/bd_logo1.png?where=super'
                 };
 
@@ -67,7 +67,7 @@
                     Toast('请输入正确的邀请码');
                     return;
                 }
-                generateRecommender({mobile:this.mobile,inviteCode:this.inviteCode,activityId: Config.activityId}).then(r=>{
+                generateRecommender({mobile:this.mobile,inviteCode:this.inviteCode,activityId: window.actId}).then(r=>{
                     Toast('生成邀请人成功，请分享链接给邀请人');
                 }).catch(_=>{})
             },

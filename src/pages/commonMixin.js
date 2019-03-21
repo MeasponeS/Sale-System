@@ -22,7 +22,6 @@ export default {
     },
     mounted() {
         let that = this;
-
         wxSignature({url:window.location.href}).then(r=>{
             if (r.resultCode == 500) return;
             if (r.signature.appId == null || r.signature.appId == 0) {

@@ -38,8 +38,9 @@
         </div>
         <div class="start" @click="share = true" v-else>
             邀请好友获得更多返利
+            <h4><Countdown :second="countDownSenconds" @toggle="countDownSenconds--" @end="timeOut"></Countdown> </h4>
         </div>
-        <div class="end" >
+        <div class="end" v-if="countDownSenconds == 0" >
             <h3>本次活动已结束</h3>
         </div>
         <div class="income" @click="goIncome">
@@ -50,9 +51,11 @@
                 <h3>开团方式</h3>
                 <Button class="indexBtn"
                         @click="goCheckMobile"
-                        :disabled="(groupInfo&&groupInfo.status != 0) || groupInfo.status != 0"
+                        :disabled="(groupInfo && groupInfo.status && groupInfo.status != 0 && groupInfo.status != null)"
                 >A：购买商品，并成为团长</Button>
-                <Button class="indexBtn" @click="openGroup">B：通过邀请好友成为团长</Button>
+                <Button class="indexBtn" @click="openGroup">
+                    B：通过邀请好友成为团长
+                </Button>
                 <Button class="bottomBtn" @click="showOpen = false">取消</Button>
             </div>
         </Popup>
@@ -71,6 +74,7 @@
     import {crtGroupOpen} from "../../api/group";
     import {shareFriend,vxPay,shareFriendQ} from '../../utils/weixin'
     import wx from 'weixin-js-sdk';
+    import Countdown from '../../components/Countdown'
 
     export default {
         name: 'app',
@@ -85,7 +89,8 @@
                 leaderHasBuy:'',
                 goodsInfo: {},
                 activity:{},
-                groupInfo:{}
+                groupInfo:{},
+                countDownSenconds:'',
             }
         },
         filters:{
@@ -98,7 +103,7 @@
                 let config = {
                     shareTitle:'分享给好友开团',
                     shareBody:'这是我分享给好友得团',
-                    shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+this.groupInfo.id + 'leaderId' + this.groupInfo.leaderId+'&actId=' + window.URLPARAMS.actId + '&status=' + this.groupInfo.status ,
+                    shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+this.groupInfo.id + 'leaderId' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status ,
                     shareImg:'//www.baidu.com/img/bd_logo1.png?where=super'
                 };
                 wx.onMenuShareAppMessage({
@@ -132,7 +137,7 @@
             },
             wxPay(mobile){
                 creatLeaderOrder({
-                    activityId: window.URLPARAMS.actId,
+                    activityId: window.actId,
                     groupId:this.groupInfo.id,
                     mobile:mobile,
                     recommenderUserId:window.URLPARAMS.id
@@ -141,24 +146,28 @@
                 }).catch(_=>{})
             },
             openGroup(){
-                this.share = true
+                this.share = true;
                 crtGroupOpen({
-                    activityId: window.URLPARAMS.actId,
+                    activityId: window.actId,
                     groupId: this.groupInfo.id,
                     recommenderUserId: window.URLPARAMS.id
                 }).then(r=>{
                     console.log(r);
                 }).catch(_=>{})
-            }
+            },
+            timeOut(){
+
+            },
 
         },
         mounted() {
-            leaderActivity({activityId:window.URLPARAMS.actId}).then(r=>{
+            leaderActivity({activityId:window.actId}).then(r=>{
                 this.orderCount = r.orderCount;
                 this.leaderHasBuy = r.leaderHasBuy;
                 this.goodsInfo = {...r.goodsInfo};
                 this.activity = {...r.activity};
-                this.groupInfo = {...r.groupInfo}
+                this.groupInfo = {...r.groupInfo};
+                this.countDownSenconds = r.countDownSenconds;
             }).catch(_=>{});
 
 

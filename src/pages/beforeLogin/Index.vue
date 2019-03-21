@@ -31,8 +31,8 @@
                     Toast('请输入正确的手机号');
                     return;
                 }
-                sendSmsCode({mobile:this.mobile,activityId:Config.activityId}).then(r=>{
-                    window.location.href = './login.html?mobile=' + this.mobile + '&code=' + window.URLPARAMS.code + '&actId=' + Config.activityId;
+                sendSmsCode({mobile:this.mobile,activityId:window.actId}).then(r=>{
+                    window.location.href = './login.html?mobile=' + this.mobile + '&code=' + window.URLPARAMS.code + '&actId=' + window.actId;
                 }).catch(_=>{});
             }
         },

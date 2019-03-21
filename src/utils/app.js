@@ -30,3 +30,5 @@ export function initUrlParams() {
     window.URLPARAMS = currentUrlToParams()
 }
 
+
+

@@ -40,7 +40,7 @@
                 let config = {
                     shareTitle:'分享给好友开团',
                     shareBody:'这是我分享给好友得团',
-                    shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?recommenderUserId='+window.URLPARAMS.id + 'activityId' + Config.activityId ,
+                    shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?recommenderUserId='+window.URLPARAMS.id + 'activityId' + window.actId ,
                     shareImg:'//www.baidu.com/img/bd_logo1.png?where=super'
                 };
 
@@ -69,7 +69,7 @@
             }
         },
         mounted() {
-            rewardList({activityId:Config.activityId}).then(r=>{
+            rewardList({activityId:window.actId}).then(r=>{
                 this.list = r
             }).catch(_=>{})
         },

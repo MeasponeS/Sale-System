@@ -10,6 +10,10 @@ import {isWechat} from "../utils/isTerminal";
 
 initUrlParams();
 
+
+window.actId = 1;
+
+
 if(!isWechat){
     document.body.style.display = 'none';
     // Dialog.alert({

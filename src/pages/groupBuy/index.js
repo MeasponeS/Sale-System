@@ -18,7 +18,7 @@ import './index.less'
 //     } else {
 //         let server_url = encodeURIComponent('https://testsale.hulian120.com/sale/api/wx/login');
 //         getTokenMethods({
-//             actId:Config.activityId,
+//             actId:window.actId,
 //             code:this.wxCode,
 //             mp:'hushijia',
 //             serverUrl:server_url,

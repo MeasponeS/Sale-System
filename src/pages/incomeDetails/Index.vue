@@ -73,7 +73,7 @@
                 let config = {
                     shareTitle:'分享给好友开团',
                     shareBody:'这是我分享给好友得团',
-                    shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?recommenderUserId='+window.URLPARAMS.id + 'activityId' + Config.activityId ,
+                    shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?recommenderUserId='+window.URLPARAMS.id + 'activityId' + window.actId ,
                     shareImg:'//www.baidu.com/img/bd_logo1.png?where=super'
                 };
 
@@ -131,7 +131,7 @@
                 let idNum = this.income.userInfo.identityCard;
                 if(name && name != null && idNum && idNum != null){
                     withdraw({
-                        activityId:Config.activityId,
+                        activityId:window.actId,
                         applyMoney:this.getMoney
                     }).then(r=>{
                         Toast('申请提现成功')
@@ -143,7 +143,7 @@
 
         },
         mounted() {
-            activityReward({activityId:Config.activityId}).then(r=>{
+            activityReward({activityId:window.actId}).then(r=>{
                 this.income = {...r}
             }).catch(_=>{})
         },

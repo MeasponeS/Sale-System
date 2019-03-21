@@ -10,7 +10,6 @@ import {wxSignature,getTokenMethods} from "../../api/wechat";
 
 
 if(!window.URLPARAMS.hasOwnProperty('code')){
-    alert('meicode')
     wxSignature({url:window.location.href.split('?')[0]}).then(r=>{
         window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="  +
             r.signature.appId  + "&redirect_uri=" + encodeURIComponent('https://wxauth.hulian120.com/open/getCodeFor')  +   "&response_type=code&scope=snsapi_userinfo&state=hushijia#wechat_redirect"
@@ -19,7 +18,7 @@ if(!window.URLPARAMS.hasOwnProperty('code')){
     if(window.URLPARAMS.hasOwnProperty('state') && window.URLPARAMS.state == 'needJump' && getBeforePage()){
         let server_url = encodeURIComponent('https://testsale.hulian120.com/sale/api/wx/login');
         getTokenMethods({
-            actId:Config.activityId,
+            actId:window.actId,
             code:window.URLPARAMS.code,
             mp:'hushijia',
             serverUrl:server_url,
