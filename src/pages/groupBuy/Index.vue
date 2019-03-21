@@ -142,7 +142,7 @@
                 let config = {
                     shareTitle:'『团购优惠』和好朋友一起领',
                     shareBody:'健康管理师＆护理评估师，现在团购立减¥880',
-                    shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + 'leaderId' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status,
+                    shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };
 
