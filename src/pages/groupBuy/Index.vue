@@ -49,9 +49,9 @@
                     <div class="emptyI" v-if="headList[0] == null" style="margin-left:18px">?</div>
                     <img
                             v-else
-                            src=""
                             alt=""
                             v-for="(item,index) in headList"
+                            :src="item"
                             :style="'right:'+(index *18) + 'px'"
                     >
                     <!--<img style="right:0" src="./img/7.jpg" alt="">-->
@@ -63,7 +63,7 @@
             </div>
             <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0">团购已结束</Button>
             <div v-else>
-                <Button class="indexBtn" @click="showMobile = true" v-if="!isLeader && !userHasBuy" >一键参团 {{goodsInfo.originPrice || 0   | Money}}</Button>
+                <Button class="indexBtn" @click="showMobile = true" v-if="isLeader == '0' && userHasBuy == '0'" >一键参团 {{goodsInfo.originPrice || 0   | Money}}</Button>
                 <Button class="indexBtn" v-else @click="share = true">邀请好友团购，拿更高返利</Button>
             </div>
             <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0 && groupInfo.status == 3">请联系团长重新开团</Button>
@@ -296,13 +296,16 @@
             this.id = getUrlInfo('groupId');
             userActivity({groupId:this.id}).then(r=>{
                 this.groupNum = r.orderCount;
+                this.isLeader = r.isLeader;
                 this.countDownSenconds = r.countDownSenconds;
                 this.leaderHasBuy = r.leaderHasBuy;
                 this.goodsInfo = {...r.goodsInfo};
                 this.activity = {...r.activity};
                 this.groupInfo = {...r.groupInfo};
                 this.regularLIst = r.regularLIst;
-                this.headList = r.headList.reverse()
+                this.headList = r.headList.reverse();
+                this.leaderHeadImg = r.leaderHeadImg;
+                this.userHasBuy = r.userHasBuy;
             }).catch(_=>{})
         },
         beforeDestroy: function () {
