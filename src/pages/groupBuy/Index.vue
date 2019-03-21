@@ -168,7 +168,10 @@
                 window.location.href = './incomeDetails.html'
             },
             timeOut(){
-                this.countDownSenconds = 0
+                this.countDownSenconds = 0;
+                window.setTimeout(()=>{
+                    window.location.reload()
+                },1000)
             },
             wxPay(mobile){
                 creatGeneralOrder({
