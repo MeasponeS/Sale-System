@@ -55,6 +55,17 @@ export function setToken(token) {
 }
 
 
+
+export function setCurrentPage(key) {
+    return Cookies.set('currentPage', key ,{ expires: Config.cookiesExpires })
+}
+
+
+export function getBeforePage() {
+    return Cookies.get('currentPage') || "";
+}
+
+
 /**
  *
  * @returns {*}

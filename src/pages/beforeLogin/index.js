@@ -1,22 +1,17 @@
 import Vue from 'vue'
 import App from './Index.vue'
 import '../common'
-import {setToken,getKey} from "../../utils/dataStorage";
+import {setToken,getBeforePage} from "../../utils/dataStorage";
 import Config from '../../config/app'
 import {Toast} from 'vant'
 import {wxSignature,getTokenMethods} from "../../api/wechat";
 if(!window.URLPARAMS.hasOwnProperty('code')){
-
-
-    let state = encodeURIComponent('https://hsj.hulian120.com/pay/beforeLogin.html?beforePage='+window.location.href)
-
-
     wxSignature({url:window.location.href.split('?')[0]}).then(r=>{
         window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="  +
-            r.signature.appId  + "&redirect_uri=" + encodeURIComponent('https://wxauth.hulian120.com/open/getCodeFor')  +   "&response_type=code&scope=snsapi_userinfo&state="+state+"#wechat_redirect"
+            r.signature.appId  + "&redirect_uri=" + encodeURIComponent('https://wxauth.hulian120.com/open/getCodeFor')  +   "&response_type=code&scope=snsapi_userinfo&state=hushijia#wechat_redirect"
     }).catch(_=>{})
 } else {
-    if(window.URLPARAMS.hasOwnProperty('beforePage')){
+    if(window.URLPARAMS.hasOwnProperty('needJump')){
         let server_url = encodeURIComponent('https://testsale.hulian120.com/sale/api/wx/login');
         getTokenMethods({
             actId:Config.activityId,
@@ -28,7 +23,7 @@ if(!window.URLPARAMS.hasOwnProperty('code')){
             setToken(r);
             Toast('登陆成功');
             window.setTimeout(()=>{
-                window.location.href = URLPARAMS.beforePage
+                window.location.href = getBeforePage()
             },200);
         }).catch(_=>{})
     }

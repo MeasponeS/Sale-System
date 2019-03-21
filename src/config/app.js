@@ -17,7 +17,6 @@ export default {
     activityId:1,
     countDown:60,//短信验证码倒计时
     tokenKey:'ACTIVITY_ACCESS_TOKEN',
-    key:'ORIGIN_PAGE',
     storageUserKey:'ACTIVITY_USER_STORAGE',
     requestRetry:4,
     //staticUrl:'https://hsj.hulian120.com',
