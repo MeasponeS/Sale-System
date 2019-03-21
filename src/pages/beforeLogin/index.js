@@ -22,9 +22,13 @@ if(!window.URLPARAMS.hasOwnProperty('code')){
     }).then(r=>{
         setToken(r);
         Toast('登陆成功');
-        window.setTimeout(()=>{
-             window.location.href = getKey()
-        },200);
+        console.log(getKey());
+        if(getKey().split('?'[0]) != 'https://hsj.hulian120.com/pay/beforeLogin.html'){
+            window.setTimeout(()=>{
+                window.location.href = getKey()
+            },200);
+        }
+
     }).catch(_=>{})
 }
 
