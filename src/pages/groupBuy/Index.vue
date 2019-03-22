@@ -40,7 +40,8 @@
             </div>
         </div>
         <div class="groupDetails">
-            <h3>距结束只剩 <Countdown :second="countDownSenconds"  @end="timeOut"></Countdown> </h3>
+            <!--<h3>距结束只剩 <Countdown :second="countDownSenconds"  @end="timeOut"></Countdown> </h3>-->
+            <h3>距结束只剩 10:10:10 </h3>
             <div class="groupMember">
                 <div class="groupLeader">
                     <img :src="leaderHeadImg" alt="">
