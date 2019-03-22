@@ -150,20 +150,19 @@
             },
             wxSignatureCallback(){
                 userActivity({groupId:this.id}).then(r=>{
-                    console.log(r);
-                    // this.groupNum = r.orderCount;
-                    // this.isLeader = r.isLeader;
-                    // this.countDownSenconds = r.countDownSenconds;
-                    // this.leaderHasBuy = r.leaderHasBuy;
-                    // this.goodsInfo = {...r.goodsInfo};
-                    // this.activity = {...r.activity};
-                    // this.groupInfo = {...r.groupInfo};
-                    // this.regularLIst = r.regularLIst;
-                    // this.orderCount = r.orderCount;
-                    // this.headList = r.headList;
-                    // this.leaderHeadImg = r.leaderHeadImg;
-                    // this.userHasBuy = r.userHasBuy;
-                    // this.shareFriend();
+                    this.groupNum = r.orderCount;
+                    this.isLeader = r.isLeader;
+                    this.countDownSenconds = r.countDownSenconds;
+                    this.leaderHasBuy = r.leaderHasBuy;
+                    this.goodsInfo = {...r.goodsInfo};
+                    this.activity = {...r.activity};
+                    this.groupInfo = {...r.groupInfo};
+                    this.regularLIst = r.regularLIst;
+                    this.orderCount = r.orderCount;
+                    this.headList = r.headList;
+                    this.leaderHeadImg = r.leaderHeadImg;
+                    this.userHasBuy = r.userHasBuy;
+                    //this.shareFriend();
                 }).catch(_=>{})
             },
             timeOut(){
