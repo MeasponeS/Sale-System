@@ -158,15 +158,27 @@
                     this.headList = r.headList.reverse();
                     this.leaderHeadImg = r.leaderHeadImg;
                     this.userHasBuy = r.userHasBuy;
-
                     this.shareFriend();
                 }).catch(_=>{})
             },
             timeOut(){
                 this.countDownSenconds = 0;
-                window.setTimeout(()=>{
-                    window.location.href = 'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status
-                },1000)
+                // window.setTimeout(()=>{
+                //     window.location.href = 'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status
+                // },1000)
+                userActivity({groupId:this.id}).then(r=>{
+                    this.groupNum = r.orderCount;
+                    this.isLeader = r.isLeader;
+                    this.countDownSenconds = r.countDownSenconds;
+                    this.leaderHasBuy = r.leaderHasBuy;
+                    this.goodsInfo = {...r.goodsInfo};
+                    this.activity = {...r.activity};
+                    this.groupInfo = {...r.groupInfo};
+                    this.regularLIst = r.regularLIst;
+                    this.headList = r.headList.reverse();
+                    this.leaderHeadImg = r.leaderHeadImg;
+                    this.userHasBuy = r.userHasBuy;
+                }).catch(_=>{})
             },
             userBuy(){
                 setTimeout(()=>{
