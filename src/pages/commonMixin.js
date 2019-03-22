@@ -27,12 +27,12 @@ export default {
             if (r.signature.appId == null || r.signature.appId == 0) {
 
             } else {
-                if(!getToken()){
-                    setCurrentPage(window.location.href);
-                    window.location.href =  "https://open.weixin.qq.com/connect/oauth2/authorize?appid="  +
-                        r.signature.appId  + "&redirect_uri=" + encodeURIComponent('https://wxauth.hulian120.com/open/getCodeFor')  +   "&response_type=code&scope=snsapi_userinfo&state=needJump#wechat_redirect";
-                    return
-                }
+                // if(!getToken()){
+                //     setCurrentPage(window.location.href);
+                //     window.location.href =  "https://open.weixin.qq.com/connect/oauth2/authorize?appid="  +
+                //         r.signature.appId  + "&redirect_uri=" + encodeURIComponent('https://wxauth.hulian120.com/open/getCodeFor')  +   "&response_type=code&scope=snsapi_userinfo&state=needJump#wechat_redirect";
+                //     return
+                // }
 
                 wx.config({
                     debug:false,

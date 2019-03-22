@@ -48,7 +48,7 @@ service.interceptors.response.use(
             },400);
         }
 
-        if (res.status !== 200) {
+        if (res.status != 200) {
             Toast('数据返回出错');
             //return Promise.reject('error')
         } else {
@@ -71,7 +71,7 @@ service.interceptors.response.use(
         setTimeout(_=>{
             //window.loadingInstance.clear();
         },300)
-        alert(222)
+
         Toast(error.message);
         return Promise.reject(error)
     }
