@@ -59,8 +59,8 @@ export default {
 
                 wx.hideMenuItems({
                     menuList: [
-                        'menuItem:share:appMessage',
-                        'menuItem:share:timeline',
+                        //'menuItem:share:appMessage',
+                        //'menuItem:share:timeline',
                         'menuItem:readMode', // 阅读模式
                         "menuItem:share:qq", //分享到qq
                         "menuItem:share:weiboApp", //分享到微博

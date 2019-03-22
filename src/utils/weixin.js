@@ -12,7 +12,6 @@ import {Toast} from 'vant'
 
 
 function shareFriend(config){
-    alert('3')
     wx.onMenuShareAppMessage({
         title: config.shareTitle, // 分享标题
         desc: config.shareBody, // 分享描述
@@ -21,11 +20,9 @@ function shareFriend(config){
         //type: '', // 分享类型,music、video或link，不填默认为link
         //dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
         success: function () {
-            alert('配置成功')
             wx.showMenuItems({
                 menuList: ["menuItem:share:appMessage"] // 要显示的菜单项，所有menu项见附录3
             });
-            alert('显示成功')
         },
         cancel: function () {
             Toast('配置分享好友失败');

@@ -120,14 +120,12 @@
         },
         methods: {
             shareFriend(){
-                alert('1')
                 let config = {
                     shareTitle:'团长主页',
                     shareBody:'赶快进入主页参与活动吧',
                     shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status ,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };
-                alert('2')
                 shareFriend(config)
                 shareFriendQ(config)
             },
@@ -141,7 +139,6 @@
                     this.countDownSenconds = r.countDownSenconds;
                     if(this.groupInfo.id && this.groupInfo.id != null ){
                         this.shareFriend()
-                        alert('配置成功111')
                     }
                 }).catch(_=>{});
 
