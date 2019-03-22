@@ -12,6 +12,7 @@ import {Toast} from 'vant'
 
 
 function shareFriend(config){
+    alert('3')
     wx.onMenuShareAppMessage({
         title: config.shareTitle, // 分享标题
         desc: config.shareBody, // 分享描述

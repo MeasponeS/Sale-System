@@ -14,7 +14,7 @@
                 <div class="good">
                     <div class="goodsName">
                         <h3>{{goodsInfo.name || '无'}}</h3>
-                        <span style="display: block">{{activity.minCount || 0  }}人可成团</span>
+                        <span>{{activity.minCount || 0  }}人可成团</span>
                     </div>
                     <div class="goodsPrice">
                         <span>拼团价{{goodsInfo.sellPrice || 0   | Money}}</span>
@@ -120,12 +120,14 @@
         },
         methods: {
             shareFriend(){
+                alert('1')
                 let config = {
                     shareTitle:'团长主页',
                     shareBody:'赶快进入主页参与活动吧',
                     shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status ,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };
+                alert('2')
                 shareFriend(config)
                 shareFriendQ(config)
             },

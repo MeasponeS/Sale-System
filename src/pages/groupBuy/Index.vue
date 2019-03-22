@@ -92,9 +92,6 @@
             <img src="../../assets/img/15.png" alt="">
             <img src="../../assets/img/16.png" alt="">
         </div>
-        <div class="income" @click="goIncome">
-            <img src="./img/2.png" alt="">
-        </div>
         <PayPopup :showMobile="showMobile" @closePay="showMobile = false" @wxPay="wxPay"></PayPopup>
         <Share :share="share" @know="share = false"></Share>
     </div>
@@ -165,18 +162,11 @@
 
                     this.shareFriend();
                 }).catch(_=>{})
-
-
-
-
-            },
-            goIncome(){
-                window.location.href = './incomeDetails.html'
             },
             timeOut(){
                 this.countDownSenconds = 0;
                 window.setTimeout(()=>{
-                    window.location.reload()
+                    window.location.href = 'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status
                 },1000)
             },
             userBuy(){
