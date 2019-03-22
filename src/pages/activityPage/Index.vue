@@ -178,13 +178,16 @@
                     groupId: this.groupInfo.id,
                     recommenderUserId: window.URLPARAMS.recommenderUserId
                 }).then(r=>{
-                    leaderActivity({activityId:window.actId}).then(r=>{
-                        this.orderCount = r.orderCount;
-                        this.leaderHasBuy = r.leaderHasBuy;
-                        this.goodsInfo = {...r.goodsInfo};
-                        this.activity = {...r.activity};
-                        this.groupInfo = {...r.groupInfo};
-                        this.countDownSenconds = r.countDownSenconds;
+                    alert('11111')
+                    leaderActivity({activityId:window.actId}).then(res=>{
+                        console.log(res);
+                        alert('2222')
+                        this.orderCount = res.orderCount;
+                        this.leaderHasBuy = res.leaderHasBuy;
+                        this.goodsInfo = {...res.goodsInfo};
+                        this.activity = {...res.activity};
+                        this.groupInfo = {...res.groupInfo};
+                        this.countDownSenconds = res.countDownSenconds;
 
 
                         this.shareFriend()

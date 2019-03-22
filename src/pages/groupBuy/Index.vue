@@ -47,11 +47,11 @@
                     <span>团长</span>
                 </div>
                 <div class="groupFriends">
-                    <div class="emptyI" v-if="headList[4] == null" style="margin-left:-72px">?</div>
+                    <div class="emptyI" v-if="headList[0] == null" style="margin-left:-72px">?</div>
                     <img
                             v-else
                             alt=""
-                            v-for="(item,index) in headList"
+                            v-for="(item,index) in headList.reverse()"
                             :src="item"
                             :style="'right:'+(index *18) + 'px'"
                     >
@@ -122,11 +122,12 @@
                 activity:{},
                 groupInfo:{},   // 团信息
                 leaderHeadImg:'', // 团长头像
-                headList:[], // 团员头像
+                headList:[ ], // 团员头像
                 regularLIst:[],
                 countDownSenconds:0,
                 isLeader:'',
                 userHasBuy:'',
+                orderCount:'',
             }
         },
         filters:{
@@ -155,7 +156,8 @@
                     this.activity = {...r.activity};
                     this.groupInfo = {...r.groupInfo};
                     this.regularLIst = r.regularLIst;
-                    this.headList = r.headList.reverse();
+                    this.orderCount = r.orderCount;
+                    this.headList = r.headList;
                     this.leaderHeadImg = r.leaderHeadImg;
                     this.userHasBuy = r.userHasBuy;
                     this.shareFriend();
@@ -172,9 +174,10 @@
                     this.leaderHasBuy = r.leaderHasBuy;
                     this.goodsInfo = {...r.goodsInfo};
                     this.activity = {...r.activity};
+                    this.orderCount = r.orderCount;
                     this.groupInfo = {...r.groupInfo};
                     this.regularLIst = r.regularLIst;
-                    this.headList = r.headList.reverse();
+                    this.headList = r.headList;
                     this.leaderHeadImg = r.leaderHeadImg;
                     this.userHasBuy = r.userHasBuy;
                 }).catch(_=>{})

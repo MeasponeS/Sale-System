@@ -27,7 +27,7 @@
                   handler:function (newVal,oldVal) {
                       if(newVal > 0){
                           this.initFn()
-                      } else if (newVal == 0){
+                      } else if (newVal <= 0){
                           this.h = '00';
                           this.m = '00';
                           this.s = '00';
@@ -42,6 +42,9 @@
                 let that = this;
                 window.Countdown = setInterval(_ => {
                     if (initSecond <= 0) {
+                        this.h = '00';
+                        this.m = '00';
+                        this.s = '00';
                         this.$emit('end');
                         clearInterval(window.Countdown);
                         return
