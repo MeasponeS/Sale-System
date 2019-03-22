@@ -173,13 +173,18 @@
                     window.location.reload()
                 },1000)
             },
+            userBuy(){
+                setTimeout(()=>{
+                    window.location.href = 'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status + '&pay=1'
+                },300)
+            },
             wxPay(mobile){
                 creatGeneralOrder({
                     activityId: window.actId,
                     groupId:this.groupInfo.id,
                     mobile:mobile,
                 }).then(r=>{
-                    vxPay(r)
+                    vxPay(r,this.userBuy)
                 }).catch(_=>{})
             },
 

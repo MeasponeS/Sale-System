@@ -1,6 +1,6 @@
 import {getToken} from '../utils/dataStorage.js'
 import {setCurrentPage} from "../utils/dataStorage";
-import {wxSignature,getTokenMethods} from "../api/wechat";
+import {wxSignature} from "../api/wechat";
 import wx from 'weixin-js-sdk';
 import {Toast} from "vant";
 export default {
@@ -28,7 +28,6 @@ export default {
 
             } else {
                 if(!getToken()){
-
                     setCurrentPage(window.location.href);
                     window.location.href =  "https://open.weixin.qq.com/connect/oauth2/authorize?appid="  +
                         r.signature.appId  + "&redirect_uri=" + encodeURIComponent('https://wxauth.hulian120.com/open/getCodeFor')  +   "&response_type=code&scope=snsapi_userinfo&state=needJump#wechat_redirect";

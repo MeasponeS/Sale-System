@@ -53,6 +53,7 @@ service.interceptors.response.use(
             //return Promise.reject('error')
         } else {
             if(res.data.resultCode != 200){
+                alert(111)
                 Toast(res.data.message);
                 if(res.data.resultCode == 402){
                     removeToken();
@@ -70,6 +71,7 @@ service.interceptors.response.use(
         setTimeout(_=>{
             //window.loadingInstance.clear();
         },300)
+        alert(222)
         Toast(error.message);
         return Promise.reject(error)
     }

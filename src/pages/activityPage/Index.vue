@@ -160,6 +160,9 @@
                     this.countDownSenconds = r.countDownSenconds;
                 }).catch(_=>{});
             },
+            leaderPay(){
+                window.location.reload()
+            },
             wxPay(mobile){
                 creatLeaderOrder({
                     activityId: window.actId,
@@ -167,7 +170,7 @@
                     mobile:mobile,
                     recommenderUserId:window.URLPARAMS.recommenderUserId
                 }).then(r=>{
-                    vxPay(r)
+                    vxPay(r,this.leaderPay)
                 }).catch(_=>{})
             },
             openGroup(){
