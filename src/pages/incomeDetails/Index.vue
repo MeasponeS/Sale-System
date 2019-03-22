@@ -18,7 +18,12 @@
         </div>
         <div class="money">
             <span>提现金额</span>
-            <input type="number" placeholder="不能超过账户余额" @input="checkMoney" v-model="getMoney">
+            <Field v-model="getMoney"
+                   class="input"
+                   type="number"
+                   placeholder="不能超过账户余额"
+                   @input="checkMoney"
+            ></Field>
             <em @click="rulesShow = true"><img src="./img/green.png" alt=""></em>
         </div>
         <Button class="indexBtn" @click="withdraw" :disabled="!getMoney">提现</Button>
@@ -45,7 +50,7 @@
 </template>
 
 <script>
-    import {Button,Popup,Toast} from 'vant'
+    import {Button,Popup,Toast,Field} from 'vant'
     import CommonMixin from '../commonMixin.js'
     import {activityReward,realNameAuth} from "../../api/activity";
     import RealNameAuth from '../../components/RealNameAuth'
@@ -161,7 +166,7 @@
         beforeDestroy: function () {
 
         },
-        components: {Button,Popup,RealNameAuth}
+        components: {Button,Popup,RealNameAuth,Field}
     }
 </script>
 <style lang="less" scoped>
@@ -174,13 +179,15 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        input{
+        .input{
             width: 65%;
             height: 35px;
             background:rgba(252,252,252,1);
             border:1px solid rgba(238, 238, 238, 1);
             border-radius:3px;
-            margin: 0 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding-left: 13px;
             &::placeholder{
                 color: #999;

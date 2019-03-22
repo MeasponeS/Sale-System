@@ -1,8 +1,8 @@
 #app{
-    padding: 0 15px;
     h3{
         font-size: 19px;
         font-weight: normal;
+        margin-left: 15px;
     }
     .normal{
         color: #333333;
@@ -19,6 +19,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 0 15px;
         img{
             width: 142px;
             height: 95px;
@@ -32,8 +33,13 @@
                     font-size: 16px;
                     color: #333333;
                     margin: 0;
+                    display: flex;
+                    flex-direction: column;
                 }
                 span{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                     width:50px;
                     height:16px;
                     background:rgba(255,241,235,1);
@@ -41,8 +47,6 @@
                     border-radius:2px;
                     font-size: 9px;
                     color: #FF4000;
-                    line-height: 18px;
-                    text-align: center;
                 }
             }
             .price{
@@ -54,19 +58,33 @@
                 }
             }
             .sale{
+                width: 188px;
+                position: relative;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
                 span{
                     font-size: 15px;
                     color: #FF4000;
                     &:last-child{
-                        font-size: 9px;
+                        font-size: 10px;
                         margin-left: 11px;
                     }
+                }
+                .countNum{
+                    font-size: 12px;
+                    color: #999;
+                    font-weight: normal;
+                    position: absolute;
+                    right: 0;
                 }
 
             }
         }
     }
     .groupProgress{
+        padding: 0 15px;
+        border:10px solid #f8f8f8;
         h3{
             font-size: 15px;
             color: #333;
@@ -129,6 +147,7 @@
         }
     }
     .groupDetails{
+        padding: 0 15px;
         width: 100%;
         display: flex;
         justify-content: center;
@@ -138,19 +157,25 @@
             font-weight: normal;
             font-size: 16px;
             color: #333;
-            display: inline-block;
             margin: 40px 0 20px 0;
-            span{
-                display: inline-block;
-                width:21px;
-                height:19px;
-                background:rgba(255,241,235,1);
-                border-radius:2px;
-                color: #FF4000;
-                font-size: 12px;
-                line-height: 19px;
-                text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .countdown{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-left: 10px;
+                span{
+                    width:21px;
+                    height:19px;
+                    background:rgba(255,241,235,1);
+                    border-radius:2px;
+                    color: #FF4000;
+                    font-size: 12px;
+                }
             }
+
         }
         .groupMember{
             display: flex;
@@ -163,9 +188,6 @@
                 border:1px solid rgba(255, 201, 183, 1);
             }
             span{
-                position: absolute;
-                left: 7px;
-                bottom: 0;
                 width:30px;
                 height:14px;
                 background:linear-gradient(54deg,rgba(255,72,0,1),rgba(255,120,1,1));
@@ -178,6 +200,7 @@
             }
             .groupLeader{
                 position: relative;
+
             }
             .groupFriends{
                 height: 44px;
@@ -222,6 +245,7 @@
         }
     }
     .platGuide{
+        padding: 0 15px;
         h3{
             font-size: 19px;
             color: #333;
@@ -229,6 +253,7 @@
         }
     }
     .goodDetails{
+        margin: 0 15px;
         margin-bottom: 30px;
         h3{
             font-size: 19px;

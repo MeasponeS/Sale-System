@@ -14,7 +14,7 @@
                 <vantIcon name="lock" class="icon"></vantIcon>
                 <input type="number" placeholder="请输入验证码" v-model="code">
             </div>
-            <vantButton class="indexBtn" @click="checkCode">登陆</vantButton>
+            <vantButton class="indexBtn" @click="checkCode">登录</vantButton>
         </div>
     </div>
 </template>

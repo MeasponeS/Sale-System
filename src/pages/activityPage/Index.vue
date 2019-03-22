@@ -6,7 +6,6 @@
         </div>
         <div class="top">
             <div class="goods">
-                <h3>本次拼团商品</h3>
                 <div class="good">
                     <div class="goodsName">
                         <h3>{{goodsInfo.name || '无'}}</h3>
@@ -15,19 +14,19 @@
                     <div class="goodsPrice">
                         <span>拼团价{{goodsInfo.sellPrice || 0   | Money}}</span>
                         <em>省{{goodsInfo.saveMoney || 0   | Money}}</em>
-                        <strong>价格 <span>{{goodsInfo.originPrice || 0   | Money}}</span></strong>
+                        <strong>原价<span>{{goodsInfo.originPrice || 0   | Money}}</span></strong>
                         <strong class="countNum">已有{{orderCount || 0  }}人成团</strong>
                     </div>
                 </div>
             </div>
-            <div class="rules">
-                <h3>活动规则</h3>
-                <span>1. 一键开团成为团长，享受折扣优惠；</span>
-                <span>2.邀请好友拼团享受折扣优惠，成团后你获得推广返佣</span>
-                <span>3.推广返佣与购买人数正相关，每1人购买，推广返佣增加￥338.3</span>
-                <span>4.拼团结束48小时后，推广返佣会划入到账户余额，支持提现</span>
-                <span>5.工作人员会在每月1号处理上个月的提现申请，1-3天内到账</span>
-            </div>
+            <!--<div class="rules">-->
+                <!--<h3>活动规则</h3>-->
+                <!--<span>1. 一键开团成为团长，享受折扣优惠；</span>-->
+                <!--<span>2.邀请好友拼团享受折扣优惠，成团后你获得推广返佣</span>-->
+                <!--<span>3.推广返佣与购买人数正相关，每1人购买，推广返佣增加￥338.3</span>-->
+                <!--<span>4.拼团结束48小时后，推广返佣会划入到账户余额，支持提现</span>-->
+                <!--<span>5.工作人员会在每月1号处理上个月的提现申请，1-3天内到账</span>-->
+            <!--</div>-->
             <div class="goodDetails">
                 <h3>商品详情</h3>
                 <img src="../../assets/img/1.png" alt="">
@@ -62,7 +61,7 @@
         <div class="income" @click="goIncome">
             <img src="./img/2.png" alt="">
         </div>
-        <Popup v-model="showOpen" :close-on-click-overlay="false">
+        <Popup v-model="showOpen" :close-on-click-overlay="false" position="bottom">
             <div class="wrap">
                 <h3>开团方式</h3>
                 <Button class="indexBtn"
@@ -75,7 +74,7 @@
                 <Button class="bottomBtn" @click="showOpen = false">取消</Button>
             </div>
         </Popup>
-        <PayPopup :showMobile="showMobile" @closePay="showMobile = false " @wxPay="wxPay"></PayPopup>
+        <PayPopup :showMobile="showMobile" @closePay="showMobile = false " @wxPay="wxPay" ></PayPopup>
         <Share :share="share" @know="know"></Share>
     </div>
 </template>

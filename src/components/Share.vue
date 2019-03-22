@@ -49,17 +49,18 @@
     }
     button{
         cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 100px;
         height: 50px;
         background: none;
         border: 1px solid #fff;
-        font-size:20px;
-        line-height: 46px;
-        text-align: center;
+        font-size:16px;
         color: #fff;
         position: absolute;
         top: 140px;
-        left: 127px;
+        left: 136px;
         border-radius:5px;
         z-index: 999;
     }

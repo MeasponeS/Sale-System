@@ -13,10 +13,7 @@ const service = Axios.create({
     timeout: Config.timeout
 });
 
-// let toast = Toast.loading({
-//     mask: true,
-//     message: '加载中...'
-// });
+let toastLoading;
 
 service.defaults.retry = Config.requestRetry;
 service.defaults.retryDelay = Config.requestRetryDelay;
@@ -24,7 +21,10 @@ service.defaults.retryDelay = Config.requestRetryDelay;
 service.interceptors.request.use(
     config => {
         if(!config.closeLoading){
-            //window.loadingInstance = toast;
+            toastLoading = Toast.loading({
+                mask: true,
+                message: '加载中...'
+            });
         }
 
         let noParameters = config.url.indexOf('?')  == -1;
@@ -45,8 +45,8 @@ service.interceptors.response.use(
 
         if(!response.config.closeLoading){
             setTimeout(_=>{
-                //window.loadingInstance.clear();
-            },400);
+                toastLoading.clear();
+            },800);
         }
 
         if (res.status != 200) {
@@ -73,8 +73,8 @@ service.interceptors.response.use(
     },
     error => {
         setTimeout(_=>{
-            //window.loadingInstance.clear();
-        },300)
+            toastLoading.clear();
+        },800)
 
         Toast(error.message);
         return Promise.reject(error)

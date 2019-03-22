@@ -3,13 +3,13 @@
         <div class="top">
             <div class="header">
                 <div class="left">
-                    <h3>成功购买人数</h3>
+                    <h3>购买人数</h3>
                     <span>{{orderCount || 0}}</span>
                 </div>
                 <div class="right" @click="goWithdraw">查看详情</div>
             </div>
             <div class="goods">
-                <h3>本次拼团商品</h3>
+                <h3>本次团购商品</h3>
                 <div class="good">
                     <div class="goodsName">
                         <h3>{{goodsInfo.name || '无'}}</h3>

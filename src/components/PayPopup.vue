@@ -1,15 +1,19 @@
 <template>
-    <Popup v-model="showMobile">
+    <Popup v-model="showMobile" :close-on-click-overlay="false"	 @click-overlay="$emit('closePay')"	>
         <div class="wrapMobile">
             <h3>填写手机号</h3>
-            <input type="number" placeholder="用于获取课程卡号/密码，请务必确认" v-model="mobile" maxlength="11">
+            <Field v-model="mobile"
+                   class="input"
+                   type="number"
+                   placeholder="用于获取课程卡号/密码，请务必确认"
+                   ></Field>
             <Button class="bottomBtn" @click="goPay">去支付</Button>
         </div>
     </Popup>
 </template>
 
 <script>
-    import {Popup,Toast} from 'vant'
+    import {Popup,Toast,Field} from 'vant'
     export default {
         name: "PayPopup",
         props:['showMobile'],
@@ -36,13 +40,23 @@
             }
         },
         components:{
-            Popup
+            Popup,Field
         }
 
     }
 </script>
 
 <style scoped lang="less">
+    .input{
+        width: 260px;
+        height: 40px;
+        margin: 36px 0;
+        padding-left: 14px;
+        &::placeholder{
+            font-size: 14px;
+            color: #999;
+        }
+    }
     .wrapMobile{
         width: 320px;
         height: 100%;
@@ -57,17 +71,6 @@
         font-weight: normal;
         margin: 20px 0;
         border-bottom:1px solid #F8F8F8;
-    }
-    input{
-        width: 260px;
-        height: 40px;
-        margin: 36px 0;
-        border: 1px solid #eee;
-        padding-left: 14px;
-    &::placeholder{
-         font-size: 14px;
-         color: #999;
-     }
     }
     .bottomBtn{
         width:100%;

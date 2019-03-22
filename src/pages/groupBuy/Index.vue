@@ -7,20 +7,21 @@
             <img :src="activity.imageUrl" alt="">
             <div class="desc">
                 <div class="title">
-                    <h3>{{goodsInfo.name}}<span style="display: block">{{activity.minCount || 0  }}人可成团</span></h3>
+                    <h3>{{goodsInfo.name}}11111<span>{{activity.minCount || 0  }}人可成团</span></h3>
                 </div>
                 <div class="price">
-                    价格
+                    原价
                     <span>{{goodsInfo.sellPrice || 0   | Money}}</span>
                 </div>
                 <div class="sale">
                     <span>{{goodsInfo.originPrice || 0   | Money}}</span>
                     <span>省 {{goodsInfo.saveMoney || 0   | Money}}</span>
+                    <strong class="countNum">已有{{orderCount || 0  }}人成团</strong>
                 </div>
             </div>
         </div>
         <div class="groupProgress">
-            <h3>当前有<span>{{ groupNum || 0}}</span>人参团，倒计时结束48小时后：</h3>
+            <h3>当前有<span>{{ groupNum || 0}}</span>人参团，倒计时结束后：</h3>
             <div class="progress">
                 <div class="box" :class="className(0)">不返利</div>
                 <div class="line" :class="className2(0)"></div>
