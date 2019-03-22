@@ -180,10 +180,7 @@
                     groupId: this.groupInfo.id,
                     recommenderUserId: window.URLPARAMS.recommenderUserId
                 }).then(r=>{
-                    alert('11111')
                     leaderActivity({activityId:window.actId}).then(res=>{
-                        console.log(res);
-                        alert('2222')
                         this.orderCount = res.orderCount;
                         this.leaderHasBuy = res.leaderHasBuy;
                         this.goodsInfo = {...res.goodsInfo};
