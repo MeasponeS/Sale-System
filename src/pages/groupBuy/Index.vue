@@ -7,7 +7,7 @@
             <img :src="activity.imageUrl" alt="">
             <div class="desc">
                 <div class="title">
-                    <h3>{{goodsInfo.name}}<span>{{activity.minCount || 0  }}人可成团</span></h3>
+                    <h3>{{goodsInfo.name}}<span style="display: block">{{activity.minCount || 0  }}人可成团</span></h3>
                 </div>
                 <div class="price">
                     价格
@@ -60,7 +60,7 @@
                 <Button class="indexBtn" @click="showMobile = true" v-if="isLeader == '0' && userHasBuy == '0'" >一键参团 {{goodsInfo.originPrice || 0   | Money}}</Button>
                 <Button class="indexBtn" v-else @click="share = true">邀请好友团购，拿更高返利</Button>
             </div>
-            <Button class="indexBtn endBtn" v-else >团购已结束</Button>
+            <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0 && groupInfo.status != 3" >团购已结束</Button>
             <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0 && groupInfo.status == 3">请联系团长重新开团</Button>
             <em>好友拼团·人满发货·不满退款</em>
         </div>

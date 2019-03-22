@@ -14,7 +14,7 @@
                 <div class="good">
                     <div class="goodsName">
                         <h3>{{goodsInfo.name || '无'}}</h3>
-                        <span>{{activity.minCount || 0  }}人可成团</span>
+                        <span style="display: block">{{activity.minCount || 0  }}人可成团</span>
                     </div>
                     <div class="goodsPrice">
                         <span>拼团价{{goodsInfo.sellPrice || 0   | Money}}</span>
@@ -164,6 +164,7 @@
                 }).catch(_=>{});
             },
             leaderPay(){
+                alert('支付成功，等待刷新页面')
                 window.location.reload()
             },
             wxPay(mobile){
