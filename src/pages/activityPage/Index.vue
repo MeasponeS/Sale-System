@@ -54,7 +54,7 @@
         </div>
         <div class="start" @click="share = true" v-if="groupInfo && groupInfo.status && groupInfo.status != 0 && groupInfo.status != null">
             邀请好友获得更多返利
-            <h4><Countdown :second="countDownSenconds" @toggle="countDownSenconds--" @end="timeOut"></Countdown></h4>
+            <h4><Countdown :second="countDownSenconds" @toggle="countDownSenconds--" @end="timeOut" style="display: block"></Countdown></h4>
         </div>
         <div class="start" @click="showOpen = true" v-else>
            我要开团
@@ -139,10 +139,8 @@
                     this.countDownSenconds = r.countDownSenconds;
                     if(this.groupInfo.id && this.groupInfo.id != null ){
                         this.shareFriend()
+                        alert('配置成功111')
                     }
-
-
-
                 }).catch(_=>{});
 
             },
@@ -195,7 +193,7 @@
 
 
                         this.shareFriend()
-
+                        alert('配置成功222')
 
 
                     }).catch(_=>{});
