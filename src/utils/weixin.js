@@ -62,6 +62,7 @@ function vxPay(r,callBack) {
         },
         function (res) {
             if (res.err_msg == "get_brand_wcpay_request:ok") {
+                alert('支付成功啦')
                 callBack()
             } else {
                 if (res.err_msg == "get_brand_wcpay_request:cancel") {

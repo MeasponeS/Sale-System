@@ -163,6 +163,7 @@
                 }).catch(_=>{});
             },
             leaderPay(){
+                alert('马上刷新啦')
                 window.location.reload()
             },
             wxPay(mobile){

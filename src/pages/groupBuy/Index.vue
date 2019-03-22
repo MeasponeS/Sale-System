@@ -108,7 +108,6 @@
     import {vxPay,shareFriendQ,shareFriend} from "../../utils/weixin";
     import {creatGeneralOrder} from "../../api/order";
     import Share from '../../components/Share'
-    import wx from 'weixin-js-sdk';
     export default {
         name: 'app',
         mixins:[groupProgress,CommonMixin],
