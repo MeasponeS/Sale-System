@@ -105,7 +105,7 @@
     import CommonMixin from '../commonMixin.js'
     import {userActivity} from "../../api/activity";
     import {getUrlInfo} from "../../utils/dataStorage";
-    import Countdown from '../../components/Countdown'
+    //import Countdown from '../../components/Countdown'
     import PayPopup from '../../components/PayPopup';
     import {vxPay,shareFriendQ,shareFriend} from "../../utils/weixin";
     import {creatGeneralOrder} from "../../api/order";
@@ -313,7 +313,7 @@
         beforeDestroy: function () {
 
         },
-        components: {Button,Steps,Step,Popup,Countdown,PayPopup,Share}
+        components: {Button,Steps,Step,Popup,PayPopup,Share}
     }
 </script>
 <style>
