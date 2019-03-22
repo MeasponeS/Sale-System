@@ -89,7 +89,7 @@
         methods: {
             shareFriend(){
                 let config = {
-                    shareTitle:'邀请人主页',
+                    shareTitle:'团长主页',
                     shareBody:'赶快进入主页参与活动吧',
                     shareUrl:'https://hsj.hulian120.com/pay/activityPage.html?recommenderUserId='+ this.recommenderId + '&actId=' + window.actId ,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
