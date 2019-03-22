@@ -38,7 +38,7 @@ export default {
                 nonceStr:r.signature.nonceStr,
                 timestamp:r.signature.timestamp,
                 signature : r.signature.signature,
-                jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage','checkJsApi','hideMenuItems','chooseWXPay'] // 必填，需要使用的JS接口列表
+                jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage','checkJsApi','hideMenuItems','chooseWXPay','showMenuItems'] // 必填，需要使用的JS接口列表
             });
 
             wx.ready(function () {
@@ -47,7 +47,8 @@ export default {
                         'onMenuShareTimeline',
                         'onMenuShareAppMessage',
                         'chooseWXPay',
-                        'hideMenuItems'
+                        'hideMenuItems',
+                        'showMenuItems'
                     ],
                     success: function (res) {
 
@@ -59,8 +60,8 @@ export default {
 
                 wx.hideMenuItems({
                     menuList: [
-                        //'menuItem:share:appMessage',
-                        //'menuItem:share:timeline',
+                        'menuItem:share:appMessage',
+                        'menuItem:share:timeline',
                         'menuItem:readMode', // 阅读模式
                         "menuItem:share:qq", //分享到qq
                         "menuItem:share:weiboApp", //分享到微博
