@@ -39,7 +39,7 @@
             </div>
         </div>
         <div class="groupDetails">
-            <h3 v-if="groupInfo.status == 1">距结束只剩 <Countdown :second="countDownSenconds"  @end="timeOut"></Countdown> </h3>
+            <h3>距结束只剩 <Countdown :second="countDownSenconds"  @end="timeOut"></Countdown> </h3>
             <div class="groupMember">
                 <div class="groupLeader">
                     <img :src="leaderHeadImg" alt="">
