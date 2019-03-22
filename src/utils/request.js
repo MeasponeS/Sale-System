@@ -2,6 +2,7 @@ import Axios from 'axios'
 import Config from '../config/app.js'
 import { Toast } from 'vant';
 import {getToken,removeToken} from '../utils/dataStorage.js'
+import {setCurrentPage} from "../utils/dataStorage";
 
 const service = Axios.create({
     baseURL: Config.apiUrl + '/' + Config.apiPrefix,
@@ -56,10 +57,13 @@ service.interceptors.response.use(
 
                 Toast(res.data.message);
                 if(res.data.resultCode == 402){
+                    Toast('Token失效，重新登陆中');
                     removeToken();
                     setTimeout(_=>{
-                        window.location.href = './beforeLogin.html';
-                    },2000)
+                        setCurrentPage(window.location.href);
+                        window.location.href =  "https://open.weixin.qq.com/connect/oauth2/authorize?appid="  +
+                           sessionStorage.getItem('appId')  + "&redirect_uri=" + encodeURIComponent('https://wxauth.hulian120.com/open/getCodeFor')  +   "&response_type=code&scope=snsapi_userinfo&state=needJump#wechat_redirect";
+                    },600)
                 }
                 return Promise.reject('error');
             }

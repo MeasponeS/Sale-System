@@ -163,7 +163,6 @@
                 }).catch(_=>{});
             },
             leaderPay(){
-                alert('支付成功，等待刷新页面')
                 window.location.reload()
             },
             wxPay(mobile){
@@ -193,7 +192,6 @@
 
 
                         this.shareFriend()
-                        alert('配置成功222')
 
 
                     }).catch(_=>{});

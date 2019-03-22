@@ -24,7 +24,7 @@ export default {
         let that = this;
         wxSignature({url:window.location.href}).then(r=>{
             if (r.resultCode == 500) return;
-
+            sessionStorage.setItem('appId',r.signature.appId)
             if(!getToken()){
                 setCurrentPage(window.location.href);
                 window.location.href =  "https://open.weixin.qq.com/connect/oauth2/authorize?appid="  +
