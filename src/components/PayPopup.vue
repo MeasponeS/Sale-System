@@ -1,5 +1,5 @@
 <template>
-    <Popup v-model="showMobile" :close-on-click-overlay="false">
+    <Popup v-model="show">
         <div class="wrapMobile">
             <h3>填写手机号</h3>
             <input type="number" placeholder="用于获取课程卡号/密码，请务必确认" v-model="mobile" maxlength="11">
@@ -15,7 +15,8 @@
         props:['showMobile'],
         data:function () {
             return {
-                mobile:''
+                mobile:'',
+                show:''
             }
         },
         methods:{
@@ -34,6 +35,9 @@
                 this.$emit('wxPay',this.mobile)
 
             }
+        },
+        mounted(){
+            this.show = this.showMobile
         },
         components:{
             Popup
