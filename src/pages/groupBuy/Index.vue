@@ -7,7 +7,7 @@
             <img :src="activity.imageUrl" alt="">
             <div class="desc">
                 <div class="title">
-                    <h3>{{goodsInfo.name}}11111<span>{{activity.minCount || 0  }}人可成团</span></h3>
+                    <h3>{{goodsInfo.name}}<span>{{activity.minCount || 0  }}人可成团</span></h3>
                 </div>
                 <div class="price">
                     原价
@@ -47,7 +47,7 @@
                     <span>团长</span>
                 </div>
                 <div class="groupFriends">
-                    <div class="emptyI" v-if="headList[0] == null" style="margin-left:-72px">?</div>
+                    <div class="emptyI" v-if="headList[4] == null" style="margin-left:-72px">?</div>
                     <img
                             v-else
                             alt=""
