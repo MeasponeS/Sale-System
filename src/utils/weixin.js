@@ -16,10 +16,8 @@ function shareFriend(config){
     wx.showMenuItems({
         menuList: ["menuItem:share:timeline","menuItem:share:appMessage"], // 要显示的菜单项，所有menu项见附录3
         success: function (res) {
-            alert('显示成功')
         },
         fail: function (res) {
-            alert('显示失败')
         }
     });
     wx.onMenuShareAppMessage({
@@ -30,11 +28,9 @@ function shareFriend(config){
         //type: '', // 分享类型,music、video或link，不填默认为link
         //dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
         success: function () {
-            alert('分享成功')
 
         },
         cancel: function () {
-            alert('已取消分享')
         }
     });
 }
@@ -46,11 +42,9 @@ function shareFriendQ(config){
             link: config.shareUrl, // 分享链接
             imgUrl: config.shareImg, // 分享图标
             success: function () {
-                alert('分享成功')
 
             },
             cancel: function () {
-                alert('已取消分享')
             }
         });
     },600)

@@ -5,10 +5,6 @@
             <img src="./img/long.png" alt="">
         </div>
         <div class="top">
-
-
-
-
             <div class="goods">
                 <h3>本次拼团商品</h3>
                 <div class="good">
@@ -71,7 +67,7 @@
                 <h3>开团方式</h3>
                 <Button class="indexBtn"
                         @click="goCheckMobile"
-                        :disabled="(groupInfo && groupInfo.status && groupInfo.status == 1)"
+                        :disabled="groupInfo && groupInfo.status && groupInfo.status == 1"
                 >A：购买商品，并成为团长</Button>
                 <Button class="indexBtn" @click="openGroup">
                     B：通过邀请好友成为团长
