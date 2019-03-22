@@ -92,7 +92,7 @@
     import Share from '../../components/Share'
     import {creatLeaderOrder} from "../../api/order";
     import {crtGroupOpen} from "../../api/group";
-    import {vxPay} from '../../utils/weixin'
+    import {vxPay,shareFriend,shareFriendQ} from '../../utils/weixin'
     import wx from 'weixin-js-sdk';
     import Countdown from '../../components/Countdown'
 
@@ -119,27 +119,32 @@
             }
         },
         methods: {
-            wxSignatureCallback(){
+            shareFriend(){
                 let config = {
                     shareTitle:'团长主页',
                     shareBody:'赶快进入主页参与活动吧',
                     shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status ,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };
-                wx.onMenuShareAppMessage({
-                    title: config.shareTitle, // 分享标题
-                    desc: config.shareBody, // 分享描述
-                    link: config.shareUrl, // 分享链接
-                    imgUrl: config.shareImg, // 分享图标
-                    //type: '', // 分享类型,music、video或link，不填默认为link
-                    //dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-                    success: function () {
-                        console.log('配置分享成功');
-                    },
-                    cancel: function () {
-                        console.log('配置分享失败');
+                shareFriend(config)
+                shareFriendQ(config)
+            },
+            wxSignatureCallback(){
+                leaderActivity({activityId:window.actId}).then(r=>{
+                    this.orderCount = r.orderCount;
+                    this.leaderHasBuy = r.leaderHasBuy;
+                    this.goodsInfo = {...r.goodsInfo};
+                    this.activity = {...r.activity};
+                    this.groupInfo = {...r.groupInfo};
+                    this.countDownSenconds = r.countDownSenconds;
+                    if(this.groupInfo.id && this.groupInfo.id != null ){
+                        this.shareFriend()
                     }
-                });
+
+
+
+                }).catch(_=>{});
+
             },
             goIncome(){
                 window.location.href = './incomeDetails.html'
@@ -187,6 +192,12 @@
                         this.activity = {...r.activity};
                         this.groupInfo = {...r.groupInfo};
                         this.countDownSenconds = r.countDownSenconds;
+
+
+                        this.shareFriend()
+
+
+
                     }).catch(_=>{});
                 }).catch(_=>{})
             },
@@ -196,14 +207,7 @@
 
         },
         mounted() {
-            leaderActivity({activityId:window.actId}).then(r=>{
-                this.orderCount = r.orderCount;
-                this.leaderHasBuy = r.leaderHasBuy;
-                this.goodsInfo = {...r.goodsInfo};
-                this.activity = {...r.activity};
-                this.groupInfo = {...r.groupInfo};
-                this.countDownSenconds = r.countDownSenconds;
-            }).catch(_=>{});
+
 
 
 
@@ -211,7 +215,7 @@
         beforeDestroy: function () {
 
         },
-        components: {Popup,Button,PayPopup,Share}
+        components: {Popup,Button,PayPopup,Share,Countdown}
     }
 </script>
 <style>

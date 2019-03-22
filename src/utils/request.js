@@ -53,12 +53,12 @@ service.interceptors.response.use(
             //return Promise.reject('error')
         } else {
             if(res.data.resultCode != 200){
-                alert(111)
+
                 Toast(res.data.message);
                 if(res.data.resultCode == 402){
                     removeToken();
                     setTimeout(_=>{
-                        window.location.href = './login.html';
+                        window.location.href = './beforeLogin.html';
                     },2000)
                 }
                 return Promise.reject('error');

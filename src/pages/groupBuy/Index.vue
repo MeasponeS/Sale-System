@@ -108,7 +108,7 @@
     import {getUrlInfo} from "../../utils/dataStorage";
     import Countdown from '../../components/Countdown'
     import PayPopup from '../../components/PayPopup';
-    import {vxPay} from "../../utils/weixin";
+    import {vxPay,shareFriendQ,shareFriend} from "../../utils/weixin";
     import {creatGeneralOrder} from "../../api/order";
     import Share from '../../components/Share'
     import wx from 'weixin-js-sdk';
@@ -138,28 +138,34 @@
             }
         },
         methods: {
-            wxSignatureCallback(){
+            shareFriend(){
                 let config = {
                     shareTitle:'『团购优惠』和好朋友一起领',
                     shareBody:'健康管理师＆护理评估师，现在团购立减¥880',
                     shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };
+                shareFriend(config)
+                shareFriendQ(config)
+            },
+            wxSignatureCallback(){
 
-                wx.onMenuShareAppMessage({
-                    title: config.shareTitle, // 分享标题
-                    desc: config.shareBody, // 分享描述
-                    link: config.shareUrl, // 分享链接
-                    imgUrl: config.shareImg, // 分享图标
-                    //type: '', // 分享类型,music、video或link，不填默认为link
-                    //dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-                    success: function () {
-                        console.log('配置分享成功');
-                    },
-                    cancel: function () {
-                        console.log('配置分享失败');
-                    }
-                });
+                userActivity({groupId:this.id}).then(r=>{
+                    this.groupNum = r.orderCount;
+                    this.isLeader = r.isLeader;
+                    this.countDownSenconds = r.countDownSenconds;
+                    this.leaderHasBuy = r.leaderHasBuy;
+                    this.goodsInfo = {...r.goodsInfo};
+                    this.activity = {...r.activity};
+                    this.groupInfo = {...r.groupInfo};
+                    this.regularLIst = r.regularLIst;
+                    this.headList = r.headList.reverse();
+                    this.leaderHeadImg = r.leaderHeadImg;
+                    this.userHasBuy = r.userHasBuy;
+
+                    this.shareFriend();
+                }).catch(_=>{})
+
 
 
 
@@ -297,19 +303,7 @@
         },
         mounted() {
             this.id = getUrlInfo('groupId');
-            userActivity({groupId:this.id}).then(r=>{
-                this.groupNum = r.orderCount;
-                this.isLeader = r.isLeader;
-                this.countDownSenconds = r.countDownSenconds;
-                this.leaderHasBuy = r.leaderHasBuy;
-                this.goodsInfo = {...r.goodsInfo};
-                this.activity = {...r.activity};
-                this.groupInfo = {...r.groupInfo};
-                this.regularLIst = r.regularLIst;
-                this.headList = r.headList.reverse();
-                this.leaderHeadImg = r.leaderHeadImg;
-                this.userHasBuy = r.userHasBuy;
-            }).catch(_=>{})
+
         },
         beforeDestroy: function () {
 
