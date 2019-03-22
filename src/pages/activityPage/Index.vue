@@ -162,12 +162,14 @@
                 window.location.reload()
             },
             wxPay(mobile){
+
                 creatLeaderOrder({
                     activityId: window.actId,
                     groupId:this.groupInfo.id,
                     mobile:mobile,
                     recommenderUserId:window.URLPARAMS.recommenderUserId
                 }).then(r=>{
+                    this.showMobile = false
                     vxPay(r,this.leaderPay)
                 }).catch(_=>{})
             },

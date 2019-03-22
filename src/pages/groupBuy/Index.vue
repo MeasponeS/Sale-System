@@ -52,7 +52,7 @@
                     <img
                             v-else
                             alt=""
-                            v-for="(item,index) in headList"
+                            v-for="(item,index) in headList.reverse()"
                             :src="item"
                             :style="'right:'+(index *18) + 'px'"
                     >
@@ -194,6 +194,7 @@
                     groupId:this.groupInfo.id,
                     mobile:mobile,
                 }).then(r=>{
+                    this.showMobile = false
                     vxPay(r,this.userBuy)
                 }).catch(_=>{})
             },
