@@ -146,7 +146,6 @@
                 shareFriendQ(config)
             },
             wxSignatureCallback(){
-
                 userActivity({groupId:this.id}).then(r=>{
                     this.groupNum = r.orderCount;
                     this.isLeader = r.isLeader;

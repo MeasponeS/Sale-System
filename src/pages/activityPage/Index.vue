@@ -55,9 +55,9 @@
            我要开团
         </div>
 
-        <div class="end" v-if="countDownSenconds == 0" >
-            <h3>本次活动已结束</h3>
-        </div>
+        <!--<div class="end" v-if="countDownSenconds == 0" >-->
+            <!--<h3>本次活动已结束</h3>-->
+        <!--</div>-->
         <div class="income" @click="goIncome">
             <img src="./img/2.png" alt="">
         </div>
@@ -116,8 +116,8 @@
         methods: {
             shareFriend(){
                 let config = {
-                    shareTitle:'团长主页',
-                    shareBody:'赶快进入主页参与活动吧',
+                    shareTitle:'『团购优惠』和好朋友一起领',
+                    shareBody:'健康管理师＆护理评估师，现在团购立减¥880',
                     shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status ,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };
