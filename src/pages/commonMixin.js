@@ -78,6 +78,10 @@ export default {
                     }
 
                 });
+
+
+
+
                 that.wxSignatureCallback()
             });
 

@@ -52,7 +52,7 @@
                 <img src="../../assets/img/16.png" alt="">
             </div>
         </div>
-        <div class="start" @click="share = true" v-if="groupInfo && groupInfo.status && groupInfo.status != 0 && groupInfo.status != null">
+        <div class="start" @click="share = true" v-if="groupInfo && groupInfo.status && groupInfo.status == 1">
             邀请好友获得更多返利
             <h4><Countdown :second="countDownSenconds" @toggle="countDownSenconds--" @end="timeOut" style="display: block"></Countdown></h4>
         </div>
@@ -71,7 +71,7 @@
                 <h3>开团方式</h3>
                 <Button class="indexBtn"
                         @click="goCheckMobile"
-                        :disabled="(groupInfo && groupInfo.status && groupInfo.status != 0 && groupInfo.status != null)"
+                        :disabled="(groupInfo && groupInfo.status && groupInfo.status == 1)"
                 >A：购买商品，并成为团长</Button>
                 <Button class="indexBtn" @click="openGroup">
                     B：通过邀请好友成为团长
