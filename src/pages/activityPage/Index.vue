@@ -195,7 +195,15 @@
                 }).catch(_=>{})
             },
             timeOut(){
-
+                leaderActivity({activityId:window.actId}).then(r=>{
+                    this.orderCount = r.orderCount;
+                    this.leaderHasBuy = r.leaderHasBuy;
+                    this.goodsInfo = {...r.goodsInfo};
+                    this.activity = {...r.activity};
+                    this.groupInfo = {...r.groupInfo};
+                    this.countDownSenconds = r.countDownSenconds;
+                    this.shareFriend()
+                }).catch(_=>{});
             },
 
         },
