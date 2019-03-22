@@ -51,7 +51,7 @@
                     <img
                             v-else
                             alt=""
-                            v-for="(item,index) in headList.reverse()"
+                            v-for="(item,index) in headList"
                             :src="item"
                             :style="'right:'+(index *18) + 'px'"
                     >
