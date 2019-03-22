@@ -43,6 +43,7 @@
             <!--<h3>距结束只剩 <Countdown :second="countDownSenconds"  @end="timeOut"></Countdown> </h3>-->
             <h3>距结束只剩 10:10:10 </h3>
             <div class="groupMember">
+            <div class="groupMember">
                 <div class="groupLeader">
                     <img :src="leaderHeadImg" alt="">
                     <span>团长</span>
@@ -148,21 +149,21 @@
                 shareFriendQ(config)
             },
             wxSignatureCallback(){
-                userActivity({groupId:this.id}).then(r=>{
-                    this.groupNum = r.orderCount;
-                    this.isLeader = r.isLeader;
-                    this.countDownSenconds = r.countDownSenconds;
-                    this.leaderHasBuy = r.leaderHasBuy;
-                    this.goodsInfo = {...r.goodsInfo};
-                    this.activity = {...r.activity};
-                    this.groupInfo = {...r.groupInfo};
-                    this.regularLIst = r.regularLIst;
-                    this.orderCount = r.orderCount;
-                    this.headList = r.headList;
-                    this.leaderHeadImg = r.leaderHeadImg;
-                    this.userHasBuy = r.userHasBuy;
-                    this.shareFriend();
-                }).catch(_=>{})
+                // userActivity({groupId:this.id}).then(r=>{
+                //     this.groupNum = r.orderCount;
+                //     this.isLeader = r.isLeader;
+                //     this.countDownSenconds = r.countDownSenconds;
+                //     this.leaderHasBuy = r.leaderHasBuy;
+                //     this.goodsInfo = {...r.goodsInfo};
+                //     this.activity = {...r.activity};
+                //     this.groupInfo = {...r.groupInfo};
+                //     this.regularLIst = r.regularLIst;
+                //     this.orderCount = r.orderCount;
+                //     this.headList = r.headList;
+                //     this.leaderHeadImg = r.leaderHeadImg;
+                //     this.userHasBuy = r.userHasBuy;
+                //     this.shareFriend();
+                // }).catch(_=>{})
             },
             timeOut(){
                 // window.setTimeout(()=>{
