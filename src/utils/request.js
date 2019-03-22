@@ -13,7 +13,7 @@ const service = Axios.create({
     timeout: Config.timeout
 });
 
-let toastLoading;
+//let toastLoading;
 
 service.defaults.retry = Config.requestRetry;
 service.defaults.retryDelay = Config.requestRetryDelay;
@@ -21,10 +21,10 @@ service.defaults.retryDelay = Config.requestRetryDelay;
 service.interceptors.request.use(
     config => {
         if(!config.closeLoading){
-            toastLoading = Toast.loading({
-                mask: true,
-                message: '加载中...'
-            });
+            // toastLoading = Toast.loading({
+            //     mask: true,
+            //     message: '加载中...'
+            // });
         }
 
         let noParameters = config.url.indexOf('?')  == -1;
@@ -45,7 +45,7 @@ service.interceptors.response.use(
 
         if(!response.config.closeLoading){
             setTimeout(_=>{
-                toastLoading.clear();
+                //toastLoading.clear();
             },800);
         }
 
@@ -73,7 +73,7 @@ service.interceptors.response.use(
     },
     error => {
         setTimeout(_=>{
-            toastLoading.clear();
+            //toastLoading.clear();
         },800)
 
         Toast(error.message);

@@ -122,7 +122,7 @@
                 activity:{},
                 groupInfo:{},   // 团信息
                 leaderHeadImg:'', // 团长头像
-                headList:[ ], // 团员头像
+                headList:[], // 团员头像
                 regularLIst:[],
                 countDownSenconds:0,
                 isLeader:'',
