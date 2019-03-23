@@ -64,7 +64,7 @@
                 </div>
                 <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0 && groupInfo.status != 3" >团购已结束</Button>
                 <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0 && groupInfo.status == 3">请联系团长重新开团</Button>
-                <em>好友拼团·人满发货·不满退款</em>
+                <em>好友拼团·人满发货·<a href="https://kf.qq.com/touch/sappfaq/180319FN3eUR180319JbURBr.html">不满退款</a></em>
             </div>
             <div class="playGuide">
                 <h3>玩法说明</h3>
