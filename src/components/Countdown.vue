@@ -1,5 +1,5 @@
 <template>
-    <div class="countdow" >
+    <div class="countNum" >
         <div v-if="status == 1"><span>{{h}}</span>:<span>{{m}}</span>:<span>{{s}}</span></div>
         <div v-else><span>00</span>:<span>00</span>:<span>00</span></div>
     </div>
@@ -78,7 +78,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-    .countdow{
+    .countNum{
         margin-left: 10px;
         display: inline-block;
         font-size: 15px;
