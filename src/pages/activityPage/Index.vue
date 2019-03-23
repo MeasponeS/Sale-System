@@ -1,81 +1,86 @@
 <template>
-    <div id="app" v-if="goodsInfo.sellPrice">
-        <img class="topImg" :src="activity.imageUrl" alt="">
-        <div class="title">
-            <img src="./img/long.png" alt="">
-        </div>
-        <div class="top">
-            <div class="goods">
-                <div class="good">
-                    <div class="goodsName">
-                        <h3>{{goodsInfo.name || '无'}}</h3>
-                        <span>{{activity.minCount || 0  }}人可成团</span>
-                    </div>
-                    <div class="goodsPrice">
-                        <span>拼团价{{goodsInfo.sellPrice || 0   | Money}}</span>
-                        <em>省{{goodsInfo.saveMoney || 0   | Money}}</em>
-                        <strong>原价<span>{{goodsInfo.originPrice || 0   | Money}}</span></strong>
-                        <strong class="countNum">已有{{orderCount || 0  }}人成团</strong>
+    <div id="app" >
+        <div v-if="goodsInfo.sellPrice">
+            <img class="topImg" :src="activity.imageUrl" alt="">
+            <div class="title">
+                <img src="./img/long.png" alt="">
+            </div>
+            <div class="top">
+                <div class="goods">
+                    <div class="good">
+                        <div class="goodsName">
+                            <h3>{{goodsInfo.name || '无'}}</h3>
+                            <span>{{activity.minCount || 0  }}人可成团</span>
+                        </div>
+                        <div class="goodsPrice">
+                            <span>拼团价{{goodsInfo.sellPrice || 0   | Money}}</span>
+                            <em>省{{goodsInfo.saveMoney || 0   | Money}}</em>
+                            <strong>原价<span>{{goodsInfo.originPrice || 0   | Money}}</span></strong>
+                            <strong class="countNum">已有{{orderCount || 0  }}人成团</strong>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!--<div class="rules">-->
+                <!--<div class="rules">-->
                 <!--<h3>活动规则</h3>-->
                 <!--<span>1. 一键开团成为团长，享受折扣优惠；</span>-->
                 <!--<span>2.邀请好友拼团享受折扣优惠，成团后你获得推广返佣</span>-->
                 <!--<span>3.推广返佣与购买人数正相关，每1人购买，推广返佣增加￥338.3</span>-->
                 <!--<span>4.拼团结束48小时后，推广返佣会划入到账户余额，支持提现</span>-->
                 <!--<span>5.工作人员会在每月1号处理上个月的提现申请，1-3天内到账</span>-->
-            <!--</div>-->
-            <div class="goodDetails">
-                <h3>商品详情</h3>
-                <img src="../../assets/img/1.png" alt="">
-                <img src="../../assets/img/2.png" alt="">
-                <img src="../../assets/img/3.png" alt="">
-                <img src="../../assets/img/4.png" alt="">
-                <img src="../../assets/img/5.png" alt="">
-                <img src="../../assets/img/6.png" alt="">
-                <img src="../../assets/img/7.png" alt="">
-                <img src="../../assets/img/8.png" alt="">
-                <img src="../../assets/img/9.png" alt="">
-                <img src="../../assets/img/10.png" alt="">
-                <img src="../../assets/img/11.png" alt="">
-                <img src="../../assets/img/12.png" alt="">
-                <img src="../../assets/img/13.png" alt="">
-                <img src="../../assets/img/14.png" alt="">
-                <img src="../../assets/img/15.png" alt="">
-                <img src="../../assets/img/16.png" alt="">
+                <!--</div>-->
+                <div class="goodDetails">
+                    <h3>商品详情</h3>
+                    <img src="../../assets/img/1.png" alt="">
+                    <img src="../../assets/img/2.png" alt="">
+                    <img src="../../assets/img/3.png" alt="">
+                    <img src="../../assets/img/4.png" alt="">
+                    <img src="../../assets/img/5.png" alt="">
+                    <img src="../../assets/img/6.png" alt="">
+                    <img src="../../assets/img/7.png" alt="">
+                    <img src="../../assets/img/8.png" alt="">
+                    <img src="../../assets/img/9.png" alt="">
+                    <img src="../../assets/img/10.png" alt="">
+                    <img src="../../assets/img/11.png" alt="">
+                    <img src="../../assets/img/12.png" alt="">
+                    <img src="../../assets/img/13.png" alt="">
+                    <img src="../../assets/img/14.png" alt="">
+                    <img src="../../assets/img/15.png" alt="">
+                    <img src="../../assets/img/16.png" alt="">
+                </div>
             </div>
-        </div>
-        <div class="start" @click="share = true" v-if="groupInfo && groupInfo.status && groupInfo.status == 1">
-            邀请好友获得更多返利
-            <h4><Countdown :second="countDownSenconds" :status="groupInfo.status" @toggle="countDownSenconds--" @end="timeOut" style="display: block"></Countdown></h4>
-        </div>
-        <div class="start" @click="showOpen = true" v-else>
-           我要开团
-        </div>
+            <div class="start" @click="share = true" v-if="groupInfo && groupInfo.status && groupInfo.status == 1">
+                邀请好友获得更多返利
+                <h4><Countdown :second="countDownSenconds" :status="groupInfo.status" @toggle="countDownSenconds--" @end="timeOut" style="display: block"></Countdown></h4>
+            </div>
+            <div class="start" @click="showOpen = true" v-else>
+                我要开团
+            </div>
 
-        <!--<div class="end" v-if="countDownSenconds == 0" >-->
+            <!--<div class="end" v-if="countDownSenconds == 0" >-->
             <!--<h3>本次活动已结束</h3>-->
-        <!--</div>-->
-        <div class="income" @click="goIncome">
-            <img src="./img/2.png" alt="">
-        </div>
-        <Popup v-model="showOpen" :close-on-click-overlay="false" position="bottom">
-            <div class="wrap">
-                <h3>开团方式</h3>
-                <Button class="indexBtn"
-                        @click="goCheckMobile"
-                        :disabled="groupInfo && groupInfo.status && groupInfo.status == 1"
-                >A：购买商品，并成为团长</Button>
-                <Button class="indexBtn" @click="openGroup">
-                    B：通过邀请好友成为团长
-                </Button>
-                <Button class="bottomBtn" @click="showOpen = false">取消</Button>
+            <!--</div>-->
+            <div class="income" @click="goIncome">
+                <img src="./img/2.png" alt="">
             </div>
-        </Popup>
-        <PayPopup :showMobile="showMobile" @closePay="showMobile = false " @wxPay="wxPay" ></PayPopup>
-        <Share :share="share" @know="know"></Share>
+            <Popup v-model="showOpen" :close-on-click-overlay="false" position="bottom">
+                <div class="wrap">
+                    <h3>开团方式</h3>
+                    <Button class="indexBtn"
+                            @click="goCheckMobile"
+                            :disabled="groupInfo && groupInfo.status && groupInfo.status == 1"
+                    >A：购买商品，并成为团长</Button>
+                    <Button class="indexBtn" @click="openGroup">
+                        B：通过邀请好友成为团长
+                    </Button>
+                    <Button class="bottomBtn" @click="showOpen = false">取消</Button>
+                </div>
+            </Popup>
+            <PayPopup :showMobile="showMobile" @closePay="showMobile = false " @wxPay="wxPay" ></PayPopup>
+            <Share :share="share" @know="know"></Share>
+        </div>
+        <div v-else id="loading">
+            <img src="https://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=loading动画&step_word=&hs=2&pn=38&spn=0&di=101123149600&pi=0&rn=1&tn=baiduimagedetail&is=0%2C0&istype=0&ie=utf-8&oe=utf-8&in=&cl=2&lm=6&st=undefined&cs=3217777612%2C1827677914&os=772786184%2C1005349133&simid=0%2C0&adpicid=0&lpn=0&ln=1877&fr=&fmq=1553334370081_R&fm=&ic=undefined&s=undefined&hd=0&latest=0&copyright=0&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&ist=&jit=&cg=&bdtype=0&oriquery=&objurl=http%3A%2F%2Fimg10.cache.hxsd.com%2Fnews%2F2015%2F11%2F12%2F691442_1447295058_5.gif&fromurl=ippr_z2C%24qAzdH3FAzdH3Fgjof_z%26e3Bixf1_z%26e3Bv54AzdH3FCG-v6jwptejAzdH3Fda8c88AzdH3Fml899d_c_z%26e3Bip4s&gsm=1e&rpstart=0&rpnum=0&islist=&querylist=&force=undefined" alt="">
+        </div>
     </div>
 </template>
 

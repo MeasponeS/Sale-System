@@ -1,102 +1,108 @@
 <template>
-    <div id="app" v-if="goodsInfo.sellPrice" >
-        <h3 class="normal" v-if="groupInfo.status==1">拼团中</h3>
-        <h3 class="fail" v-if="groupInfo.status==3">拼团失败</h3>
-        <h3 class="success" v-if="groupInfo.status==2">拼团成功</h3>
-        <div class="goods">
-            <img :src="activity.imageUrl" alt="">
-            <div class="desc">
-                <div class="title">
-                    <h3>{{goodsInfo.name}}<span>{{activity.minCount || 0  }}人可成团</span></h3>
-                </div>
-                <div class="price">
-                    原价
-                    <span>{{goodsInfo.sellPrice || 0   | Money}}</span>
-                </div>
-                <div class="sale">
-                    <span>{{goodsInfo.originPrice || 0   | Money}}</span>
-                    <span class="saveMoney">省 {{goodsInfo.saveMoney || 0   | Money}}</span>
-                    <strong class="countNum">已有{{orderCount || 0  }}人成团</strong>
+    <div id="app" >
+        <div  v-if="goodsInfo.sellPrice">
+            <h3 class="normal" v-if="groupInfo.status==1">拼团中</h3>
+            <h3 class="fail" v-if="groupInfo.status==3">拼团失败</h3>
+            <h3 class="success" v-if="groupInfo.status==2">拼团成功</h3>
+            <div class="goods">
+                <img :src="activity.imageUrl" alt="">
+                <div class="desc">
+                    <div class="title">
+                        <h3>{{goodsInfo.name}}<span>{{activity.minCount || 0  }}人可成团</span></h3>
+                    </div>
+                    <div class="price">
+                        原价
+                        <span>{{goodsInfo.sellPrice || 0   | Money}}</span>
+                    </div>
+                    <div class="sale">
+                        <span>{{goodsInfo.originPrice || 0   | Money}}</span>
+                        <span class="saveMoney">省 {{goodsInfo.saveMoney || 0   | Money}}</span>
+                        <strong class="countNum">已有{{orderCount || 0  }}人成团</strong>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="groupProgress">
-            <h3>当前有<span>{{ groupNum || 0}}</span>人参团，倒计时结束后：</h3>
-            <div class="progress">
-                <div class="box" :class="className(0)">不返利</div>
-                <div class="line" :class="className2(0)"></div>
-                <div class="box" :class="className(1)">返￥{{regularLIst[1].rebateMoney}}</div>
-                <!--<div class="box" :class="className(1)">返￥200</div>-->
-                <div class="line" :class="className2(1)"></div>
-                <div class="box" :class="className(2)">返￥{{regularLIst[2].rebateMoney}}</div>
-                <!--<div class="box" :class="className(2)">返￥300</div>-->
-                <div class="line" :class="className2(2)"></div>
-                <div class="box" :class="className(3)">返￥{{regularLIst[3].rebateMoney}}</div>
-                <!--<div class="box" :class="className(3)">返￥400</div>-->
+            <div class="groupProgress">
+                <h3>当前有<span>{{ groupNum || 0}}</span>人参团，倒计时结束后：</h3>
+                <div class="progress">
+                    <div class="box" :class="className(0)">不返利</div>
+                    <div class="line" :class="className2(0)"></div>
+                    <div class="box" :class="className(1)">返￥{{regularLIst[1].rebateMoney}}</div>
+                    <!--<div class="box" :class="className(1)">返￥200</div>-->
+                    <div class="line" :class="className2(1)"></div>
+                    <div class="box" :class="className(2)">返￥{{regularLIst[2].rebateMoney}}</div>
+                    <!--<div class="box" :class="className(2)">返￥300</div>-->
+                    <div class="line" :class="className2(2)"></div>
+                    <div class="box" :class="className(3)">返￥{{regularLIst[3].rebateMoney}}</div>
+                    <!--<div class="box" :class="className(3)">返￥400</div>-->
 
-            </div>
-            <div class="progressNum">
-                <div v-for="(item,index) in regularLIst" :class="className1(index)">{{item.content}}</div>
-            </div>
-        </div>
-        <div class="groupDetails">
-            <h3>距结束只剩 <Countdown :second="countDownSenconds"  @end="timeOut" :status="groupInfo.status"></Countdown> </h3>
-            <div class="groupMember">
-                <div class="groupLeader">
-                    <img :src="leaderHeadImg" alt="">
-                    <span>团长</span>
                 </div>
-                <div class="groupFriends">
-                    <div class="emptyI" v-if="headList=='' || !headList[0]" style="margin-left:-72px">?</div>
-                    <img
-                            v-else
-                            alt=""
-                            v-for="(item,index) in headList"
-                            :src="item"
-                            :style="'right:'+(index *18) + 'px'"
-                    >
+                <div class="progressNum">
+                    <div v-for="(item,index) in regularLIst" :class="className1(index)">{{item.content}}</div>
                 </div>
             </div>
-            <div v-if="countDownSenconds > 0">
-                <Button class="indexBtn" @click="showMobile = true" v-if="isLeader == '0' && userHasBuy == '0'" >一键参团 {{goodsInfo.originPrice || 0   | Money}}</Button>
-                <Button class="indexBtn" v-else @click="share = true">邀请好友团购，拿更高返利</Button>
+            <div class="groupDetails">
+                <h3>距结束只剩 <Countdown :second="countDownSenconds"  @end="timeOut" :status="groupInfo.status"></Countdown> </h3>
+                <div class="groupMember">
+                    <div class="groupLeader">
+                        <img :src="leaderHeadImg" alt="">
+                        <span>团长</span>
+                    </div>
+                    <div class="groupFriends">
+                        <div class="emptyI" v-if="headList=='' || !headList[0]" style="margin-left:-72px">?</div>
+                        <img
+                                v-else
+                                alt=""
+                                v-for="(item,index) in headList"
+                                :src="item"
+                                :style="'right:'+(index *18) + 'px'"
+                        >
+                    </div>
+                </div>
+                <div v-if="countDownSenconds > 0">
+                    <Button class="indexBtn" @click="showMobile = true" v-if="isLeader == '0' && userHasBuy == '0'" >一键参团 {{goodsInfo.originPrice || 0   | Money}}</Button>
+                    <Button class="indexBtn" v-else @click="share = true">邀请好友团购，拿更高返利</Button>
+                </div>
+                <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0 && groupInfo.status != 3" >团购已结束</Button>
+                <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0 && groupInfo.status == 3">请联系团长重新开团</Button>
+                <em>好友拼团·人满发货·不满退款</em>
             </div>
-            <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0 && groupInfo.status != 3" >团购已结束</Button>
-            <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0 && groupInfo.status == 3">请联系团长重新开团</Button>
-            <em>好友拼团·人满发货·不满退款</em>
-        </div>
-        <div class="playGuide">
-            <h3>玩法说明</h3>
-            <div style="padding: 0 15px">
-                <Steps :active="active">
-                    <Step>开团</Step>
-                    <Step>邀请好友</Step>
-                    <Step>6小时内成团</Step>
-                    <Step>发货</Step>
-                </Steps>
+            <div class="playGuide">
+                <h3>玩法说明</h3>
+                <div style="padding: 0 15px">
+                    <Steps :active="active">
+                        <Step>开团</Step>
+                        <Step>邀请好友</Step>
+                        <Step>6小时内成团</Step>
+                        <Step>发货</Step>
+                    </Steps>
+                </div>
             </div>
+            <div class="goodDetails">
+                <h3>商品详情</h3>
+                <img src="../../assets/img/1.png" alt="">
+                <img src="../../assets/img/2.png" alt="">
+                <img src="../../assets/img/3.png" alt="">
+                <img src="../../assets/img/4.png" alt="">
+                <img src="../../assets/img/5.png" alt="">
+                <img src="../../assets/img/6.png" alt="">
+                <img src="../../assets/img/7.png" alt="">
+                <img src="../../assets/img/8.png" alt="">
+                <img src="../../assets/img/9.png" alt="">
+                <img src="../../assets/img/10.png" alt="">
+                <img src="../../assets/img/11.png" alt="">
+                <img src="../../assets/img/12.png" alt="">
+                <img src="../../assets/img/13.png" alt="">
+                <img src="../../assets/img/14.png" alt="">
+                <img src="../../assets/img/15.png" alt="">
+                <img src="../../assets/img/16.png" alt="">
+            </div>
+            <PayPopup :showMobile="showMobile" @closePay="showMobile = false" @wxPay="wxPay"></PayPopup>
+            <Share :share="share" @know="share = false"></Share>
         </div>
-        <div class="goodDetails">
-            <h3>商品详情</h3>
-            <img src="../../assets/img/1.png" alt="">
-            <img src="../../assets/img/2.png" alt="">
-            <img src="../../assets/img/3.png" alt="">
-            <img src="../../assets/img/4.png" alt="">
-            <img src="../../assets/img/5.png" alt="">
-            <img src="../../assets/img/6.png" alt="">
-            <img src="../../assets/img/7.png" alt="">
-            <img src="../../assets/img/8.png" alt="">
-            <img src="../../assets/img/9.png" alt="">
-            <img src="../../assets/img/10.png" alt="">
-            <img src="../../assets/img/11.png" alt="">
-            <img src="../../assets/img/12.png" alt="">
-            <img src="../../assets/img/13.png" alt="">
-            <img src="../../assets/img/14.png" alt="">
-            <img src="../../assets/img/15.png" alt="">
-            <img src="../../assets/img/16.png" alt="">
+        <div v-else id="loading">
+            <img src="https://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=loading动画&step_word=&hs=2&pn=38&spn=0&di=101123149600&pi=0&rn=1&tn=baiduimagedetail&is=0%2C0&istype=0&ie=utf-8&oe=utf-8&in=&cl=2&lm=6&st=undefined&cs=3217777612%2C1827677914&os=772786184%2C1005349133&simid=0%2C0&adpicid=0&lpn=0&ln=1877&fr=&fmq=1553334370081_R&fm=&ic=undefined&s=undefined&hd=0&latest=0&copyright=0&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&ist=&jit=&cg=&bdtype=0&oriquery=&objurl=http%3A%2F%2Fimg10.cache.hxsd.com%2Fnews%2F2015%2F11%2F12%2F691442_1447295058_5.gif&fromurl=ippr_z2C%24qAzdH3FAzdH3Fgjof_z%26e3Bixf1_z%26e3Bv54AzdH3FCG-v6jwptejAzdH3Fda8c88AzdH3Fml899d_c_z%26e3Bip4s&gsm=1e&rpstart=0&rpnum=0&islist=&querylist=&force=undefined" alt="">
         </div>
-        <PayPopup :showMobile="showMobile" @closePay="showMobile = false" @wxPay="wxPay"></PayPopup>
-        <Share :share="share" @know="share = false"></Share>
+
     </div>
 </template>
 
