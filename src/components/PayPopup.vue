@@ -51,10 +51,13 @@
 <style scoped lang="less">
     .input{
         width: 260px;
-        height: 40px;
+        height: 50px;
         margin: 36px 0;
         padding-left: 14px;
-        border: 1px solid #999;
+        border:1px solid #fff;
+        border-radius:20px;
+        background: #F3F5F9;
+        color: #363336;
         &::placeholder{
             font-size: 14px;
             color: #999;

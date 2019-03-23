@@ -46,7 +46,8 @@
                 checkSmsCode({mobile:this.mobile,smsCode:this.code,activityId:window.actId}).then(r=>{
                     this.login()
                 }).catch(err=>{
-                    Toast(err)
+                    console.log(err);
+                    Toast('手机号与验证码不匹配')
                 })
             },
             login(){

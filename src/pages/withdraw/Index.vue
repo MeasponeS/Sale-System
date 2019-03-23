@@ -58,7 +58,7 @@
         data: function () {
             return {
                 rulesShow:false,
-                idShow:true,
+                idShow:false,
                 income:{},
                 getMoney:''
             }
