@@ -1,6 +1,6 @@
 <template>
     <div id="app" >
-        <div  v-if="goodsInfo.sellPrice">
+        <div v-if="goodsInfo.sellPrice">
             <h3 class="normal" v-if="groupInfo.status==1">拼团中</h3>
             <h3 class="fail" v-if="groupInfo.status==3">拼团失败</h3>
             <h3 class="success" v-if="groupInfo.status==2">拼团成功</h3>
@@ -8,16 +8,16 @@
                 <img :src="activity.imageUrl" alt="">
                 <div class="desc">
                     <div class="title">
-                        <h3>{{goodsInfo.name}}<span>{{activity.minCount || 0  }}人可成团</span></h3>
+                        <h3>{{goodsInfo.name}}</h3>
                     </div>
                     <div class="price">
-                        原价
-                        <span>{{goodsInfo.sellPrice || 0   | Money}}</span>
+                        <span> 原价<em>{{goodsInfo.sellPrice || 0   | Money}}</em></span>
+                        <span class="getGroup">{{activity.minCount || 0  }}人可成团</span>
                     </div>
                     <div class="sale">
                         <span>{{goodsInfo.originPrice || 0   | Money}}</span>
                         <span class="saveMoney">省 {{goodsInfo.saveMoney || 0   | Money}}</span>
-                        <strong class="countNum">已有{{orderCount || 0  }}人成团</strong>
+                        <!--<strong class="countNum">已有{{orderCount || 0  }}人成团</strong>-->
                     </div>
                 </div>
             </div>

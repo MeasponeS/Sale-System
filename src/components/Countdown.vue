@@ -1,5 +1,5 @@
 <template>
-    <div class="countdown">
+    <div class="countdow" >
         <div v-if="status == 1"><span>{{h}}</span>:<span>{{m}}</span>:<span>{{s}}</span></div>
         <div v-else><span>00</span>:<span>00</span>:<span>00</span></div>
     </div>
@@ -78,8 +78,10 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-    .countdown{
+    .countdow{
+        margin-left: 10px;
         display: inline-block;
+        font-size: 15px;
     }
     span{
         display: inline-block;
@@ -88,7 +90,6 @@
         background:rgba(255,241,235,1);
         border-radius:2px;
         color: #FF4000;
-        font-size: 12px;
         line-height: 19px;
         text-align: center;
     }
