@@ -12,10 +12,11 @@ import {Toast} from 'vant'
 
 
 function shareFriend(config){
-
+    alert('准备分享配置')
     wx.showMenuItems({
         menuList: ["menuItem:share:timeline","menuItem:share:appMessage"], // 要显示的菜单项，所有menu项见附录3
         success: function (res) {
+            alert('1111')
         },
         fail: function (res) {
         }

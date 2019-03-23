@@ -230,7 +230,7 @@
                         width: 55%;
                     }
                     .code{
-                        width: 35%;
+                        width: 40%;
                         display: flex;
                         justify-content: center;
                         align-items: center;

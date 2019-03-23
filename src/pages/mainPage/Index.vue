@@ -86,6 +86,7 @@
         },
         methods: {
             shareFriend(){
+                alert('进入配置成功')
                 let config = {
                     shareTitle:'团长主页',
                     shareBody:'赶快进入主页参与活动吧',
@@ -98,16 +99,6 @@
             goWithdraw(){
                 window.location.href = './withdraw.html'
             },
-            // openGroupByShare(){
-            //     this.share = true;
-            //     // crtGroupOpen({
-            //     //     activityId: window.actId,
-            //     //     mobile:'18513891718',
-            //     //     recommenderUserId:8,
-            //     //     groupId:''
-            //     // }).then(r=>{}).catch(_=>{
-            //     // })
-            // }
         },
         mounted() {
             recommenderIndex({activityId:window.actId}).then(r=>{

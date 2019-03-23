@@ -73,9 +73,10 @@
         flex-direction: column;
     h3{
         font-size: 18px;
+        margin: 20px 0 0 0;
         color: #333;
         font-weight: normal;
-        margin: 20px 0;
+
         border-bottom:1px solid #F8F8F8;
     }
     .bottomBtn{
