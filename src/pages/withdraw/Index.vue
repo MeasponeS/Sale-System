@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app" >
         <div class="money">
             <span>账户余额</span>
             <span>{{income.surplusMoney || 0  |Money}}</span>

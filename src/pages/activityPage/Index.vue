@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app" v-if="goodsInfo.sellPrice">
         <img class="topImg" :src="activity.imageUrl" alt="">
         <div class="title">
             <img src="./img/long.png" alt="">

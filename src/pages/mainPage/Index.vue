@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app" v-if="goodsInfo.sellPrice">
         <div class="top">
             <div class="header">
                 <div class="left">
