@@ -19,7 +19,7 @@
                         <div class="goodsPrice">
                             <span>拼团价{{goodsInfo.sellPrice || 0 | Money}}</span>
                             <em>省{{goodsInfo.saveMoney ||0 | Money}}</em>
-                            <strong>价格 <span>{{goodsInfo.originPrice || 0 | Money}}</span></strong>
+                            <strong>原价 <span>{{goodsInfo.originPrice || 0 | Money}}</span></strong>
                         </div>
                     </div>
                 </div>
