@@ -161,9 +161,7 @@
                     this.leaderHeadImg = r.leaderHeadImg;
                     this.userHasBuy = r.userHasBuy;
 
-                    this.headList = this.headList.map(item=>{
-                        return item != null && item != 'null'
-                    })
+                    this.headList = this.headList.filter(item=>item)
                     console.log(r.headList,'r');
                     console.log(this.headList,'h');
                     this.headList = this.headList.reverse()
