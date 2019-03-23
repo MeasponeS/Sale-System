@@ -45,7 +45,7 @@
                 <Button class="ruleBtn" @click="rulesShow = false">知道了</Button>
             </div>
         </Popup>
-        <RealNameAuth :idShow="idShow" @submit="submit" @closeId="closeId"></RealNameAuth>
+        <RealNameAuth :idShow="idShow" @closeBox="idShow = false" @submit="submit" @closeId="closeId"></RealNameAuth>
     </div>
 </template>
 

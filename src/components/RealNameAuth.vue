@@ -1,12 +1,15 @@
 <template>
-    <Popup v-model="idShow" :close-on-click-overlay="false">
+    <Popup v-model="idShow" :close-on-click-overlay="false"  @click-overlay="$emit('closeBox')">
         <div class="idBox">
             <h4>实名认证</h4>
-            <img src="./img/guanbi.png" alt="" @click="$emit('closeId')" class="close">
+            <div class="imgBox" @click="$emit('closeId')">
+                <img src="./img/guanbi.png" alt=""  class="close">
+            </div>
+
             <ul class="idContent">
                 <li style="border-top:1px solid rgba(229,229,229,1)">
                     <span>手机号码</span>
-                    <input type="number" placeholder="请输入当前微信绑定的手机号" @blur="changeMobile" v-model="userInfo.mobile" maxlength="11">
+                    <input type="tel" placeholder="请输入当前微信绑定的手机号" @blur="changeMobile" v-model="userInfo.mobile" maxlength="11">
                 </li>
                 <li>
                     <div>
@@ -21,7 +24,7 @@
                 <li>
                     <div>
                         <span>验证码</span>
-                        <input type="number" placeholder="请输入验证码" v-model="verifyCodeInfo.code">
+                        <input type="tel" placeholder="请输入验证码" v-model="verifyCodeInfo.code">
                     </div>
                     <div class="code">
                         <i></i>
@@ -158,17 +161,25 @@
         align-items: center;
         justify-content: center;
         position: relative;
-        .close{
-            width: 12px;
-            height: 12px;
+        .imgBox{
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             position: absolute;
-            right: 24px;
-            top: 24px;
+            right: 0;
+            top: 0;
+            .close{
+                width: 12px;
+                height: 12px;
+            }
         }
+
         h4{
             font-size: 18px;
             color: #333;
-            margin: 20px 0;
+            margin: 15px 0;
             font-weight: normal;
         }
         ul{
@@ -176,7 +187,7 @@
             padding: 0 15px;
             li{
                 width: 100%;
-                height: 50px;
+                height: 56px;
                 display: flex;
                 justify-content: flex-start;
                 align-items: center;
@@ -187,6 +198,8 @@
                     color: #222;
                 }
                 input{
+                    width: 80%;
+                    height: 30px;
                     font-size: 15px;
                     color: #000;
                     border: 0;
@@ -194,6 +207,7 @@
                     &::placeholder{
                         font-size: 12px;
                         color: #999999;
+                        line-height: 20px;
                     }
                 }
                 i{
@@ -213,7 +227,7 @@
                     align-items: center;
                     justify-content: space-between;
                     input{
-                        width: 50%;
+                        width: 55%;
                     }
                     .code{
                         width: 35%;
@@ -224,7 +238,7 @@
                 }
                 &:nth-child(3){
                     input{
-                        width: 40px;
+                        width: 47%;
                     }
                 }
                 .codeImg{
@@ -242,7 +256,7 @@
             background:linear-gradient(0deg,rgba(255,64,0,1),rgba(255,119,0,1));
             border-radius: 19px;
             color: #fff;
-            margin: 28px 0;
+            margin: 20px 0;
             border:0;
         }
 
