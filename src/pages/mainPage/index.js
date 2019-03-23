@@ -62,11 +62,6 @@ wxSignature({url:window.location.href}).then(r=>{
             }
 
         });
-
-
-
-
-        that.wxSignatureCallback()
     });
 
     wx.error(function(res){

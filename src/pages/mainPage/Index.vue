@@ -95,19 +95,6 @@
                 shareFriend(config)
                 shareFriendQ(config)
             },
-            wxSignatureCallback(){
-                recommenderIndex({activityId:window.actId}).then(r=>{
-                    this.orderCount = r.orderCount;
-                    this.goodsInfo = {...r.goodsInfo};
-                    this.activity = {...r.activity};
-                    this.recommenderId = r.recommenderUserId
-                    this.shareFriend()
-                }).catch(_=>{})
-
-
-
-
-            },
             goWithdraw(){
                 window.location.href = './withdraw.html'
             },
@@ -123,7 +110,13 @@
             // }
         },
         mounted() {
-
+            recommenderIndex({activityId:window.actId}).then(r=>{
+                this.orderCount = r.orderCount;
+                this.goodsInfo = {...r.goodsInfo};
+                this.activity = {...r.activity};
+                this.recommenderId = r.recommenderUserId
+                this.shareFriend()
+            }).catch(_=>{})
         },
         beforeDestroy: function () {
 

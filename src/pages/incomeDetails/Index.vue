@@ -129,7 +129,7 @@
                 // 关闭实名认证弹窗
                 this.idShow = false
             },
-            submit(){
+            submit(data){
                 // 提交实名认证
                 realNameAuth({
                     idCard: data.id,

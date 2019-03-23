@@ -213,13 +213,18 @@
                     align-items: center;
                     justify-content: space-between;
                     input{
-                        width: 47%;
+                        width: 50%;
                     }
                     .code{
                         width: 35%;
                         display: flex;
                         justify-content: center;
                         align-items: center;
+                    }
+                }
+                &:nth-child(3){
+                    input{
+                        width: 40px;
                     }
                 }
                 .codeImg{
