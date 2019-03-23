@@ -11,15 +11,15 @@ body{
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  #id{
+  #loading{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100vw;
     height: 100vh;
     img{
-      width: 100%;
-      height: 100%;
+      width: 60%;
+      height: 50%;
     }
   }
 }
