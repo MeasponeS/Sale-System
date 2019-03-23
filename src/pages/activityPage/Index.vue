@@ -158,8 +158,15 @@
                 }).catch(_=>{});
             },
             leaderPay(){
-                alert('马上刷新啦')
-                window.location.reload()
+                leaderActivity({activityId:window.actId}).then(res=>{
+                    this.orderCount = res.orderCount;
+                    this.leaderHasBuy = res.leaderHasBuy;
+                    this.goodsInfo = {...res.goodsInfo};
+                    this.activity = {...res.activity};
+                    this.groupInfo = {...res.groupInfo};
+                    this.countDownSenconds = res.countDownSenconds;
+                    this.shareFriend()
+                }).catch(_=>{});
             },
             wxPay(mobile){
 

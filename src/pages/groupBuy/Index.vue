@@ -48,7 +48,7 @@
                     <span>团长</span>
                 </div>
                 <div class="groupFriends">
-                    <div class="emptyI" v-if="headList[0]" style="margin-left:-72px">?</div>
+                    <div class="emptyI" v-if="headList=='' || headList[0]" style="margin-left:-72px">?</div>
                     <img
                             v-else
                             alt=""
