@@ -63,14 +63,15 @@
 
 <script>
     import {Button,Popup,Toast} from 'vant';
+    import CommonMixinP from './commonMixinP.js'
     import {recommenderIndex} from "../../api/recommender";
     import Share from '../../components/Share'
+    import wx from 'weixin-js-sdk';
     import {shareFriend,shareFriendQ} from "../../utils/weixin";
-    import {wxSignature} from "../../api/wechat";
-    import {getToken, setCurrentPage} from "../../utils/dataStorage";
-    import wx from "weixin-js-sdk";
+
     export default {
         name: 'app',
+        mixins: [CommonMixinP],
         data: function () {
             return {
                 orderCount:0,// 成功购买人数
@@ -87,7 +88,6 @@
         },
         methods: {
             shareFriend(){
-                alert('进入配置成功')
                 let config = {
                     shareTitle:'团长主页',
                     shareBody:'赶快进入主页参与活动吧',
@@ -97,88 +97,34 @@
                 shareFriend(config)
                 shareFriendQ(config)
             },
+            wxSignatureCallback(){
+                recommenderIndex({activityId:window.actId}).then(r=>{
+                    this.orderCount = r.orderCount;
+                    this.goodsInfo = {...r.goodsInfo};
+                    this.activity = {...r.activity};
+                    this.recommenderId = r.recommenderUserId
+                    this.shareFriend()
+                }).catch(_=>{})
+
+
+
+
+            },
             goWithdraw(){
                 window.location.href = './withdraw.html'
             },
+            // openGroupByShare(){
+            //     this.share = true;
+            //     // crtGroupOpen({
+            //     //     activityId: window.actId,
+            //     //     mobile:'18513891718',
+            //     //     recommenderUserId:8,
+            //     //     groupId:''
+            //     // }).then(r=>{}).catch(_=>{
+            //     // })
+            // }
         },
         mounted() {
-
-            let that = this;
-            wxSignature({url:window.location.href}).then(r=>{
-                if (r.resultCode == 500) return;
-                sessionStorage.setItem('appId',r.signature.appId);
-                if(!getToken()){
-                    window.location.href = './beforeLogin.html'
-                }
-
-                wx.config({
-                    debug:false,
-                    appId:r.signature.appId,
-                    nonceStr:r.signature.nonceStr,
-                    timestamp:r.signature.timestamp,
-                    signature : r.signature.signature,
-                    jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage','checkJsApi','hideMenuItems','chooseWXPay','showMenuItems'] // 必填，需要使用的JS接口列表
-                });
-
-                wx.ready(function () {
-                    wx.checkJsApi({
-                        jsApiList: [
-                            'onMenuShareTimeline',
-                            'onMenuShareAppMessage',
-                            'chooseWXPay',
-                            'hideMenuItems',
-                            'showMenuItems'
-                        ],
-                        success: function (res) {
-
-                        },
-                        fail: function (res) {
-                            Toast('配置失败')
-                        }
-                    });
-
-                    wx.hideMenuItems({
-                        menuList: [
-                            'menuItem:share:appMessage',
-                            'menuItem:share:timeline',
-                            'menuItem:readMode', // 阅读模式
-                            "menuItem:share:qq", //分享到qq
-                            "menuItem:share:weiboApp", //分享到微博
-                            "menuItem:openWithQQBrowser", //qq浏览器打开
-                            "menuItem:openWithSafari", //safri打开
-                            "menuItem:share:QZone", //空间
-                            'menuItem:copyUrl' //复制链接
-                        ],
-                        success: function (res) {
-
-                        },
-                        fail: function (res) {
-
-                        }
-
-                    });
-                });
-
-                wx.error(function(res){
-                    Toast('签名失败')
-                });
-            }).catch(_=>{Toast('获取签名信息失败')});
-
-
-
-
-
-
-
-            recommenderIndex({activityId:window.actId}).then(r=>{
-                this.orderCount = r.orderCount;
-                this.goodsInfo = {...r.goodsInfo};
-                this.activity = {...r.activity};
-                this.recommenderId = r.recommenderUserId
-                this.shareFriend()
-            }).catch(_=>{})
-
-
 
         },
         beforeDestroy: function () {

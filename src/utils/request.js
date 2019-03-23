@@ -55,8 +55,10 @@ service.interceptors.response.use(
             //return Promise.reject('error')
         } else {
             if(res.data.resultCode != 200){
-
-                Toast(res.data.message);
+                if(res.data.resultCode == 102004){   // 您不是推荐人
+                    window.location.href = './beforeLogin.html'
+                    return
+                }
                 if(res.data.resultCode == 402){
                     removeToken();
                     setTimeout(_=>{
@@ -64,7 +66,10 @@ service.interceptors.response.use(
                         window.location.href =  "https://open.weixin.qq.com/connect/oauth2/authorize?appid="  +
                            sessionStorage.getItem('appId')  + "&redirect_uri=" + encodeURIComponent('https://wxauth.hulian120.com/open/getCodeFor')  +   "&response_type=code&scope=snsapi_userinfo&state=needJump#wechat_redirect";
                     },600)
+                    return
                 }
+
+                Toast(res.data.message);
                 return Promise.reject('error');
             }
 
