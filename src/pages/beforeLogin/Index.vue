@@ -4,7 +4,7 @@
             <h2>您好，请登录！</h2>
             <div class="phone">
                 <vantIcon name="phone" class="icon"></vantIcon>
-                <input type="number"  class="tel" placeholder="请输入手机号码" v-model="mobile" maxlength="11">
+                <input type="tel"  class="tel" placeholder="请输入手机号码" v-model="mobile" maxlength="11">
             </div>
             <vantButton class="indexBtn" @click="checkCode">下一步</vantButton>
         </div>

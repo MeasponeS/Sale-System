@@ -4,7 +4,7 @@
             <h2>您好，请登录！</h2>
             <div class="phone">
                 <vantIcon name="phone" class="icon"></vantIcon>
-                <input type="number" class="tel" maxlength="11" placeholder="手机号" v-model="mobile" :disabled="mobile != ''">
+                <input type="tel" class="tel" maxlength="11" placeholder="手机号" v-model="mobile" :disabled="mobile != ''">
                 <div class="get-msg" @click="getCode" :style="{color:countDown != initCountDown ?'#DCDCDC':'#F46A21'}">
                     <div class="line"></div>
                     {{ countDown != initCountDown ? countDown+'s' : '重新发送' }}
@@ -12,7 +12,7 @@
             </div>
             <div class="code">
                 <vantIcon name="lock" class="icon"></vantIcon>
-                <input type="number" placeholder="请输入验证码" v-model="code">
+                <input type="tel" placeholder="请输入验证码" v-model="code">
             </div>
             <vantButton class="indexBtn" @click="checkCode">登录</vantButton>
         </div>
@@ -118,6 +118,13 @@
             font-weight: normal;
             padding-left: 10px;
         }
+        .tel{
+            &:disabled{
+                background-color : #fff;
+                color: #666;
+                opacity:0.5;
+            }
+        }
         .code{
             width: 100%;
             height: 50px;
@@ -140,10 +147,6 @@
                     font-size: 16px;
                     color: #999;
                 }
-                &:disabled{
-                    background-color : #fff;
-                    color: #666;
-                    opacity:1;}
             }
             .line{
                 width:1px;
