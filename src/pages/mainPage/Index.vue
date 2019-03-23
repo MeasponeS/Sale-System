@@ -61,7 +61,7 @@
             <Share :share="share" @know="share = false"></Share>
         </div>
         <div v-else id="loading">
-            <img src="https://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=loading动画&step_word=&hs=2&pn=38&spn=0&di=101123149600&pi=0&rn=1&tn=baiduimagedetail&is=0%2C0&istype=0&ie=utf-8&oe=utf-8&in=&cl=2&lm=6&st=undefined&cs=3217777612%2C1827677914&os=772786184%2C1005349133&simid=0%2C0&adpicid=0&lpn=0&ln=1877&fr=&fmq=1553334370081_R&fm=&ic=undefined&s=undefined&hd=0&latest=0&copyright=0&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&ist=&jit=&cg=&bdtype=0&oriquery=&objurl=http%3A%2F%2Fimg10.cache.hxsd.com%2Fnews%2F2015%2F11%2F12%2F691442_1447295058_5.gif&fromurl=ippr_z2C%24qAzdH3FAzdH3Fgjof_z%26e3Bixf1_z%26e3Bv54AzdH3FCG-v6jwptejAzdH3Fda8c88AzdH3Fml899d_c_z%26e3Bip4s&gsm=1e&rpstart=0&rpnum=0&islist=&querylist=&force=undefined" alt="">
+            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553344736815&di=6a000ecfd157400769abe837c3013928&imgtype=0&src=http%3A%2F%2Fimg10.cache.hxsd.com%2Fnews%2F2015%2F11%2F12%2F691442_1447295058_5.gif" alt="">
         </div>
     </div>
 </template>
