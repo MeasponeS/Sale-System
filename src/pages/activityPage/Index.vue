@@ -49,7 +49,7 @@
         </div>
         <div class="start" @click="share = true" v-if="groupInfo && groupInfo.status && groupInfo.status == 1">
             邀请好友获得更多返利
-            <h4><Countdown :second="countDownSenconds" @toggle="countDownSenconds--" @end="timeOut" style="display: block"></Countdown></h4>
+            <h4><Countdown :second="countDownSenconds" :status="groupInfo.status" @toggle="countDownSenconds--" @end="timeOut" style="display: block"></Countdown></h4>
         </div>
         <div class="start" @click="showOpen = true" v-else>
            我要开团

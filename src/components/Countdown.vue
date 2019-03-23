@@ -1,6 +1,7 @@
 <template>
     <div class="countdown">
-        <span>{{h}}</span>:<span>{{m}}</span>:<span>{{s}}</span>
+        <div v-if="status == 1"><span>{{h}}</span>:<span>{{m}}</span>:<span>{{s}}</span></div>
+        <div v-else><span>00</span>:<span>00</span>:<span>00</span></div>
     </div>
 </template>
 
@@ -9,7 +10,8 @@
     export default {
         name: 'Countdown',
         props: {
-            second: Number
+            second: Number,
+            status:Number
         },
         data: function () {
             return {
@@ -43,6 +45,16 @@
                 let initSecond = this.second;
                 let that = this;
                 window.Countdown = setInterval(_ => {
+
+                    if (initSecond <= 0){
+                        clearInterval(window.Countdown);
+                        this.h = '00';
+                        this.m = '00';
+                        this.s = '00';
+                        this.$emit('end');
+                    }
+
+
                     initSecond--;
 
 
