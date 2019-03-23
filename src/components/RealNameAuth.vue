@@ -84,6 +84,7 @@
                 }
                 if(this.verifyCodeInfo.imgCode == ''){
                     Toast('请先输入图形验证码')
+                    return
                 }
                 sendMsgCode({
                     validateKey:this.verifyCodeInfo.key,
@@ -98,7 +99,8 @@
                         }
                         this.countDown --
                     }, 1000)
-                }).catch(_=>{});
+                }).catch(_=>{
+                });
 
             },
             changeImgCode(){
@@ -211,7 +213,7 @@
                     align-items: center;
                     justify-content: space-between;
                     input{
-                        width: 50%;
+                        width: 47%;
                     }
                     .code{
                         width: 35%;

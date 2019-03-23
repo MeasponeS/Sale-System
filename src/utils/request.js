@@ -58,7 +58,6 @@ service.interceptors.response.use(
 
                 Toast(res.data.message);
                 if(res.data.resultCode == 402){
-                    //Toast('Token失效，重新登陆中');
                     removeToken();
                     setTimeout(_=>{
                         setCurrentPage(window.location.href);

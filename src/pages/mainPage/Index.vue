@@ -63,7 +63,6 @@
 
 <script>
     import {Button,Popup,Toast} from 'vant';
-    import CommonMixin from '../commonMixin.js'
     import {recommenderIndex} from "../../api/recommender";
     import Share from '../../components/Share'
     import wx from 'weixin-js-sdk';
@@ -71,7 +70,6 @@
 
     export default {
         name: 'app',
-        mixins: [CommonMixin],
         data: function () {
             return {
                 orderCount:0,// 成功购买人数
