@@ -4,7 +4,7 @@ import 'vant/lib/index.css';
 import '@/assets/css/style.scss'
 import {initUrlParams} from '../utils/app.js'
 
-import '../utils/fastClick.js'
+//import '../utils/fastClick.js'
 import '../utils/setHtmlFontSize.js'
 import {isWechat} from "../utils/isTerminal";
 
