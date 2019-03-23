@@ -52,7 +52,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 100px;
+        width: 110px;
         height: 50px;
         background: none;
         border: 1px solid #fff;

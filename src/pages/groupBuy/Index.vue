@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="groupDetails">
-            <!--<h3>距结束只剩 <Countdown :second="countDownSenconds"  @end="timeOut"></Countdown> </h3>-->
+            <h3>距结束只剩 <Countdown :second="countDownSenconds"  @end="timeOut"></Countdown> </h3>
             <h3>距结束只剩 10:10:10 </h3>
             <div class="groupMember">
                 <div class="groupLeader">
@@ -48,7 +48,7 @@
                     <span>团长</span>
                 </div>
                 <div class="groupFriends">
-                    <div class="emptyI" v-if="headList[0] == null" style="margin-left:-72px">?</div>
+                    <div class="emptyI" v-if="headList[0]" style="margin-left:-72px">?</div>
                     <img
                             v-else
                             alt=""
@@ -105,7 +105,7 @@
     import CommonMixin from '../commonMixin.js'
     import {userActivity} from "../../api/activity";
     import {getUrlInfo} from "../../utils/dataStorage";
-    //import Countdown from '../../components/Countdown'
+    import Countdown from '../../components/Countdown'
     import PayPopup from '../../components/PayPopup';
     import {vxPay,shareFriendQ,shareFriend} from "../../utils/weixin";
     import {creatGeneralOrder} from "../../api/order";
@@ -161,6 +161,15 @@
                     this.headList = r.headList;
                     this.leaderHeadImg = r.leaderHeadImg;
                     this.userHasBuy = r.userHasBuy;
+
+                    this.headList = this.headList.map(item=>{
+                        return item != null && item != 'null'
+                    })
+
+                    this.headList = this.headList.reverse()
+
+
+
                     this.shareFriend();
                 }).catch(_=>{})
             },
@@ -181,6 +190,8 @@
                     this.headList = r.headList;
                     this.leaderHeadImg = r.leaderHeadImg;
                     this.userHasBuy = r.userHasBuy;
+
+
                 }).catch(_=>{})
             },
             userBuy(){
@@ -313,7 +324,7 @@
         beforeDestroy: function () {
 
         },
-        components: {Button,Steps,Step,Popup,PayPopup,Share}
+        components: {Button,Steps,Step,Popup,PayPopup,Share,Countdown}
     }
 </script>
 <style>

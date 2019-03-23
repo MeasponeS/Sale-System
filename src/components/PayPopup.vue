@@ -4,6 +4,7 @@
             <h3>填写手机号</h3>
             <Field v-model="mobile"
                    class="input"
+                   maxlength="11"
                    type="number"
                    placeholder="用于获取课程卡号/密码，请务必确认"
                    ></Field>
@@ -52,6 +53,7 @@
         height: 40px;
         margin: 36px 0;
         padding-left: 14px;
+        border: 1px solid #999;
         &::placeholder{
             font-size: 14px;
             color: #999;
