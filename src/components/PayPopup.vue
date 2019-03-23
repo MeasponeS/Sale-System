@@ -4,8 +4,9 @@
             <h3>填写手机号</h3>
             <Field v-model="mobile"
                    class="input"
+                   autofocus="true"
                    maxlength="11"
-                   type="number"
+                   type="tel"
                    placeholder="用于获取课程卡号/密码，请务必确认"
                    ></Field>
             <Button class="bottomBtn" @click="goPay">去支付</Button>

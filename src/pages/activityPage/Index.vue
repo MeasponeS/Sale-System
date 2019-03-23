@@ -158,6 +158,8 @@
                 }).catch(_=>{});
             },
             leaderPay(){
+                // 支付成功后执行的回调
+
                 leaderActivity({activityId:window.actId}).then(res=>{
                     this.orderCount = res.orderCount;
                     this.leaderHasBuy = res.leaderHasBuy;
@@ -166,6 +168,12 @@
                     this.groupInfo = {...res.groupInfo};
                     this.countDownSenconds = res.countDownSenconds;
                     this.shareFriend()
+                    // 支付成功后跳转至拼团页
+
+                    window.location.href = 'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status
+
+
+
                 }).catch(_=>{});
             },
             wxPay(mobile){
