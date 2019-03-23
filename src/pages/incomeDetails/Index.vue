@@ -145,6 +145,7 @@
                 // 提现
                 let name = this.income.userInfo.realName;
                 let idNum = this.income.userInfo.identityCard;
+                console.log(name && name != null && idNum && idNum != null);
                 if(name && name != null && idNum && idNum != null){
                     withdraw({
                         activityId:window.actId,
