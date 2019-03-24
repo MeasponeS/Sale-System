@@ -1,16 +1,8 @@
 import request from '../utils/request.js'
 
-export function wechatSignatureApi(params) {
+export function log(params) {
     return request({
-        url: '/open/getHsjJsignature',
-        method: 'get',
-        params:params
-    })
-}
-
-export function postRequest(params) {
-    return request({
-        url: '/open/post',
+        url: '/sale/api/accesslog/log',
         method: 'post',
         data:params
     })

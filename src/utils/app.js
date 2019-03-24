@@ -2,7 +2,7 @@
 * 此页面为工具函数集合
 *
 * */
-
+import {log} from "../api/api";
 
 /**
  * url参数转换为js对象
@@ -31,4 +31,14 @@ export function initUrlParams() {
 }
 
 
+/*
+* 上报函数
+*
+* */
+
+export function accessLog(data) {
+    log(data).then(r=>{
+        console.log(r);
+    }).catch(_=>{})
+}
 

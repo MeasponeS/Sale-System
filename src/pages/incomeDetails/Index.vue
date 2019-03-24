@@ -139,6 +139,9 @@
                 }).then(r=>{
                     this.idShow = false
                     Toast('认证成功，请继续提现')
+                    activityReward({activityId:window.actId}).then(r=>{
+                        this.income = {...r}
+                    }).catch(_=>{})
                 }).catch(_=>{});
             },
             withdraw(){
@@ -152,6 +155,9 @@
                         applyMoney:this.getMoney
                     }).then(r=>{
                         Toast('申请提现成功')
+                        activityReward({activityId:window.actId}).then(r=>{
+                            this.income = {...r}
+                        }).catch(_=>{})
                     }).catch(_=>{})
                 } else {
                     this.idShow = true

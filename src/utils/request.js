@@ -20,7 +20,6 @@ service.defaults.retryDelay = Config.requestRetryDelay;
 
 service.interceptors.request.use(
     config => {
-        console.log(config);
         if(!config.closeLoading){
             toastLoading = Toast.loading({
                 mask: true,
