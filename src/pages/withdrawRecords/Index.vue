@@ -43,6 +43,8 @@
     import {withdrawList} from '../../api/activity'
     import Config from '../../config/app'
     import wx from 'weixin-js-sdk';
+    import {accessLog} from "../../utils/app";
+
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -98,7 +100,15 @@
         mounted() {
             withdrawList({activityId:window.actId}).then(r=>{
                 this.list = r
-                console.log(r);
+                let reportLog = {
+                    activityId:window.actId,
+                    groupId:'',
+                    pageUrl:'/pages/withdrawRecords.html',
+                    pageName:'提现记录页',
+                    clickEvent:'',
+                    clickEventName:''
+                };
+                accessLog(reportLog);
             }).catch(_=>{})
         },
         beforeDestroy: function () {

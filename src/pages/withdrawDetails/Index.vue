@@ -27,6 +27,7 @@
     import {rewardList} from '../../api/activity'
     import Config from '../../config/app'
     import wx from 'weixin-js-sdk';
+    import {accessLog} from "../../utils/app";
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -81,7 +82,16 @@
         },
         mounted() {
             rewardList({activityId:window.actId}).then(r=>{
-                this.list = r
+                this.list = r;
+                let reportLog = {
+                    activityId:window.actId,
+                    groupId:'',
+                    pageUrl:'/pages/withdrawDetails.html',
+                    pageName:'收支明细页',
+                    clickEvent:'',
+                    clickEventName:''
+                };
+                accessLog(reportLog);
             }).catch(_=>{})
         },
         beforeDestroy: function () {

@@ -22,7 +22,6 @@
     import Share from '../../components/Share'
     import wx from 'weixin-js-sdk';
     import {shareFriendQ,shareFriend} from "../../utils/weixin";
-    import {accessLog} from "../../utils/app";
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -56,15 +55,7 @@
                     Toast('请输入正确的邀请码');
                     return;
                 }
-                let reportLog = {
-                    activityId:window.actId,
-                    groupId:'',
-                    pageUrl:'/pages/index.html',
-                    pageName:'生成邀请人页',
-                    clickEvent:'生成邀请人',
-                    clickEventName:'点击生成邀请人'
-                };
-                accessLog(reportLog);
+
                 generateRecommender({mobile:this.mobile,inviteCode:this.inviteCode,activityId: window.actId}).then(r=>{
                     Toast('生成邀请人成功，请分享链接给邀请人');
                 }).catch(_=>{})

@@ -48,11 +48,11 @@
                     <img src="../../assets/img/16.png" alt="">
                 </div>
             </div>
-            <div class="start" @click="share = true" v-if="groupInfo.status == 1 && countDownSenconds >= 0">
+            <div class="start" @click="shareToFriend" v-if="groupInfo.status == 1 && countDownSenconds >= 0">
                 邀请好友获得更多返利
                 <h4><Countdown :second="countDownSenconds" :status="groupInfo.status" @toggle="countDownSenconds--" @end="timeOut" style="display: block"></Countdown></h4>
             </div>
-            <div class="start" @click="showOpen = true" v-else>
+            <div class="start" @click="openAllGroup" v-else>
                 我要开团
             </div>
 
@@ -95,6 +95,7 @@
     import {vxPay,shareFriend,shareFriendQ} from '../../utils/weixin'
     import wx from 'weixin-js-sdk';
     import Countdown from '../../components/Countdown'
+    import {accessLog} from "../../utils/app";
 
     export default {
         name: 'app',
@@ -119,6 +120,30 @@
             }
         },
         methods: {
+            shareToFriend(){
+                this.share = true;
+                let reportLog = {
+                    activityId:window.actId,
+                    groupId:'',
+                    pageUrl:'/pages/activityPage.html',
+                    pageName:'活动主页',
+                    clickEvent:'分享好友开团',
+                    clickEventName:'点击分享好友开团'
+                };
+                accessLog(reportLog);
+            },
+            openAllGroup(){
+                this.showMobile = true;
+                let reportLog = {
+                    activityId:window.actId,
+                    groupId:'',
+                    pageUrl:'/pages/activityPage.html',
+                    pageName:'活动主页',
+                    clickEvent:'我要开团',
+                    clickEventName:'点击开团'
+                };
+                accessLog(reportLog);
+            },
             shareFriend(){
                 let config = {
                     shareTitle:'『团购优惠』和好朋友一起领',
@@ -149,6 +174,15 @@
             goCheckMobile(){
                 this.showOpen = false;
                 this.showMobile = true;
+                let reportLog = {
+                    activityId:window.actId,
+                    groupId:'',
+                    pageUrl:'/pages/activityPage.html',
+                    pageName:'活动主页',
+                    clickEvent:'支付开团',
+                    clickEventName:'点击支付开团'
+                };
+                accessLog(reportLog);
             },
             know(){
                 this.showOpen = false;
@@ -182,7 +216,15 @@
                 }).catch(_=>{});
             },
             wxPay(mobile){
-
+                let reportLog = {
+                    activityId:window.actId,
+                    groupId:'',
+                    pageUrl:'/pages/activityPage.html',
+                    pageName:'活动主页',
+                    clickEvent:'微信支付',
+                    clickEventName:'点击微信支付'
+                };
+                accessLog(reportLog);
                 creatLeaderOrder({
                     activityId: window.actId,
                     groupId:this.groupInfo.id,
@@ -195,6 +237,15 @@
             },
             openGroup(){
                 this.share = true;
+                let reportLog = {
+                    activityId:window.actId,
+                    groupId:'',
+                    pageUrl:'/pages/activityPage.html',
+                    pageName:'活动主页',
+                    clickEvent:'分享开团',
+                    clickEventName:'点击分享开团'
+                };
+                accessLog(reportLog);
                 crtGroupOpen({
                     activityId: window.actId,
                     groupId: this.groupInfo.id,

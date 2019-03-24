@@ -51,7 +51,7 @@
                     <img src="../../assets/img/16.png" alt="">
                 </div>
             </div>
-            <div class="start" @click="share = true" >
+            <div class="start" @click="shareToFriend" >
                 <h3>邀请好友开团</h3>
                 <span>每成交一人获得返佣{{activity.leaderReward || 0 | Money}}</span>
             </div>
@@ -73,6 +73,7 @@
     import Share from '../../components/Share'
     import wx from 'weixin-js-sdk';
     import {shareFriend,shareFriendQ} from "../../utils/weixin";
+    import {accessLog} from "../../utils/app";
 
     export default {
         name: 'app',
@@ -92,6 +93,18 @@
             }
         },
         methods: {
+            shareToFriend(){
+                this.share = true;
+                let reportLog = {
+                    activityId:window.actId,
+                    groupId:'',
+                    pageUrl:'/pages/mainPage.html',
+                    pageName:'邀请人主页',
+                    clickEvent:'邀请好友开团',
+                    clickEventName:'点击邀请好友开团'
+                };
+                accessLog(reportLog);
+            },
             shareFriend(){
                 let config = {
                     shareTitle:'团长主页',

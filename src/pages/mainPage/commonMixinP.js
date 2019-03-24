@@ -27,6 +27,7 @@ export default {
             sessionStorage.setItem('appId',r.signature.appId);
             if(!getToken()){
                 window.location.href = './beforeLogin.html'
+                return
             }
 
             wx.config({

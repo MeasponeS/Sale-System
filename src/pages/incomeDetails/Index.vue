@@ -56,6 +56,8 @@
     import RealNameAuth from '../../components/RealNameAuth'
     import {withdraw} from "../../api/activity";
     import wx from 'weixin-js-sdk';
+    import {accessLog} from "../../utils/app";
+
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -139,6 +141,15 @@
                 }).then(r=>{
                     this.idShow = false
                     Toast('认证成功，请继续提现')
+                    let reportLog = {
+                        activityId:window.actId,
+                        groupId:'',
+                        pageUrl:'/pages/withdraw.html',
+                        pageName:'提现页',
+                        clickEvent:'实名认证',
+                        clickEventName:'点击实名认证'
+                    };
+                    accessLog(reportLog);
                     activityReward({activityId:window.actId}).then(r=>{
                         this.income = {...r}
                     }).catch(_=>{})
@@ -148,8 +159,16 @@
                 // 提现
                 let name = this.income.userInfo.realName;
                 let idNum = this.income.userInfo.identityCard;
-                console.log(name && name != null && idNum && idNum != null);
                 if(name && name != null && idNum && idNum != null){
+                    let reportLog = {
+                        activityId:window.actId,
+                        groupId:'',
+                        pageUrl:'/pages/incomeDetails.html',
+                        pageName:'活动收益页',
+                        clickEvent:'提现',
+                        clickEventName:'点击提现'
+                    };
+                    accessLog(reportLog);
                     withdraw({
                         activityId:window.actId,
                         applyMoney:this.getMoney

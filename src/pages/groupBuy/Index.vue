@@ -59,8 +59,8 @@
                     </div>
                 </div>
                 <div v-if="countDownSenconds > 0">
-                    <Button class="indexBtn" @click="showMobile = true" v-if="isLeader == '0' && userHasBuy == '0'" >一键参团 {{goodsInfo.originPrice || 0   | Money}}</Button>
-                    <Button class="indexBtn" v-else @click="share = true">邀请好友团购，拿更高返利</Button>
+                    <Button class="indexBtn" @click="inGroup" v-if="isLeader == '0' && userHasBuy == '0'" >一键参团 {{goodsInfo.originPrice || 0   | Money}}</Button>
+                    <Button class="indexBtn" v-else @click="shareToFriend">邀请好友团购，拿更高返利</Button>
                 </div>
                 <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0 && groupInfo.status != 3" >团购已结束</Button>
                 <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0 && groupInfo.status == 3">请联系团长重新开团</Button>
@@ -117,6 +117,7 @@
     import {vxPay,shareFriendQ,shareFriend} from "../../utils/weixin";
     import {creatGeneralOrder} from "../../api/order";
     import Share from '../../components/Share'
+    import {accessLog} from "../../utils/app";
     export default {
         name: 'app',
         mixins:[groupProgress,CommonMixin],
@@ -144,6 +145,18 @@
             }
         },
         methods: {
+            shareToFriend(){
+                this.share = true
+                let reportLog = {
+                    activityId:window.actId,
+                    groupId:'',
+                    pageUrl:'/pages/groupBuy.html',
+                    pageName:'拼团页',
+                    clickEvent:'邀请好友参团',
+                    clickEventName:'点击邀请好友参团'
+                };
+                accessLog(reportLog);
+            },
             shareFriend(){
                 let config = {
                     shareTitle:'『团购优惠』和好朋友一起领',
@@ -180,6 +193,19 @@
                     this.shareFriend();
                 }).catch(_=>{})
             },
+            inGroup(){
+                this.showMobile = true;
+                let reportLog = {
+                    activityId:window.actId,
+                    groupId:'',
+                    pageUrl:'/pages/groupBuy.html',
+                    pageName:'拼团页',
+                    clickEvent:'一键参团',
+                    clickEventName:'点击一键参团'
+                };
+                accessLog(reportLog);
+
+            },
             timeOut(){
                 // window.setTimeout(()=>{
                 //     window.location.href = 'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status
@@ -207,6 +233,15 @@
                 },300)
             },
             wxPay(mobile){
+                let reportLog = {
+                    activityId:window.actId,
+                    groupId:'',
+                    pageUrl:'/pages/groupBuy.html',
+                    pageName:'拼团页',
+                    clickEvent:'微信支付',
+                    clickEventName:'点击微信支付'
+                };
+                accessLog(reportLog);
                 creatGeneralOrder({
                     activityId: window.actId,
                     groupId:this.groupInfo.id,
@@ -319,6 +354,9 @@
                         }
                 }
             },
+
+
+
 
 
 
