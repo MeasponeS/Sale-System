@@ -67,7 +67,6 @@
                     <h3>开团方式</h3>
                     <Button class="indexBtn"
                             @click="goCheckMobile"
-                            :disabled="groupInfo && groupInfo.status && groupInfo.status == 1"
                     >A：购买商品，并成为团长</Button>
                     <Button class="indexBtn" @click="openGroup">
                         B：通过邀请好友成为团长
