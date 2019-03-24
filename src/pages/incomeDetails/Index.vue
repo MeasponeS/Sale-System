@@ -214,9 +214,9 @@
     }
     .money{
         background: #fff;
-        width: calc(100% - 30px);
+        width: 100%;
         height: 50px;
-        margin: 0 15px;
+        padding: 0 15px;
         display: flex;
         justify-content: space-between;
         align-items: center;
