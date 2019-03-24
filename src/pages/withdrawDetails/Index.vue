@@ -93,10 +93,13 @@
 <style lang="less" scoped>
     #app{
         padding: 10px;
+        background: #f8f8f8;
         ul{
             width: 100%;
+            background: #f8f8f8;
             li{
                 padding: 0 14px;
+                margin-bottom: 10px;
                 .header{
                     display: flex;
                     justify-content: space-between;

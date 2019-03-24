@@ -40,7 +40,7 @@
                 </li>
                 <li style="border-bottom:1px solid rgba(229,229,229,1)">
                     <span>身份证号码</span>
-                    <input type="text" placeholder="填写错误会导致提现失败" v-model="userInfo.idNum">
+                    <input class="idCard" type="text" placeholder="填写错误会导致提现失败" v-model="userInfo.idNum">
                 </li>
             </ul>
             <Button class="idBtn" @click="checkData">提交认证</Button>
@@ -155,6 +155,7 @@
 
 <style scoped lang="less">
     .idBox{
+        transform: translateY(-120px);
         width: 320px;
         display: flex;
         flex-direction: column;
@@ -175,7 +176,6 @@
                 height: 12px;
             }
         }
-
         h4{
             font-size: 18px;
             color: #333;
@@ -191,6 +191,7 @@
                 display: flex;
                 justify-content: flex-start;
                 align-items: center;
+                border-bottom: 1px solid #f8f8f8;
                 span{
                     display: inline-block;
                     width: 65px;
@@ -198,7 +199,7 @@
                     color: #222;
                 }
                 input{
-                    width: 80%;
+                    width: 75%;
                     height: 30px;
                     font-size: 15px;
                     color: #000;

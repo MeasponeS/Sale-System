@@ -58,6 +58,7 @@
         border-radius:20px;
         background: #F3F5F9;
         color: #363336;
+        font-size: 15px;
         &::placeholder{
             font-size: 14px;
             color: #999;

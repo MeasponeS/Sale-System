@@ -98,12 +98,15 @@
 <style lang="less" scoped>
     #app{
         padding: 10px;
+        background: #f8f8f8;
         ul{
             width: 100%;
+            background: #f8f8f8;
             li{
                 width: 100%;
                 height: 83px;
                 padding: 0 16px;
+                margin-bottom: 10px;
                 .top{
                     display: flex;
                     justify-content: space-between;

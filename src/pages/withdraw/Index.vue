@@ -227,7 +227,7 @@
         width:320px;
         height:363px;
         background:rgba(255,255,255,1);
-        border-radius:3px;
+        border-radius:5px;
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -238,6 +238,7 @@
             color: #333333;
             font-size: 19px;
             margin: 23px 0 33px 0;
+            border-bottom: 1px solid #f8f8f8;
         }
         span{
             color: #333333;

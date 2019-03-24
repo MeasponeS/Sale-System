@@ -11,11 +11,11 @@
                         <h3>{{goodsInfo.name}}</h3>
                     </div>
                     <div class="price">
-                        <span> 原价<em>{{goodsInfo.sellPrice || 0   | Money}}</em></span>
+                        <span> 原价<em>{{goodsInfo.originPrice || 0   | Money}}</em></span>
                         <span class="getGroup">{{activity.minCount || 0  }}人可成团</span>
                     </div>
                     <div class="sale">
-                        <span>{{goodsInfo.originPrice || 0   | Money}}</span>
+                        <span>{{goodsInfo.sellPrice || 0   | Money}}</span>
                         <span class="saveMoney">省 {{goodsInfo.saveMoney || 0   | Money}}</span>
                         <!--<strong class="countNum">已有{{orderCount || 0  }}人成团</strong>-->
                     </div>
