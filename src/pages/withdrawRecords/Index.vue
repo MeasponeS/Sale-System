@@ -13,11 +13,22 @@
                     </div>
                 </div>
                 <div class="bottom">
-                    <em>扣税{{item.tax}}元</em>
                     <span v-if="item.status == 0">提现中</span>
                     <span v-if="item.status == 2" style="color: #999999">提现失败</span>
                     <span v-if="item.status == 1" style="color: #FF4000">提现成功</span>
                 </div>
+            </li>
+            <li v-for="item in list" v-if="item.taxStatus == 1">
+                <div class="top">
+                    <div class="left" style="color: #22A968">
+                        <img src="./img/tax.png" alt="">
+                        扣税—<span>{{item.tax | Money}}</span>元
+                    </div>
+                    <div class="right">
+                        {{item.createTime}}
+                    </div>
+                </div>
+                <div class="bottom"></div>
             </li>
         </ul>
         <div class="empty" v-else>
@@ -138,13 +149,8 @@
                 .bottom{
                     width: 100%;
                     display: flex;
-                    justify-content: space-between;
+                    justify-content: flex-end;
                     align-items: center;
-                    em{
-                        font-size: 15px;
-                        color: #999;
-                        font-style: normal;
-                    }
                     span{
                         font-size: 16px;
                         color: #333;
