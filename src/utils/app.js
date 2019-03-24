@@ -38,7 +38,7 @@ export function initUrlParams() {
 
 export function accessLog(data) {
     log(data).then(r=>{
-        console.log(r);
+
     }).catch(_=>{})
 }
 

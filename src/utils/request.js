@@ -58,6 +58,10 @@ service.interceptors.response.use(
                     window.location.href = './beforeLogin.html'
                     return
                 }
+                if(res.data.resultCode == 102005){   // 该推荐人已绑定其它微信
+                    Toast('该推荐人已绑定其它微信')
+                    return
+                }
                 if(res.data.resultCode == 402){
                     removeToken();
                     setTimeout(_=>{
