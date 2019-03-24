@@ -22,7 +22,7 @@
             ></Field>
             <em @click="rulesShow = true"><img src="./img/green.png" alt=""></em>
         </div>
-        <Button class="indexBtn" @click="withdraw" :disabled="getMoney > 0">提现</Button>
+        <Button class="indexBtn" @click="withdraw" :disabled="getMoney <= 0">提现</Button>
         <div class="money" @click="goDetails">
             <span>收支明细</span>
             <img src="./img/right.png" alt="">
@@ -210,7 +210,7 @@
         background: #fff;
         width: 100%;
         height: 50px;
-        padding: 0 15px;
+        margin: 0 15px;
         display: flex;
         justify-content: space-between;
         align-items: center;
