@@ -25,7 +25,7 @@
     import {shareFriendQ,shareFriend} from "../../utils/weixin";
     export default {
         name: 'app',
-        //mixins: [CommonMixin],
+        mixins: [CommonMixin],
         data: function () {
             return {
                 mobile:'',
