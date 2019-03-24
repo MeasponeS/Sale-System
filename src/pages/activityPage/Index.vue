@@ -162,6 +162,7 @@
                     this.activity = {...r.activity};
                     this.groupInfo = {...r.groupInfo};
                     this.countDownSenconds = r.countDownSenconds;
+                    alert(this.groupInfo.status)
                     let reportLog = {
                         activityId:window.actId,
                         groupId:this.groupInfo.id || '',
