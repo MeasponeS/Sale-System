@@ -11,7 +11,10 @@
             </div>
             <Share :share="share" @know="know"></Share>
         </div>
-        <img src="./logo.png" alt="">
+        <div class="img">
+            <img src="./logo.png" alt="">
+        </div>
+
     </div>
 </template>
 
@@ -131,13 +134,16 @@
                 }
             }
         }
-        img{
-            position: absolute;
-            left: calc(50% - 34px);
-            bottom: 30px;
-            width: 68px;
-            height: 25px;
-
+        .img{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 100px;
+            img{
+                width: 68px;
+                height: 25px;
+            }
         }
     }
 </style>
