@@ -61,6 +61,7 @@
                 }).then(r=>{
                     setToken(r);
                     Toast('登陆成功');
+                    alert(r)
                     window.setTimeout(()=>{
                         window.location.href = './mainPage.html?actId=' + window.actId
                     },200);
