@@ -6,9 +6,7 @@
             <h3>您的销售推广码</h3>
             <input type="tel" v-model="inviteCode" >
             <vantButton class="indexBtn" @click="createRecommender">生成邀请人</vantButton>
-            <div>
-                <a href="##" @click="share = true">分享活动链接给邀请人</a>
-            </div>
+            <vantButton class="shareBtn" @click="createRecommender">分享活动链接给邀请人</vantButton>
             <Share :share="share" @know="know"></Share>
         </div>
         <div class="img">
@@ -27,7 +25,7 @@
     import {shareFriendQ,shareFriend} from "../../utils/weixin";
     export default {
         name: 'app',
-        mixins: [CommonMixin],
+        //mixins: [CommonMixin],
         data: function () {
             return {
                 mobile:'',
@@ -120,6 +118,15 @@
                 color: #fff;
                 margin: 30px 0;
                 border:0;
+                font-size: 18px;
+            }
+            .shareBtn{
+                width:100%;
+                height:40px;
+                border:1px solid rgba(255,64,0,1);
+                background:#fff;
+                border-radius: 19px;
+                color: #FF4D00;
                 font-size: 18px;
             }
             div{

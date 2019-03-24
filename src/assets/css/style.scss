@@ -14,13 +14,13 @@ body{
   #loading{
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     width: 100vw;
     height: 100vh;
     img{
-      transform: translateY(-220px);
       width: 104px;
       height: 122px;
+      transform: translateY(150px);
     }
   }
 }

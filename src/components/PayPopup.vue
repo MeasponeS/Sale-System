@@ -52,7 +52,7 @@
 
 <style scoped lang="less">
     .input{
-        width: 260px;
+        width: 280px;
         height: 50px;
         margin: 36px 0;
         padding-left: 14px;
@@ -61,10 +61,10 @@
         background: #F3F5F9;
         color: #363336;
         font-size: 15px;
-        &::placeholder{
-            font-size: 14px;
-            color: #999;
-        }
+    }
+    input::-webkit-input-placeholder{
+        font-size: 10px;
+        color: red;
     }
     .wrapMobile{
         width: 320px;

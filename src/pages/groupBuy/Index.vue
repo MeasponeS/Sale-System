@@ -68,8 +68,8 @@
             </div>
             <div class="playGuide">
                 <h3>玩法说明</h3>
-                <div style="padding: 0 15px">
-                    <Steps :active="active">
+                <div style="padding: 0 15px;overflow: hidden" >
+                    <Steps :active="-1" style="overflow: hidden">
                         <Step>开团</Step>
                         <Step>邀请好友</Step>
                         <Step>6小时内成团</Step>
@@ -124,7 +124,6 @@
         data: function () {
             return {
                 showMobile:false,
-                active:-1,
                 share:false,
                 groupNum:'',
                 goodsInfo: {},
@@ -231,7 +230,9 @@
                     this.headList = r.headList;
                     this.leaderHeadImg = r.leaderHeadImg;
                     this.userHasBuy = r.userHasBuy;
+                    this.headList = this.headList.filter(item=>item)
 
+                    this.headList = this.headList.reverse()
 
                 }).catch(_=>{})
             },
