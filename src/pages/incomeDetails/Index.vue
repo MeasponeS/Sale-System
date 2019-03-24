@@ -144,8 +144,8 @@
                     let reportLog = {
                         activityId:window.actId,
                         groupId:URLPARAMS.groupId || '',
-                        pageUrl:'/pages/withdraw.html',
-                        pageName:'提现页',
+                        pageUrl:'/pages/incomeDetails.html',
+                        pageName:'活动收益页',
                         clickEvent:'点击实名认证',
                         clickEventName:'实名认证'
                     };
@@ -187,6 +187,15 @@
         mounted() {
             activityReward({activityId:window.actId}).then(r=>{
                 this.income = {...r}
+                let reportLog = {
+                    activityId:window.actId,
+                    groupId:URLPARAMS.groupId || '',
+                    pageUrl:'/pages/incomeDetails.html',
+                    pageName:'活动收益页',
+                    clickEvent:'',
+                    clickEventName:''
+                };
+                accessLog(reportLog);
             }).catch(_=>{})
         },
         beforeDestroy: function () {

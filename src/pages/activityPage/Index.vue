@@ -167,8 +167,8 @@
                         groupId:this.groupInfo.id || '',
                         pageUrl:'/pages/activityPage.html',
                         pageName:'活动主页',
-                        clickEvent:'进入活动主页',
-                        clickEventName:'活动主页'
+                        clickEvent:'',
+                        clickEventName:''
                     };
                     accessLog(reportLog);
                     if(this.groupInfo.id && this.groupInfo.id != null ){

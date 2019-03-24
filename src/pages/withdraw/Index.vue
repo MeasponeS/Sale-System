@@ -144,6 +144,7 @@
                         clickEventName:'点击实名认证'
                     };
                     accessLog(reportLog);
+
                     activityReward({activityId:window.actId}).then(r=>{
                         this.income = {...r}
                     }).catch(_=>{})
@@ -183,6 +184,15 @@
         mounted() {
             activityReward({activityId:window.actId}).then(r=>{
                 this.income = {...r}
+                let reportLog = {
+                    activityId:window.actId,
+                    groupId:'',
+                    pageUrl:'/pages/withdraw.html',
+                    pageName:'提现页',
+                    clickEvent:'',
+                    clickEventName:''
+                };
+                accessLog(reportLog);
             }).catch(_=>{})
         },
         beforeDestroy: function () {

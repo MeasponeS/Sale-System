@@ -183,10 +183,18 @@
                     this.userHasBuy = r.userHasBuy;
 
                     this.headList = this.headList.filter(item=>item)
-                    console.log(r.headList,'r');
-                    console.log(this.headList,'h');
+
                     this.headList = this.headList.reverse()
-                    console.log(this.headList,'hr');
+
+                    let reportLog = {
+                        activityId:window.actId,
+                        groupId:this.groupInfo.id,
+                        pageUrl:'/pages/groupBuy.html',
+                        pageName:'拼团页',
+                        clickEvent:'',
+                        clickEventName:''
+                    };
+                    accessLog(reportLog);
 
 
 

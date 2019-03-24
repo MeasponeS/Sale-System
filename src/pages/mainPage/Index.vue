@@ -122,6 +122,15 @@
                     this.activity = {...r.activity};
                     this.recommenderId = r.recommenderUserId
                     this.shareFriend()
+                    let reportLog = {
+                        activityId:window.actId,
+                        groupId:this.groupInfo.id,
+                        pageUrl:'/pages/mainPage.html',
+                        pageName:'邀请人主页',
+                        clickEvent:'',
+                        clickEventName:''
+                    };
+                    accessLog(reportLog);
                 }).catch(_=>{})
 
 
