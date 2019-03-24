@@ -2,18 +2,12 @@
     <div id="app">
         <Header @goBack="goBack"></Header>
         <div class="money" style="border-bottom: 1px solid #f8f8f8" >
-
                 <span>账户余额</span>
                 <span>{{income.surplusMoney || 0  |Money}}</span>
-
-
         </div>
         <div class="money" style="border-bottom: 1px solid #f8f8f8">
-
                 <span>申请中金额</span>
                 <span>{{income.applyingMoney || 0  |Money}}</span>
-
-
         </div>
         <div class="money">
             <span>已提现金额</span>
@@ -31,11 +25,8 @@
         </div>
         <Button class="indexBtn" @click="withdraw" :disabled="getMoney <= 0">提现</Button>
         <div class="money" @click="goDetails" style="border-bottom: 1px solid #f8f8f8">
-
                 <span>收支明细</span>
                 <img src="./img/right.png" alt="">
-
-
         </div>
         <div class="money" @click="goRecords">
             <span>提现记录</span>

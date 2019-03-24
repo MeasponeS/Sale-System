@@ -155,7 +155,6 @@
 
 <style scoped lang="less">
     .idBox{
-        transform: translateY(-120px);
         width: 320px;
         display: flex;
         flex-direction: column;
