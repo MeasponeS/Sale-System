@@ -34,7 +34,6 @@
                           this.h = '00';
                           this.m = '00';
                           this.s = '00';
-                          this.$emit('end');
                       }
                   }
               }
