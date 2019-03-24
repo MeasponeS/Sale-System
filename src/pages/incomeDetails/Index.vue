@@ -4,19 +4,13 @@
             <span>购买人数</span>
             <span>{{income.orderCount || 0  }}人</span>
         </div>
-        <div class="money" >
-            <div style="border-bottom: 1px solid #f8f8f8">
-                <span>账户余额</span>
-                <span>{{income.surplusMoney || 0  |Money}}</span>
-            </div>
-
+        <div class="money" style="border-bottom: 1px solid #f8f8f8">
+            <span>账户余额</span>
+            <span>{{income.surplusMoney || 0  |Money}}</span>
         </div>
-        <div class="money" >
-            <div style="border-bottom: 1px solid #f8f8f8">
-                <span>申请中金额</span>
-                <span>{{income.applyingMoney || 0  |Money}}</span>
-            </div>
-
+        <div class="money" style="border-bottom: 1px solid #f8f8f8">
+            <span>申请中金额</span>
+            <span>{{income.applyingMoney || 0  |Money}}</span>
         </div>
         <div class="money">
             <span>已提现金额</span>
@@ -33,12 +27,9 @@
             <em @click="rulesShow = true"><img src="./img/green.png" alt=""></em>
         </div>
         <Button class="indexBtn" @click="withdraw" :disabled="getMoney <= 0">提现</Button>
-        <div class="money" @click="goDetails" >
-            <div style="border-bottom: 1px solid #f8f8f8">
-                <span>收支明细</span>
-                <img src="./img/right.png" alt="">
-            </div>
-
+        <div class="money" @click="goDetails" style="border-bottom: 1px solid #f8f8f8">
+            <span>收支明细</span>
+            <img src="./img/right.png" alt="">
         </div>
         <div class="money" @click="goRecords">
             <span>提现记录</span>
@@ -223,9 +214,9 @@
     }
     .money{
         background: #fff;
-        width: 100%;
+        width: calc(100% - 30px);
         height: 50px;
-        padding: 0 15px;
+        margin: 0 15px;
         display: flex;
         justify-content: space-between;
         align-items: center;
