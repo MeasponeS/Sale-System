@@ -59,12 +59,12 @@
                     </div>
                 </div>
                 <div v-if="countDownSenconds > 0">
-                    <Button class="indexBtn" @click="inGroup" v-if="isLeader == '0' && userHasBuy == '0'" >一键参团 {{goodsInfo.originPrice || 0   | Money}}</Button>
+                    <Button class="indexBtn" @click="inGroup" v-if="isLeader == '0' && userHasBuy == '0'" >一键参团 {{goodsInfo.sellPrice || 0   | Money}}</Button>
                     <Button class="indexBtn" v-else @click="shareToFriend">邀请好友团购，拿更高返利</Button>
                 </div>
                 <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0 && groupInfo.status != 3" >团购已结束</Button>
                 <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0 && groupInfo.status == 3">请联系团长重新开团</Button>
-                <em>好友拼团·人满发货·<a href="https://kf.qq.com/touch/sappfaq/180319FN3eUR180319JbURBr.html">不满退款</a></em>
+                <em>好友拼团·成团发货·<a href="https://kf.qq.com/touch/sappfaq/180319FN3eUR180319JbURBr.html">未成团退款</a></em>
             </div>
             <div class="playGuide">
                 <h3>玩法说明</h3>
