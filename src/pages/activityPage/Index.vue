@@ -67,6 +67,7 @@
                     <h3>开团方式</h3>
                     <Button class="indexBtn"
                             @click="goCheckMobile"
+                            :disabled="groupInfo && groupInfo.status && groupInfo.status == 1"
                     >A：购买商品，并成为团长</Button>
                     <Button class="indexBtn" @click="openGroup">
                         B：通过邀请好友成为团长
@@ -161,7 +162,6 @@
                     this.activity = {...r.activity};
                     this.groupInfo = {...r.groupInfo};
                     this.countDownSenconds = r.countDownSenconds;
-                    alert(this.groupInfo.status)
                     let reportLog = {
                         activityId:window.actId,
                         groupId:this.groupInfo.id || '',
@@ -190,8 +190,6 @@
                 window.location.href = './incomeDetails.html?groupId='+ this.groupInfo.id || ''
             },
             goCheckMobile(){
-                alert(JSON.stringify(this.groupInfo))
-
                 this.showOpen = false;
                 this.showMobile = true;
                 let reportLog = {
