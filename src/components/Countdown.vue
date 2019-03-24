@@ -1,6 +1,6 @@
 <template>
     <div class="countNum" >
-        <div v-if="status == 1"><span>{{h}}</span>:<span>{{m}}</span>:<span>{{s}}</span></div>
+        <div v-if="status == 1 && second > 0"><span>{{h}}</span>:<span>{{m}}</span>:<span>{{s}}</span></div>
         <div v-else><span>00</span>:<span>00</span>:<span>00</span></div>
     </div>
 </template>
