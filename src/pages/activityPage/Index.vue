@@ -191,6 +191,8 @@
                 window.location.href = './incomeDetails.html?groupId='+ this.groupInfo.id || ''
             },
             goCheckMobile(){
+                alert(JSON.stringify(this.groupInfo))
+
                 this.showOpen = false;
                 this.showMobile = true;
                 let reportLog = {
