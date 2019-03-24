@@ -17,7 +17,7 @@
             <span>提现金额</span>
             <Field v-model="getMoney"
                    class="input"
-                   type="number"
+                   type="tel"
                    placeholder="不能超过账户余额"
                    @input="checkMoney"
             ></Field>
@@ -174,7 +174,7 @@
                     accessLog(reportLog);
                     withdraw({
                         activityId:window.actId,
-                        applyMoney:this.getMoney
+                        applyMoney:this.getMoney*100
                     }).then(r=>{
                         Toast('申请提现成功')
                         this.getMoney = 0
