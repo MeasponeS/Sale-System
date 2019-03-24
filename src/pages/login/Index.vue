@@ -60,8 +60,7 @@
                     mobile:this.mobile
                 }).then(r=>{
                     setToken(r);
-                    Toast('登陆成功');
-                    alert(r)
+                    Toast('登陆成功')
                     window.setTimeout(()=>{
                         window.location.href = './mainPage.html?actId=' + window.actId
                     },200);
