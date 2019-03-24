@@ -373,6 +373,8 @@
         },
         mounted() {
             this.id = getUrlInfo('groupId');
+            let lineX = document.getElementsByClassName('van-step__line');
+            lineX.style.background = '#ebedf0'
 
         },
         beforeDestroy: function () {

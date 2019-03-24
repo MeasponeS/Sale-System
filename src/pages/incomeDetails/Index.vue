@@ -119,8 +119,8 @@
             },
             checkMoney(){
                 // 提现金额输入极值
-                if(this.getMoney > this.income.surplusMoney){
-                    this.getMoney = this.income.surplusMoney
+                if(this.getMoney > this.income.surplusMoney/100){
+                    this.getMoney = this.income.surplusMoney/100
                 }
             },
             goDetails(){
@@ -178,6 +178,7 @@
                         applyMoney:this.getMoney
                     }).then(r=>{
                         Toast('申请提现成功')
+                        this.getMoney = 0
                         activityReward({activityId:window.actId}).then(r=>{
                             this.income = {...r}
                         }).catch(_=>{})

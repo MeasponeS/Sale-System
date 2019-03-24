@@ -149,15 +149,15 @@
                 }).then(r=>{
                     this.idShow = false;
                     Toast('认证成功，请继续提现')
-                    // let reportLog = {
-                    //     activityId:window.actId,
-                    //     groupId:'',
-                    //     pageUrl:'/pages/withdraw.html',
-                    //     pageName:'提现页',
-                    //     clickEvent:'实名认证',
-                    //     clickEventName:'点击实名认证'
-                    // };
-                    // accessLog(reportLog);
+                    let reportLog = {
+                        activityId:window.actId,
+                        groupId:'',
+                        pageUrl:'/pages/withdraw.html',
+                        pageName:'提现页',
+                        clickEvent:'实名认证',
+                        clickEventName:'点击实名认证'
+                    };
+                    accessLog(reportLog);
 
                     activityReward({activityId:window.actId}).then(r=>{
                         this.income = {...r}
@@ -172,20 +172,21 @@
                 let name = this.income.userInfo.realName;
                 let idNum = this.income.userInfo.identityCard;
                 if(name && name != null && idNum && idNum != null){
-                    // let reportLog = {
-                    //     activityId:window.actId,
-                    //     groupId:'',
-                    //     pageUrl:'/pages/withdraw.html',
-                    //     pageName:'提现页',
-                    //     clickEvent:'提现',
-                    //     clickEventName:'点击提现'
-                    // };
-                    // accessLog(reportLog);
+                    let reportLog = {
+                        activityId:window.actId,
+                        groupId:'',
+                        pageUrl:'/pages/withdraw.html',
+                        pageName:'提现页',
+                        clickEvent:'提现',
+                        clickEventName:'点击提现'
+                    };
+                    accessLog(reportLog);
                     withdraw({
                         activityId:window.actId,
                         applyMoney:this.getMoney
                     }).then(r=>{
                         Toast('申请提现成功')
+                        this.getMoney = 0
                         activityReward({activityId:window.actId}).then(r=>{
                             this.income = {...r}
                         }).catch(_=>{})
@@ -198,15 +199,15 @@
         mounted() {
             activityReward({activityId:window.actId}).then(r=>{
                 this.income = {...r}
-                // let reportLog = {
-                //     activityId:window.actId,
-                //     groupId:'',
-                //     pageUrl:'/pages/withdraw.html',
-                //     pageName:'提现页',
-                //     clickEvent:'',
-                //     clickEventName:''
-                // };
-                // accessLog(reportLog);
+                let reportLog = {
+                    activityId:window.actId,
+                    groupId:'',
+                    pageUrl:'/pages/withdraw.html',
+                    pageName:'提现页',
+                    clickEvent:'',
+                    clickEventName:''
+                };
+                accessLog(reportLog);
             }).catch(_=>{})
         },
         beforeDestroy: function () {
