@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <Header @goBack="goBack"></Header>
         <div class="money orderPeople">
             <span>购买人数</span>
             <span>{{income.orderCount || 0  }}人</span>
@@ -57,7 +58,7 @@
     import {withdraw} from "../../api/activity";
     import wx from 'weixin-js-sdk';
     import {accessLog} from "../../utils/app";
-
+    import Header from '../../components/Header'
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -75,6 +76,9 @@
             }
         },
         methods: {
+            goBack(){
+                window.history.back()
+            },
             wxSignatureCallback(){
                 let config = {
                     shareTitle:'邀请人主页',
@@ -201,7 +205,7 @@
         beforeDestroy: function () {
 
         },
-        components: {Button,Popup,RealNameAuth,Field}
+        components: {Button,Popup,RealNameAuth,Field,Header}
     }
 </script>
 <style lang="less" scoped>

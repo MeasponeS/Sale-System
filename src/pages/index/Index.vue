@@ -6,7 +6,7 @@
             <h3>您的销售推广码</h3>
             <input type="tel" v-model="inviteCode" >
             <vantButton class="indexBtn" @click="createRecommender">生成邀请人</vantButton>
-            <vantButton class="shareBtn" @click="createRecommender">分享活动链接给邀请人</vantButton>
+            <vantButton class="shareBtn" @click="share = true">分享活动链接给邀请人</vantButton>
             <Share :share="share" @know="know"></Share>
         </div>
         <div class="img">

@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <Header @goBack="goBack"></Header>
         <ul v-if="list.length">
             <li v-for="item in list">
                 <div class="header">
@@ -28,6 +29,7 @@
     import Config from '../../config/app'
     import wx from 'weixin-js-sdk';
     import {accessLog} from "../../utils/app";
+    import Header from '../../components/Header'
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -37,6 +39,9 @@
             }
         },
         methods: {
+            goBack(){
+                window.history.back()
+            },
             wxSignatureCallback(){
                 let config = {
                     shareTitle:'邀请人主页',
@@ -97,7 +102,7 @@
         beforeDestroy: function () {
 
         },
-        components: {}
+        components: {Header}
     }
 </script>
 <style lang="less" scoped>
@@ -143,7 +148,6 @@
                 .order{
                     font-size: 15px;
                     color: #999;
-                    margin-bottom: 20px;
                     margin-top: 18px;
                 }
 

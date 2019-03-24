@@ -26,13 +26,13 @@
                 <div class="progress">
                     <div class="box" :class="className(0)">不返利</div>
                     <div class="line" :class="className2(0)"></div>
-                    <div class="box" :class="className(1)">返￥{{regularLIst[1].rebateMoney}}</div>
+                    <div class="box" :class="className(1)">返{{regularLIst[1].rebateMoney  | Money}}</div>
                     <!--<div class="box" :class="className(1)">返￥200</div>-->
                     <div class="line" :class="className2(1)"></div>
-                    <div class="box" :class="className(2)">返￥{{regularLIst[2].rebateMoney}}</div>
+                    <div class="box" :class="className(2)">返{{regularLIst[2].rebateMoney  | Money}}</div>
                     <!--<div class="box" :class="className(2)">返￥300</div>-->
                     <div class="line" :class="className2(2)"></div>
-                    <div class="box" :class="className(3)">返￥{{regularLIst[3].rebateMoney}}</div>
+                    <div class="box" :class="className(3)">返{{regularLIst[3].rebateMoney  | Money}}</div>
                     <!--<div class="box" :class="className(3)">返￥400</div>-->
 
                 </div>

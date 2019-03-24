@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <Header @goBack="goBack"></Header>
         <div class="money" style="border-bottom: 1px solid #f8f8f8" >
 
                 <span>账户余额</span>
@@ -62,6 +63,7 @@
     import {withdraw} from "../../api/activity";
     import wx from 'weixin-js-sdk';
     import {accessLog} from "../../utils/app";
+    import Header from '../../components/Header'
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -79,6 +81,9 @@
             }
         },
         methods: {
+            goBack(){
+                window.history.back()
+            },
             wxSignatureCallback(){
                 let config = {
                     shareTitle:'邀请人主页',
@@ -144,15 +149,15 @@
                 }).then(r=>{
                     this.idShow = false;
                     Toast('认证成功，请继续提现')
-                    let reportLog = {
-                        activityId:window.actId,
-                        groupId:'',
-                        pageUrl:'/pages/withdraw.html',
-                        pageName:'提现页',
-                        clickEvent:'实名认证',
-                        clickEventName:'点击实名认证'
-                    };
-                    accessLog(reportLog);
+                    // let reportLog = {
+                    //     activityId:window.actId,
+                    //     groupId:'',
+                    //     pageUrl:'/pages/withdraw.html',
+                    //     pageName:'提现页',
+                    //     clickEvent:'实名认证',
+                    //     clickEventName:'点击实名认证'
+                    // };
+                    // accessLog(reportLog);
 
                     activityReward({activityId:window.actId}).then(r=>{
                         this.income = {...r}
@@ -167,15 +172,15 @@
                 let name = this.income.userInfo.realName;
                 let idNum = this.income.userInfo.identityCard;
                 if(name && name != null && idNum && idNum != null){
-                    let reportLog = {
-                        activityId:window.actId,
-                        groupId:'',
-                        pageUrl:'/pages/withdraw.html',
-                        pageName:'提现页',
-                        clickEvent:'提现',
-                        clickEventName:'点击提现'
-                    };
-                    accessLog(reportLog);
+                    // let reportLog = {
+                    //     activityId:window.actId,
+                    //     groupId:'',
+                    //     pageUrl:'/pages/withdraw.html',
+                    //     pageName:'提现页',
+                    //     clickEvent:'提现',
+                    //     clickEventName:'点击提现'
+                    // };
+                    // accessLog(reportLog);
                     withdraw({
                         activityId:window.actId,
                         applyMoney:this.getMoney
@@ -193,27 +198,28 @@
         mounted() {
             activityReward({activityId:window.actId}).then(r=>{
                 this.income = {...r}
-                let reportLog = {
-                    activityId:window.actId,
-                    groupId:'',
-                    pageUrl:'/pages/withdraw.html',
-                    pageName:'提现页',
-                    clickEvent:'',
-                    clickEventName:''
-                };
-                accessLog(reportLog);
+                // let reportLog = {
+                //     activityId:window.actId,
+                //     groupId:'',
+                //     pageUrl:'/pages/withdraw.html',
+                //     pageName:'提现页',
+                //     clickEvent:'',
+                //     clickEventName:''
+                // };
+                // accessLog(reportLog);
             }).catch(_=>{})
         },
         beforeDestroy: function () {
 
         },
-        components: {Button,Popup,RealNameAuth,Field}
+        components: {Button,Popup,RealNameAuth,Field,Header}
     }
 </script>
 <style lang="less" scoped>
 #app{
     padding: 10px;
     background: #F8F8F8;
+    padding-top: 0;
     height: 100vh;
     .money{
         background: #fff;
