@@ -4,11 +4,11 @@
             <span>购买人数</span>
             <span>{{income.orderCount || 0  }}人</span>
         </div>
-        <div class="money">
+        <div class="money" style="border-bottom: 1px solid #f8f8f8">
             <span>账户余额</span>
             <span>{{income.surplusMoney || 0  |Money}}</span>
         </div>
-        <div class="money">
+        <div class="money" style="border-bottom: 1px solid #f8f8f8">
             <span>申请中金额</span>
             <span>{{income.applyingMoney || 0  |Money}}</span>
         </div>
@@ -27,7 +27,7 @@
             <em @click="rulesShow = true"><img src="./img/green.png" alt=""></em>
         </div>
         <Button class="indexBtn" @click="withdraw" :disabled="!getMoney">提现</Button>
-        <div class="money" @click="goDetails">
+        <div class="money" @click="goDetails" style="border-bottom: 1px solid #f8f8f8">
             <span>收支明细</span>
             <img src="./img/right.png" alt="">
         </div>
@@ -227,6 +227,7 @@
         background:linear-gradient(0deg,rgba(255,64,0,1),rgba(255,119,0,1));
         border-radius: 3px ;
         color: #fff;
+        font-size: 18px;
         margin: 16px 0;
         border:0;
     }

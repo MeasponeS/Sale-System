@@ -41,6 +41,10 @@
 
             }
         },
+        mounted(){
+            let inputs = document.getElementsByTagName('input')
+            console.log(inputs);
+        },
         components:{
             Popup,Field
         }

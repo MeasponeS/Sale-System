@@ -217,6 +217,7 @@
     .indexBtn{
         width:100%;
         height:50px;
+        font-size: 18px;
         background:linear-gradient(0deg,rgba(255,64,0,1),rgba(255,119,0,1));
         border-radius: 3px ;
         color: #fff;

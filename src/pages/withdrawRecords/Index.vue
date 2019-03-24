@@ -87,6 +87,7 @@
         mounted() {
             withdrawList({activityId:window.actId}).then(r=>{
                 this.list = r
+                console.log(r);
             }).catch(_=>{})
         },
         beforeDestroy: function () {
@@ -106,7 +107,9 @@
                 width: 100%;
                 height: 83px;
                 padding: 0 16px;
+                background: #fff;
                 margin-bottom: 10px;
+                border-radius: 3px;
                 .top{
                     display: flex;
                     justify-content: space-between;

@@ -2,15 +2,16 @@
     <div id="app" class="index">
         <div class="content">
             <h3>邀请人手机号</h3>
-            <input type="number" v-model="mobile">
+            <input type="tel" v-model="mobile"  maxlength="11">
             <h3>您的销售推广码</h3>
-            <input type="number" v-model="inviteCode" maxlength="11">
+            <input type="tel" v-model="inviteCode" >
             <vantButton class="indexBtn" @click="createRecommender">生成邀请人</vantButton>
             <div>
                 <a href="##" @click="share = true">分享活动链接给邀请人</a>
             </div>
             <Share :share="share" @know="know"></Share>
         </div>
+        <img src="./logo.png" alt="">
     </div>
 </template>
 
@@ -24,7 +25,7 @@
     import {accessLog} from "../../utils/app";
     export default {
         name: 'app',
-        //mixins: [CommonMixin],
+        mixins: [CommonMixin],
         data: function () {
             return {
                 mobile:'',
@@ -86,17 +87,19 @@
         width: 100%;
         height: 100vh;
         padding-top: 34px;
+        position: relative;
         .content{
-            width: 316px;
+            width: 344px;
             height: 400px;
             margin: 0 auto;
             background: #FFF;
-            padding: 16px 28px;
+            padding: 16px 0;
             h3{
                 font-size: 15px;
                 color: #FF4D00;
                 font-weight: normal;
                 margin: 20px 0;
+                margin-left: 14px;
             }
             input{
                 width:100%;
@@ -108,6 +111,8 @@
                 color: #363336;
                 font-size: 19px;
                 text-align: center;
+                box-shadow: none;
+                -webkit-appearance: none;
                 &::placeholder{
                     font-size: 19px;
                     color: #363336;
@@ -134,6 +139,13 @@
                     cursor: pointer;
                 }
             }
+        }
+        img{
+            position: absolute;
+            left: calc(50% - 34px);
+            bottom: 30px;
+            width: 68px;
+            height: 25px;
 
         }
     }

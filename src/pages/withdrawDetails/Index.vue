@@ -100,6 +100,8 @@
             li{
                 padding: 0 14px;
                 margin-bottom: 10px;
+                background: #fff;
+                border-radius: 3px;
                 .header{
                     display: flex;
                     justify-content: space-between;
