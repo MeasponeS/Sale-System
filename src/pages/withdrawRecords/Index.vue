@@ -111,13 +111,14 @@
     #app{
         padding: 10px;
         background: #f8f8f8;
+        height: 100vh;
         ul{
             width: 100%;
             background: #f8f8f8;
             li{
                 width: 100%;
                 height: 83px;
-                padding: 0 16px;
+                padding: 19px 16px;
                 background: #fff;
                 margin-bottom: 10px;
                 border-radius: 3px;
@@ -125,7 +126,6 @@
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    margin: 18px 0;
                     .left{
                         font-size: 16px;
                         color: #333;

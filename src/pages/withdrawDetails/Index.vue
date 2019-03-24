@@ -94,11 +94,12 @@
     #app{
         padding: 10px;
         background: #f8f8f8;
+        height: 100vh;
         ul{
             width: 100%;
             background: #f8f8f8;
             li{
-                padding: 0 14px;
+                padding: 20px 15px;
                 margin-bottom: 10px;
                 background: #fff;
                 border-radius: 3px;
