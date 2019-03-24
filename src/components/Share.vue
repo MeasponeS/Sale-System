@@ -24,11 +24,14 @@
 </script>
 
 <style scoped lang="less">
+    .van-popup{
+        background: transparent;
+    }
     .share{
         width: 100vw;
         height: 100vh;
-        background: #000;
-        opacity: 0.7;
+        background: transparent;
+        opacity: 0.8;
     }
     .yd{
         width: 60px;

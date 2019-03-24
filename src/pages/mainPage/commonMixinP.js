@@ -26,11 +26,9 @@ export default {
             if (r.resultCode == 500) return;
             sessionStorage.setItem('appId',r.signature.appId);
             if(!getToken()){
-                alert('没拿到token')
                 window.location.href = './beforeLogin.html'
                 return
             }
-            alert('拿到token啦')
             wx.config({
                 debug:false,
                 appId:r.signature.appId,
