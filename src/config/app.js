@@ -19,6 +19,7 @@ export default {
     tokenKey:'ACTIVITY_ACCESS_TOKEN',
     storageUserKey:'ACTIVITY_USER_STORAGE',
     requestRetry:4,
+    serverUrl:'https://pay.hulian120.com/sale/api/wx/login',
     //staticUrl:'https://hsj.hulian120.com',
     requestRetryDelay:800,
 }

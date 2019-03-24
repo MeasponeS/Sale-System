@@ -51,7 +51,7 @@
                 })
             },
             login(){
-                let server_url = encodeURIComponent('https://testsale.hulian120.com/sale/api/wx/login');
+                let server_url = encodeURIComponent(Config.serverUrl);
                 getTokenMethods({
                     actId:window.actId,
                     code:this.wxCode,

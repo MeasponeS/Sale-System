@@ -3,6 +3,7 @@ import App from './Index.vue'
 import '../common'
 import {setToken,getBeforePage} from "../../utils/dataStorage";
 import {Toast} from 'vant'
+import Config from '../../config/app'
 import {wxSignature,getTokenMethods} from "../../api/wechat";
 
 if(window.URLPARAMS.hasOwnProperty('state') && window.URLPARAMS.state == 'needJump'){
@@ -19,7 +20,7 @@ if(!window.URLPARAMS.hasOwnProperty('code')){
     }).catch(_=>{})
 } else {
     if(window.URLPARAMS.hasOwnProperty('state') && window.URLPARAMS.state == 'needJump' && getBeforePage()){
-        let server_url = encodeURIComponent('https://testsale.hulian120.com/sale/api/wx/login');
+        let server_url = encodeURIComponent(Config.serverUrl);
         getTokenMethods({
             actId:window.actId,
             code:window.URLPARAMS.code,
