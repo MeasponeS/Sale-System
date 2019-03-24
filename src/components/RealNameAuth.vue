@@ -39,7 +39,7 @@
                     <input type="text" placeholder="请输入真实姓名" v-model="userInfo.name">
                 </li>
                 <li style="border-bottom:1px solid rgba(229,229,229,1)">
-                    <span>身份证号码</span>
+                    <span>身份证号</span>
                     <input class="idCard" type="text" placeholder="填写错误会导致提现失败" v-model="userInfo.idNum">
                 </li>
             </ul>

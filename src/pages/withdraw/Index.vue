@@ -32,7 +32,7 @@
             <span>提现记录</span>
             <img src="./img/right.png" alt="">
         </div>
-        <Popup v-model="rulesShow" :close-on-click-overlay="false">
+        <Popup v-model="rulesShow">
             <div class="ruleBox">
                 <h4>提现规则</h4>
                 <span>1.每月1号结算上个月的提现申请，1-5个工作日到账</span>
@@ -139,7 +139,6 @@
                         smsCode: data.code
                 }).then(r=>{
                     this.idShow = false;
-                    Toast('认证成功，请继续提现')
                     let reportLog = {
                         activityId:window.actId,
                         groupId:'',
@@ -149,6 +148,16 @@
                         clickEventName:'点击实名认证'
                     };
                     accessLog(reportLog);
+
+                    if(this.getMoney > 0){
+                        withdraw({
+                            activityId:window.actId,
+                            applyMoney:this.getMoney*100
+                        }).then(r=>{
+                            Toast('申请提现成功')
+                            this.getMoney = 0
+                        }).catch(_=>{})
+                    }
 
                     activityReward({activityId:window.actId}).then(r=>{
                         this.income = {...r}

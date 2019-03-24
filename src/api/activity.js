@@ -58,6 +58,7 @@ export function realNameAuth(params) {
 // 登陆时获取图形验证码
 export function randomImg(params) {
     return request({
+        closeLoading:true,
         url: '/sale/api/activity/randomImg',
         method: 'get',
         params: params
@@ -67,6 +68,7 @@ export function randomImg(params) {
 // 实名认证发送短信
 export function sendMsgCode(params) {
     return request({
+        closeLoading:true,
         url: '/sale/api/activity/sendMsgCode',
         method: 'get',
         params: params
