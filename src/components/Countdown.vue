@@ -34,17 +34,17 @@
                           this.h = '00';
                           this.m = '00';
                           this.s = '00';
+                          this.$emit('end');
                       }
                   }
               }
         },
         methods:{
             initFn(){
-                if (this.second == 0) return;
+                if (this.second <= 0) return;
                 let initSecond = this.second;
                 let that = this;
                 window.Countdown = setInterval(_ => {
-
                     if (initSecond <= 0){
                         clearInterval(window.Countdown);
                         this.h = '00';

@@ -221,7 +221,7 @@
 
             },
             timeOut(){
-                alert('时间没了')
+                //alert('时间没了')
                 // window.setTimeout(()=>{
                 //     window.location.href = 'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status
                 //  },1000)
