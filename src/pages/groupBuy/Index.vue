@@ -1,6 +1,6 @@
 <template>
-    <div id="app" >
-        <div v-if="goodsInfo.sellPrice">
+    <div id="app">
+        <div  v-if="goodsInfo.sellPrice">
             <h3 class="normal" v-if="groupInfo.status==1">拼团中</h3>
             <h3 class="fail" v-if="groupInfo.status==3">拼团失败</h3>
             <h3 class="success" v-if="groupInfo.status==2">拼团成功</h3>
@@ -68,13 +68,20 @@
             </div>
             <div class="playGuide">
                 <h3>玩法说明</h3>
-                <div style="padding: 0 15px;overflow: hidden" >
-                    <Steps :active="-1" style="overflow: hidden">
-                        <Step>开团</Step>
-                        <Step>邀请好友</Step>
-                        <Step>6小时内成团</Step>
-                        <Step>发货</Step>
-                    </Steps>
+                <div class="topPlay">
+                    <div class="ball"></div>
+                    <div class="ballLine"></div>
+                    <div class="ball"></div>
+                    <div class="ballLine"></div>
+                    <div class="ball"></div>
+                    <div class="ballLine"></div>
+                    <div class="ball"></div>
+                </div>
+                <div class="bottomPlay">
+                    <span>开团</span>
+                    <span>邀请好友</span>
+                    <span>6小时内成团</span>
+                    <span>发货</span>
                 </div>
             </div>
             <div class="goodDetails">
@@ -214,9 +221,9 @@
 
             },
             timeOut(){
-                // window.setTimeout(()=>{
-                //     window.location.href = 'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status
-                // },1000)
+                window.setTimeout(()=>{
+                    window.location.href = 'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status
+                 },1000)
                 userActivity({groupId:this.id}).then(r=>{
                     this.groupNum = r.orderCount;
                     this.isLeader = r.isLeader;
@@ -380,7 +387,7 @@
         beforeDestroy: function () {
 
         },
-        components: {Button,Steps,Step,Popup,PayPopup,Share,Countdown}
+        components: {Button,Popup,PayPopup,Share,Countdown}
     }
 </script>
 <style>

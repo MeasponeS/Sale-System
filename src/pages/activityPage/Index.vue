@@ -170,7 +170,7 @@
                         clickEventName:''
                     };
                     accessLog(reportLog);
-                    if(this.groupInfo.id && this.groupInfo.id != null ){
+                    if(this.groupInfo.status == 1 && this.groupInfo.id != null ){
                         this.shareFriend()
                     }
                 }).catch(_=>{});
@@ -297,10 +297,6 @@
 
         },
         mounted() {
-
-
-
-
         },
         beforeDestroy: function () {
 
