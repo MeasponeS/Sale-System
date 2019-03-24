@@ -156,12 +156,11 @@
                         }).then(r=>{
                             Toast('申请提现成功')
                             this.getMoney = 0
+                            activityReward({activityId:window.actId}).then(r=>{
+                                this.income = {...r}
+                            }).catch(_=>{})
                         }).catch(_=>{})
                     }
-
-                    activityReward({activityId:window.actId}).then(r=>{
-                        this.income = {...r}
-                    }).catch(_=>{})
                 }).catch(_=>{});
 
 
