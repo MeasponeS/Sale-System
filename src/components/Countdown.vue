@@ -82,6 +82,7 @@
         margin-left: 10px;
         display: inline-block;
         font-size: 15px;
+        color: #FF4000;
     }
     span{
         display: inline-block;

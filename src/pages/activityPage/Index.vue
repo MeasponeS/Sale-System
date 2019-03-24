@@ -1,6 +1,6 @@
 <template>
-    <div id="app" >
-        <div v-if="goodsInfo.sellPrice">
+    <div id="app"   v-if="goodsInfo.sellPrice">
+        <div >
             <img class="topImg" :src="activity.imageUrl" alt="">
             <div class="title">
                 <img src="./img/long.png" alt="">
@@ -13,7 +13,7 @@
                             <span>{{activity.minCount || 0  }}人可成团</span>
                         </div>
                         <div class="goodsPrice">
-                            <span>拼团价{{goodsInfo.sellPrice || 0   | Money}}</span>
+                            <span style="font-weight: bold">拼团价{{goodsInfo.sellPrice || 0   | Money}}</span>
                             <em>省{{goodsInfo.saveMoney || 0   | Money}}</em>
                             <strong>原价<span>{{goodsInfo.originPrice || 0   | Money}}</span></strong>
                             <strong class="countNum">已有{{orderCount || 0  }}人成团</strong>

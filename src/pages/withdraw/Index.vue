@@ -1,5 +1,5 @@
 <template>
-    <div id="app" >
+    <div id="app">
         <div class="money">
             <span>账户余额</span>
             <span>{{income.surplusMoney || 0  |Money}}</span>
@@ -12,7 +12,7 @@
             <span>已提现金额</span>
             <span>{{income.withdrawMoney || 0  |Money}}</span>
         </div>
-        <div class="money">
+        <div class="money withdraw">
             <span>提现金额</span>
             <Field v-model="getMoney"
                    class="input"
@@ -169,7 +169,10 @@
 <style lang="less" scoped>
 #app{
     padding: 10px;
+    background: #F8F8F8;
+    height: 100vh;
     .money{
+        background: #fff;
         width: 100%;
         height: 50px;
         padding: 0 15px;
@@ -201,6 +204,9 @@
             width: 14px;
             height: 13px;
         }
+    }
+    .withdraw{
+        margin-top: 10px;
     }
     .indexBtn{
         width:100%;
