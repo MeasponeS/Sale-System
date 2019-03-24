@@ -121,7 +121,7 @@
                     this.goodsInfo = {...r.goodsInfo};
                     this.activity = {...r.activity};
                     this.recommenderId = r.recommenderUserId
-                    alert(this.recommenderId)
+                    alert(r)
                     this.shareFriend()
                     let reportLog = {
                         activityId:window.actId,
