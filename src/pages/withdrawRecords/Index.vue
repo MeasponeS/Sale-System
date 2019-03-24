@@ -151,6 +151,7 @@
                     display: flex;
                     justify-content: flex-end;
                     align-items: center;
+                    margin-top: 18px;
                     span{
                         font-size: 16px;
                         color: #333;

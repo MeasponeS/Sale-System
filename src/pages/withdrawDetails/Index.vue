@@ -107,7 +107,6 @@
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    margin: 18px 0;
                     .count{
                         display: flex;
                         justify-content: center;
@@ -135,6 +134,7 @@
                     font-size: 15px;
                     color: #999;
                     margin-bottom: 20px;
+                    margin-top: 18px;
                 }
 
             }
