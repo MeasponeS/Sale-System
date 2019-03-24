@@ -97,11 +97,11 @@
                 this.share = true;
                 let reportLog = {
                     activityId:window.actId,
-                    groupId:'',
+                    groupId:this.groupInfo.id,
                     pageUrl:'/pages/mainPage.html',
                     pageName:'邀请人主页',
-                    clickEvent:'邀请好友开团',
-                    clickEventName:'点击邀请好友开团'
+                    clickEvent:'点击邀请好友开团',
+                    clickEventName:'邀请好友开团'
                 };
                 accessLog(reportLog);
             },

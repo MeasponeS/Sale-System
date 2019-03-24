@@ -102,7 +102,7 @@
                 this.list = r
                 let reportLog = {
                     activityId:window.actId,
-                    groupId:'',
+                    groupId:URLPARAMS.groupId || '',
                     pageUrl:'/pages/withdrawRecords.html',
                     pageName:'提现记录页',
                     clickEvent:'',

@@ -124,23 +124,23 @@
                 this.share = true;
                 let reportLog = {
                     activityId:window.actId,
-                    groupId:'',
+                    groupId:this.groupInfo.id || '',
                     pageUrl:'/pages/activityPage.html',
                     pageName:'活动主页',
-                    clickEvent:'分享好友开团',
-                    clickEventName:'点击分享好友开团'
+                    clickEvent:'点击分享好友开团',
+                    clickEventName:'分享好友开团'
                 };
                 accessLog(reportLog);
             },
             openAllGroup(){
-                this.showMobile = true;
+                this.showOpen = true;
                 let reportLog = {
                     activityId:window.actId,
-                    groupId:'',
+                    groupId:this.groupInfo.id || '',
                     pageUrl:'/pages/activityPage.html',
                     pageName:'活动主页',
-                    clickEvent:'我要开团',
-                    clickEventName:'点击开团'
+                    clickEvent:'点击我要开团',
+                    clickEventName:'我要开团'
                 };
                 accessLog(reportLog);
             },
@@ -162,6 +162,15 @@
                     this.activity = {...r.activity};
                     this.groupInfo = {...r.groupInfo};
                     this.countDownSenconds = r.countDownSenconds;
+                    let reportLog = {
+                        activityId:window.actId,
+                        groupId:this.groupInfo.id || '',
+                        pageUrl:'/pages/activityPage.html',
+                        pageName:'活动主页',
+                        clickEvent:'进入活动主页',
+                        clickEventName:'活动主页'
+                    };
+                    accessLog(reportLog);
                     if(this.groupInfo.id && this.groupInfo.id != null ){
                         this.shareFriend()
                     }
@@ -169,18 +178,27 @@
 
             },
             goIncome(){
-                window.location.href = './incomeDetails.html'
+                let reportLog = {
+                    activityId:window.actId,
+                    groupId:this.groupInfo.id || '',
+                    pageUrl:'/pages/activityPage.html',
+                    pageName:'活动主页',
+                    clickEvent:'点击查看活动收益',
+                    clickEventName:'查看活动收益'
+                };
+                accessLog(reportLog);
+                window.location.href = './incomeDetails.html?groupId='+ this.groupInfo.id || ''
             },
             goCheckMobile(){
                 this.showOpen = false;
                 this.showMobile = true;
                 let reportLog = {
                     activityId:window.actId,
-                    groupId:'',
+                    groupId:this.groupInfo.id || '',
                     pageUrl:'/pages/activityPage.html',
                     pageName:'活动主页',
-                    clickEvent:'支付开团',
-                    clickEventName:'点击支付开团'
+                    clickEvent:'点击支付成为团长开团',
+                    clickEventName:'支付成为团长开团开团'
                 };
                 accessLog(reportLog);
             },
@@ -221,8 +239,8 @@
                     groupId:'',
                     pageUrl:'/pages/activityPage.html',
                     pageName:'活动主页',
-                    clickEvent:'微信支付',
-                    clickEventName:'点击微信支付'
+                    clickEvent:'点击发起微信支付',
+                    clickEventName:'发起微信支付'
                 };
                 accessLog(reportLog);
                 creatLeaderOrder({
@@ -239,11 +257,11 @@
                 this.share = true;
                 let reportLog = {
                     activityId:window.actId,
-                    groupId:'',
+                    groupId:this.groupInfo.id || '',
                     pageUrl:'/pages/activityPage.html',
                     pageName:'活动主页',
-                    clickEvent:'分享开团',
-                    clickEventName:'点击分享开团'
+                    clickEvent:'点击分享好友开团',
+                    clickEventName:'分享好友开团'
                 };
                 accessLog(reportLog);
                 crtGroupOpen({

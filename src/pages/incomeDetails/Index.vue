@@ -121,11 +121,11 @@
             },
             goDetails(){
                 // 去收支明细页
-                window.location.href = './withdrawDetails.html'
+                window.location.href = './withdrawDetails.html?groupId=' + URLPARAMS.groupId || ''
             },
             goRecords(){
                 // 去提现记录页
-                window.location.href = './withdrawRecords.html'
+                window.location.href = './withdrawRecords.html?groupId=' + URLPARAMS.groupId || ''
             },
             closeId(){
                 // 关闭实名认证弹窗
@@ -143,11 +143,11 @@
                     Toast('认证成功，请继续提现')
                     let reportLog = {
                         activityId:window.actId,
-                        groupId:'',
+                        groupId:URLPARAMS.groupId || '',
                         pageUrl:'/pages/withdraw.html',
                         pageName:'提现页',
-                        clickEvent:'实名认证',
-                        clickEventName:'点击实名认证'
+                        clickEvent:'点击实名认证',
+                        clickEventName:'实名认证'
                     };
                     accessLog(reportLog);
                     activityReward({activityId:window.actId}).then(r=>{
@@ -162,11 +162,11 @@
                 if(name && name != null && idNum && idNum != null){
                     let reportLog = {
                         activityId:window.actId,
-                        groupId:'',
+                        groupId:URLPARAMS.groupId || '',
                         pageUrl:'/pages/incomeDetails.html',
                         pageName:'活动收益页',
-                        clickEvent:'提现',
-                        clickEventName:'点击提现'
+                        clickEvent:'点击提现',
+                        clickEventName:'提现'
                     };
                     accessLog(reportLog);
                     withdraw({

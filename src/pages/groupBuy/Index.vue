@@ -149,11 +149,11 @@
                 this.share = true
                 let reportLog = {
                     activityId:window.actId,
-                    groupId:'',
+                    groupId:this.groupInfo.id,
                     pageUrl:'/pages/groupBuy.html',
                     pageName:'拼团页',
-                    clickEvent:'邀请好友参团',
-                    clickEventName:'点击邀请好友参团'
+                    clickEvent:'点击邀请好友参团',
+                    clickEventName:'邀请好友参团'
                 };
                 accessLog(reportLog);
             },
@@ -197,11 +197,11 @@
                 this.showMobile = true;
                 let reportLog = {
                     activityId:window.actId,
-                    groupId:'',
+                    groupId:this.groupInfo.id,
                     pageUrl:'/pages/groupBuy.html',
                     pageName:'拼团页',
-                    clickEvent:'一键参团',
-                    clickEventName:'点击一键参团'
+                    clickEvent:'点击一键参团',
+                    clickEventName:'一键参团'
                 };
                 accessLog(reportLog);
 
@@ -235,11 +235,11 @@
             wxPay(mobile){
                 let reportLog = {
                     activityId:window.actId,
-                    groupId:'',
+                    groupId:this.groupInfo.id,
                     pageUrl:'/pages/groupBuy.html',
                     pageName:'拼团页',
-                    clickEvent:'微信支付',
-                    clickEventName:'点击微信支付'
+                    clickEvent:'点击发起微信支付',
+                    clickEventName:'发起微信支付'
                 };
                 accessLog(reportLog);
                 creatGeneralOrder({
