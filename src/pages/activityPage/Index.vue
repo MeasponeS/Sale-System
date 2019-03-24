@@ -144,7 +144,6 @@
                 accessLog(reportLog);
             },
             shareFriend(){
-                alert('分享配置一')
                 let config = {
                     shareTitle:'『团购优惠』和好朋友一起领',
                     shareBody:'健康管理师＆护理评估师，现在团购立减¥880',
@@ -171,9 +170,7 @@
                         clickEventName:''
                     };
                     accessLog(reportLog);
-                    alert(this.groupInfo.status)
                     if(this.groupInfo.status == 1 && this.groupInfo.id != null ){
-                        alert('准备分享')
                         this.shareFriend()
                     }
                 }).catch(_=>{});
