@@ -148,7 +148,7 @@
                         }).catch(_=>{})
                     }).catch(_=>{})
                 } else {
-                    window.location.href = './realNameAuth.html?getMoney=' + this.getMoney
+                    window.location.href = './realNameAuth.html?getMoney=' + this.getMoney + '&type=1'
                 }
             }
         },

@@ -183,8 +183,12 @@
                             activityId:window.actId,
                             applyMoney:window.URLPARAMS.getMoney*100
                         }).then(r=>{
-                            Toast('申请提现成功')
-                            window.history.back()
+                            Toast('申请提现成功');
+                            if(window.URLPARAMS.type == 1){
+                                window.location.href = './withdraw.html'
+                            } else {
+                                window.location.href = './incomeDetails.html'
+                            }
                         }).catch(_=>{})
                     }
                 }).catch(_=>{});

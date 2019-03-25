@@ -17,7 +17,7 @@
             </li>
         </ul>
         <div class="empty" v-else>
-            <img src="./img/goldx2.png" alt="">
+            <img src="./img/empty.png" alt="">
             <div>暂无记录</div>
         </div>
     </div>
