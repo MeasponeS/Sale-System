@@ -4,7 +4,7 @@
             <h2>您好，请登录！</h2>
             <div class="phone">
                 <vantIcon name="phone" class="icon"></vantIcon>
-                <input type="tel"  class="tel" placeholder="请输入手机号码" v-model="mobile" maxlength="11">
+                <input type="tel"  class="tel" placeholder="请输入手机号码" v-model="mobile" maxlength="11" >
             </div>
             <vantButton class="indexBtn" @click="checkCode">下一步</vantButton>
         </div>
@@ -68,17 +68,19 @@
             padding: 0 5px;
             border-bottom: 1px solid rgba(220,220,220,1);
             input{
-                height: 50%;
+                height: 100%;
                 flex: 1;
                 border:0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 font-size: 19px;
                 color: #222;
                 margin-left: 15px;
                 width: 45%;
-                &::placeholder{
-                    font-size: 16px;
-                    color: #999;
-                }
+            }
+            input::-webkit-input-placeholder{
+                line-height: 30px;
             }
             .get-msg{
                 display: flex;
