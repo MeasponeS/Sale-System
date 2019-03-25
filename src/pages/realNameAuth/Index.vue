@@ -54,7 +54,7 @@
     import Header from '../../components/Header'
     export default {
         name: 'app',
-        //mixins: [CommonMixin],
+        mixins: [CommonMixin],
         data: function () {
             return {
                 countDown:Config.countDown,
@@ -248,6 +248,7 @@
                     width:1px;
                     height:13px;
                     border:1px solid rgba(229,229,229,1);
+                    background: rgba(229,229,229,1);
                     margin-right: 13px;
                 }
                 em{
@@ -269,6 +270,7 @@
 
                 .codeImg{
                     img{
+                        display: block;
                         width: 60px;
                         height: 25px;
                     }
