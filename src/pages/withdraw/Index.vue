@@ -32,13 +32,18 @@
             <span>提现记录</span>
             <img src="./img/right.png" alt="">
         </div>
-        <Popup v-model="rulesShow">
+        <Popup v-model="rulesShow" :close-on-click-overlay="false">
             <div class="ruleBox">
                 <h4>提现规则</h4>
-                <span>1.每月1号结算上个月的提现申请，1-5个工作日到账</span>
-                <span>2.一个自然月内累计申请提现金额≧800时，需按照国家税务规定缴纳相关税费</span>
-                <span>3.如有任何疑问，请拨打客服电话400-8650-512</span>
-                <span class="botSpan">最终解释权归护士加所有</span>
+                <span style="margin: 9px 0">1.每月5号结算上个月的提现申请，1-5个工作日到账</span>
+                <span >2.个税计算方法如下:
+                    <span>800元以下的：无个人所得税</span>
+                    <span>800-4000元：个税=(收入额-800）*20%</span>
+                    <span>4000-25000元：个税=收入额*（1-20%）*20%</span>
+                    <span class="warnInfo">*单月存在多笔提现申请时会合并为一笔计算个人所得税</span>
+                </span>
+                <span style="margin-top: 6px;margin-bottom: 9px ">3.如有任何疑问，请拨打客服电话400-8650-512</span>
+                <span class="botSpan" style="margin-bottom: 20px ">4.最终解释权归护士加所有</span>
                 <Button class="ruleBtn" @click="rulesShow = false">知道了</Button>
             </div>
         </Popup>
@@ -142,7 +147,7 @@
                         applyMoney:this.getMoney*100
                     }).then(r=>{
                         Toast('申请提现成功')
-                        this.getMoney = 0
+                        this.getMoney = ''
                         activityReward({activityId:window.actId}).then(r=>{
                             this.income = {...r}
                         }).catch(_=>{})
@@ -226,26 +231,42 @@
         border:0;
     }
     .ruleBox{
-        width:320px;
-        height:363px;
+        width:344px;
         background:rgba(255,255,255,1);
         border-radius:5px;
         display: flex;
         justify-content: flex-start;
-        align-items: center;
         flex-direction: column;
-        padding: 0 19px;
-        h3{
+        padding: 0 15px;
+        h4{
             font-weight: normal;
             color: #333333;
             font-size: 19px;
-            margin: 23px 0 33px 0;
+            margin-top: 20px;
+            margin-bottom: 0;
+            padding-bottom: 17px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             border-bottom: 1px solid #f8f8f8;
         }
         span{
             color: #333333;
-            font-size: 15px;
-            line-height: 30px;
+            font-size: 14px;
+            letter-spacing: 0;
+            line-height: 20px;
+            text-align: left;
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            span{
+                font-size: 13px;
+                margin: 3px 0;
+                margin-left: 13px;
+            }
+            .warnInfo{
+                color: #FF4000;
+            }
         }
         .botSpan{
             width: 100%;
@@ -258,7 +279,7 @@
             background:linear-gradient(0deg,rgba(255,64,0,1),rgba(255,119,0,1));
             border-radius: 19px ;
             color: #fff;
-            margin: 28px 0;
+            margin-bottom: 28px;
             border:0;
         }
     }

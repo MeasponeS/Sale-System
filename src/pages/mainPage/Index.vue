@@ -152,21 +152,7 @@
             // }
         },
         mounted() {
-            let that = this;
-            document.addEventListener("visibilitychange",function(){
 
-                if(document.visibilityState=="visible"){
-                    recommenderIndex({activityId:window.actId}).then(r=>{
-                        that.orderCount = r.orderCount;
-                        that.goodsInfo = {...r.goodsInfo};
-                        that.activity = {...r.activity};
-                        that.recommenderId = r.recommenderUserId
-                        that.shareFriend()
-
-                    }).catch(_=>{})
-                }
-
-            })
         },
         beforeDestroy: function () {
 

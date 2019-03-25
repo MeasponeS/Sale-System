@@ -301,6 +301,22 @@
 
         },
         mounted() {
+            let that = this;
+            document.addEventListener("visibilitychange",function(){
+
+                if(document.visibilityState=="visible"){
+                    leaderActivity({activityId:window.actId}).then(r=>{
+                        that.orderCount = r.orderCount;
+                        that.leaderHasBuy = r.leaderHasBuy;
+                        that.goodsInfo = {...r.goodsInfo};
+                        that.activity = {...r.activity};
+                        that.groupInfo = {...r.groupInfo};
+                        that.countDownSenconds = r.countDownSenconds;
+                        that.shareFriend()
+                    }).catch(_=>{});
+                }
+
+            })
         },
         beforeDestroy: function () {
 
