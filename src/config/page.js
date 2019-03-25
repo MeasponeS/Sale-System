@@ -36,5 +36,8 @@ module.exports = {
     },
     realNameAuth:{
         title:'实名认证'
+    },
+    tuikuan:{
+        title:'微信支付商户退款后多久会到账?'
     }
 };
