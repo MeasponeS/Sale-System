@@ -46,7 +46,7 @@
                 <Button class="ruleBtn" @click="rulesShow = false">知道了</Button>
             </div>
         </Popup>
-        <RealNameAuth :idShow="idShow" @closeBox="idShow = false" @submit="submit" @closeId="closeId"></RealNameAuth>
+
     </div>
 </template>
 
@@ -54,7 +54,6 @@
     import {Button,Popup,Toast,Field} from 'vant'
     import CommonMixin from '../commonMixin.js'
     import {activityReward,realNameAuth} from "../../api/activity";
-    import RealNameAuth from '../../components/RealNameAuth'
     import {withdraw} from "../../api/activity";
     import wx from 'weixin-js-sdk';
     import {accessLog} from "../../utils/app";
@@ -64,7 +63,6 @@
         mixins: [CommonMixin],
         data: function () {
             return {
-                idShow:false,
                 rulesShow:false,
                 income:{},
                 getMoney:''
@@ -131,34 +129,6 @@
                 // 去提现记录页
                 window.location.href = './withdrawRecords.html?groupId=' + URLPARAMS.groupId || ''
             },
-            closeId(){
-                // 关闭实名认证弹窗
-                this.idShow = false
-            },
-            submit(data){
-                // 提交实名认证
-                realNameAuth({
-                    idCard: data.id,
-                    mobile: data.mobile,
-                    realName: data.name,
-                    smsCode: data.code
-                }).then(r=>{
-                    this.idShow = false
-                    Toast('认证成功，请继续提现')
-                    let reportLog = {
-                        activityId:window.actId,
-                        groupId:URLPARAMS.groupId || '',
-                        pageUrl:'/pages/incomeDetails.html',
-                        pageName:'活动收益页',
-                        clickEvent:'点击实名认证',
-                        clickEventName:'实名认证'
-                    };
-                    accessLog(reportLog);
-                    activityReward({activityId:window.actId}).then(r=>{
-                        this.income = {...r}
-                    }).catch(_=>{})
-                }).catch(_=>{});
-            },
             withdraw(){
                 // 提现
                 let name = this.income.userInfo.realName;
@@ -175,7 +145,7 @@
                     accessLog(reportLog);
                     withdraw({
                         activityId:window.actId,
-                        applyMoney:this.getMoney
+                        applyMoney:this.getMoney*100
                     }).then(r=>{
                         Toast('申请提现成功')
                         this.getMoney = 0
@@ -184,7 +154,7 @@
                         }).catch(_=>{})
                     }).catch(_=>{})
                 } else {
-                    this.idShow = true
+                    window.location.href = './realNameAuth.html?getMoney=' + this.getMoney
                 }
             }
 
@@ -206,7 +176,7 @@
         beforeDestroy: function () {
 
         },
-        components: {Button,Popup,RealNameAuth,Field,Header}
+        components: {Button,Popup,Field,Header}
     }
 </script>
 <style lang="less" scoped>

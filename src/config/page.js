@@ -34,4 +34,7 @@ module.exports = {
     incomeDetails:{
         title:'活动收益'
     },
+    realNameAuth:{
+        title:'实名认证'
+    }
 };
