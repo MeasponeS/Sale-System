@@ -152,16 +152,16 @@
             // }
         },
         mounted() {
-
+            let that = this;
             document.addEventListener("visibilitychange",function(){
 
                 if(document.visibilityState=="visible"){
                     recommenderIndex({activityId:window.actId}).then(r=>{
-                        this.orderCount = r.orderCount;
-                        this.goodsInfo = {...r.goodsInfo};
-                        this.activity = {...r.activity};
-                        this.recommenderId = r.recommenderUserId
-                        this.shareFriend()
+                        that.orderCount = r.orderCount;
+                        that.goodsInfo = {...r.goodsInfo};
+                        that.activity = {...r.activity};
+                        that.recommenderId = r.recommenderUserId
+                        that.shareFriend()
 
                     }).catch(_=>{})
                 }

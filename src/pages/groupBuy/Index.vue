@@ -380,29 +380,30 @@
 
         },
         mounted() {
+            let that = this
             this.id = getUrlInfo('groupId');
             document.addEventListener("visibilitychange",function(){
 
                 if(document.visibilityState=="visible"){
-                    userActivity({groupId:this.id}).then(r=>{
-                        this.groupNum = r.orderCount;
-                        this.isLeader = r.isLeader;
-                        this.countDownSenconds = r.countDownSenconds;
-                        this.leaderHasBuy = r.leaderHasBuy;
-                        this.goodsInfo = {...r.goodsInfo};
-                        this.activity = {...r.activity};
-                        this.groupInfo = {...r.groupInfo};
-                        this.regularLIst = r.regularLIst;
-                        this.orderCount = r.orderCount;
-                        this.headList = r.headList;
-                        this.leaderHeadImg = r.leaderHeadImg;
-                        this.userHasBuy = r.userHasBuy;
+                    userActivity({groupId:that.id}).then(r=>{
+                        that.groupNum = r.orderCount;
+                        that.isLeader = r.isLeader;
+                        that.countDownSenconds = r.countDownSenconds;
+                        that.leaderHasBuy = r.leaderHasBuy;
+                        that.goodsInfo = {...r.goodsInfo};
+                        that.activity = {...r.activity};
+                        that.groupInfo = {...r.groupInfo};
+                        that.regularLIst = r.regularLIst;
+                        that.orderCount = r.orderCount;
+                        that.headList = r.headList;
+                        that.leaderHeadImg = r.leaderHeadImg;
+                        that.userHasBuy = r.userHasBuy;
 
-                        this.headList = this.headList.filter(item=>item)
+                        that.headList = that.headList.filter(item=>item)
 
-                        this.headList = this.headList.reverse()
+                        that.headList = that.headList.reverse()
 
-                        this.shareFriend();
+                        that.shareFriend();
                     }).catch(_=>{})
                 }
 
