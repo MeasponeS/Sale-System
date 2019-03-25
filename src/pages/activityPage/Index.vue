@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <div v-if="goodsInfo.sellPrice">
+        <div  v-if="goodsInfo.sellPrice">
             <img class="topImg" :src="activity.imageUrl" alt="">
             <div class="title">
                 <img src="./img/long.png" alt="">
@@ -65,12 +65,16 @@
             <Popup v-model="showOpen" :close-on-click-overlay="false" position="bottom">
                 <div class="wrap">
                     <h3>开团方式</h3>
-                    <Button class="indexBtn"
+                    <div class="indexBtn"
                             @click="goCheckMobile"
-                    >A：购买商品，并成为团长</Button>
-                    <Button class="indexBtn" @click="openGroup">
+                    >
+                        A：购买商品，并成为团长
+                        <span class="btnWord">*支付成功后，团购开始倒计时</span>
+                    </div>
+                    <div class="indexBtn" @click="openGroup">
                         B：通过邀请好友成为团长
-                    </Button>
+                        <span class="btnWord">*点击该按钮，团购开始倒计时</span>
+                    </div>
                     <Button class="bottomBtn" @click="showOpen = false">取消</Button>
                 </div>
             </Popup>
