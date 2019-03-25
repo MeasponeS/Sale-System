@@ -153,6 +153,20 @@
         },
         mounted() {
 
+            document.addEventListener("visibilitychange",function(){
+
+                if(document.visibilityState=="visible"){
+                    recommenderIndex({activityId:window.actId}).then(r=>{
+                        this.orderCount = r.orderCount;
+                        this.goodsInfo = {...r.goodsInfo};
+                        this.activity = {...r.activity};
+                        this.recommenderId = r.recommenderUserId
+                        this.shareFriend()
+
+                    }).catch(_=>{})
+                }
+
+            })
         },
         beforeDestroy: function () {
 

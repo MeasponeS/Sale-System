@@ -381,8 +381,32 @@
         },
         mounted() {
             this.id = getUrlInfo('groupId');
-            let lineX = document.getElementsByClassName('van-step__line');
-            lineX.style.background = '#ebedf0'
+            document.addEventListener("visibilitychange",function(){
+
+                if(document.visibilityState=="visible"){
+                    userActivity({groupId:this.id}).then(r=>{
+                        this.groupNum = r.orderCount;
+                        this.isLeader = r.isLeader;
+                        this.countDownSenconds = r.countDownSenconds;
+                        this.leaderHasBuy = r.leaderHasBuy;
+                        this.goodsInfo = {...r.goodsInfo};
+                        this.activity = {...r.activity};
+                        this.groupInfo = {...r.groupInfo};
+                        this.regularLIst = r.regularLIst;
+                        this.orderCount = r.orderCount;
+                        this.headList = r.headList;
+                        this.leaderHeadImg = r.leaderHeadImg;
+                        this.userHasBuy = r.userHasBuy;
+
+                        this.headList = this.headList.filter(item=>item)
+
+                        this.headList = this.headList.reverse()
+
+                        this.shareFriend();
+                    }).catch(_=>{})
+                }
+
+            })
 
         },
         beforeDestroy: function () {
