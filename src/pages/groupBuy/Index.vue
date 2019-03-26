@@ -384,8 +384,14 @@
             this.id = getUrlInfo('groupId');
             document.addEventListener("visibilitychange",function(){
 
-                if(document.visibilityState=="visible"){
+                if(document.visibilityState=="hidden"){
                     clearInterval(window.Countdown)
+                    //do something else
+                    //计时器罢工
+                }
+
+                if(document.visibilityState=="visible"){
+
                     userActivity({groupId:that.id}).then(r=>{
                         that.groupNum = r.orderCount;
                         that.isLeader = r.isLeader;

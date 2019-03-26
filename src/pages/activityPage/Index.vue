@@ -304,6 +304,14 @@
             let that = this;
             document.addEventListener("visibilitychange",function(){
 
+                if(document.visibilityState=="hidden"){
+                    clearInterval(window.Countdown)
+                    //do something else
+                    //计时器罢工
+                }
+
+
+
                 if(document.visibilityState=="visible"){
                     leaderActivity({activityId:window.actId}).then(r=>{
                         that.orderCount = r.orderCount;
