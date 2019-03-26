@@ -172,17 +172,16 @@
             padding: 0 5px;
             border-bottom: 1px solid rgba(220,220,220,1);
             input{
-                height: 50%;
+                height: 50px;
                 flex: 1;
                 border:0;
                 font-size: 19px;
                 color: #222;
                 margin-left: 15px;
                 width: 45%;
-                &::placeholder{
-                    font-size: 16px;
-                    color: #999;
-                }
+            }
+            input::-webkit-input-placeholder{
+                line-height: 30px;
             }
             .get-msg{
                 display: flex;
