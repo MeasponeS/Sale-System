@@ -14,13 +14,19 @@
             <span>2、部分银行退款无短信提醒功能，请留意查看银行流水；</span>
             <span>3、退款不会产生新的账单记录，由原账单退回。</span>
         </div>
+        <div class="erweima">
+            <h3>如有疑问请添加客服微信：</h3>
+            <img src="./erweima.jpg" alt="">
+        </div>
     </div>
 </template>
 
 <script>
     import Header from '../../components/Header'
+    //import CommonMixin from '../commonMixin'
     export default {
         name: 'app',
+        //Mixins:[CommonMixin],
         data: function () {
             return {
 
@@ -77,6 +83,26 @@
                 color: #333;
             }
         }
+        .erweima{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding-bottom: 30px;
+            h3{
+                color: #008000;
+                font-weight: normal;
+                border: 0;
+                padding: 0;
+                margin: 10px 0;
+            }
+            img{
+                width: 200px;
+                height: 200px;
+            }
+        }
+
     }
 
 
