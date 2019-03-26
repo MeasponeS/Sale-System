@@ -36,7 +36,7 @@
             <span>提现记录</span>
             <img src="./img/right.png" alt="">
         </div>
-        <Popup v-model="rulesShow" :close-on-click-overlay="false">
+        <Popup v-model="rulesShow">
             <div class="ruleBox">
                 <h4>提现规则</h4>
                 <span style="margin: 9px 0">1.每月5号结算上个月的提现申请，1-5个工作日到账</span>

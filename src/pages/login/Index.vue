@@ -12,7 +12,7 @@
             </div>
             <div class="code">
                 <vantIcon name="lock" class="icon"></vantIcon>
-                <input type="tel" placeholder="请输入验证码" v-model="code">
+                <input type="tel" placeholder="请输入验证码" v-model="code" style="line-height: 30px">
             </div>
             <vantButton class="indexBtn" @click="checkCode">登录</vantButton>
         </div>
