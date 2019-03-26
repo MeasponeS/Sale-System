@@ -385,6 +385,7 @@
             document.addEventListener("visibilitychange",function(){
 
                 if(document.visibilityState=="visible"){
+                    clearInterval(window.Countdown)
                     userActivity({groupId:that.id}).then(r=>{
                         that.groupNum = r.orderCount;
                         that.isLeader = r.isLeader;
