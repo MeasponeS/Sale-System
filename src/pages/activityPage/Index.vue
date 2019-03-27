@@ -99,7 +99,7 @@
     import wx from 'weixin-js-sdk';
     import Countdown from '../../components/Countdown'
     import {accessLog} from "../../utils/app";
-
+    import Config from '../../config/app'
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -151,7 +151,7 @@
                 let config = {
                     shareTitle:'『团购优惠』和好朋友一起领',
                     shareBody:'健康管理师＆护理评估师，现在团购立减¥880',
-                    shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status ,
+                    shareUrl:Config.shareUrl +'groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status ,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };
                 shareFriend(config)
@@ -230,7 +230,7 @@
                     this.shareFriend()
                     // 支付成功后跳转至拼团页
 
-                    window.location.href = 'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status
+                    window.location.href = Config.shareUrl +'groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status
 
 
 

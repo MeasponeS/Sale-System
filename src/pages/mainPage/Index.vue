@@ -74,7 +74,7 @@
     import wx from 'weixin-js-sdk';
     import {shareFriend,shareFriendQ} from "../../utils/weixin";
     import {accessLog} from "../../utils/app";
-
+    import Config from '../../config/app'
     export default {
         name: 'app',
         mixins: [CommonMixinP],
@@ -109,7 +109,7 @@
                 let config = {
                     shareTitle:'团长主页',
                     shareBody:'赶快进入主页参与活动吧',
-                    shareUrl:'https://hsj.hulian120.com/pay/activityPage.html?recommenderUserId='+ this.recommenderId + '&actId=' + window.actId ,
+                    shareUrl: Config.shareUrl +'activityPage.html?recommenderUserId='+ this.recommenderId + '&actId=' + window.actId ,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };
                 shareFriend(config)

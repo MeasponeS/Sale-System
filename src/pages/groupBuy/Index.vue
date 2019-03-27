@@ -125,6 +125,7 @@
     import {creatGeneralOrder} from "../../api/order";
     import Share from '../../components/Share'
     import {accessLog} from "../../utils/app";
+    import Config from '../../config/app'
     export default {
         name: 'app',
         mixins:[groupProgress,CommonMixin],
@@ -167,7 +168,7 @@
                 let config = {
                     shareTitle:'『团购优惠』和好朋友一起领',
                     shareBody:'健康管理师＆护理评估师，现在团购立减¥880',
-                    shareUrl:'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status,
+                    shareUrl:Config.shareUrl + 'groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };
                 shareFriend(config)
@@ -246,7 +247,7 @@
             },
             userBuy(){
                 setTimeout(()=>{
-                    window.location.href = 'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status + '&pay=1'
+                    window.location.href = Config.shareUrl + 'groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status + '&pay=1'
                 },300)
             },
             wxPay(mobile){

@@ -18,6 +18,7 @@ export default {
     countDown:60,//短信验证码倒计时
     tokenKey:'ACTIVITY_ACCESS_TOKEN',
     storageUserKey:'ACTIVITY_USER_STORAGE',
+    shareUrl:'https://hsj.hulian120.com/pay/',
     requestRetry:4,
     serverUrl:'https://pay.hulian120.com/sale/api/wx/login',
     //staticUrl:'https://hsj.hulian120.com',

@@ -23,6 +23,7 @@
     import Share from '../../components/Share'
     import wx from 'weixin-js-sdk';
     import {shareFriendQ,shareFriend} from "../../utils/weixin";
+    import Config from '../../config/app'
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -39,7 +40,7 @@
                 let config = {
                     shareTitle:'邀请人主页',
                     shareBody:'赶快进入主页参与活动吧',
-                    shareUrl:'https://hsj.hulian120.com/pay/mainPage.html?actId=' + window.actId,
+                    shareUrl:Config.shareUrl+'mainPage.html?actId=' + window.actId,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };
                 shareFriend(config)
