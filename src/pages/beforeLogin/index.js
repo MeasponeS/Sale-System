@@ -16,7 +16,7 @@ if(window.URLPARAMS.hasOwnProperty('state') && window.URLPARAMS.state == 'needJu
 if(!window.URLPARAMS.hasOwnProperty('code')){
     wxSignature({url:window.location.href.split('?')[0]}).then(r=>{
         window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="  +
-            r.signature.appId  + "&redirect_uri=" + encodeURIComponent('https://wxauth.hulian120.com/open/getCodeFor')  +   "&response_type=code&scope=snsapi_userinfo&state=hushijia#wechat_redirect"
+            r.signature.appId  + "&redirect_uri=" + encodeURIComponent(Config.wxUrl)  +   "&response_type=code&scope=snsapi_userinfo&state=hushijia#wechat_redirect"
     }).catch(_=>{})
 } else {
     if(window.URLPARAMS.hasOwnProperty('state') && window.URLPARAMS.state == 'needJump' && getBeforePage()){

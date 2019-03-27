@@ -67,7 +67,7 @@ service.interceptors.response.use(
                     setTimeout(_=>{
                         setCurrentPage(window.location.href);
                         window.location.href =  "https://open.weixin.qq.com/connect/oauth2/authorize?appid="  +
-                           sessionStorage.getItem('appId')  + "&redirect_uri=" + encodeURIComponent('https://wxauth.hulian120.com/open/getCodeFor')  +   "&response_type=code&scope=snsapi_userinfo&state=needJump#wechat_redirect";
+                           sessionStorage.getItem('appId')  + "&redirect_uri=" + encodeURIComponent(Config.wxUrl)  +   "&response_type=code&scope=snsapi_userinfo&state=needJump#wechat_redirect";
                     },600)
                     return
                 }
