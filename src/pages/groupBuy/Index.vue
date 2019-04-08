@@ -1,6 +1,5 @@
 <template>
     <div id="app">
-        <!-- -->
         <div v-if="goodsInfo.sellPrice">
             <h3 class="normal" v-if="groupInfo.status==1">拼团中</h3>
             <h3 class="fail" v-if="groupInfo.status==3">拼团失败</h3>

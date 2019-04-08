@@ -1,6 +1,5 @@
 <template>
     <div id="app">
-        <!-- -->
         <div v-if="goodsInfo.sellPrice">
             <img class="topImg" :src="activity.imageUrl" alt="">
             <div class="title">
@@ -25,32 +24,14 @@
                             height="50"
                             class="quickGroup"
                             v-if="kolStatus == 0">
-                    <RollNoticeItem>
-                        <div class="roll">
+                    <RollNoticeItem v-for="(item,index) in quickGroupList" >
+                        <a class="roll" :href="'./groupBuy.html?groupId='+item.groupId">
                             <div class="left">
-                                <img src="./img/2.png" alt="">
-                                <h3>张小黑的团还差1人</h3>
+                                <img :src="item.leaderHeadUrl" alt="">
+                                <h3>{{item.leaderName}}的团还差{{item.surplusCount}}人</h3>
                             </div>
-                            <span class="right">快速参团</span>
-                        </div>
-                    </RollNoticeItem>
-                    <RollNoticeItem>
-                        <div class="roll">
-                            <div class="left">
-                                <img src="./img/2.png" alt="">
-                                <h3>张二黑的团还差2人</h3>
-                            </div>
-                            <span class="right">快速参团</span>
-                        </div>
-                    </RollNoticeItem>
-                    <RollNoticeItem>
-                        <div class="roll">
-                            <div class="left">
-                                <img src="./img/2.png" alt="">
-                                <h3>张三黑的团还差3人</h3>
-                            </div>
-                            <span class="right">快速参团</span>
-                        </div>
+                            <span class="right" >快速参团</span>
+                        </a>
                     </RollNoticeItem>
                 </RollNotice>
 
@@ -165,6 +146,10 @@
             }
         },
         methods: {
+            quickBuy(group,i){
+                // alert(i)
+                alert(111)
+            },
             shareToFriend(){
                 this.share = true;
                 let reportLog = {
@@ -348,6 +333,7 @@
 
         },
         mounted() {
+
             this.kolStatus = window.URLPARAMS.kolStatus;
             let that = this;
             document.addEventListener("visibilitychange",function(){
@@ -373,6 +359,32 @@
                 }
 
             })
+
+
+            leaderActivity({activityId:window.actId,kolStatus:this.kolStatus}).then(r=>{
+                this.orderCount = r.orderCount;
+                this.leaderHasBuy = r.leaderHasBuy;
+                this.goodsInfo = {...r.goodsInfo};
+                this.activity = {...r.activity};
+                this.groupInfo = {...r.groupInfo};
+                this.countDownSenconds = r.countDownSenconds;
+                this.quickGroupList = r.quickGroupList || [];
+                let reportLog = {
+                    activityId:window.actId,
+                    groupId:this.groupInfo.id || '',
+                    pageUrl:'/pages/activityPage.html',
+                    pageName:'活动主页',
+                    clickEvent:'',
+                    clickEventName:''
+                };
+                accessLog(reportLog);
+                if(this.groupInfo.status == 1 && this.groupInfo.id != null ){
+                    this.shareFriend()
+                }
+            }).catch(_=>{});
+
+
+
         },
         beforeDestroy: function () {
 

@@ -17,7 +17,7 @@
 </template>
 
 <script>
-    import {Button as vantButton,Toast}  from 'vant'
+    import {Button as vantButton}  from 'vant'
     import CommonMixin from '../commonMixin.js'
     import Share from '../../components/Share'
     import {shareFriendQ,shareFriend} from "../../utils/weixin";
@@ -38,7 +38,6 @@
                     activityId:window.actId,
                     inviteCode:this.inviteCode
                 }).then(r=>{
-                    console.log(r);
                     let config = {
                         shareTitle:'邀请人主页',
                         shareBody:'赶快进入主页参与活动吧',
