@@ -1,5 +1,6 @@
 import request from '../utils/request.js'
 
+// 生成邀请人
 export function generateRecommender(params) {
     return request({
         url: '/sale/api/recommender/generateRecommender',
@@ -8,7 +9,7 @@ export function generateRecommender(params) {
     })
 }
 
-
+// 登陆前发送短信
 export function sendSmsCode(params) {
     return request({
         url: '/sale/api/recommender/sendSmsCode',
@@ -17,6 +18,8 @@ export function sendSmsCode(params) {
     })
 }
 
+
+// 校验短信验证码
 export function checkSmsCode(params) {
     return request({
         url: '/sale/api/recommender/checkSmsCode',

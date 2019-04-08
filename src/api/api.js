@@ -1,5 +1,6 @@
 import request from '../utils/request.js'
 
+// 数据埋点
 export function log(params) {
     return request({
         closeLoading:true,
