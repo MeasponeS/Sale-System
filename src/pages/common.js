@@ -1,6 +1,7 @@
 
 import 'normalize.css'
 import 'vant/lib/index.css';
+import 'vue-ydui/dist/ydui.base.css'
 import '@/assets/css/style.scss'
 import {initUrlParams} from '../utils/app.js'
 

@@ -39,5 +39,8 @@ module.exports = {
     },
     tuikuan:{
         title:'微信支付商户退款后多久会到账?'
+    },
+    indexCommon:{
+        title:'生成普通团长链接'
     }
 };

@@ -9,6 +9,16 @@ export function generateRecommender(params) {
     })
 }
 
+// 生成普通团长
+export function generateLeader(params) {
+    return request({
+        url: '/sale/api/recommender/generateLeader',
+        method: 'get',
+        params: params
+    })
+}
+
+
 // 登陆前发送短信
 export function sendSmsCode(params) {
     return request({

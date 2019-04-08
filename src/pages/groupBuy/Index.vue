@@ -1,45 +1,12 @@
 <template>
     <div id="app">
-        <div  v-if="goodsInfo.sellPrice">
+        <!-- -->
+        <div v-if="goodsInfo.sellPrice">
             <h3 class="normal" v-if="groupInfo.status==1">拼团中</h3>
             <h3 class="fail" v-if="groupInfo.status==3">拼团失败</h3>
             <h3 class="success" v-if="groupInfo.status==2">拼团成功</h3>
-            <div class="goods">
-                <img :src="activity.imageUrl" alt="">
-                <div class="desc">
-                    <div class="title">
-                        <h3>{{goodsInfo.name}}</h3>
-                    </div>
-                    <div class="price">
-                        <span> 原价<em>{{goodsInfo.originPrice || 0   | Money}}</em></span>
-                        <span class="getGroup">{{activity.minCount || 0  }}人可成团</span>
-                    </div>
-                    <div class="sale">
-                        <span>{{goodsInfo.sellPrice || 0   | Money}}</span>
-                        <span class="saveMoney">省 {{goodsInfo.saveMoney || 0   | Money}}</span>
-                        <!--<strong class="countNum">已有{{orderCount || 0  }}人成团</strong>-->
-                    </div>
-                </div>
-            </div>
-            <div class="groupProgress">
-                <h3>当前有<span>{{ groupNum || 0}}</span>人参团，倒计时结束后：</h3>
-                <div class="progress">
-                    <div class="box" :class="className(0)">不返利</div>
-                    <div class="line" :class="className2(0)"></div>
-                    <div class="box" :class="className(1)">返{{regularLIst[1].rebateMoney  | Money}}</div>
-                    <!--<div class="box" :class="className(1)">返￥200</div>-->
-                    <div class="line" :class="className2(1)"></div>
-                    <div class="box" :class="className(2)">返{{regularLIst[2].rebateMoney  | Money}}</div>
-                    <!--<div class="box" :class="className(2)">返￥300</div>-->
-                    <div class="line" :class="className2(2)"></div>
-                    <div class="box" :class="className(3)">返{{regularLIst[3].rebateMoney  | Money}}</div>
-                    <!--<div class="box" :class="className(3)">返￥400</div>-->
 
-                </div>
-                <div class="progressNum">
-                    <div v-for="(item,index) in regularLIst" :class="className1(index)">{{item.content}}</div>
-                </div>
-            </div>
+
             <div class="groupDetails">
                 <h3>距结束只剩 <Countdown :second="countDownSenconds"  @end="timeOut" :status="groupInfo.status"></Countdown> </h3>
                 <div class="groupMember">
@@ -58,12 +25,17 @@
                         >
                     </div>
                 </div>
+                <h3 class="ad">就差你了，参团购买可省￥880</h3>
                 <div v-if="countDownSenconds > 0">
                     <Button class="indexBtn" @click="inGroup" v-if="isLeader == '0' && userHasBuy == '0'" >一键参团 {{goodsInfo.sellPrice || 0   | Money}}</Button>
-                    <Button class="indexBtn" v-else @click="shareToFriend">邀请好友团购，拿更高返利</Button>
+                    <Button class="indexBtn" v-else @click="shareToFriend">邀请好友拼团</Button>
                 </div>
                 <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0 && groupInfo.status != 3" >团购已结束</Button>
-                <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0 && groupInfo.status == 3">请联系团长重新开团</Button>
+                <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0 && groupInfo.status == 3 && groupInfo.kolStatus == 1">请联系团长重新开团</Button>
+                <Button class="indexBtn endBtn"
+                        v-if="countDownSenconds <= 0 && groupInfo.status == 3 && groupInfo.kolStatus == 0"
+                        @click="restartGroup"
+                >重新开团</Button>
                 <em>好友拼团·成团发货·<a href="./tuikuan.html">未成团退款</a></em>
             </div>
             <div class="playGuide">
@@ -82,6 +54,24 @@
                     <span>邀请好友</span>
                     <span>6小时内成团</span>
                     <span>发货</span>
+                </div>
+            </div>
+
+            <div class="goods">
+                <img :src="activity.imageUrl" alt="">
+                <div class="desc">
+                    <div class="title">
+                        <h3>{{goodsInfo.name}}</h3>
+                    </div>
+                    <div class="price">
+                        <span> 原价<em>{{goodsInfo.originPrice || 0   | Money}}</em></span>
+                        <span class="getGroup">{{activity.minCount || 0  }}人可成团</span>
+                    </div>
+                    <div class="sale">
+                        <span>{{goodsInfo.sellPrice || 0   | Money}}</span>
+                        <span class="saveMoney">省 {{goodsInfo.saveMoney || 0   | Money}}</span>
+                        <!--<strong class="countNum">已有{{orderCount || 0  }}人成团</strong>-->
+                    </div>
                 </div>
             </div>
             <div class="goodDetails">
@@ -114,7 +104,7 @@
 </template>
 
 <script>
-    import {Button,Steps,Step,Popup} from 'vant'
+    import {Button,Popup} from 'vant'
     import groupProgress from "./groupProgress";
     import CommonMixin from '../commonMixin.js'
     import {userActivity} from "../../api/activity";
@@ -128,7 +118,7 @@
     import Config from '../../config/app'
     export default {
         name: 'app',
-        mixins:[groupProgress,CommonMixin],
+        mixins:[CommonMixin],
         data: function () {
             return {
                 showMobile:false,
@@ -139,7 +129,6 @@
                 groupInfo:{},   // 团信息
                 leaderHeadImg:'', // 团长头像
                 headList:[], // 团员头像
-                regularLIst:[],
                 countDownSenconds:0,
                 isLeader:'',
                 userHasBuy:'',
@@ -152,6 +141,9 @@
             }
         },
         methods: {
+            restartGroup(){
+                window.location.href = './activityPage.html?kolStatus=0&actId='+ window.actId
+            },
             shareToFriend(){
                 this.share = true
                 let reportLog = {
@@ -183,7 +175,6 @@
                     this.goodsInfo = {...r.goodsInfo};
                     this.activity = {...r.activity};
                     this.groupInfo = {...r.groupInfo};
-                    this.regularLIst = r.regularLIst;
                     this.orderCount = r.orderCount;
                     this.headList = r.headList;
                     this.leaderHeadImg = r.leaderHeadImg;
@@ -269,112 +260,6 @@
                     vxPay(r,this.userBuy)
                 }).catch(_=>{})
             },
-
-            className(step){
-                let num = this.groupNum;
-                let list = this.regularLIst;
-                if(list.length == 0 || num == null){
-                    return
-                }
-                switch (step) {
-                    case 0:
-                        if(num <= list[0].highCount){
-                            return 'active'
-                        } else {
-                            return ''
-                        };
-                        break;
-                    case 1:
-                        if(num <= list[0].highCount){
-                            return 'unActive'
-                        } else if(num >= list[1].lowCount && num <= list[1].highCount){
-                            return 'active'
-                        } else {
-                            return ''
-                        };
-                        break;
-                    case 2:
-                        if(num <= list[0].highCount){
-                            return 'unActive'
-                        } else if(num >= list[1].lowCount && num <= list[1].highCount){
-                            return 'unActive'
-                        } else if(num >= list[2].lowCount && num <= list[2].highCount){
-                            return 'active'
-                        } else {
-                            return ''
-                        };
-                        break;
-                    case 3:
-                        if(num <= list[0].highCount){
-                            return 'unActive'
-                        } else if(num >= list[1].lowCount && num <= list[1].highCount){
-                            return 'unActive'
-                        } else if(num >= list[2].lowCount && num <= list[2].highCount){
-                            return 'unActive'
-                        } else {
-                            return 'active'
-                        }
-                }
-
-            },
-
-            className1(step){
-                let num = this.groupNum;
-                let list = this.regularLIst;
-                if(list.length == 0 || num == null){
-                    return
-                }
-                switch (step) {
-                    case 0:
-                        if(num <= list[0].highCount){
-                            return 'numActive'
-                        }
-                        break;
-                    case 1:
-                        if(num >= list[1].lowCount && num <= list[1].highCount){
-                            return 'numActive'
-                        }
-                        break;
-                    case 2:
-                        if(num >= list[2].lowCount && num <= list[2].highCount){
-                            return 'numActive'
-                        }
-                        break;
-                    case 3:
-                        if(num >= list[3].lowCount){
-                            return 'numActive'
-                        }
-                }
-            },
-
-            className2(step){
-                let num = this.groupNum;
-                let list = this.regularLIst;
-                if(list.length == 0 || num == null){
-                    return
-                }
-                switch (step) {
-                    case 0:
-                        if(num <= list[0].highCount){
-                            return ''
-                        } else {
-                            return 'lineActive'
-                        }
-                        break;
-                    case 1:
-                        if(num >= list[2].lowCount ){
-                            return 'lineActive'
-                        }
-                        break;
-                    case 2:
-                        if(num >= list[3].lowCount){
-                            return 'lineActive'
-                        }
-                }
-            },
-
-
-
 
 
 

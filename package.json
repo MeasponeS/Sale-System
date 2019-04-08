@@ -17,6 +17,7 @@
     "sass-loader": "^7.1.0",
     "vant": "^1.5.9",
     "vue": "^2.5.17",
+    "vue-ydui": "^1.2.6",
     "weixin-js-sdk": "^1.4.0-test"
   },
   "devDependencies": {
