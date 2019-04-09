@@ -23,8 +23,8 @@
                 <RollNotice autoplay="3000"
                             height="50"
                             class="quickGroup"
-                            v-if="kolStatus == 0">
-                    <RollNoticeItem v-for="(item,index) in quickGroupList" >
+                            v-if="kolStatus == 0 || quickGroupList == []">
+                    <RollNoticeItem v-for="(item) in quickGroupList" >
                         <a class="roll" :href="'./groupBuy.html?groupId='+item.groupId">
                             <div class="left">
                                 <img :src="item.leaderHeadUrl" alt="">
@@ -69,7 +69,7 @@
                 </div>
             </div>
             <div class="start" @click="shareToFriend" v-if="groupInfo.status == 1 && countDownSenconds >= 0">
-                邀请好友获得更多返利
+                邀请好友参团
                 <h4><Countdown :second="countDownSenconds" :status="groupInfo.status" @toggle="countDownSenconds--" @end="timeOut" style="display: block"></Countdown></h4>
             </div>
             <div class="start" @click="openAllGroup" v-else>
@@ -146,10 +146,6 @@
             }
         },
         methods: {
-            quickBuy(group,i){
-                // alert(i)
-                alert(111)
-            },
             shareToFriend(){
                 this.share = true;
                 let reportLog = {
@@ -240,7 +236,7 @@
             know(){
                 this.showOpen = false;
                 this.share = false;
-                leaderActivity({activityId:window.actId}).then(r=>{
+                leaderActivity({activityId:window.actId,kolStatus:this.kolStatus}).then(r=>{
                     this.orderCount = r.orderCount;
                     this.leaderHasBuy = r.leaderHasBuy;
                     this.goodsInfo = {...r.goodsInfo};
@@ -252,7 +248,7 @@
             leaderPay(){
                 // 支付成功后执行的回调
 
-                leaderActivity({activityId:window.actId}).then(res=>{
+                leaderActivity({activityId:window.actId,kolStatus:this.kolStatus}).then(res=>{
                     this.orderCount = res.orderCount;
                     this.leaderHasBuy = res.leaderHasBuy;
                     this.goodsInfo = {...res.goodsInfo};
@@ -282,7 +278,8 @@
                     activityId: window.actId,
                     groupId:this.groupInfo.id,
                     mobile:mobile,
-                    recommenderUserId:window.URLPARAMS.recommenderUserId
+                    groupKolStatus:this.kolStatus,
+                    recommenderUserId:window.URLPARAMS.recommenderUserId || window.URLPARAMS.sellId
                 }).then(r=>{
                     this.showMobile = false
                     vxPay(r,this.leaderPay)
@@ -302,9 +299,10 @@
                 crtGroupOpen({
                     activityId: window.actId,
                     groupId: this.groupInfo.id,
+                    groupKolStatus:this.kolStatus,
                     recommenderUserId: window.URLPARAMS.recommenderUserId
                 }).then(r=>{
-                    leaderActivity({activityId:window.actId}).then(res=>{
+                    leaderActivity({activityId:window.actId,kolStatus:this.kolStatus}).then(res=>{
                         this.orderCount = res.orderCount;
                         this.leaderHasBuy = res.leaderHasBuy;
                         this.goodsInfo = {...res.goodsInfo};
@@ -320,7 +318,7 @@
                 }).catch(_=>{})
             },
             timeOut(){
-                leaderActivity({activityId:window.actId}).then(r=>{
+                leaderActivity({activityId:window.actId,kolStatus:this.kolStatus}).then(r=>{
                     this.orderCount = r.orderCount;
                     this.leaderHasBuy = r.leaderHasBuy;
                     this.goodsInfo = {...r.goodsInfo};
@@ -347,7 +345,7 @@
 
 
                 if(document.visibilityState=="visible"){
-                    leaderActivity({activityId:window.actId}).then(r=>{
+                    leaderActivity({activityId:window.actId,kolStatus:this.kolStatus}).then(r=>{
                         that.orderCount = r.orderCount;
                         that.leaderHasBuy = r.leaderHasBuy;
                         that.goodsInfo = {...r.goodsInfo};

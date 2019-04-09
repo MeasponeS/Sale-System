@@ -29,7 +29,7 @@
         data: function () {
             return {
                 inviteCode:'',
-                share:false
+                share:false,
             }
         },
         methods: {
@@ -41,7 +41,7 @@
                     let config = {
                         shareTitle:'邀请人主页',
                         shareBody:'赶快进入主页参与活动吧',
-                        shareUrl:Config.shareUrl+'activityPage.html?actId=' + window.actId + '&kolStatus=0' ,
+                        shareUrl:Config.shareUrl+'activityPage.html?actId=' + window.actId + '&kolStatus=0&sellId=' + r  ,
                         shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                     };
                     shareFriend(config);

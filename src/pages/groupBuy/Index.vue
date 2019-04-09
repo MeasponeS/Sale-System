@@ -31,7 +31,7 @@
                 </div>
                 <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0 && groupInfo.status != 3" >团购已结束</Button>
                 <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0 && groupInfo.status == 3 && groupInfo.kolStatus == 1">请联系团长重新开团</Button>
-                <Button class="indexBtn endBtn"
+                <Button class="indexBtn"
                         v-if="countDownSenconds <= 0 && groupInfo.status == 3 && groupInfo.kolStatus == 0"
                         @click="restartGroup"
                 >重新开团</Button>
