@@ -23,7 +23,7 @@
                 <RollNotice autoplay="3000"
                             height="50"
                             class="quickGroup"
-                            v-if="kolStatus == 0 || quickGroupList == []">
+                            v-if="kolStatus == 0 && quickGroupList != []">
                     <RollNoticeItem v-for="(item) in quickGroupList" >
                         <a class="roll" :href="'./groupBuy.html?groupId='+item.groupId">
                             <div class="left">
@@ -242,6 +242,7 @@
                     this.goodsInfo = {...r.goodsInfo};
                     this.activity = {...r.activity};
                     this.groupInfo = {...r.groupInfo};
+                    this.quickGroupList = r.quickGroupList || [];
                     this.countDownSenconds = r.countDownSenconds;
                 }).catch(_=>{});
             },
@@ -253,15 +254,14 @@
                     this.leaderHasBuy = res.leaderHasBuy;
                     this.goodsInfo = {...res.goodsInfo};
                     this.activity = {...res.activity};
+                    this.quickGroupList = r.quickGroupList || [];
                     this.groupInfo = {...res.groupInfo};
                     this.countDownSenconds = res.countDownSenconds;
                     this.shareFriend()
                     // 支付成功后跳转至拼团页
 
-                    window.location.href = Config.shareUrl +'groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status
-
-
-
+                    window.location.href = Config.shareUrl +'groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || ''
+                    
                 }).catch(_=>{});
             },
             wxPay(mobile){
@@ -308,6 +308,7 @@
                         this.goodsInfo = {...res.goodsInfo};
                         this.activity = {...res.activity};
                         this.groupInfo = {...res.groupInfo};
+                        this.quickGroupList = r.quickGroupList || [];
                         this.countDownSenconds = res.countDownSenconds;
 
 
@@ -324,6 +325,7 @@
                     this.goodsInfo = {...r.goodsInfo};
                     this.activity = {...r.activity};
                     this.groupInfo = {...r.groupInfo};
+                    this.quickGroupList = r.quickGroupList || [];
                     this.countDownSenconds = r.countDownSenconds;
                     this.shareFriend()
                 }).catch(_=>{});
@@ -351,6 +353,7 @@
                         that.goodsInfo = {...r.goodsInfo};
                         that.activity = {...r.activity};
                         that.groupInfo = {...r.groupInfo};
+                        this.quickGroupList = r.quickGroupList || [];
                         that.countDownSenconds = r.countDownSenconds;
                         that.shareFriend()
                     }).catch(_=>{});

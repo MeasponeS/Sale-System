@@ -52,7 +52,9 @@
                     <span>开团</span>
                     <span>邀请好友</span>
                     <span>6小时内成团</span>
-                    <span>成团即发货</span>
+                    <span>成团即发货
+
+                    </span>
                 </div>
             </div>
 
@@ -141,7 +143,7 @@
         },
         methods: {
             restartGroup(){
-                window.location.href = './activityPage.html?kolStatus=0&actId='+ window.actId
+                window.location.href = './activityPage.html?kolStatus=0&actId='+ window.actId + '&sellId=' + window.URLPARAMS.sellId
             },
             shareToFriend(){
                 this.share = true
