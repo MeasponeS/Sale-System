@@ -20,7 +20,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-if="kolStatus == 0 && quickGroupList != []">
+                <div v-if="kolStatus == 0 && quickGroupList.length > 0">
                     <RollNotice autoplay="3000"
                                 height="50"
                                 class="quickGroup"
