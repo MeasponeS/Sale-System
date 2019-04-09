@@ -52,7 +52,7 @@
                     <span>开团</span>
                     <span>邀请好友</span>
                     <span>6小时内成团</span>
-                    <span>发货</span>
+                    <span>成团即发货</span>
                 </div>
             </div>
 
