@@ -136,7 +136,6 @@
                 if(name && name != null && idNum && idNum != null){
                     let reportLog = {
                         activityId:window.actId,
-                        groupId:'',
                         pageUrl:'/pages/withdraw.html',
                         pageName:'提现页',
                         clickEvent:'提现',
@@ -163,7 +162,6 @@
                 this.income = {...r}
                 let reportLog = {
                     activityId:window.actId,
-                    groupId:'',
                     pageUrl:'/pages/withdraw.html',
                     pageName:'提现页',
                     clickEvent:'',

@@ -90,7 +90,6 @@
                 this.list = r;
                 let reportLog = {
                     activityId:window.actId,
-                    groupId:URLPARAMS.groupId || '',
                     pageUrl:'/pages/withdrawDetails.html',
                     pageName:'收支明细页',
                     clickEvent:'',
