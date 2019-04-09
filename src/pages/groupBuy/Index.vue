@@ -142,7 +142,7 @@
         },
         methods: {
             restartGroup(){
-                window.location.href = './activityPage.html?kolStatus=0&actId='+ window.actId + '&sellId=' + window.URLPARAMS.sellId
+                window.location.href = './activityPage.html?kolStatus=0&actId='+ window.actId + '&sellId=' + window.URLPARAMS.sellId || -1;
             },
             shareToFriend(){
                 this.share = true
