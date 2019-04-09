@@ -248,20 +248,17 @@
             },
             leaderPay(){
                 // 支付成功后执行的回调
-                console.log('支付成功辣');
                 leaderActivity({activityId:window.actId,kolStatus:this.kolStatus}).then(res=>{
                     this.orderCount = res.orderCount;
                     this.leaderHasBuy = res.leaderHasBuy;
                     this.goodsInfo = {...res.goodsInfo};
                     this.activity = {...res.activity};
-                    this.quickGroupList = r.quickGroupList || [];
+                    this.quickGroupList = res.quickGroupList || [];
                     this.groupInfo = {...res.groupInfo};
                     this.countDownSenconds = res.countDownSenconds;
                     this.shareFriend()
-                    console.log('回来啦');
                     // 支付成功后跳转至拼团页
                     window.setTimeout(()=>{
-                        console.log('马上跳转辣');
                         window.location.href = Config.shareUrl +'groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || ''
                     },600)
                 }).catch(_=>{});
@@ -349,8 +346,7 @@
 
 
                 if(document.visibilityState=="visible"){
-                    console.log(this.kolStatus);
-                    leaderActivity({activityId:window.actId,kolStatus:this.kolStatus}).then(r=>{
+                    leaderActivity({activityId:window.actId,kolStatus:that.kolStatus}).then(r=>{
                         that.orderCount = r.orderCount;
                         that.leaderHasBuy = r.leaderHasBuy;
                         that.goodsInfo = {...r.goodsInfo};
@@ -365,7 +361,7 @@
             })
 
 
-            leaderActivity({activityId:window.actId,kolStatus:this.kolStatus}).then(r=>{
+            leaderActivity({activityId:window.actId,kolStatus:that.kolStatus}).then(r=>{
                 this.orderCount = r.orderCount;
                 this.leaderHasBuy = r.leaderHasBuy;
                 this.goodsInfo = {...r.goodsInfo};
