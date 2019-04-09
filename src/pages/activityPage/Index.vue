@@ -20,20 +20,23 @@
                         </div>
                     </div>
                 </div>
-                <RollNotice autoplay="3000"
-                            height="50"
-                            class="quickGroup"
-                            v-if="kolStatus == 0 && quickGroupList != []">
-                    <RollNoticeItem v-for="(item) in quickGroupList" >
-                        <a class="roll" :href="'./groupBuy.html?groupId='+item.groupId">
-                            <div class="left">
-                                <img :src="item.leaderHeadUrl" alt="">
-                                <h3>{{item.leaderName}}的团还差{{item.surplusCount}}人</h3>
-                            </div>
-                            <span class="right" >快速参团</span>
-                        </a>
-                    </RollNoticeItem>
-                </RollNotice>
+                <div v-if="kolStatus == 0 && quickGroupList != []">
+                    <RollNotice autoplay="3000"
+                                height="50"
+                                class="quickGroup"
+                                >
+                        <RollNoticeItem v-for="(item) in quickGroupList" >
+                            <a class="roll" :href="'./groupBuy.html?groupId='+item.groupId">
+                                <div class="left">
+                                    <img :src="item.leaderHeadUrl" alt="">
+                                    <h3>{{item.leaderName}}的团还差{{item.surplusCount}}人</h3>
+                                </div>
+                                <span class="right" >快速参团</span>
+                            </a>
+                        </RollNoticeItem>
+                    </RollNotice>
+                </div>
+
 
                 <div class="rules" v-if="kolStatus == 0" >
                     <h3>活动玩法</h3>
@@ -365,6 +368,9 @@
                 this.orderCount = r.orderCount;
                 this.leaderHasBuy = r.leaderHasBuy;
                 this.goodsInfo = {...r.goodsInfo};
+
+
+
                 this.activity = {...r.activity};
                 this.groupInfo = {...r.groupInfo};
                 this.countDownSenconds = r.countDownSenconds;
