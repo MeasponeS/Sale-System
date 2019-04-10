@@ -310,7 +310,7 @@
                         this.goodsInfo = {...res.goodsInfo};
                         this.activity = {...res.activity};
                         this.groupInfo = {...res.groupInfo};
-                        this.quickGroupList = r.quickGroupList || [];
+                        this.quickGroupList = res.quickGroupList || [];
                         this.countDownSenconds = res.countDownSenconds;
 
 
