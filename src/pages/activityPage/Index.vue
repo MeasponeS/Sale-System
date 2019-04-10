@@ -192,8 +192,12 @@
                 leaderActivity({activityId:window.actId,kolStatus:this.kolStatus}).then(r=>{
                     this.leaderHasBuy = r.leaderHasBuy;
                     if(r.groupInfo.kolStatus == this.kolStatus){
-                        this.orderCount = r.orderCount;
                         this.groupInfo = {...r.groupInfo};
+                        if(r.groupInfo.status == 0){
+                            this.orderCount = 0
+                        } else {
+                            this.orderCount = r.orderCount;
+                        }
                         if(this.groupInfo.status == 1 && this.groupInfo.id != null ){
                             this.shareFriend()
                         }
@@ -248,8 +252,12 @@
                     this.goodsInfo = {...r.goodsInfo};
                     this.activity = {...r.activity};
                     if(r.groupInfo.kolStatus == this.kolStatus){
-                        this.orderCount = r.orderCount;
                         this.groupInfo = {...r.groupInfo};
+                        if(r.groupInfo.status == 0){
+                            this.orderCount = 0
+                        } else {
+                            this.orderCount = r.orderCount;
+                        }
                     }
                     this.quickGroupList = r.quickGroupList || [];
                     this.countDownSenconds = r.countDownSenconds;
@@ -263,8 +271,12 @@
                     this.activity = {...res.activity};
                     this.quickGroupList = res.quickGroupList || [];
                     if(r.groupInfo.kolStatus == this.kolStatus){
-                        this.orderCount = r.orderCount;
                         this.groupInfo = {...r.groupInfo};
+                        if(r.groupInfo.status == 0){
+                            this.orderCount = 0
+                        } else {
+                            this.orderCount = r.orderCount;
+                        }
                     }
                     this.countDownSenconds = res.countDownSenconds;
                     this.shareFriend()
@@ -317,8 +329,12 @@
                         this.goodsInfo = {...res.goodsInfo};
                         this.activity = {...res.activity};
                         if(r.groupInfo.kolStatus == this.kolStatus){
-                            this.orderCount = r.orderCount;
                             this.groupInfo = {...r.groupInfo};
+                            if(r.groupInfo.status == 0){
+                                this.orderCount = 0
+                            } else {
+                                this.orderCount = r.orderCount;
+                            }
                         }
                         this.quickGroupList = res.quickGroupList || [];
                         this.countDownSenconds = res.countDownSenconds;
@@ -336,8 +352,12 @@
                     this.goodsInfo = {...r.goodsInfo};
                     this.activity = {...r.activity};
                     if(r.groupInfo.kolStatus == this.kolStatus){
-                        this.orderCount = r.orderCount;
                         this.groupInfo = {...r.groupInfo};
+                        if(r.groupInfo.status == 0){
+                            this.orderCount = 0
+                        } else {
+                            this.orderCount = r.orderCount;
+                        }
                     }
                     this.quickGroupList = r.quickGroupList || [];
                     this.countDownSenconds = r.countDownSenconds;
@@ -366,8 +386,12 @@
                         that.goodsInfo = {...r.goodsInfo};
                         that.activity = {...r.activity};
                         if(r.groupInfo.kolStatus == this.kolStatus){
-                            that.orderCount = r.orderCount;
                             that.groupInfo = {...r.groupInfo};
+                            if(r.groupInfo.status == 0){
+                                that.orderCount = 0
+                            } else {
+                                that.orderCount = r.orderCount;
+                            }
                         }
                         this.quickGroupList = r.quickGroupList || [];
                         that.countDownSenconds = r.countDownSenconds;
@@ -383,8 +407,12 @@
                 this.goodsInfo = {...r.goodsInfo};
                 this.activity = {...r.activity};
                 if(r.groupInfo.kolStatus == this.kolStatus){
-                    this.orderCount = r.orderCount;
                     this.groupInfo = {...r.groupInfo};
+                    if(r.groupInfo.status == 0){
+                        this.orderCount = 0
+                    } else {
+                        this.orderCount = r.orderCount;
+                    }
                 }
                 this.countDownSenconds = r.countDownSenconds;
                 this.quickGroupList = r.quickGroupList || [];
