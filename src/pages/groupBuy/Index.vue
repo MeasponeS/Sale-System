@@ -24,7 +24,8 @@
                         >
                     </div>
                 </div>
-                <h3 class="ad">就差你了，参团购买可省￥880</h3>
+                <h3 class="ad" v-if="userHasBuy == 0">就差你了，参团购买可省￥880</h3>
+                <h3 class="ad" v-else>您已购买成功</h3>
                 <div v-if="countDownSenconds > 0">
                     <Button class="indexBtn" @click="inGroup" v-if="isLeader == '0' && userHasBuy == '0'" >一键参团 {{goodsInfo.sellPrice || 0   | Money}}</Button>
                     <Button class="indexBtn" v-else @click="shareToFriend">邀请好友拼团</Button>
@@ -160,7 +161,7 @@
                 let config = {
                     shareTitle:'『团购优惠』和好朋友一起领',
                     shareBody:'健康管理师＆护理评估师，现在团购立减¥880',
-                    shareUrl:Config.shareUrl + 'groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status,
+                    shareUrl:Config.shareUrl + 'groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status + '&sellId=' + window.URLPARAMS.sellId || -1 ,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };
                 shareFriend(config)
