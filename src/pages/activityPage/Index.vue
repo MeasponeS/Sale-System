@@ -266,11 +266,13 @@
             leaderPay(){
                 // 支付成功后执行的回调
                 leaderActivity({activityId:window.actId,kolStatus:this.kolStatus}).then(res=>{
+                    console.log(res);
                     this.leaderHasBuy = res.leaderHasBuy;
                     this.goodsInfo = {...res.goodsInfo};
                     this.activity = {...res.activity};
                     this.quickGroupList = res.quickGroupList || [];
                     if(res.groupInfo.kolStatus == this.kolStatus){
+                        console.log('相等');
                         this.groupInfo = {...res.groupInfo};
                         if(res.groupInfo.status == 0){
                             this.orderCount = 0
@@ -279,9 +281,12 @@
                         }
                     }
                     this.countDownSenconds = res.countDownSenconds;
+                    console.log('准备分享');
                     this.shareFriend()
+                    console.log('分享结束');
                     // 支付成功后跳转至拼团页
                     window.setTimeout(()=>{
+                        console.log('马上跳转');
                         window.location.href = Config.shareUrl +'groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || ''
                     },1000)
                 }).catch(_=>{});
