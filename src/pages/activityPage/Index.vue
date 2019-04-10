@@ -27,10 +27,13 @@
                                 >
                         <RollNoticeItem v-for="(item) in quickGroupList" >
                             <a class="roll" :href="'./groupBuy.html?groupId='+item.groupId">
-                                <div class="left">
-                                    <img :src="item.leaderHeadUrl" alt="">
-                                    <h3><span>{{item.leaderName}}</span>的团还差{{item.surplusCount}}人</h3>
-                                </div>
+
+                                <img :src="item.leaderHeadUrl" alt="">
+                                <h3>
+                                    <span class="quickName">{{item.leaderName}}</span>
+                                    <span class="quickNum">的团还差{{item.surplusCount}}人</span>
+                                </h3>
+
                                 <span class="right" >快速参团</span>
                             </a>
                         </RollNoticeItem>
