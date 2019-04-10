@@ -72,7 +72,7 @@
                     <img src="../../assets/img/16.png" alt="">
                 </div>
             </div>
-            <div class="start" @click="shareToFriend" v-if="groupInfo.status == 1 && countDownSenconds >= 0">
+            <div class="start" @click="shareToFriend" v-if="groupInfo.status && groupInfo.status == 1 && countDownSenconds && countDownSenconds >= 0">
                 邀请好友参团
                 <h4><Countdown :second="countDownSenconds" :status="groupInfo.status" @toggle="countDownSenconds--" @end="timeOut" style="display: block"></Countdown></h4>
             </div>
@@ -190,11 +190,16 @@
             },
             wxSignatureCallback(){
                 leaderActivity({activityId:window.actId,kolStatus:this.kolStatus}).then(r=>{
-                    this.orderCount = r.orderCount;
                     this.leaderHasBuy = r.leaderHasBuy;
+                    if(r.groupInfo.kolStatus == this.kolStatus){
+                        this.orderCount = r.orderCount;
+                        this.groupInfo = {...r.groupInfo};
+                        if(this.groupInfo.status == 1 && this.groupInfo.id != null ){
+                            this.shareFriend()
+                        }
+                    }
                     this.goodsInfo = {...r.goodsInfo};
                     this.activity = {...r.activity};
-                    this.groupInfo = {...r.groupInfo};
                     this.countDownSenconds = r.countDownSenconds;
                     this.quickGroupList = r.quickGroupList || [];
                     let reportLog = {
@@ -206,9 +211,7 @@
                         clickEventName:''
                     };
                     accessLog(reportLog);
-                    if(this.groupInfo.status == 1 && this.groupInfo.id != null ){
-                        this.shareFriend()
-                    }
+
                 }).catch(_=>{});
 
             },
@@ -241,11 +244,13 @@
                 this.showOpen = false;
                 this.share = false;
                 leaderActivity({activityId:window.actId,kolStatus:this.kolStatus}).then(r=>{
-                    this.orderCount = r.orderCount;
                     this.leaderHasBuy = r.leaderHasBuy;
                     this.goodsInfo = {...r.goodsInfo};
                     this.activity = {...r.activity};
-                    this.groupInfo = {...r.groupInfo};
+                    if(r.groupInfo.kolStatus == this.kolStatus){
+                        this.orderCount = r.orderCount;
+                        this.groupInfo = {...r.groupInfo};
+                    }
                     this.quickGroupList = r.quickGroupList || [];
                     this.countDownSenconds = r.countDownSenconds;
                 }).catch(_=>{});
@@ -253,12 +258,14 @@
             leaderPay(){
                 // 支付成功后执行的回调
                 leaderActivity({activityId:window.actId,kolStatus:this.kolStatus}).then(res=>{
-                    this.orderCount = res.orderCount;
                     this.leaderHasBuy = res.leaderHasBuy;
                     this.goodsInfo = {...res.goodsInfo};
                     this.activity = {...res.activity};
                     this.quickGroupList = res.quickGroupList || [];
-                    this.groupInfo = {...res.groupInfo};
+                    if(r.groupInfo.kolStatus == this.kolStatus){
+                        this.orderCount = r.orderCount;
+                        this.groupInfo = {...r.groupInfo};
+                    }
                     this.countDownSenconds = res.countDownSenconds;
                     this.shareFriend()
                     // 支付成功后跳转至拼团页
@@ -306,11 +313,13 @@
                     recommenderUserId: window.URLPARAMS.recommenderUserId
                 }).then(r=>{
                     leaderActivity({activityId:window.actId,kolStatus:this.kolStatus}).then(res=>{
-                        this.orderCount = res.orderCount;
                         this.leaderHasBuy = res.leaderHasBuy;
                         this.goodsInfo = {...res.goodsInfo};
                         this.activity = {...res.activity};
-                        this.groupInfo = {...res.groupInfo};
+                        if(r.groupInfo.kolStatus == this.kolStatus){
+                            this.orderCount = r.orderCount;
+                            this.groupInfo = {...r.groupInfo};
+                        }
                         this.quickGroupList = res.quickGroupList || [];
                         this.countDownSenconds = res.countDownSenconds;
 
@@ -323,11 +332,13 @@
             },
             timeOut(){
                 leaderActivity({activityId:window.actId,kolStatus:this.kolStatus}).then(r=>{
-                    this.orderCount = r.orderCount;
                     this.leaderHasBuy = r.leaderHasBuy;
                     this.goodsInfo = {...r.goodsInfo};
                     this.activity = {...r.activity};
-                    this.groupInfo = {...r.groupInfo};
+                    if(r.groupInfo.kolStatus == this.kolStatus){
+                        this.orderCount = r.orderCount;
+                        this.groupInfo = {...r.groupInfo};
+                    }
                     this.quickGroupList = r.quickGroupList || [];
                     this.countDownSenconds = r.countDownSenconds;
                     this.shareFriend()
@@ -351,11 +362,13 @@
 
                 if(document.visibilityState=="visible"){
                     leaderActivity({activityId:window.actId,kolStatus:that.kolStatus}).then(r=>{
-                        that.orderCount = r.orderCount;
                         that.leaderHasBuy = r.leaderHasBuy;
                         that.goodsInfo = {...r.goodsInfo};
                         that.activity = {...r.activity};
-                        that.groupInfo = {...r.groupInfo};
+                        if(r.groupInfo.kolStatus == this.kolStatus){
+                            that.orderCount = r.orderCount;
+                            that.groupInfo = {...r.groupInfo};
+                        }
                         this.quickGroupList = r.quickGroupList || [];
                         that.countDownSenconds = r.countDownSenconds;
                         that.shareFriend()
@@ -366,14 +379,13 @@
 
 
             leaderActivity({activityId:window.actId,kolStatus:that.kolStatus}).then(r=>{
-                this.orderCount = r.orderCount;
                 this.leaderHasBuy = r.leaderHasBuy;
                 this.goodsInfo = {...r.goodsInfo};
-
-
-
                 this.activity = {...r.activity};
-                this.groupInfo = {...r.groupInfo};
+                if(r.groupInfo.kolStatus == this.kolStatus){
+                    this.orderCount = r.orderCount;
+                    this.groupInfo = {...r.groupInfo};
+                }
                 this.countDownSenconds = r.countDownSenconds;
                 this.quickGroupList = r.quickGroupList || [];
                 let reportLog = {
