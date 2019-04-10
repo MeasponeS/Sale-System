@@ -270,12 +270,12 @@
                     this.goodsInfo = {...res.goodsInfo};
                     this.activity = {...res.activity};
                     this.quickGroupList = res.quickGroupList || [];
-                    if(r.groupInfo.kolStatus == this.kolStatus){
-                        this.groupInfo = {...r.groupInfo};
-                        if(r.groupInfo.status == 0){
+                    if(res.groupInfo.kolStatus == this.kolStatus){
+                        this.groupInfo = {...res.groupInfo};
+                        if(res.groupInfo.status == 0){
                             this.orderCount = 0
                         } else {
-                            this.orderCount = r.orderCount;
+                            this.orderCount = res.orderCount;
                         }
                     }
                     this.countDownSenconds = res.countDownSenconds;
@@ -328,12 +328,12 @@
                         this.leaderHasBuy = res.leaderHasBuy;
                         this.goodsInfo = {...res.goodsInfo};
                         this.activity = {...res.activity};
-                        if(r.groupInfo.kolStatus == this.kolStatus){
-                            this.groupInfo = {...r.groupInfo};
-                            if(r.groupInfo.status == 0){
+                        if(res.groupInfo.kolStatus == this.kolStatus){
+                            this.groupInfo = {...res.groupInfo};
+                            if(res.groupInfo.status == 0){
                                 this.orderCount = 0
                             } else {
-                                this.orderCount = r.orderCount;
+                                this.orderCount = res.orderCount;
                             }
                         }
                         this.quickGroupList = res.quickGroupList || [];
