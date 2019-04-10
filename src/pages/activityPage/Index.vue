@@ -264,7 +264,7 @@
                     // 支付成功后跳转至拼团页
                     window.setTimeout(()=>{
                         window.location.href = Config.shareUrl +'groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || ''
-                    },600)
+                    },1000)
                 }).catch(_=>{});
             },
             wxPay(mobile){
