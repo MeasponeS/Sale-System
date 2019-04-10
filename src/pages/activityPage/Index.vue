@@ -29,7 +29,7 @@
                             <a class="roll" :href="'./groupBuy.html?groupId='+item.groupId">
                                 <div class="left">
                                     <img :src="item.leaderHeadUrl" alt="">
-                                    <h3>{{item.leaderName}}的团还差{{item.surplusCount}}人</h3>
+                                    <h3><span>{{item.leaderName}}</span>的团还差{{item.surplusCount}}人</h3>
                                 </div>
                                 <span class="right" >快速参团</span>
                             </a>
