@@ -113,10 +113,9 @@
             .shareBtn{
                 width:100%;
                 height:40px;
-                border:1px solid rgba(255,64,0,1);
-                background:#fff;
+                background:linear-gradient(0deg,rgba(255,64,0,1),rgba(255,119,0,1));
                 border-radius: 19px;
-                color: #FF4D00;
+                color: #fff;
                 font-size: 18px;
                 margin-top: 40px;
             }
