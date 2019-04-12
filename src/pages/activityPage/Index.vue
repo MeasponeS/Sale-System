@@ -89,16 +89,16 @@
             </div>
             <Popup v-model="showOpen" :close-on-click-overlay="false" position="bottom">
                 <div class="wrap">
-                    <h3>开团方式</h3>
+                    <h3>开团方式（二选一）</h3>
                     <div class="indexBtn"
                          @click="goCheckMobile"
                     >
-                        A：购买商品，并成为团长
-                        <span class="btnWord">*支付成功后，团购开始倒计时</span>
+                        A：立即购买并分享链接，成为团长
+                        <!--<span class="btnWord">*支付成功后，团购开始倒计时</span>-->
                     </div>
                     <div class="indexBtn" @click="openGroup">
-                        B：通过邀请好友成为团长
-                        <span class="btnWord">*点击该按钮，团购开始倒计时</span>
+                        B：直接分享购买链接给好友，成为团长
+                        <!--<span class="btnWord">*点击该按钮，团购开始倒计时</span>-->
                     </div>
                     <Button class="bottomBtn" @click="showOpen = false">取消</Button>
                 </div>
@@ -200,7 +200,7 @@
             },
             shareFriend(){
                 let config = {
-                    shareTitle:'『团购优惠』和好朋友一起领',
+                    shareTitle:'我已领取团购优惠，你也来吧',
                     shareBody:'健康管理师＆护理评估师，现在团购立减¥880',
                     shareUrl:Config.shareUrl +'groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || -1,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
@@ -403,7 +403,7 @@
                                 r.shift()
                             }
                         }
-                        this.quickGroupList = []
+                        //this.quickGroupList = []
                         this.$nextTick(_=>{
                             // this.$set(this,'quickGroupList',r)
                             this.quickGroupList = r || []

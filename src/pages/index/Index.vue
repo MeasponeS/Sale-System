@@ -38,8 +38,8 @@
             wxSignatureCallback(){
 
                 let config = {
-                    shareTitle:'邀请人主页',
-                    shareBody:'赶快进入主页参与活动吧',
+                    shareTitle:'护士加邀您成为团购发起人',
+                    shareBody:'帮护士最低价学健康管理师＆护理评估师',
                     shareUrl:Config.shareUrl+'mainPage.html?actId=' + window.actId,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };

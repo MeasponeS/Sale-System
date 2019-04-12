@@ -163,7 +163,7 @@
             },
             shareFriend(){
                 let config = {
-                    shareTitle:'『团购优惠』和好朋友一起领',
+                    shareTitle:'我已领取团购优惠，你也来吧',
                     shareBody:'健康管理师＆护理评估师，现在团购立减¥880',
                     shareUrl:Config.shareUrl + 'groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status + '&sellId=' + window.URLPARAMS.sellId || -1 ,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'

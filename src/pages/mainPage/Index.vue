@@ -112,8 +112,8 @@
             },
             shareFriend(){
                 let config = {
-                    shareTitle:'团长主页',
-                    shareBody:'赶快进入主页参与活动吧',
+                    shareTitle:'团购优惠已送达，快来领取',
+                    shareBody:'快接受邀请，获取拼团优惠吧！',
                     shareUrl: Config.shareUrl +'activityPage.html?recommenderUserId='+ this.recommenderId + '&actId=' + window.actId + '&kolStatus=1' ,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };
