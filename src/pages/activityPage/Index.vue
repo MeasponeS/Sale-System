@@ -470,11 +470,14 @@
             }).catch(_=>{});
 
 
-            window.setInterval(()=>{
-                quickGroupList({activityId:window.actId}).then(r=>{
-                    this.quickGroupList = r.quickGroupList || [];
-                }).catch(_=>{})
-            })
+            if(this.kolStatus == 0){
+                window.setInterval(()=>{
+                    quickGroupList({activityId:window.actId}).then(r=>{
+                        this.quickGroupList = r.quickGroupList || [];
+                    }).catch(_=>{})
+                },5000)
+            }
+
 
 
 
