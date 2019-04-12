@@ -1,96 +1,97 @@
 <template>
-    <div id="app">
+    <div>
         <div v-if="goodsInfo.sellPrice">
-            <img class="topImg" :src="activity.imageUrl" alt="">
-            <div class="title">
-                <img src="./img/long.png" alt="">
-            </div>
-            <div class="top">
-                <div class="goods">
-                    <div class="good">
-                        <div class="goodsName">
-                            <h3>{{goodsInfo.name || '无'}}</h3>
-                            <span>{{activity.minCount || 0  }}人可成团</span>
+            <div id="app">
+                <div >
+                    <img class="topImg" :src="activity.imageUrl" alt="">
+                    <div class="title">
+                        <img src="./img/long.png" alt="">
+                    </div>
+                    <div class="top">
+                        <div class="goods">
+                            <div class="good">
+                                <div class="goodsName">
+                                    <h3>{{goodsInfo.name || '无'}}</h3>
+                                    <span>{{activity.minCount || 0  }}人可成团</span>
+                                </div>
+                                <div class="goodsPrice">
+                                    <span style="font-weight: bold">拼团价{{goodsInfo.sellPrice || 0   | Money}}</span>
+                                    <em>省{{goodsInfo.saveMoney || 0   | Money}}</em>
+                                    <strong>原价<span>{{goodsInfo.originPrice || 0   | Money}}</span></strong>
+                                    <strong class="countNum">已有{{orderCount || 0  }}人成团</strong>
+                                </div>
+                            </div>
                         </div>
-                        <div class="goodsPrice">
-                            <span style="font-weight: bold">拼团价{{goodsInfo.sellPrice || 0   | Money}}</span>
-                            <em>省{{goodsInfo.saveMoney || 0   | Money}}</em>
-                            <strong>原价<span>{{goodsInfo.originPrice || 0   | Money}}</span></strong>
-                            <strong class="countNum">已有{{orderCount || 0  }}人成团</strong>
+                        <div v-if="kolStatus == 0 && quickGroupList.length > 0">
+                            <RollNotice autoplay="3000"
+                                        height="50"
+                                        class="quickGroup"
+                            >
+                                <RollNoticeItem v-for="(item) in quickGroupList" >
+                                    <a class="roll" :href="'./groupBuy.html?groupId='+item.groupId">
+                                        <img :src="item.leaderHeadUrl" alt="">
+                                        <h3>
+                                            <span class="quickName">{{item.leaderName}}</span>
+                                            <span class="quickNum">的团还差{{item.surplusCount}}人</span>
+                                        </h3>
+                                        <span class="right" >快速参团</span>
+                                    </a>
+                                </RollNoticeItem>
+                            </RollNotice>
+                        </div>
+
+
+                        <div class="rules" v-if="kolStatus == 0" >
+                            <h3>活动玩法</h3>
+                            <span>开团  -  邀请好友  -  6小时内成团 -发货</span>
+                            <span class="ruleHeader">用户参与团购的具体玩法：</span>
+                            <span>1.点击链接进入商品详情，通过购买入口进入订单支付页，用户付款成功后，按页面提示邀好友一起学习</span>
+                            <span>2.支付人数在团购有效时间内达到门槛值，即成团；成团后有效时间内仍可以继续参团，达到团购结束时间后，团购结束。</span>
+                            <span>3.团单成功，订单进入发学习卡流程；团单失败，订单全额退款。</span>
+                            <span class="ruleHeader">参与限制：</span>
+                            <span>1.成团人数（包含团长）至少3人</span>
+                            <span>2.一名团长一次只能开一个团，已有团购结束方可开第二个团</span>
+                            <span class="ruleHeader">取消规则</span>
+                            <span>未成团时不可主动取消订单</span>
+                        </div>
+                        <div class="goodDetails " id="scroll" >
+                            <h3>商品详情</h3>
+                            <img src="../../assets/img/1.png" alt="">
+                            <img src="../../assets/img/2.png" alt="">
+                            <img src="../../assets/img/3.png" alt="">
+                            <img src="../../assets/img/4.png" alt="">
+                            <img src="../../assets/img/5.png" alt="">
+                            <img src="../../assets/img/6.png" alt="">
+                            <img src="../../assets/img/7.png" alt="">
+                            <img src="../../assets/img/8.png" alt="">
+                            <img src="../../assets/img/9.png" alt="">
+                            <img src="../../assets/img/10.png" alt="">
+                            <img src="../../assets/img/11.png" alt="">
+                            <img src="../../assets/img/12.png" alt="">
+                            <img src="../../assets/img/13.png" alt="">
+                            <img src="../../assets/img/14.png" alt="">
+                            <img src="../../assets/img/15.png" alt="">
+                            <img src="../../assets/img/16.png" alt="">
                         </div>
                     </div>
-                </div>
-                <div v-if="kolStatus == 0 && quickGroupList.length > 0">
-                    <RollNotice autoplay="3000"
-                                height="50"
-                                class="quickGroup"
-                                >
-                        <RollNoticeItem v-for="(item) in quickGroupList" >
-                            <a class="roll" :href="'./groupBuy.html?groupId='+item.groupId">
-                                <img :src="item.leaderHeadUrl" alt="">
-                                <h3>
-                                    <span class="quickName">{{item.leaderName}}</span>
-                                    <span class="quickNum">的团还差{{item.surplusCount}}人</span>
-                                </h3>
-                                <span class="right" >快速参团</span>
-                            </a>
-                        </RollNoticeItem>
-                    </RollNotice>
-                </div>
 
 
-                <div class="rules" v-if="kolStatus == 0" >
-                    <h3>活动玩法</h3>
-                    <span>开团  -  邀请好友  -  6小时内成团 -发货</span>
-                    <span class="ruleHeader">用户参与团购的具体玩法：</span>
-                    <span>1.点击链接进入商品详情，通过购买入口进入订单支付页，用户付款成功后，按页面提示邀好友一起学习</span>
-                    <span>2.支付人数在团购有效时间内达到门槛值，即成团；成团后有效时间内仍可以继续参团，达到团购结束时间后，团购结束。</span>
-                    <span>3.团单成功，订单进入发学习卡流程；团单失败，订单全额退款。</span>
-                    <span class="ruleHeader">参与限制：</span>
-                    <span>1.成团人数（包含团长）至少3人</span>
-                    <span>2.一名团长一次只能开一个团，已有团购结束方可开第二个团</span>
-                    <span class="ruleHeader">取消规则</span>
-                    <span>未成团时不可主动取消订单</span>
-                </div>
-                <div class="goodDetails">
-                    <h3>商品详情</h3>
-                    <img src="../../assets/img/1.png" alt="">
-                    <img src="../../assets/img/2.png" alt="">
-                    <img src="../../assets/img/3.png" alt="">
-                    <img src="../../assets/img/4.png" alt="">
-                    <img src="../../assets/img/5.png" alt="">
-                    <img src="../../assets/img/6.png" alt="">
-                    <img src="../../assets/img/7.png" alt="">
-                    <img src="../../assets/img/8.png" alt="">
-                    <img src="../../assets/img/9.png" alt="">
-                    <img src="../../assets/img/10.png" alt="">
-                    <img src="../../assets/img/11.png" alt="">
-                    <img src="../../assets/img/12.png" alt="">
-                    <img src="../../assets/img/13.png" alt="">
-                    <img src="../../assets/img/14.png" alt="">
-                    <img src="../../assets/img/15.png" alt="">
-                    <img src="../../assets/img/16.png" alt="">
-                </div>
-            </div>
-            <div class="start" @click="shareToFriend" v-if="groupInfo.status && groupInfo.status == 1 && countDownSenconds && countDownSenconds >= 0">
-                邀请好友参团
-                <h4><Countdown :second="countDownSenconds" :status="groupInfo.status" @toggle="countDownSenconds--" @end="timeOut" style="display: block"></Countdown></h4>
-            </div>
-            <div class="start" @click="openAllGroup" v-else>
-                我要开团
-            </div>
+                    <!--<div class="end" v-if="countDownSenconds == 0" >-->
+                    <!--<h3>本次活动已结束</h3>-->
+                    <!--</div>-->
+                    <div class="income" @click="goIncome" v-if="kolStatus == 1">
+                        <img src="./img/2.png" alt="">
+                    </div>
 
-            <!--<div class="end" v-if="countDownSenconds == 0" >-->
-            <!--<h3>本次活动已结束</h3>-->
-            <!--</div>-->
-            <div class="income" @click="goIncome" v-if="kolStatus == 1">
-                <img src="./img/2.png" alt="">
+
+                </div>
+
             </div>
             <Popup v-model="showOpen" :close-on-click-overlay="false" position="bottom">
                 <div class="wrap">
                     <h3>开团方式</h3>
                     <div class="indexBtn"
-                            @click="goCheckMobile"
+                         @click="goCheckMobile"
                     >
                         A：购买商品，并成为团长
                         <span class="btnWord">*支付成功后，团购开始倒计时</span>
@@ -102,16 +103,26 @@
                     <Button class="bottomBtn" @click="showOpen = false">取消</Button>
                 </div>
             </Popup>
-            <PayPopup :showMobile="showMobile" @closePay="showMobile = false " @wxPay="wxPay" ></PayPopup>
             <Share :share="share" @know="know"></Share>
+            <PayPopup :showMobile="showMobile" @closePay="showMobile = false " @wxPay="wxPay" ></PayPopup>
+            <div class="start" @click="shareToFriend" v-if="groupInfo.status && groupInfo.status == 1 && countDownSenconds && countDownSenconds >= 0">
+                邀请好友参团
+                <h4><Countdown :second="countDownSenconds" :status="groupInfo.status" @toggle="countDownSenconds--" @end="timeOut" style="display: block"></Countdown></h4>
+            </div>
+            <div class="start" @click="openAllGroup" v-else>
+                我要开团
+            </div>
         </div>
         <div v-else id="loading">
             <img src="../../assets/loading.gif" alt="">
         </div>
     </div>
+
+
 </template>
 
 <script>
+    import BScroll from 'better-scroll'
     import CommonMixin from '../commonMixin.js'
     import {RollNotice, RollNoticeItem} from 'vue-ydui/dist/lib.rem/rollnotice';
     import {leaderActivity} from "../../api/activity";
@@ -121,10 +132,10 @@
     import {creatLeaderOrder} from "../../api/order";
     import {crtGroupOpen} from "../../api/group";
     import {vxPay,shareFriend,shareFriendQ} from '../../utils/weixin'
-    import wx from 'weixin-js-sdk';
     import Countdown from '../../components/Countdown'
     import {accessLog} from "../../utils/app";
     import Config from '../../config/app'
+    import {wxQueryOrder} from "../../api/order";
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -263,8 +274,11 @@
                     this.countDownSenconds = r.countDownSenconds;
                 }).catch(_=>{});
             },
-            leaderPay(){
+            leaderPay(r){
                 // 支付成功后执行的回调
+
+                wxQueryOrder({orderNum:r}).then(response=>{});
+
                 leaderActivity({activityId:window.actId,kolStatus:this.kolStatus}).then(res=>{
                     console.log(res);
                     this.leaderHasBuy = res.leaderHasBuy;
@@ -290,6 +304,8 @@
                         window.location.href = Config.shareUrl +'groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || ''
                     },1000)
                 }).catch(_=>{});
+
+
             },
             wxPay(mobile){
                 let reportLog = {
@@ -369,9 +385,15 @@
                     this.shareFriend()
                 }).catch(_=>{});
             },
-
         },
         mounted() {
+
+            let wrapper = document.querySelector('#app')
+            let scroll = new BScroll(wrapper)
+
+
+
+
 
             this.kolStatus = window.URLPARAMS.kolStatus;
             let that = this;

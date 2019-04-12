@@ -1,111 +1,113 @@
 <template>
-    <div id="app">
+    <div>
         <div v-if="goodsInfo.sellPrice">
-            <h3 class="normal" v-if="groupInfo.status==1">拼团中</h3>
-            <h3 class="fail" v-if="groupInfo.status==3">拼团失败</h3>
-            <h3 class="success" v-if="groupInfo.status==2">拼团成功</h3>
-
-
-            <div class="groupDetails">
-                <h3>距结束只剩 <Countdown :second="countDownSenconds"  @end="timeOut" :status="groupInfo.status"></Countdown> </h3>
-                <div class="groupMember">
-                    <div class="groupLeader">
-                        <img :src="leaderHeadImg" alt="">
-                        <span>团长</span>
+            <div id="app">
+                <div>
+                    <h3 class="normal" v-if="groupInfo.status==1">拼团中</h3>
+                    <h3 class="fail" v-if="groupInfo.status==3">拼团失败</h3>
+                    <h3 class="success" v-if="groupInfo.status==2">拼团成功</h3>
+                    <div class="groupDetails">
+                        <h3>距结束只剩 <Countdown :second="countDownSenconds"  @end="timeOut" :status="groupInfo.status"></Countdown> </h3>
+                        <div class="groupMember">
+                            <div class="groupLeader">
+                                <img :src="leaderHeadImg" alt="">
+                                <span>团长</span>
+                            </div>
+                            <div class="groupFriends">
+                                <div class="emptyI" v-if="headList=='' || !headList[0]" style="margin-left:-72px">?</div>
+                                <img
+                                    v-else
+                                    alt=""
+                                    v-for="(item,index) in headList"
+                                    :src="item"
+                                    :style="'right:'+(index *18) + 'px'"
+                                >
+                            </div>
+                        </div>
+                        <h3 class="ad" v-if="userHasBuy == 0">就差你了，参团购买可省￥880</h3>
+                        <h3 class="ad" v-else>您已购买成功</h3>
+                        <em>好友拼团·成团发货·<a href="./tuikuan.html">未成团退款</a></em>
                     </div>
-                    <div class="groupFriends">
-                        <div class="emptyI" v-if="headList=='' || !headList[0]" style="margin-left:-72px">?</div>
-                        <img
-                                v-else
-                                alt=""
-                                v-for="(item,index) in headList"
-                                :src="item"
-                                :style="'right:'+(index *18) + 'px'"
-                        >
-                    </div>
-                </div>
-                <h3 class="ad" v-if="userHasBuy == 0">就差你了，参团购买可省￥880</h3>
-                <h3 class="ad" v-else>您已购买成功</h3>
-                <div v-if="countDownSenconds > 0">
-                    <Button class="indexBtn" @click="inGroup" v-if="isLeader == '0' && userHasBuy == '0'" >一键参团 {{goodsInfo.sellPrice || 0   | Money}}</Button>
-                    <Button class="indexBtn" v-else @click="shareToFriend">邀请好友拼团</Button>
-                </div>
-                <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0  && groupInfo.kolStatus == 1">请联系团长重新开团</Button>
-                <Button class="indexBtn"
-                        v-if="countDownSenconds <= 0  && groupInfo.kolStatus == 0"
-                        @click="restartGroup"
-                >重新开团</Button>
-                <em>好友拼团·成团发货·<a href="./tuikuan.html">未成团退款</a></em>
-            </div>
-            <div class="playGuide">
-                <h3>玩法说明</h3>
-                <div class="topPlay">
-                    <div class="ball"></div>
-                    <div class="ballLine"></div>
-                    <div class="ball"></div>
-                    <div class="ballLine"></div>
-                    <div class="ball"></div>
-                    <div class="ballLine"></div>
-                    <div class="ball"></div>
-                </div>
-                <div class="bottomPlay">
-                    <span>开团</span>
-                    <span>邀请好友</span>
-                    <span>6小时内成团</span>
-                    <span>成团即发货
-
+                    <div class="playGuide">
+                        <h3>玩法说明</h3>
+                        <div class="topPlay">
+                            <div class="ball"></div>
+                            <div class="ballLine"></div>
+                            <div class="ball"></div>
+                            <div class="ballLine"></div>
+                            <div class="ball"></div>
+                            <div class="ballLine"></div>
+                            <div class="ball"></div>
+                        </div>
+                        <div class="bottomPlay">
+                            <span>开团</span>
+                            <span>邀请好友</span>
+                            <span>6小时内成团</span>
+                            <span>成团即发货
                     </span>
-                </div>
-            </div>
+                        </div>
+                    </div>
 
-            <div class="goods">
-                <img :src="activity.imageUrl" alt="">
-                <div class="desc">
-                    <div class="title">
-                        <h3>{{goodsInfo.name}}</h3>
+                    <div class="goods">
+                        <img :src="activity.imageUrl" alt="">
+                        <div class="desc">
+                            <div class="title">
+                                <h3>{{goodsInfo.name}}</h3>
+                            </div>
+                            <div class="price">
+                                <span> 原价<em>{{goodsInfo.originPrice || 0   | Money}}</em></span>
+                                <span class="getGroup">{{activity.minCount || 0  }}人可成团</span>
+                            </div>
+                            <div class="sale">
+                                <span>{{goodsInfo.sellPrice || 0   | Money}}</span>
+                                <span class="saveMoney">省 {{goodsInfo.saveMoney || 0   | Money}}</span>
+                                <!--<strong class="countNum">已有{{orderCount || 0  }}人成团</strong>-->
+                            </div>
+                        </div>
                     </div>
-                    <div class="price">
-                        <span> 原价<em>{{goodsInfo.originPrice || 0   | Money}}</em></span>
-                        <span class="getGroup">{{activity.minCount || 0  }}人可成团</span>
-                    </div>
-                    <div class="sale">
-                        <span>{{goodsInfo.sellPrice || 0   | Money}}</span>
-                        <span class="saveMoney">省 {{goodsInfo.saveMoney || 0   | Money}}</span>
-                        <!--<strong class="countNum">已有{{orderCount || 0  }}人成团</strong>-->
+                    <div class="goodDetails">
+                        <h3>商品详情</h3>
+                        <img src="../../assets/img/1.png" alt="">
+                        <img src="../../assets/img/2.png" alt="">
+                        <img src="../../assets/img/3.png" alt="">
+                        <img src="../../assets/img/4.png" alt="">
+                        <img src="../../assets/img/5.png" alt="">
+                        <img src="../../assets/img/6.png" alt="">
+                        <img src="../../assets/img/7.png" alt="">
+                        <img src="../../assets/img/8.png" alt="">
+                        <img src="../../assets/img/9.png" alt="">
+                        <img src="../../assets/img/10.png" alt="">
+                        <img src="../../assets/img/11.png" alt="">
+                        <img src="../../assets/img/12.png" alt="">
+                        <img src="../../assets/img/13.png" alt="">
+                        <img src="../../assets/img/14.png" alt="">
+                        <img src="../../assets/img/15.png" alt="">
+                        <img src="../../assets/img/16.png" alt="">
                     </div>
                 </div>
             </div>
-            <div class="goodDetails">
-                <h3>商品详情</h3>
-                <img src="../../assets/img/1.png" alt="">
-                <img src="../../assets/img/2.png" alt="">
-                <img src="../../assets/img/3.png" alt="">
-                <img src="../../assets/img/4.png" alt="">
-                <img src="../../assets/img/5.png" alt="">
-                <img src="../../assets/img/6.png" alt="">
-                <img src="../../assets/img/7.png" alt="">
-                <img src="../../assets/img/8.png" alt="">
-                <img src="../../assets/img/9.png" alt="">
-                <img src="../../assets/img/10.png" alt="">
-                <img src="../../assets/img/11.png" alt="">
-                <img src="../../assets/img/12.png" alt="">
-                <img src="../../assets/img/13.png" alt="">
-                <img src="../../assets/img/14.png" alt="">
-                <img src="../../assets/img/15.png" alt="">
-                <img src="../../assets/img/16.png" alt="">
+            <div v-if="countDownSenconds > 0">
+                <Button class="indexBtn" @click="inGroup" v-if="isLeader == '0' && userHasBuy == '0'" >一键参团 {{goodsInfo.sellPrice || 0   | Money}}</Button>
+                <Button class="indexBtn" v-else @click="shareToFriend">邀请好友拼团</Button>
             </div>
+            <Button class="indexBtn endBtn" v-if="countDownSenconds <= 0  && groupInfo.kolStatus == 1">请联系团长重新开团</Button>
+            <Button class="indexBtn"
+                    v-if="countDownSenconds <= 0  && groupInfo.kolStatus == 0"
+                    @click="restartGroup"
+            >重新开团</Button>
             <PayPopup :showMobile="showMobile" @closePay="showMobile = false" @wxPay="wxPay"></PayPopup>
             <Share :share="share" @know="share = false"></Share>
         </div>
         <div v-else id="loading">
             <img src="../../assets/loading.gif" alt="">
         </div>
-
     </div>
+
 </template>
 
 <script>
     import {Button,Popup} from 'vant'
+    import BScroll from 'better-scroll'
     import groupProgress from "./groupProgress";
     import CommonMixin from '../commonMixin.js'
     import {userActivity} from "../../api/activity";
@@ -267,6 +269,11 @@
 
         },
         mounted() {
+
+            let wrapper = document.querySelector('#app')
+            let scroll = new BScroll(wrapper)
+
+
             let that = this
             this.id = getUrlInfo('groupId');
             document.addEventListener("visibilitychange",function(){

@@ -19,3 +19,11 @@ export function creatGeneralOrder(params) {
         data: params
     })
 }
+
+export function wxQueryOrder(params) {
+    return request({
+        url: '/sale/api/order/wxQueryOrder',
+        method: 'post',
+        data:params
+    })
+}

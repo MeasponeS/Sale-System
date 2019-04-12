@@ -17,7 +17,7 @@
             <span>提现金额</span>
             <Field v-model="getMoney"
                    class="input"
-                   type="tel"
+                   type="number"
                    placeholder="不能超过账户余额"
                    @input="checkMoney"
             ></Field>

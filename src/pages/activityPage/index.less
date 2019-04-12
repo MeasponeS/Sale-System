@@ -1,5 +1,7 @@
 #app{
-    width: 375px;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
     img{
         display: block;
     }
@@ -179,39 +181,7 @@
             }
         }
     }
-    .start{
-        position: fixed;
-        bottom: 0;
-        width: 375px;
-        height: 60px;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-        background: #FF4000;
-        font-size: 18px;
-        color: #fff;
-        h4{
-            margin: 0;
-            .countNum{
-                color: #fff;
-                span{
-                    background: transparent;
-                    font-size: 14px;
-                    color: #fff;
-                }
-            }
-        }
-    }
-    .end{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        h3{
-            font-size: 16px;
-            color: #333;
-        }
-    }
+
     .income{
         position: fixed;
         right: 15px;
@@ -222,51 +192,85 @@
             height: 70px;
         }
     }
-    .wrap{
-        width: 100%;
-        height: 100%;
+}
+.start{
+    position: fixed;
+    bottom: 0;
+    width: 375px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background: #FF4000;
+    font-size: 18px;
+    color: #fff;
+    h4{
+        margin: 0;
+        .countNum{
+            color: #fff;
+            span{
+                background: transparent;
+                font-size: 14px;
+                color: #fff;
+            }
+        }
+    }
+}
+
+.wrap{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h3{
+        margin: 15px;
+        font-weight: normal;
+        font-size: 19px;
+        color: #333;
+    }
+    .indexBtn{
+        width:285px;
+        height:60px;
+        background:linear-gradient(0deg,rgba(255,64,0,1),rgba(255,119,0,1));
+        border-radius: 30px;
+        color: #fff;
+        border:0;
+        margin-bottom: 30px;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        h3{
-            margin: 15px;
-            font-weight: normal;
-            font-size: 19px;
-            color: #333;
-        }
-        .indexBtn{
-            width:285px;
-            height:60px;
-            background:linear-gradient(0deg,rgba(255,64,0,1),rgba(255,119,0,1));
-            border-radius: 30px;
-            color: #fff;
-            border:0;
-            margin-bottom: 30px;
+        font-size: 16px;
+        letter-spacing: 2px;
+        .btnWord{
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-            font-size: 16px;
-            letter-spacing: 2px;
-            .btnWord{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                color: #eee;
-                font-size: 13px;
-                margin-top: 4px;
-                margin-left: 32px;
-                letter-spacing: 0;
-            }
+            color: #eee;
+            font-size: 13px;
+            margin-top: 4px;
+            margin-left: 32px;
+            letter-spacing: 0;
         }
-        .bottomBtn{
-            display: block;
-            width: 100%;
-            height: 60px;
-            color: #999999;
-            font-size: 15px;
-            border-top:2px solid #F8F8F8;
-        }
+    }
+    .bottomBtn{
+        display: block;
+        width: 100%;
+        height: 60px;
+        color: #999999;
+        font-size: 15px;
+        border-top:2px solid #F8F8F8;
+    }
+}
+.end{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h3{
+        font-size: 16px;
+        color: #333;
     }
 }
