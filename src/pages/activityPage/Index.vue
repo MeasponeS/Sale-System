@@ -471,11 +471,17 @@
                 }
             }).catch(_=>{});
 
+            let time = this.quickGroupList.length === 0? 1000:this.quickGroupList.length * 3000 - 500;
 
             if(this.kolStatus == 0){
                 this.timer = window.setInterval(()=>{
                     quickGroupList({activityId:window.actId}).then(r=>{
-                        console.log(this.quickGroupList);
+                        if(this.quickGroupList.length > 0){
+                            if(this.quickGroupList[this.quickGroupList.length -1].groupId == r[0].groupId){
+                                r.push(r[0])
+                                r.shift()
+                            }
+                        }
                         this.quickGroupList = []
                         this.$nextTick(_=>{
                             // this.$set(this,'quickGroupList',r)
@@ -483,7 +489,7 @@
                         })
 
                     }).catch(_=>{})
-                },8500)
+                },time)
             }
 
 
