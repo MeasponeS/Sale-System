@@ -33,6 +33,7 @@
                 </div>
                 <div class="goodDetails">
                     <h3>商品详情</h3>
+                    <img src="../../assets/img/0.png" alt="">
                     <img src="../../assets/img/1.png" alt="">
                     <img src="../../assets/img/2.png" alt="">
                     <img src="../../assets/img/3.png" alt="">

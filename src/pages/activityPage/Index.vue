@@ -56,6 +56,7 @@
                         </div>
                         <div class="goodDetails " id="scroll" >
                             <h3>商品详情</h3>
+                            <img src="../../assets/img/0.png" alt="">
                             <img src="../../assets/img/1.png" alt="">
                             <img src="../../assets/img/2.png" alt="">
                             <img src="../../assets/img/3.png" alt="">
@@ -79,13 +80,12 @@
                     <!--<div class="end" v-if="countDownSenconds == 0" >-->
                     <!--<h3>本次活动已结束</h3>-->
                     <!--</div>-->
-                    <div class="income" @click="goIncome" v-if="kolStatus == 1">
-                        <img src="./img/2.png" alt="">
-                    </div>
-
 
                 </div>
 
+            </div>
+            <div class="income" @click="goIncome" v-if="kolStatus == 1">
+                <img src="./img/2.png" alt="">
             </div>
             <Popup v-model="showOpen" :close-on-click-overlay="false" position="bottom">
                 <div class="wrap">
@@ -277,33 +277,35 @@
             leaderPay(r){
                 // 支付成功后执行的回调
 
-                wxQueryOrder({orderNum:r}).then(response=>{});
+                wxQueryOrder({orderNum:r}).then(response=>{
+                    console.log(response);
+                });
 
-                leaderActivity({activityId:window.actId,kolStatus:this.kolStatus}).then(res=>{
-                    console.log(res);
-                    this.leaderHasBuy = res.leaderHasBuy;
-                    this.goodsInfo = {...res.goodsInfo};
-                    this.activity = {...res.activity};
-                    this.quickGroupList = res.quickGroupList || [];
-                    if(res.groupInfo.kolStatus == this.kolStatus){
-                        console.log('相等');
-                        this.groupInfo = {...res.groupInfo};
-                        if(res.groupInfo.status == 0){
-                            this.orderCount = 0
-                        } else {
-                            this.orderCount = res.orderCount;
-                        }
-                    }
-                    this.countDownSenconds = res.countDownSenconds;
-                    console.log('准备分享');
-                    this.shareFriend()
-                    console.log('分享结束');
-                    // 支付成功后跳转至拼团页
-                    window.setTimeout(()=>{
-                        console.log('马上跳转');
-                        window.location.href = Config.shareUrl +'groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || ''
-                    },1000)
-                }).catch(_=>{});
+                // leaderActivity({activityId:window.actId,kolStatus:this.kolStatus}).then(res=>{
+                //     console.log(res);
+                //     this.leaderHasBuy = res.leaderHasBuy;
+                //     this.goodsInfo = {...res.goodsInfo};
+                //     this.activity = {...res.activity};
+                //     this.quickGroupList = res.quickGroupList || [];
+                //     if(res.groupInfo.kolStatus == this.kolStatus){
+                //         console.log('相等');
+                //         this.groupInfo = {...res.groupInfo};
+                //         if(res.groupInfo.status == 0){
+                //             this.orderCount = 0
+                //         } else {
+                //             this.orderCount = res.orderCount;
+                //         }
+                //     }
+                //     this.countDownSenconds = res.countDownSenconds;
+                //     console.log('准备分享');
+                //     this.shareFriend()
+                //     console.log('分享结束');
+                //     // 支付成功后跳转至拼团页
+                //     window.setTimeout(()=>{
+                //         console.log('马上跳转');
+                //         window.location.href = Config.shareUrl +'groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || ''
+                //     },1000)
+                // }).catch(_=>{});
 
 
             },
