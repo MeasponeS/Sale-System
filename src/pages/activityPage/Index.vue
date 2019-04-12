@@ -475,9 +475,7 @@
             if(this.kolStatus == 0){
                 this.timer = window.setInterval(()=>{
                     quickGroupList({activityId:window.actId}).then(r=>{
-                       r.forEach((item,index)=>{
-                           this.quickGroupList[index] = item
-                       })
+                      this.$set(this,'quickGroupList',r)
                     }).catch(_=>{})
                 },5000)
             }
