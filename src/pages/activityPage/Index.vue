@@ -475,7 +475,13 @@
             if(this.kolStatus == 0){
                 this.timer = window.setInterval(()=>{
                     quickGroupList({activityId:window.actId}).then(r=>{
-                      this.$set(this,'quickGroupList',r)
+                        console.log(this.quickGroupList);
+                        this.quickGroupList = []
+                        this.$nextTick(_=>{
+                            // this.$set(this,'quickGroupList',r)
+                            this.quickGroupList = r || []
+                        })
+
                     }).catch(_=>{})
                 },5000)
             }
