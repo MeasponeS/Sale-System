@@ -8,7 +8,7 @@
                         <img src="./img/long.png" alt="">
                     </div>
                     <div class="top">
-                        <div class="goods">
+                        <div class="goods" @click="goMyGroup">
                             <div class="good">
                                 <div class="goodsName">
                                     <h3>{{goodsInfo.name || '无'}}</h3>
@@ -18,7 +18,7 @@
                                     <span style="font-weight: bold">拼团价{{goodsInfo.sellPrice || 0   | Money}}</span>
                                     <em>省{{goodsInfo.saveMoney || 0   | Money}}</em>
                                     <strong>原价<span>{{goodsInfo.originPrice || 0   | Money}}</span></strong>
-                                    <strong class="countNum">已有{{orderCount || 0  }}人成团</strong>
+                                    <strong class="countNum">当前团已有{{orderCount || 0  }}人成团</strong>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +125,7 @@
     import BScroll from 'better-scroll'
     import CommonMixin from '../commonMixin.js'
     import {RollNotice, RollNoticeItem} from 'vue-ydui/dist/lib.rem/rollnotice';
-    import {leaderActivity} from "../../api/activity";
+    import {leaderActivity,quickGroupList} from "../../api/activity";
     import {Popup,Button,Toast} from 'vant';
     import PayPopup from '../../components/PayPopup'
     import Share from '../../components/Share'
@@ -161,6 +161,14 @@
             }
         },
         methods: {
+            goMyGroup(){
+                if((this.groupInfo.status == 1 || this.groupInfo.status == 2) && this.groupInfo.id != null){
+                    window.location.href = './groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || -1
+                } else {
+                    console.log('======');
+                }
+            },
+
             shareToFriend(){
                 this.share = true;
                 let reportLog = {
@@ -209,7 +217,7 @@
                         } else {
                             this.orderCount = r.orderCount;
                         }
-                        if(this.groupInfo.status == 1 && this.groupInfo.id != null ){
+                        if((this.groupInfo.status == 1 || this.groupInfo.status == 2) && this.groupInfo.id != null ){
                             this.shareFriend()
                         }
                     }
@@ -288,7 +296,6 @@
                     this.activity = {...res.activity};
                     this.quickGroupList = res.quickGroupList || [];
                     if(res.groupInfo.kolStatus == this.kolStatus){
-                        console.log('相等');
                         this.groupInfo = {...res.groupInfo};
                         if(res.groupInfo.status == 0){
                             this.orderCount = 0
@@ -297,9 +304,7 @@
                         }
                     }
                     this.countDownSenconds = res.countDownSenconds;
-                    console.log('准备分享');
                     this.shareFriend()
-                    console.log('分享结束');
                     // 支付成功后跳转至拼团页
                     window.setTimeout(()=>{
                         console.log('马上跳转');
@@ -331,7 +336,6 @@
                 }).catch(_=>{})
             },
             openGroup(){
-                this.share = true;
                 let reportLog = {
                     activityId:window.actId,
                     groupId:this.groupInfo.id || '',
@@ -362,8 +366,9 @@
                         this.quickGroupList = res.quickGroupList || [];
                         this.countDownSenconds = res.countDownSenconds;
 
-
-                        this.shareFriend()
+                        window.setTimeout(()=>{
+                            window.location.href = './groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || -1
+                        },1000)
 
 
                     }).catch(_=>{});
@@ -391,7 +396,14 @@
         mounted() {
 
             let wrapper = document.querySelector('#app')
-            let scroll = new BScroll(wrapper)
+            const options = {
+
+                click: true,
+
+                taps: true
+
+            };
+            let scroll = new BScroll(wrapper,options)
 
 
 
@@ -452,10 +464,17 @@
                     clickEventName:''
                 };
                 accessLog(reportLog);
-                if(this.groupInfo.status == 1 && this.groupInfo.id != null ){
+                if((this.groupInfo.status == 1 || this.groupInfo.status == 2 ) && this.groupInfo.id != null ){
                     this.shareFriend()
                 }
             }).catch(_=>{});
+
+
+            window.setInterval(()=>{
+                quickGroupList({activityId:window.actId}).then(r=>{
+                    this.quickGroupList = r.quickGroupList || [];
+                }).catch(_=>{})
+            })
 
 
 

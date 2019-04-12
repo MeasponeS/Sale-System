@@ -7,6 +7,7 @@
                         <div class="left">
                             <h3>购买人数</h3>
                             <span>{{orderCount || 0}}</span>
+                            <h4>注:如果拼团失败，则购买人数会相应减少</h4>
                         </div>
                         <div class="right" @click="goWithdraw">查看详情</div>
                     </div>

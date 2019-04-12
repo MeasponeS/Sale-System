@@ -84,3 +84,14 @@ export function withdraw(params) {
         data: params
     })
 }
+
+
+// 提现接口
+export function quickGroupList(params) {
+    return request({
+        closeLoading:true,
+        url: '/sale/api/activity/quickGroupList',
+        method: 'get',
+        params: params
+    })
+}

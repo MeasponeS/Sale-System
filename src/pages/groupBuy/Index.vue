@@ -24,8 +24,9 @@
                                 >
                             </div>
                         </div>
-                        <h3 class="ad" v-if="userHasBuy == 0">就差你了，参团购买可省￥880</h3>
-                        <h3 class="ad" v-else>您已购买成功</h3>
+                        <h3 class="ad" v-if="groupInfo.status == 1 && userHasBuy == 0">就差你了，参团购买可省￥880</h3>
+                        <h3 class="ad" v-if="(groupInfo.status == 1 && userHasBuy == 1)||groupInfo.status == 2">{{orderCount || 0}}人参团/{{activity.minCount || 0}}人成团</h3>
+                        <h3 class="ad" v-if="groupInfo.status == 3">请联系团长重新开团</h3>
                         <em>好友拼团·成团发货·<a href="./tuikuan.html">未成团退款</a></em>
                     </div>
                     <div class="playGuide">
