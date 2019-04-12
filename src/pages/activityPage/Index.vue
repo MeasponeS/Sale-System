@@ -471,9 +471,9 @@
 
 
             if(this.kolStatus == 0){
-                window.setInterval(()=>{
+                let timer = window.setInterval(()=>{
                     quickGroupList({activityId:window.actId}).then(r=>{
-                        this.quickGroupList = r.quickGroupList || [];
+                        this.quickGroupList = r || [];
                     }).catch(_=>{})
                 },5000)
             }
@@ -483,7 +483,7 @@
 
         },
         beforeDestroy: function () {
-
+            alert('destory')
         },
         components: {Popup,Button,PayPopup,Share,Countdown,RollNotice,RollNoticeItem}
     }
