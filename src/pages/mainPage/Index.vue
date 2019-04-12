@@ -1,55 +1,57 @@
 <template>
-    <div id="app">
-        <div v-if="goodsInfo.sellPrice">
-            <div class="top">
-                <div class="header">
-                    <div class="left">
-                        <h3>购买人数</h3>
-                        <span>{{orderCount || 0}}</span>
-                    </div>
-                    <div class="right" @click="goWithdraw">查看详情</div>
-                </div>
-                <div class="goods">
-                    <h3>本次团购商品</h3>
-                    <div class="good">
-                        <div class="goodsName">
-                            <h3>{{goodsInfo.name || '无'}}</h3>
-                            <span>{{activity.minCount || 0}}人可成团</span>
+    <div>
+        <div v-show="goodsInfo.sellPrice" >
+            <div id="app">
+                <div class="top">
+                    <div class="header">
+                        <div class="left">
+                            <h3>购买人数</h3>
+                            <span>{{orderCount || 0}}</span>
                         </div>
-                        <div class="goodsPrice">
-                            <span>拼团价{{goodsInfo.sellPrice || 0 | Money}}</span>
-                            <em>省{{goodsInfo.saveMoney ||0 | Money}}</em>
-                            <strong>原价 <span>{{goodsInfo.originPrice || 0 | Money}}</span></strong>
+                        <div class="right" @click="goWithdraw">查看详情</div>
+                    </div>
+                    <div class="goods">
+                        <h3>本次团购商品</h3>
+                        <div class="good">
+                            <div class="goodsName">
+                                <h3>{{goodsInfo.name || '无'}}</h3>
+                                <span>{{activity.minCount || 0}}人可成团</span>
+                            </div>
+                            <div class="goodsPrice">
+                                <span>拼团价{{goodsInfo.sellPrice || 0 | Money}}</span>
+                                <em>省{{goodsInfo.saveMoney ||0 | Money}}</em>
+                                <strong>原价 <span>{{goodsInfo.originPrice || 0 | Money}}</span></strong>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="rules">
-                    <h3>活动规则</h3>
-                    <span>1. 一键开团成为团长，享受折扣优惠；</span>
-                    <span>2.邀请好友拼团享受折扣优惠，成团后你获得推广返佣</span>
-                    <span>3.推广返佣与购买人数正相关，每1人购买，推广返佣增加￥338.3</span>
-                    <span>4.拼团结束48小时后，推广返佣会划入到账户余额，支持提现</span>
-                    <span>5.工作人员会在每月1号处理上个月的提现申请，1-3天内到账</span>
-                </div>
-                <div class="goodDetails">
-                    <h3>商品详情</h3>
-                    <img src="../../assets/img/0.png" alt="">
-                    <img src="../../assets/img/1.png" alt="">
-                    <img src="../../assets/img/2.png" alt="">
-                    <img src="../../assets/img/3.png" alt="">
-                    <img src="../../assets/img/4.png" alt="">
-                    <img src="../../assets/img/5.png" alt="">
-                    <img src="../../assets/img/6.png" alt="">
-                    <img src="../../assets/img/7.png" alt="">
-                    <img src="../../assets/img/8.png" alt="">
-                    <img src="../../assets/img/9.png" alt="">
-                    <img src="../../assets/img/10.png" alt="">
-                    <img src="../../assets/img/11.png" alt="">
-                    <img src="../../assets/img/12.png" alt="">
-                    <img src="../../assets/img/13.png" alt="">
-                    <img src="../../assets/img/14.png" alt="">
-                    <img src="../../assets/img/15.png" alt="">
-                    <img src="../../assets/img/16.png" alt="">
+                    <div class="rules">
+                        <h3>活动规则</h3>
+                        <span>1. 一键开团成为团长，享受折扣优惠；</span>
+                        <span>2.邀请好友拼团享受折扣优惠，成团后你获得推广返佣</span>
+                        <span>3.推广返佣与购买人数正相关，每1人购买，推广返佣增加￥338.3</span>
+                        <span>4.拼团结束48小时后，推广返佣会划入到账户余额，支持提现</span>
+                        <span>5.工作人员会在每月1号处理上个月的提现申请，1-3天内到账</span>
+                    </div>
+                    <div class="goodDetails">
+                        <h3>商品详情</h3>
+                        <img src="../../assets/img/0.png" alt="">
+                        <img src="../../assets/img/1.png" alt="">
+                        <img src="../../assets/img/2.png" alt="">
+                        <img src="../../assets/img/3.png" alt="">
+                        <img src="../../assets/img/4.png" alt="">
+                        <img src="../../assets/img/5.png" alt="">
+                        <img src="../../assets/img/6.png" alt="">
+                        <img src="../../assets/img/7.png" alt="">
+                        <img src="../../assets/img/8.png" alt="">
+                        <img src="../../assets/img/9.png" alt="">
+                        <img src="../../assets/img/10.png" alt="">
+                        <img src="../../assets/img/11.png" alt="">
+                        <img src="../../assets/img/12.png" alt="">
+                        <img src="../../assets/img/13.png" alt="">
+                        <img src="../../assets/img/14.png" alt="">
+                        <img src="../../assets/img/15.png" alt="">
+                        <img src="../../assets/img/16.png" alt="">
+                    </div>
                 </div>
             </div>
             <div class="start" @click="shareToFriend" >
@@ -61,10 +63,11 @@
             <!--</div>-->
             <Share :share="share" @know="share = false"></Share>
         </div>
-        <div v-else id="loading">
+        <div v-show="!goodsInfo.sellPrice" id="loading">
             <img src="../../assets/loading.gif" alt="">
         </div>
     </div>
+
 </template>
 
 <script>
@@ -75,6 +78,7 @@
     import {shareFriend,shareFriendQ} from "../../utils/weixin";
     import {accessLog} from "../../utils/app";
     import Config from '../../config/app'
+    import BScroll from 'better-scroll'
     export default {
         name: 'app',
         mixins: [CommonMixinP],
@@ -152,7 +156,8 @@
             // }
         },
         mounted() {
-
+            let wrapper = document.querySelector('#app')
+            let scroll = new BScroll(wrapper)
         },
         beforeDestroy: function () {
 
