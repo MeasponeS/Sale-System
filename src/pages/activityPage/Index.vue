@@ -393,6 +393,27 @@
                     this.shareFriend()
                 }).catch(_=>{});
             },
+            updateList(){
+                let time = this.quickGroupList.length === 0? 2500:this.quickGroupList.length * 3000 - 500;
+                if(this.kolStatus == 0){
+                    quickGroupList({activityId:window.actId}).then(r=>{
+                        if(this.quickGroupList.length > 0){
+                            if(this.quickGroupList[this.quickGroupList.length -1].groupId == r[0].groupId){
+                                r.push(r[0])
+                                r.shift()
+                            }
+                        }
+                        this.quickGroupList = []
+                        this.$nextTick(_=>{
+                            // this.$set(this,'quickGroupList',r)
+                            this.quickGroupList = r || []
+                        })
+                        this.timer = setTimeout(()=>{
+                            this.updateList()
+                        },time)
+                    }).catch(_=>{})
+                }
+            }
         },
         mounted() {
 
@@ -414,7 +435,7 @@
 
                 if(document.visibilityState=="hidden"){
                     clearInterval(window.Countdown)
-                    clearInterval(this.timer)
+                    clearTimeout(this.timer)
                     //do something else
                     //计时器罢工
                 }
@@ -471,26 +492,10 @@
                 }
             }).catch(_=>{});
 
-            let time = this.quickGroupList.length === 0? 1000:this.quickGroupList.length * 3000 - 500;
+            this.updateList()
 
-            if(this.kolStatus == 0){
-                this.timer = window.setInterval(()=>{
-                    quickGroupList({activityId:window.actId}).then(r=>{
-                        if(this.quickGroupList.length > 0){
-                            if(this.quickGroupList[this.quickGroupList.length -1].groupId == r[0].groupId){
-                                r.push(r[0])
-                                r.shift()
-                            }
-                        }
-                        this.quickGroupList = []
-                        this.$nextTick(_=>{
-                            // this.$set(this,'quickGroupList',r)
-                            this.quickGroupList = r || []
-                        })
 
-                    }).catch(_=>{})
-                },time)
-            }
+
 
 
 
