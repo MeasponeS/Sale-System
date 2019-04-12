@@ -152,7 +152,8 @@
                 groupInfo:{},
                 countDownSenconds:'',
                 kolStatus:'',      // 是否为kol团长或普通团长+
-                quickGroupList:[]   // 快速参团列表
+                quickGroupList:[],   // 快速参团列表
+                timer:''
             }
         },
         filters:{
@@ -413,6 +414,7 @@
 
                 if(document.visibilityState=="hidden"){
                     clearInterval(window.Countdown)
+                    clearInterval(this.timer)
                     //do something else
                     //计时器罢工
                 }
@@ -471,9 +473,11 @@
 
 
             if(this.kolStatus == 0){
-                let timer = window.setInterval(()=>{
+                this.timer = window.setInterval(()=>{
                     quickGroupList({activityId:window.actId}).then(r=>{
-                        this.quickGroupList = r || [];
+                       r.forEach((item,index)=>{
+                           this.quickGroupList[index] = item
+                       })
                     }).catch(_=>{})
                 },5000)
             }
@@ -483,7 +487,6 @@
 
         },
         beforeDestroy: function () {
-            alert('destory')
         },
         components: {Popup,Button,PayPopup,Share,Countdown,RollNotice,RollNoticeItem}
     }
