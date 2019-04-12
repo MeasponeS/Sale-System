@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="goodsInfo.sellPrice">
+        <div v-show="goodsInfo.sellPrice">
             <div id="app">
                 <div >
                     <img class="topImg" :src="activity.imageUrl" alt="">
@@ -113,7 +113,7 @@
                 我要开团
             </div>
         </div>
-        <div v-else id="loading">
+        <div v-show="!goodsInfo.sellPrice" id="loading">
             <img src="../../assets/loading.gif" alt="">
         </div>
     </div>
@@ -390,8 +390,6 @@
 
             let wrapper = document.querySelector('#app')
             let scroll = new BScroll(wrapper)
-
-
 
 
 

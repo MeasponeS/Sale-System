@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="goodsInfo.sellPrice">
+        <div v-show="goodsInfo.sellPrice">
             <div id="app">
                 <div>
                     <h3 class="normal" v-if="groupInfo.status==1">拼团中</h3>
@@ -98,7 +98,7 @@
             <PayPopup :showMobile="showMobile" @closePay="showMobile = false" @wxPay="wxPay"></PayPopup>
             <Share :share="share" @know="share = false"></Share>
         </div>
-        <div v-else id="loading">
+        <div v-show="!goodsInfo.sellPrice" id="loading">
             <img src="../../assets/loading.gif" alt="">
         </div>
     </div>
