@@ -157,6 +157,9 @@
             // }
         },
         mounted() {
+
+
+            
             let wrapper = document.querySelector('#app')
 
             const options = {
