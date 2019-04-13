@@ -158,7 +158,15 @@
         },
         mounted() {
             let wrapper = document.querySelector('#app')
-            let scroll = new BScroll(wrapper)
+
+            const options = {
+
+                click: true,
+
+                taps: true
+
+            };
+            let scroll = new BScroll(wrapper,options)
         },
         beforeDestroy: function () {
 
