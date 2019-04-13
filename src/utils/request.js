@@ -8,7 +8,6 @@ const service = Axios.create({
     baseURL: Config.apiUrl + '/' + Config.apiPrefix,
     headers: {
         'Accept': '*/*',
-        'Cache-Control': 'no-cache'
     },
     timeout: Config.timeout
 });
