@@ -165,6 +165,7 @@
             goMyGroup(){
                 if((this.groupInfo.status == 1 || this.groupInfo.status == 2) && this.groupInfo.id != null){
                     clearInterval(window.Countdown)
+                    this.countDownSenconds = ''
                     window.location.href = './groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || -1
                 } else {
                     console.log('======');
@@ -309,7 +310,8 @@
                     this.shareFriend()
                     // 支付成功后跳转至拼团页
                     window.setTimeout(()=>{
-                        console.log('马上跳转');
+                        clearInterval(window.Countdown)
+                        this.countDownSenconds = ''
                         window.location.href = Config.shareUrl +'groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || -1
                     },1000)
                 }).catch(_=>{});
@@ -370,6 +372,7 @@
 
                         window.setTimeout(()=>{
                             clearInterval(window.Countdown)
+                            this.countDownSenconds = ''
                             window.location.href = './groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || -1
                         },1000)
 
@@ -460,7 +463,7 @@
                                 that.orderCount = r.orderCount;
                             }
                         }
-                        this.quickGroupList = r.quickGroupList || [];
+                        that.quickGroupList = r.quickGroupList || [];
                         that.countDownSenconds = r.countDownSenconds;
                         that.shareFriend()
                     }).catch(_=>{});
