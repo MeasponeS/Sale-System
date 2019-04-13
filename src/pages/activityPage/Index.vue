@@ -308,10 +308,10 @@
                     this.countDownSenconds = res.countDownSenconds;
                     this.shareFriend()
                     // 支付成功后跳转至拼团页
-                    window.setTimeout(()=>{
-                        console.log('马上跳转');
-                        window.location.href = Config.shareUrl +'groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || -1
-                    },1000)
+                    // window.setTimeout(()=>{
+                    //     console.log('马上跳转');
+                    //     window.location.href = Config.shareUrl +'groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || -1
+                    // },1000)
                 }).catch(_=>{});
 
 
@@ -369,6 +369,7 @@
                         this.countDownSenconds = res.countDownSenconds;
 
                         window.setTimeout(()=>{
+                            clearInterval(window.Countdown)
                             window.location.href = './groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || -1
                         },1000)
 
