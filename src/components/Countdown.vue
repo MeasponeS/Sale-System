@@ -41,6 +41,7 @@
         },
         methods:{
             initFn(){
+                clearInterval(window.Countdown);
                 if (this.second <= 0) return;
                 let initSecond = this.second;
                 let that = this;
