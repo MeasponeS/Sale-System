@@ -403,10 +403,9 @@
                                 r.shift()
                             }
                         }
-                        //this.quickGroupList = []
+                        this.quickGroupList = []
                         this.$nextTick(_=>{
                             // this.$set(this,'quickGroupList',r)
-                            this.quickGroupList = []
                             this.quickGroupList = r || []
                         })
                         this.timer = setTimeout(()=>{
