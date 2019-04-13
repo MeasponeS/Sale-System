@@ -4,6 +4,7 @@
         <div class="money orderPeople">
             <span>购买人数</span>
             <span>{{income.orderCount || 0  }}人</span>
+            <em class="notice">注:如果拼团失败，则购买人数会相应减少</em>
         </div>
         <div class="money" style="border-bottom: 1px solid #f8f8f8">
             <span>账户余额</span>
@@ -189,7 +190,11 @@
     background: #F8F8F8;
     height: 100vh;
     .orderPeople{
+        position: relative;
         margin-bottom: 10px;
+        span{
+            transform: translateY(-5px);
+        }
     }
     .money{
         background: #fff;
@@ -290,6 +295,15 @@
             margin-bottom: 28px;
             border:0;
         }
+    }
+    .notice{
+        display: block;
+        color: red;
+        font-style: normal;
+        font-size: 12px;
+        position: absolute;
+        top: 33px;
+        left: 15px;
     }
 }
 </style>
