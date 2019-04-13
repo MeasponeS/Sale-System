@@ -11,6 +11,7 @@ export function activityReward(params) {
 // 团长活动页
 export function leaderActivity(params) {
     return request({
+        closeCache:true,
         url: '/sale/api/activity/leaderActivity',
         method: 'get',
         params: params

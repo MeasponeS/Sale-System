@@ -25,6 +25,10 @@ service.interceptors.request.use(
                 message: '加载中...'
             });
         }
+        console.log(config);
+        if(!config.closeCache){
+            config.headers['Cache-Control'] =' no-cache'
+        }
 
         let noParameters = config.url.indexOf('?')  == -1;
         //config.headers['X-Token'] = getToken() //
