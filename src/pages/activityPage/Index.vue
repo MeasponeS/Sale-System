@@ -18,7 +18,7 @@
                                     <span style="font-weight: bold">拼团价{{goodsInfo.sellPrice || 0   | Money}}</span>
                                     <em>省{{goodsInfo.saveMoney || 0   | Money}}</em>
                                     <strong>原价<span>{{goodsInfo.originPrice || 0   | Money}}</span></strong>
-                                    <strong class="countNum">当前团已有{{orderCount || 0  }}人成团</strong>
+                                    <strong class="countNum" v-if="groupInfo.status && (groupInfo.status == 1 || groupInfo.status == 2) && countDownSenconds && countDownSenconds >= 0">当前团已有{{orderCount || 0  }}人参团</strong>
                                 </div>
                             </div>
                         </div>
