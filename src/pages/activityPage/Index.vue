@@ -164,6 +164,7 @@
         methods: {
             goMyGroup(){
                 if((this.groupInfo.status == 1 || this.groupInfo.status == 2) && this.groupInfo.id != null){
+                    clearInterval(window.Countdown)
                     window.location.href = './groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || -1
                 } else {
                     console.log('======');
@@ -309,7 +310,7 @@
                     // 支付成功后跳转至拼团页
                     window.setTimeout(()=>{
                         console.log('马上跳转');
-                        window.location.href = Config.shareUrl +'groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || ''
+                        window.location.href = Config.shareUrl +'groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || -1
                     },1000)
                 }).catch(_=>{});
 
@@ -330,7 +331,7 @@
                     groupId:this.groupInfo.id,
                     mobile:mobile,
                     groupKolStatus:this.kolStatus,
-                    recommenderUserId:window.URLPARAMS.recommenderUserId || window.URLPARAMS.sellId
+                    recommenderUserId:(window.URLPARAMS.recommenderUserId || window.URLPARAMS.sellId) || -1
                 }).then(r=>{
                     this.showMobile = false
                     vxPay(r,this.leaderPay)

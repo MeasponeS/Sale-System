@@ -246,7 +246,7 @@
             },
             userBuy(){
                 setTimeout(()=>{
-                    window.location.href = Config.shareUrl + 'groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status + '&pay=1'
+                    window.location.href = Config.shareUrl + 'groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status + '&pay=1&sellId=' + window.URLPARAMS.sellId || -1
                 },300)
             },
             wxPay(mobile){
