@@ -56,7 +56,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <div class="start" @click="shareToFriend" >
                 <h3>邀请好友开团</h3>
@@ -162,17 +161,17 @@
         mounted() {
 
 
-            
-            let wrapper = document.querySelector('#app')
 
-            const options = {
-
-                click: true,
-
-                taps: true
-
-            };
-            let scroll = new BScroll(wrapper,options)
+            // let wrapper = document.querySelector('#app')
+            //
+            // const options = {
+            //
+            //     click: true,
+            //
+            //     taps: true
+            //
+            // };
+            // let scroll = new BScroll(wrapper,options)
         },
         beforeDestroy: function () {
 
