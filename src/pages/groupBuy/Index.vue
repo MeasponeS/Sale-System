@@ -24,11 +24,11 @@
                                 >
                             </div>
                         </div>
-                        <h3 class="ad" v-if="groupInfo.status == 1 && userHasBuy == 0">就差你了，参团购买可省￥880</h3>
+                        <h3 class="ad" v-if="groupInfo.status == 1 && userHasBuy == 0">就差你了，参团购买可省￥1278</h3>
                         <h3 class="ad" v-if="groupInfo.status == 1 && userHasBuy == 1">还差{{activity.minCount - orderCount }}人即可成团</h3>
-                        <h3 class="ad" v-if="groupInfo.status == 3 && userHasBuy == 0">错过￥880元的优惠</h3>
+                        <h3 class="ad" v-if="groupInfo.status == 3 && userHasBuy == 0">错过￥1278元的优惠</h3>
                         <h3 class="ad" v-if="groupInfo.status == 3 && userHasBuy == 1">您的退款已返，请注意查收</h3>
-                        <h3 class="ad" v-if="groupInfo.status == 2 && userHasBuy == 0">已成团，错过多花￥880元</h3>
+                        <h3 class="ad" v-if="groupInfo.status == 2 && userHasBuy == 0">已成团，错过多花￥1278元</h3>
                         <h3 class="ad" v-if="groupInfo.status == 2 && userHasBuy == 1">已成团，邀好友一起学习</h3>
                         <em>好友拼团·成团发货·<a href="./tuikuan.html">未成团退款</a></em>
                     </div>
@@ -167,7 +167,7 @@
             shareFriend(){
                 let config = {
                     shareTitle:'我已领取团购优惠，你也来吧',
-                    shareBody:'健康管理师＆护理评估师，现在团购立减¥880',
+                    shareBody:'健康管理师＆护理评估师，现在团购立减¥1278',
                     shareUrl:Config.shareUrl + 'groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status + '&sellId=' + window.URLPARAMS.sellId || -1 ,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };

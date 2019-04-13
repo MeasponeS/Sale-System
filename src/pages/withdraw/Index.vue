@@ -35,9 +35,9 @@
         <Popup v-model="rulesShow">
             <div class="ruleBox">
                 <h4>提现规则</h4>
-                <span style="margin: 9px 0">1.每月5号结算上个月的提现申请，1-5个工作日到账</span>
-                <span >2.个税计算方法如下:
-                    <span>800元以下的：无个人所得税</span>
+                <span style="margin: 9px 0">1.每月5号结算上个月的提现申请，1-5个工作日在微信零钱中查看</span>
+                <span >2.每月提现金额累计超过800元需缴纳个人所得税，个税计算方法如下:
+                    <span>800元以下：无个人所得税</span>
                     <span>800-4000元：个税=(收入额-800）*20%</span>
                     <span>4000-25000元：个税=收入额*（1-20%）*20%</span>
                     <span class="warnInfo">*单月存在多笔提现申请时会合并为一笔计算个人所得税</span>
