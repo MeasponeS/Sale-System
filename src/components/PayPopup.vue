@@ -6,6 +6,7 @@
                    class="input"
                    autofocus="true"
                    maxlength="11"
+                   @blur="handleHeight"
                    type="tel"
                    placeholder="用于获取课程卡号/密码，请务必确认"
                    ></Field>
@@ -39,6 +40,12 @@
 
                 this.$emit('wxPay',this.mobile)
 
+            },
+            handleHeight(){
+                setTimeout(function() {
+                    let scrollHeight = document.documentElement.scrollTop || document.body.scrollTop || 0;
+                    window.scrollTo(0, Math.max(scrollHeight - 1, 0));
+                }, 100);
             }
         },
         mounted(){

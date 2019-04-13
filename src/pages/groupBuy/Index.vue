@@ -25,8 +25,11 @@
                             </div>
                         </div>
                         <h3 class="ad" v-if="groupInfo.status == 1 && userHasBuy == 0">就差你了，参团购买可省￥880</h3>
-                        <h3 class="ad" v-if="(groupInfo.status == 1 && userHasBuy == 1)||groupInfo.status == 2">{{orderCount || 0}}人参团/{{activity.minCount || 0}}人成团</h3>
-                        <h3 class="ad" v-if="groupInfo.status == 3">请联系团长重新开团</h3>
+                        <h3 class="ad" v-if="groupInfo.status == 1 && userHasBuy == 1">还差{{activity.minCount - orderCount }}人即可成团</h3>
+                        <h3 class="ad" v-if="groupInfo.status == 3 && userHasBuy == 0">错过￥880元的优惠</h3>
+                        <h3 class="ad" v-if="groupInfo.status == 3 && userHasBuy == 1">您的退款已返，请注意查收</h3>
+                        <h3 class="ad" v-if="groupInfo.status == 2 && userHasBuy == 0">已成团，错过多花￥880元</h3>
+                        <h3 class="ad" v-if="groupInfo.status == 2 && userHasBuy == 1">已成团，邀好友一起学习</h3>
                         <em>好友拼团·成团发货·<a href="./tuikuan.html">未成团退款</a></em>
                     </div>
                     <div class="playGuide">
@@ -273,7 +276,14 @@
         mounted() {
 
             let wrapper = document.querySelector('#app')
-            let scroll = new BScroll(wrapper)
+            const options = {
+
+                click: true,
+
+                taps: true
+
+            };
+            let scroll = new BScroll(wrapper,options)
 
 
             let that = this
