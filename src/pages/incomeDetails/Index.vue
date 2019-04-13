@@ -142,7 +142,6 @@
                 if(name && name != null && idNum && idNum != null){
                     let reportLog = {
                         activityId:window.actId,
-                        groupId:URLPARAMS.groupId || '',
                         pageUrl:'/pages/incomeDetails.html',
                         pageName:'活动收益页',
                         clickEvent:'点击提现',
@@ -170,7 +169,6 @@
                 this.income = {...r}
                 let reportLog = {
                     activityId:window.actId,
-                    groupId:URLPARAMS.groupId || '',
                     pageUrl:'/pages/incomeDetails.html',
                     pageName:'活动收益页',
                     clickEvent:'',
