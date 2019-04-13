@@ -22,7 +22,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-if="kolStatus == 0 && quickGroupList.length > 0">
+                        <div v-if="kolStatus == 0 && Array.isArray(quickGroupList) && quickGroupList.length > 0">
                             <RollNotice autoplay="3000"
                                         height="50"
                                         class="quickGroup"
@@ -105,7 +105,7 @@
             </Popup>
             <Share :share="share" @know="know"></Share>
             <PayPopup :showMobile="showMobile" @closePay="showMobile = false " @wxPay="wxPay" ></PayPopup>
-            <div class="start" @click="shareToFriend" v-if="groupInfo.status && groupInfo.status == 1 && countDownSenconds && countDownSenconds >= 0">
+            <div class="start" @click="shareToFriend" v-if="groupInfo.status && (groupInfo.status == 1 || groupInfo.status == 2) && countDownSenconds && countDownSenconds >= 0">
                 邀请好友参团
                 <h4><Countdown :second="countDownSenconds" :status="groupInfo.status" @toggle="countDownSenconds--" @end="timeOut" style="display: block"></Countdown></h4>
             </div>
