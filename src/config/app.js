@@ -19,7 +19,7 @@ export default {
     wxUrl:'https://wxauth.hulian120.com/open/getTestCodeFor',    // redirect_uri  https://wxauth.hulian120.com/open/getPayCodeFor
     shareUrl:'https://hsj.hulian120.com/test/',
     requestRetry:4,
-    serverUrl:'https://testsale.hulian120.com/api/wx/login',
+    serverUrl:'https://testsale.hulian120.com/sale/api/wx/login',
     //staticUrl:'https://hsj.hulian120.com',
     requestRetryDelay:800,
 }
