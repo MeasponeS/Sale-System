@@ -28,11 +28,11 @@
                         </div>
                         <div class="rules">
                             <h3>活动规则</h3>
-                            <span>1.进入此页面者均为护士加定向邀请，可一键开团成为推荐人；</span>
-                            <span>2.邀请好友开团，您和好友各享团购金额的10%奖励金；</span>
-                            <span>3.您和好友发起的拼团，可让护士享受1278元课程优惠；</span>
-                            <span>4.拼团结束48小时后，推广奖励金会划入到账户余额，支持提现；</span>
-                            <span>5.工作人员会在每月5号处理上月提现申请，1-5个工作日到账。</span>
+                            <span>1. 一键开团成为团长，享受折扣优惠；</span>
+                            <span>2.邀请好友拼团享受折扣优惠，成团后你获得推广返佣</span>
+                            <span>3.推广返佣与购买人数正相关，每1人购买，推广返佣增加￥338.3</span>
+                            <span>4.拼团结束48小时后，推广返佣会划入到账户余额，支持提现</span>
+                            <span>5.工作人员会在每月1号处理上个月的提现申请，1-3天内到账</span>
                         </div>
                         <div class="goodDetails">
                             <h3>商品详情</h3>
@@ -45,14 +45,14 @@
                             <img src="../../assets/img/6.png" alt="">
                             <img src="../../assets/img/7.png" alt="">
                             <img src="../../assets/img/8.png" alt="">
-                            <img src="../../assets/img/9.png" alt="">
-                            <img src="../../assets/img/10.png" alt="">
-                            <img src="../../assets/img/11.png" alt="">
-                            <img src="../../assets/img/12.png" alt="">
-                            <img src="../../assets/img/13.png" alt="">
-                            <img src="../../assets/img/14.png" alt="">
+                            <img src="../../assets/img/9.jpg" alt="">
+                            <img src="../../assets/img/10.jpg" alt="">
+                            <img src="../../assets/img/11.jpg" alt="">
+                            <img src="../../assets/img/12.jpg" alt="">
+                            <img src="../../assets/img/13.jpg" alt="">
+                            <!-- <img src="../../assets/img/14.png" alt="">
                             <img src="../../assets/img/15.png" alt="">
-                            <img src="../../assets/img/16.png" alt="">
+                            <img src="../../assets/img/16.png" alt=""> -->
                         </div>
                     </div>
                 </div>

@@ -43,11 +43,11 @@
 
                         <div class="rules" v-if="kolStatus == 0" >
                             <h3>活动玩法</h3>
-                            <span>开团  -  邀请好友  -  48小时内成团 -发课程权限</span>
+                            <span>开团  -  邀请好友  -  48小时内成团 -发货</span>
                             <span class="ruleHeader">用户参与团购的具体玩法：</span>
-                            <span>1.点击链接进入课程详情，通过购买入口支付订单，付款成功后，按页面提示邀好友一起学习</span>
+                            <span>1.点击链接进入商品详情，通过购买入口支付订单，付款成功后，按页面提示邀好友一起学习</span>
                             <span>2.支付人数在团购有效时间内达到门槛值，即成团；成团后有效时间内仍可以继续参团，达到团购结束时间后，团购结束。</span>
-                            <span>3.团单成功，订单进入发课程权限的流程；团单失败，订单全额退款。</span>
+                            <span>3.团单成功，订单进入发学习卡流程；团单失败，订单全额退款。</span>
                             <span class="ruleHeader">参与限制：</span>
                             <span>1.成团人数（包含团长）至少3人</span>
                             <span>2.一名团长一次只能开一个团，已有团购结束方可开第二个团</span>
@@ -65,14 +65,14 @@
                             <img src="../../assets/img/6.png" alt="">
                             <img src="../../assets/img/7.png" alt="">
                             <img src="../../assets/img/8.png" alt="">
-                            <img src="../../assets/img/9.png" alt="">
-                            <img src="../../assets/img/10.png" alt="">
-                            <img src="../../assets/img/11.png" alt="">
-                            <img src="../../assets/img/12.png" alt="">
-                            <img src="../../assets/img/13.png" alt="">
-                            <img src="../../assets/img/14.png" alt="">
+                            <img src="../../assets/img/9.jpg" alt="">
+                            <img src="../../assets/img/10.jpg" alt="">
+                            <img src="../../assets/img/11.jpg" alt="">
+                            <img src="../../assets/img/12.jpg" alt="">
+                            <img src="../../assets/img/13.jpg" alt="">
+                            <!-- <img src="../../assets/img/14.png" alt="">
                             <img src="../../assets/img/15.png" alt="">
-                            <img src="../../assets/img/16.png" alt="">
+                            <img src="../../assets/img/16.png" alt=""> -->
                         </div>
                     </div>
 
@@ -203,7 +203,7 @@
             shareFriend(){
                 let config = {
                     shareTitle:'我已领取团购优惠，你也来吧',
-                    shareBody:'健康管理师＆护理评估师，现在团购立减¥1278',
+                    shareBody:'健康管理师＆护理评估师，现在团购立减¥880',
                     shareUrl:Config.shareUrl +'groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.actId + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || -1,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };

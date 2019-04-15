@@ -40,7 +40,7 @@
                 }).then(r=>{
                     let config = {
                         shareTitle:'团购优惠已送达，快来领取',
-                        shareBody:'健康管理师＆护理评估师，现在团购立减¥1278',
+                        shareBody:'健康管理师＆护理评估师，现在团购立减¥880',
                         shareUrl:Config.shareUrl+'activityPage.html?actId=' + window.actId + '&kolStatus=0&sellId=' + r  ,
                         shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                     };
