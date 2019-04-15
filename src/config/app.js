@@ -1,10 +1,11 @@
-
- const devApiUrl = 'https://testsale.hulian120.com'; // 翔哥
+const devApiUrl = 'http://192.168.48.173:9992'; // 翔哥
 // const devApiUrl = 'http://192.168.48.133:8081'; // 峰峰
 
 //正式环境变量,注意修改
-const proApiUrl = 'https://testsale.hulian120.com';
-//https://pay.hulian120.com
+const proApiUrl = 'https://pay.hulian120.com';
+
+
+
 const nodeDevEnv = process.env.NODE_ENV=='development' ? true : false;
 export default {
     apiUrl : nodeDevEnv ? devApiUrl : proApiUrl,
@@ -16,11 +17,10 @@ export default {
     countDown:60,//短信验证码倒计时
     tokenKey:'ACTIVITY_ACCESS_TOKEN',
     storageUserKey:'ACTIVITY_USER_STORAGE',
-    wxUrl:'https://wxauth.hulian120.com/open/getTestCodeFor',    // redirect_uri  https://wxauth.hulian120.com/open/getPayCodeFor
-    shareUrl:'https://hsj.hulian120.com/test/',
+    wxUrl:'https://wxauth.hulian120.com/open/getPayCodeFor',    // redirect_uri
+    shareUrl:'https://hsj.hulian120.com/pay/',
     requestRetry:4,
-    serverUrl:'https://testsale.hulian120.com/sale/api/wx/login',
+    serverUrl:'https://pay.hulian120.com/sale/api/wx/login',
     //staticUrl:'https://hsj.hulian120.com',
     requestRetryDelay:800,
 }
-// https://hsj.hulian120.com/pay/
