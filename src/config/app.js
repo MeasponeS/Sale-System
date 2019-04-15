@@ -1,12 +1,10 @@
 
- const devApiUrl = 'http://testsale.hulian120.com'; // 翔哥
+ const devApiUrl = 'https://testsale.hulian120.com'; // 翔哥
 // const devApiUrl = 'http://192.168.48.133:8081'; // 峰峰
 
 //正式环境变量,注意修改
-const proApiUrl = 'https://pay.hulian120.com';
-
-
-
+const proApiUrl = 'https://testsale.hulian120.com';
+//https://pay.hulian120.com
 const nodeDevEnv = process.env.NODE_ENV=='development' ? true : false;
 export default {
     apiUrl : nodeDevEnv ? devApiUrl : proApiUrl,
@@ -21,7 +19,7 @@ export default {
     wxUrl:'https://wxauth.hulian120.com/open/getPayCodeFor',    // redirect_uri
     shareUrl:'https://hsj.hulian120.com/pay/',
     requestRetry:4,
-    serverUrl:'https://pay.hulian120.com/sale/api/wx/login',
+    serverUrl:'https://testsale.hulian120.com/sale/api/wx/login',
     //staticUrl:'https://hsj.hulian120.com',
     requestRetryDelay:800,
 }
