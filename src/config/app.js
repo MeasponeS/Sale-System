@@ -1,5 +1,5 @@
 
- const devApiUrl = 'http://192.168.48.173:9992'; // 翔哥
+ const devApiUrl = 'http://testsale.hulian120.com'; // 翔哥
 // const devApiUrl = 'http://192.168.48.133:8081'; // 峰峰
 
 //正式环境变量,注意修改
