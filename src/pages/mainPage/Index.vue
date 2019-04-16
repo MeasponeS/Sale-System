@@ -49,7 +49,7 @@
                             <img src="../../assets/img/10.jpg" alt="">
                             <img src="../../assets/img/11.jpg" alt="">
                             <img src="../../assets/img/12.jpg" alt="">
-                            <img src="../../assets/img/13.png" alt="">
+                            <!-- <img src="../../assets/img/13.png" alt=""> -->
                             <!-- <img src="../../assets/img/14.png" alt="">
                             <img src="../../assets/img/15.png" alt="">
                             <img src="../../assets/img/16.png" alt=""> -->
