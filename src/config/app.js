@@ -18,7 +18,7 @@ export default {
     countDown:60,//短信验证码倒计时
     tokenKey:'ACTIVITY_ACCESS_TOKEN',
     storageUserKey:'ACTIVITY_USER_STORAGE',
-    wxUrl:'https://wxauth.hulian120.com/open/getPayCodeFor',    // redirect_uri
+    wxUrl:'https://wxauth.hulian120.com/open/getTestCodeFor',    // redirect_uri
     shareUrl:'https://hsj.hulian120.com/test/',
     requestRetry:4,
     serverUrl:'https://testsale.hulian120.com/sale/api/wx/login',
