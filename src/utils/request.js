@@ -54,7 +54,7 @@ service.interceptors.response.use(
         } else {
             if(res.data.resultCode != 200){
                 if(res.data.resultCode == 102004){   // 您不是推荐人
-                    window.location.href = './beforeLogin.html'
+                    window.location.href = './beforeLogin.html?actId=' + window.URLPARAMS.actId || 1;
                     return
                 }
                 if(res.data.resultCode == 102005){   // 该推荐人已绑定其它微信

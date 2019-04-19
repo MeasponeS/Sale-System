@@ -43,7 +43,7 @@
                     Toast('请输入正确的手机号');
                     return;
                 }
-                checkSmsCode({mobile:this.mobile,smsCode:this.code,activityId:window.actId}).then(r=>{
+                checkSmsCode({mobile:this.mobile,smsCode:this.code,activityId:window.URLPARAMS.actId || 1}).then(r=>{
                     this.login()
                 }).catch(err=>{
                     console.log(err);
@@ -53,22 +53,26 @@
             login(){
                 let server_url = encodeURIComponent(Config.serverUrl);
                 getTokenMethods({
-                    actId:window.actId,
+                    actId:window.URLPARAMS.actId || 1,
                     code:this.wxCode,
                     mp:'hushijia',
                     serverUrl:server_url,
                     mobile:this.mobile
                 }).then(r=>{
+                    if((r || '').length < 5){
+                        Toast('登陆失败')
+                        return
+                    }
                     setToken(r);
                     Toast('登陆成功')
                     window.setTimeout(()=>{
-                        window.location.href = './mainPage.html?actId=' + window.actId
+                        window.location.href = './mainPage.html?actId=' + window.URLPARAMS.actId || 1
                     },200);
                 }).catch(_=>{})
             },
             getCode(){
                 if(this.countDown < 60) return;
-                sendSmsCode({mobile:this.mobile,activityId:window.actId}).then(r=>{
+                sendSmsCode({mobile:this.mobile,activityId:window.URLPARAMS.actId || 1}).then(r=>{
                     let codeSMS = setInterval(() => {
                         if(this.countDown <= 0) {
                             clearInterval(codeSMS);

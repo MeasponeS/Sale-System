@@ -36,11 +36,16 @@
         },
         methods: {
             wxSignatureCallback(){
-
+                let shareText;
+                if(window.URLPARAMS.hasOwnProperty('actId') && window.URLPARAMS.actId === 2){
+                    shareText = '帮护士最低价学健康管理师'
+                } else {
+                    shareText = '帮护士最低价学健康管理师＆护理评估师'
+                }
                 let config = {
                     shareTitle:'护士加邀您成为团购发起人',
-                    shareBody:'帮护士最低价学健康管理师＆护理评估师',
-                    shareUrl:Config.shareUrl+'mainPage.html?actId=' + window.actId,
+                    shareBody:shareText,
+                    shareUrl:Config.shareUrl+'mainPage.html?actId=' + window.URLPARAMS.actId || 1,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };
                 shareFriend(config)
@@ -58,7 +63,7 @@
                     return;
                 }
 
-                generateRecommender({mobile:this.mobile,inviteCode:this.inviteCode,activityId: window.actId}).then(r=>{
+                generateRecommender({mobile:this.mobile,inviteCode:this.inviteCode,activityId: window.URLPARAMS.actId || 1}).then(r=>{
                     Toast('生成邀请人成功，请分享链接给邀请人');
                 }).catch(_=>{})
             },

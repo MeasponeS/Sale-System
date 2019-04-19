@@ -123,11 +123,11 @@
             },
             goDetails(){
                 // 去收支明细页
-                window.location.href = './withdrawDetails.html'
+                window.location.href = './withdrawDetails.html?actId='+ window.URLPARAMS.actId || 1;
             },
             goRecords(){
                 // 去提现记录页
-                window.location.href = './withdrawRecords.html'
+                window.location.href = './withdrawRecords.html?actId='+ window.URLPARAMS.actId || 1;
             },
             withdraw(){
                 // 提现
@@ -135,7 +135,7 @@
                 let idNum = this.income.userInfo.identityCard;
                 if(name && name != null && idNum && idNum != null){
                     let reportLog = {
-                        activityId:window.actId,
+                        activityId:window.URLPARAMS.actId || 1,
                         pageUrl:'/pages/withdraw.html',
                         pageName:'提现页',
                         clickEvent:'提现',
@@ -143,25 +143,25 @@
                     };
                     accessLog(reportLog);
                     withdraw({
-                        activityId:window.actId,
+                        activityId:window.URLPARAMS.actId || 1,
                         applyMoney:this.getMoney*100
                     }).then(r=>{
                         Toast('申请提现成功')
                         this.getMoney = ''
-                        activityReward({activityId:window.actId}).then(r=>{
+                        activityReward({activityId:window.URLPARAMS.actId || 1}).then(r=>{
                             this.income = {...r}
                         }).catch(_=>{})
                     }).catch(_=>{})
                 } else {
-                    window.location.href = './realNameAuth.html?getMoney=' + this.getMoney + '&type=1'
+                    window.location.href = './realNameAuth.html?getMoney=' + this.getMoney + '&type=1&actId='+ window.URLPARAMS.actId || 1;
                 }
             }
         },
         mounted() {
-            activityReward({activityId:window.actId}).then(r=>{
+            activityReward({activityId:window.URLPARAMS.actId || 1}).then(r=>{
                 this.income = {...r}
                 let reportLog = {
-                    activityId:window.actId,
+                    activityId:window.URLPARAMS.actId || 1,
                     pageUrl:'/pages/withdraw.html',
                     pageName:'提现页',
                     clickEvent:'',

@@ -28,8 +28,8 @@
                     Toast('请输入正确的手机号');
                     return;
                 }
-                sendSmsCode({mobile:this.mobile,activityId:window.actId}).then(r=>{
-                    window.location.href = './login.html?mobile=' + this.mobile + '&code=' + window.URLPARAMS.code + '&actId=' + window.actId;
+                sendSmsCode({mobile:this.mobile,activityId:window.URLPARAMS.actId || 1}).then(r=>{
+                    window.location.href = './login.html?mobile=' + this.mobile + '&code=' + window.URLPARAMS.code + '&actId=' + window.URLPARAMS.actId||1;
                 }).catch(_=>{});
             }
         },

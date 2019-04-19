@@ -24,11 +24,11 @@
                                 >
                             </div>
                         </div>
-                        <h3 class="ad" v-if="groupInfo.status == 1 && userHasBuy == 0">就差你了，参团购买可省￥1278</h3>
+                        <h3 class="ad" v-if="groupInfo.status == 1 && userHasBuy == 0">就差你了，参团购买可省{{goodsInfo.saveMoney || 0   | Money}}</h3>
                         <h3 class="ad" v-if="groupInfo.status == 1 && userHasBuy == 1">还差{{activity.minCount - orderCount }}人即可成团</h3>
-                        <h3 class="ad" v-if="groupInfo.status == 3 && userHasBuy == 0">错过￥1278元的优惠</h3>
+                        <h3 class="ad" v-if="groupInfo.status == 3 && userHasBuy == 0">错过{{goodsInfo.saveMoney || 0   | Money}}元的优惠</h3>
                         <h3 class="ad" v-if="groupInfo.status == 3 && userHasBuy == 1">您的退款已返，请注意查收</h3>
-                        <h3 class="ad" v-if="groupInfo.status == 2 && userHasBuy == 0">已成团，错过多花￥1278元</h3>
+                        <h3 class="ad" v-if="groupInfo.status == 2 && userHasBuy == 0">已成团，错过多花{{goodsInfo.saveMoney || 0   | Money}}元</h3>
                         <h3 class="ad" v-if="groupInfo.status == 2 && userHasBuy == 1">已成团，邀好友一起学习</h3>
                         <em>好友拼团·成团发货·<a href="./tuikuan.html">未成团退款</a></em>
                     </div>
@@ -79,10 +79,10 @@
                         <img src="../../assets/img/6.png" alt="">
                         <img src="../../assets/img/7.png" alt="">
                         <img src="../../assets/img/8.png" alt="">
-                        <img src="../../assets/img/9.jpg" alt="">
-                        <img src="../../assets/img/10.jpg" alt="">
-                        <img src="../../assets/img/11.jpg" alt="">
-                        <img src="../../assets/img/12.jpg" alt="">
+                        <img src="../../assets/img/9.jpg" alt="" v-if="window.URLPARAMS.actId != 2">
+                        <img src="../../assets/img/10.jpg" alt="" v-if="window.URLPARAMS.actId != 2">
+                        <img src="../../assets/img/11.jpg" alt="" v-if="window.URLPARAMS.actId != 2">
+                        <img src="../../assets/img/12.jpg" alt="" v-if="window.URLPARAMS.actId != 2">
                         <!-- <img src="../../assets/img/13.png" alt=""> -->
                         <!-- <img src="../../assets/img/14.png" alt="">
                         <img src="../../assets/img/15.png" alt="">
@@ -149,12 +149,12 @@
         },
         methods: {
             restartGroup(){
-                window.location.href = './activityPage.html?kolStatus=0&actId='+ window.actId + '&sellId=' + window.URLPARAMS.sellId || -1;
+                window.location.href = './activityPage.html?kolStatus=0&actId='+ window.URLPARAMS.actId || 1 + '&sellId=' + window.URLPARAMS.sellId || -1;
             },
             shareToFriend(){
                 this.share = true
                 let reportLog = {
-                    activityId:window.actId,
+                    activityId:window.URLPARAMS.actId || 1,
                     groupId:this.groupInfo.id,
                     pageUrl:'/pages/groupBuy.html',
                     pageName:'拼团页',
@@ -166,8 +166,8 @@
             shareFriend(){
                 let config = {
                     shareTitle:'我已领取团购优惠，你也来吧',
-                    shareBody:'健康管理师＆护理评估师，现在团购立减¥1278',
-                    shareUrl:Config.shareUrl + 'groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status + '&sellId=' + window.URLPARAMS.sellId || -1 ,
+                    shareBody:this.goodsInfo.name+'，现在团购立减￥'+ this.groupInfo.saveMoney/100,
+                    shareUrl:Config.shareUrl + 'groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.URLPARAMS.actId || 1 + '&status=' + window.URLPARAMS.status + '&sellId=' + window.URLPARAMS.sellId || -1 ,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };
                 shareFriend(config)
@@ -192,7 +192,7 @@
                     this.headList = this.headList.reverse()
 
                     let reportLog = {
-                        activityId:window.actId,
+                        activityId:window.URLPARAMS.actId || 1,
                         groupId:this.groupInfo.id,
                         pageUrl:'/pages/groupBuy.html',
                         pageName:'拼团页',
@@ -209,7 +209,7 @@
             inGroup(){
                 this.showMobile = true;
                 let reportLog = {
-                    activityId:window.actId,
+                    activityId:window.URLPARAMS.actId || 1,
                     groupId:this.groupInfo.id,
                     pageUrl:'/pages/groupBuy.html',
                     pageName:'拼团页',
@@ -222,7 +222,7 @@
             timeOut(){
                 //alert('时间没了')
                 // window.setTimeout(()=>{
-                //     window.location.href = 'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status
+                //     window.location.href = 'https://hsj.hulian120.com/pay/groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.URLPARAMS.actId + '&status=' + window.URLPARAMS.status
                 //  },1000)
                 userActivity({groupId:this.id}).then(r=>{
                     this.groupNum = r.orderCount;
@@ -245,12 +245,12 @@
             },
             userBuy(){
                 setTimeout(()=>{
-                    window.location.href = Config.shareUrl + 'groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.actId + '&status=' + window.URLPARAMS.status + '&pay=1&sellId=' + window.URLPARAMS.sellId || -1
+                    window.location.href = Config.shareUrl + 'groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.URLPARAMS.actId || 1 + '&status=' + window.URLPARAMS.status + '&pay=1&sellId=' + window.URLPARAMS.sellId || -1
                 },300)
             },
             wxPay(mobile){
                 let reportLog = {
-                    activityId:window.actId,
+                    activityId:window.URLPARAMS.actId || 1,
                     groupId:this.groupInfo.id,
                     pageUrl:'/pages/groupBuy.html',
                     pageName:'拼团页',
@@ -259,7 +259,7 @@
                 };
                 accessLog(reportLog);
                 creatGeneralOrder({
-                    activityId: window.actId,
+                    activityId: window.URLPARAMS.actId || 1,
                     groupId:this.groupInfo.id,
                     mobile:mobile,
                 }).then(r=>{

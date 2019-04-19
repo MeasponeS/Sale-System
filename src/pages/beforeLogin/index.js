@@ -11,6 +11,7 @@ if(window.URLPARAMS.hasOwnProperty('state') && window.URLPARAMS.state == 'needJu
 } else {
     document.body.style.display = 'block'
 }
+import {currentUrlToParams} from "../../utils/app";
 
 
 if(!window.URLPARAMS.hasOwnProperty('code')){
@@ -20,9 +21,10 @@ if(!window.URLPARAMS.hasOwnProperty('code')){
     }).catch(_=>{})
 } else {
     if(window.URLPARAMS.hasOwnProperty('state') && window.URLPARAMS.state == 'needJump' && getBeforePage()){
+        let url = getBeforePage();
         let server_url = encodeURIComponent(Config.serverUrl);
         getTokenMethods({
-            actId:window.actId,
+            actId:currentUrlToParams(url).actId || 1,
             code:window.URLPARAMS.code,
             mp:'hushijia',
             serverUrl:server_url,

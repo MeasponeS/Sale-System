@@ -82,5 +82,6 @@ export function removeToken() {
 
 
 export function isLogin() {
-    return getToken() && getUserInfo()
+    let token =  getToken() || ''
+    return token.length>5
 }

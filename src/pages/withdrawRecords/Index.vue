@@ -102,10 +102,10 @@
             }
         },
         mounted() {
-            withdrawList({activityId:window.actId}).then(r=>{
+            withdrawList({activityId:window.URLPARAMS.actId || 1}).then(r=>{
                 this.list = r
                 let reportLog = {
-                    activityId:window.actId,
+                    activityId:window.URLPARAMS.actId || 1,
                     pageUrl:'/pages/withdrawRecords.html',
                     pageName:'提现记录页',
                     clickEvent:'',

@@ -1,4 +1,4 @@
-import {getToken} from '../../utils/dataStorage.js'
+import {getToken,isLogin} from '../../utils/dataStorage.js'
 import {setCurrentPage} from "../../utils/dataStorage";
 import {wxSignature} from "../../api/wechat";
 import wx from 'weixin-js-sdk';
@@ -26,7 +26,7 @@ export default {
             if (r.resultCode == 500) return;
             sessionStorage.setItem('appId',r.signature.appId);
             if(!getToken()){
-                window.location.href = './beforeLogin.html'
+                window.location.href = './beforeLogin.html?actId=' + window.URLPARAMS.actId || 1;
                 return
             }
             wx.config({
