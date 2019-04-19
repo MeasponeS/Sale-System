@@ -3,6 +3,7 @@ import {setCurrentPage} from "../../utils/dataStorage";
 import {wxSignature} from "../../api/wechat";
 import wx from 'weixin-js-sdk';
 import {Toast} from "vant";
+import G from 'lodash/get'
 export default {
     data: function () {
         return {
@@ -26,7 +27,7 @@ export default {
             if (r.resultCode == 500) return;
             sessionStorage.setItem('appId',r.signature.appId);
             if(!getToken()){
-                window.location.href = './beforeLogin.html?actId=' + window.URLPARAMS.actId || 1;
+                window.location.href = './beforeLogin.html?actId=' + G(window,'URLPARAMS.actId',1);
                 return
             }
             wx.config({

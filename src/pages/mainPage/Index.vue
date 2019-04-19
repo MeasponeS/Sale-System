@@ -82,6 +82,7 @@
     import {accessLog} from "../../utils/app";
     import Config from '../../config/app'
     import BScroll from 'better-scroll'
+    import G from 'lodash/get'
     export default {
         name: 'app',
         mixins: [CommonMixinP],
@@ -103,7 +104,7 @@
             shareToFriend(){
                 this.share = true;
                 let reportLog = {
-                    activityId:window.URLPARAMS.actId || 1,
+                    activityId:G(window,'URLPARAMS.actId',1),
                     groupId:this.groupInfo.id,
                     pageUrl:'/pages/mainPage.html',
                     pageName:'邀请人主页',
@@ -116,21 +117,21 @@
                 let config = {
                     shareTitle:'团购优惠已送达，快来领取',
                     shareBody:'快接受邀请，获取拼团优惠吧！',
-                    shareUrl: Config.shareUrl +'activityPage.html?recommenderUserId='+ this.recommenderId + '&actId=' + window.URLPARAMS.actId || 1 + '&kolStatus=1' ,
+                    shareUrl: Config.shareUrl +'activityPage.html?recommenderUserId='+ this.recommenderId + '&actId=' + G(window,'URLPARAMS.actId',1) + '&kolStatus=1' ,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };
                 shareFriend(config)
                 shareFriendQ(config)
             },
             wxSignatureCallback(){
-                recommenderIndex({activityId:window.URLPARAMS.actId || 1}).then(r=>{
+                recommenderIndex({activityId:G(window,'URLPARAMS.actId',1)}).then(r=>{
                     this.orderCount = r.orderCount;
                     this.goodsInfo = {...r.goodsInfo};
                     this.activity = {...r.activity};
                     this.recommenderId = r.recommenderUserId
                     this.shareFriend()
                     let reportLog = {
-                        activityId:window.URLPARAMS.actId || 1,
+                        activityId:G(window,'URLPARAMS.actId',1),
                         groupId:this.groupInfo.id,
                         pageUrl:'/pages/mainPage.html',
                         pageName:'邀请人主页',

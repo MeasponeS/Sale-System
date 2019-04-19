@@ -28,6 +28,9 @@ export function currentUrlToParams(key = null) {
 * */
 export function initUrlParams() {
     window.URLPARAMS = currentUrlToParams()
+    if(!window.URLPARAMS.hasOwnProperty('actId')){
+        window.URLPARAMS.actId = ''
+    }
 }
 
 
