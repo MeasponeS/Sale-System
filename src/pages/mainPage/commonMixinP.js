@@ -22,7 +22,7 @@ export default {
     methods: {
     },
     mounted() {
-        setActId(window.URLPARAMS.actId);
+        setActId(G(window,'URLPARAMS.actId',1));
         let that = this;
         wxSignature({url:window.location.href}).then(r=>{
             if (r.resultCode == 500) return;

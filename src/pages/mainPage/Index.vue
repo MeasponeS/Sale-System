@@ -45,10 +45,10 @@
                             <img src="../../assets/img/6.png" alt="">
                             <img src="../../assets/img/7.png" alt="">
                             <img src="../../assets/img/8.png" alt="">
-                            <img src="../../assets/img/9.jpg" alt="" v-if="window.URLPARAMS.actId != 2">
-                            <img src="../../assets/img/10.jpg" alt="" v-if="window.URLPARAMS.actId != 2">
-                            <img src="../../assets/img/11.jpg" alt="" v-if="window.URLPARAMS.actId != 2">
-                            <img src="../../assets/img/12.jpg" alt="" v-if="window.URLPARAMS.actId != 2">
+                            <img src="../../assets/img/9.jpg" alt="" v-if="actId != 2">
+                            <img src="../../assets/img/10.jpg" alt="" v-if="actId != 2">
+                            <img src="../../assets/img/11.jpg" alt="" v-if="actId != 2">
+                            <img src="../../assets/img/12.jpg" alt="" v-if="actId != 2">
                             <!-- <img src="../../assets/img/13.png" alt=""> -->
                             <!-- <img src="../../assets/img/14.png" alt="">
                             <img src="../../assets/img/15.png" alt="">
@@ -92,7 +92,8 @@
                 share:false,
                 goodsInfo: {},
                 activity:{},
-                recommenderId:''
+                recommenderId:'',
+                actId:''
             }
         },
         filters:{
@@ -160,7 +161,7 @@
             // }
         },
         mounted() {
-
+            this.actId = G(window,'URLPARAMS.actId',1)
 
 
             // let wrapper = document.querySelector('#app')
