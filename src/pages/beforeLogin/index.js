@@ -23,8 +23,16 @@ if(!window.URLPARAMS.hasOwnProperty('code')){
     if(window.URLPARAMS.hasOwnProperty('state') && window.URLPARAMS.state == 'needJump' && getBeforePage()){
         let url = getBeforePage();
         let server_url = encodeURIComponent(Config.serverUrl);
+        let params = currentUrlToParams(url);
+        let id;
+        console.log(params);
+        if(params.hasOwnProperty('actId')){
+            id = params.id
+        } else {
+            id = 1
+        }
         getTokenMethods({
-            actId:currentUrlToParams(url).actId || 1,
+            actId:id,
             code:window.URLPARAMS.code,
             mp:'hushijia',
             serverUrl:server_url,

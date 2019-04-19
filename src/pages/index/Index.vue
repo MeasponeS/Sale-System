@@ -31,7 +31,8 @@
             return {
                 mobile:'',
                 inviteCode:'',
-                share:false
+                share:false,
+                actId:''
             }
         },
         methods: {
@@ -45,7 +46,7 @@
                 let config = {
                     shareTitle:'护士加邀您成为团购发起人',
                     shareBody:shareText,
-                    shareUrl:Config.shareUrl+'mainPage.html?actId=' + window.URLPARAMS.actId || 1,
+                    shareUrl:Config.shareUrl+'mainPage.html?actId=' + this.actId,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };
                 shareFriend(config)
@@ -63,7 +64,7 @@
                     return;
                 }
 
-                generateRecommender({mobile:this.mobile,inviteCode:this.inviteCode,activityId: window.URLPARAMS.actId || 1}).then(r=>{
+                generateRecommender({mobile:this.mobile,inviteCode:this.inviteCode,activityId: this.actId}).then(r=>{
                     Toast('生成邀请人成功，请分享链接给邀请人');
                 }).catch(_=>{})
             },
@@ -72,7 +73,11 @@
             }
         },
         mounted() {
-
+            if(window.URLPARAMS.hasOwnProperty('actId') && window.URLPARAMS.actId === 2){
+                this.actId = 2
+            } else {
+                this.actId = 1
+            }
         },
         beforeDestroy: function () {
 
