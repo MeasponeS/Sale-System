@@ -2,7 +2,8 @@ const devApiUrl = 'http://192.168.49.143:9992'; // 翔哥
 // const devApiUrl = 'http://192.168.48.133:8081'; // 峰峰
 
 //正式环境变量,注意修改
-const proApiUrl = 'https://test.hulian120.com';
+const proApiUrl = 'https://testsale.hulian120.com';
+
 
 
 
@@ -20,7 +21,7 @@ export default {
     wxUrl:'https://wxauth.hulian120.com/open/getPayCodeFor',    // redirect_uri
     shareUrl:'https://hsj.hulian120.com/test/',
     requestRetry:4,
-    serverUrl:'https://test.hulian120.com/sale/api/wx/login',
+    serverUrl:'https://testsale.hulian120.com/sale/api/wx/login',
     //staticUrl:'https://hsj.hulian120.com',
     requestRetryDelay:800,
 }
