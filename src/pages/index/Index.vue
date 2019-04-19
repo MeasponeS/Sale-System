@@ -40,7 +40,7 @@
         methods: {
             wxSignatureCallback(){
                 let shareText;
-                if(window.URLPARAMS.hasOwnProperty('actId') && window.URLPARAMS.actId === 2){
+                if(window.URLPARAMS.hasOwnProperty('actId') && window.URLPARAMS.actId == 2){
                     shareText = '帮护士最低价学健康管理师'
                 } else {
                     shareText = '帮护士最低价学健康管理师＆护理评估师'
@@ -75,7 +75,7 @@
             }
         },
         mounted() {
-            if(window.URLPARAMS.hasOwnProperty('actId') && window.URLPARAMS.actId === 2){
+            if(window.URLPARAMS.hasOwnProperty('actId') && window.URLPARAMS.actId == 2){
                 this.actId = 2
                 setActId(this.actId)
             } else {

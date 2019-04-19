@@ -39,7 +39,7 @@
         methods: {
             checkCode(){
                 let shareText;
-                if(this.actId === 2){
+                if(this.actId == 2){
                     shareText = '健康管理师，现在团购立减¥368'
                 } else {
                     shareText = '健康管理师＆护理评估师，现在团购立减¥1278'
@@ -68,11 +68,11 @@
             }
         },
         mounted() {
-            if(window.URLPARAMS.hasOwnProperty('actId') && window.URLPARAMS.actId === 2){
-                this.actId = 2
+            if(window.URLPARAMS.hasOwnProperty('actId') && window.URLPARAMS.actId == 2){
+                this.actId = 2;
                 setActId(this.actId)
             } else {
-                this.actId = 1
+                this.actId = 1;
                 setActId(this.actId)
             }
         },
