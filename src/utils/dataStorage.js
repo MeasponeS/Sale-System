@@ -59,7 +59,18 @@ export function setToken(token) {
     return Cookies.set(Config.tokenKey, token ,{ expires: Config.cookiesExpires })
 }
 
+export function setActId(token) {
+    return Cookies.set(Config.actId, token ,{ expires: Config.cookiesExpires })
+}
 
+export function getActId() {
+    if(Cookies.get(Config.actId) == 'null' || Cookies.get(Config.actId) == null || Cookies.get(Config.actId) == ''){
+        return ''
+    } else {
+        return Cookies.get(Config.actId)
+    }
+
+}
 
 export function setCurrentPage(key) {
     return Cookies.set('currentPage', key ,{ expires: Config.cookiesExpires })

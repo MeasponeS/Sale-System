@@ -11,8 +11,7 @@ if(window.URLPARAMS.hasOwnProperty('state') && window.URLPARAMS.state == 'needJu
 } else {
     document.body.style.display = 'block'
 }
-import {currentUrlToParams} from "../../utils/app";
-
+import {getActId} from "../../utils/dataStorage";
 
 if(!window.URLPARAMS.hasOwnProperty('code')){
     wxSignature({url:window.location.href.split('?')[0]}).then(r=>{
@@ -21,18 +20,9 @@ if(!window.URLPARAMS.hasOwnProperty('code')){
     }).catch(_=>{})
 } else {
     if(window.URLPARAMS.hasOwnProperty('state') && window.URLPARAMS.state == 'needJump' && getBeforePage()){
-        let url = getBeforePage();
         let server_url = encodeURIComponent(Config.serverUrl);
-        let params = currentUrlToParams(url);
-        let id;
-        console.log(params);
-        if(params.hasOwnProperty('actId')){
-            id = params.id
-        } else {
-            id = 1
-        }
         getTokenMethods({
-            actId:id,
+            actId:getActId(),
             code:window.URLPARAMS.code,
             mp:'hushijia',
             serverUrl:server_url,

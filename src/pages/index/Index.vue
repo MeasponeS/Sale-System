@@ -24,6 +24,8 @@
     import wx from 'weixin-js-sdk';
     import {shareFriendQ,shareFriend} from "../../utils/weixin";
     import Config from '../../config/app'
+    import {setActId} from "../../utils/dataStorage";
+
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -75,8 +77,10 @@
         mounted() {
             if(window.URLPARAMS.hasOwnProperty('actId') && window.URLPARAMS.actId === 2){
                 this.actId = 2
+                setActId(this.actId)
             } else {
                 this.actId = 1
+                setActId(this.actId)
             }
         },
         beforeDestroy: function () {
