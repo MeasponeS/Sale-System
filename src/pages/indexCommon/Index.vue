@@ -24,6 +24,8 @@
     import Config from '../../config/app'
     import {generateLeader} from '../../api/recommender'
     import G from 'lodash/get'
+    import {setActId} from "../../utils/dataStorage";
+
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -31,24 +33,25 @@
             return {
                 inviteCode:'',
                 share:false,
+                actId:''
             }
         },
         methods: {
             checkCode(){
                 let shareText;
-                if(window.URLPARAMS.hasOwnProperty('actId') && window.URLPARAMS.actId === 2){
+                if(this.actId === 2){
                     shareText = '健康管理师，现在团购立减¥368'
                 } else {
                     shareText = '健康管理师＆护理评估师，现在团购立减¥1278'
                 }
                 generateLeader({
-                    activityId:G(window,'URLPARAMS.actId',1),
+                    activityId:this.actId,
                     inviteCode:this.inviteCode
                 }).then(r=>{
                     let config = {
                         shareTitle:'团购优惠已送达，快来领取',
                         shareBody:shareText,
-                        shareUrl:Config.shareUrl+'activityPage.html?actId=' + G(window,'URLPARAMS.actId',1) + '&kolStatus=0&sellId=' + r  ,
+                        shareUrl:Config.shareUrl+'activityPage.html?actId=' + this.actId + '&kolStatus=0&sellId=' + r  ,
                         shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                     };
                     shareFriend(config);
@@ -65,7 +68,13 @@
             }
         },
         mounted() {
-
+            if(window.URLPARAMS.hasOwnProperty('actId') && window.URLPARAMS.actId === 2){
+                this.actId = 2
+                setActId(this.actId)
+            } else {
+                this.actId = 1
+                setActId(this.actId)
+            }
         },
         beforeDestroy: function () {
 

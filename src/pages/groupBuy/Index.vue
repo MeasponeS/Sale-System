@@ -168,7 +168,7 @@
             shareFriend(){
                 let config = {
                     shareTitle:'我已领取团购优惠，你也来吧',
-                    shareBody:this.goodsInfo.name+'，现在团购立减￥'+ this.groupInfo.saveMoney/100,
+                    shareBody:this.goodsInfo.name+'，现在团购立减￥'+ this.goodsInfo.saveMoney/100,
                     shareUrl:Config.shareUrl + 'groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + G(window,'URLPARAMS.actId',1) + '&status=' + window.URLPARAMS.status + '&sellId=' + window.URLPARAMS.sellId || -1 ,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };

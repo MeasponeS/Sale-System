@@ -205,7 +205,7 @@
             shareFriend(){
                 let config = {
                     shareTitle:'我已领取团购优惠，你也来吧',
-                    shareBody:this.goodsInfo.name+'，现在团购立减￥'+ this.groupInfo.saveMoney/100,
+                    shareBody:this.goodsInfo.name+'，现在团购立减￥'+ this.goodsInfo.saveMoney/100,
                     shareUrl:Config.shareUrl +'groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + G(window,'URLPARAMS.actId',1) + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || -1,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };
@@ -253,7 +253,7 @@
                     clickEventName:'查看活动收益'
                 };
                 accessLog(reportLog);
-                window.location.href = './incomeDetails.html?groupId='+ this.groupInfo.id || '' + '&actId=' + G(window,'URLPARAMS.actId',1);
+                window.location.href = './incomeDetails.html?groupId='+ this.groupInfo.id || '' + '&actId=' + this.actId
             },
             goCheckMobile(){
                 this.showOpen = false;
