@@ -65,10 +65,10 @@
                             <img src="../../assets/img/6.png" alt="">
                             <img src="../../assets/img/7.png" alt="">
                             <img src="../../assets/img/8.png" alt="">
-                            <img src="../../assets/img/9.jpg" alt="" v-if="window.URLPARAMS.actId != 2">
-                            <img src="../../assets/img/10.jpg" alt="" v-if="window.URLPARAMS.actId != 2">
-                            <img src="../../assets/img/11.jpg" alt="" v-if="window.URLPARAMS.actId != 2">
-                            <img src="../../assets/img/12.jpg" alt="" v-if="window.URLPARAMS.actId != 2">
+                            <img src="../../assets/img/9.jpg" alt="" v-if="actId != 2">
+                            <img src="../../assets/img/10.jpg" alt="" v-if="actId != 2">
+                            <img src="../../assets/img/11.jpg" alt="" v-if="actId != 2">
+                            <img src="../../assets/img/12.jpg" alt="" v-if="actId != 2">
                             <!-- <img src="../../assets/img/13.png" alt=""> -->
                             <!-- <img src="../../assets/img/14.png" alt="">
                             <img src="../../assets/img/15.png" alt="">
@@ -154,7 +154,8 @@
                 countDownSenconds:'',
                 kolStatus:'',      // 是否为kol团长或普通团长+
                 quickGroupList:[],   // 快速参团列表
-                timer:''
+                timer:'',
+                actId:''
             }
         },
         filters:{
@@ -439,6 +440,7 @@
 
 
             this.kolStatus = window.URLPARAMS.kolStatus;
+            this.actId = G(window,'URLPARAMS.actId',1)
             let that = this;
             document.addEventListener("visibilitychange",function(){
 
