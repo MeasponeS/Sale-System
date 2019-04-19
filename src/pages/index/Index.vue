@@ -25,7 +25,7 @@
     import {shareFriendQ,shareFriend} from "../../utils/weixin";
     import Config from '../../config/app'
     import {setActId} from "../../utils/dataStorage";
-
+    import G from 'lodash/get'
     export default {
         name: 'app',
         mixins: [CommonMixin],

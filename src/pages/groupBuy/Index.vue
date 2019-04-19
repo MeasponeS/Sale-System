@@ -123,6 +123,7 @@
     import Share from '../../components/Share'
     import {accessLog} from "../../utils/app";
     import Config from '../../config/app'
+    import G from 'lodash/get'
     export default {
         name: 'app',
         mixins:[CommonMixin],
@@ -149,12 +150,12 @@
         },
         methods: {
             restartGroup(){
-                window.location.href = './activityPage.html?kolStatus=0&actId='+ window.URLPARAMS.actId || 1 + '&sellId=' + window.URLPARAMS.sellId || -1;
+                window.location.href = './activityPage.html?kolStatus=0&actId='+ G(window,'URLPARAMS.actId',1) + '&sellId=' + window.URLPARAMS.sellId || -1;
             },
             shareToFriend(){
                 this.share = true
                 let reportLog = {
-                    activityId:window.URLPARAMS.actId || 1,
+                    activityId:G(window,'URLPARAMS.actId',1),
                     groupId:this.groupInfo.id,
                     pageUrl:'/pages/groupBuy.html',
                     pageName:'拼团页',
@@ -167,7 +168,7 @@
                 let config = {
                     shareTitle:'我已领取团购优惠，你也来吧',
                     shareBody:this.goodsInfo.name+'，现在团购立减￥'+ this.groupInfo.saveMoney/100,
-                    shareUrl:Config.shareUrl + 'groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.URLPARAMS.actId || 1 + '&status=' + window.URLPARAMS.status + '&sellId=' + window.URLPARAMS.sellId || -1 ,
+                    shareUrl:Config.shareUrl + 'groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + G(window,'URLPARAMS.actId',1) + '&status=' + window.URLPARAMS.status + '&sellId=' + window.URLPARAMS.sellId || -1 ,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };
                 shareFriend(config)
@@ -192,7 +193,7 @@
                     this.headList = this.headList.reverse()
 
                     let reportLog = {
-                        activityId:window.URLPARAMS.actId || 1,
+                        activityId:G(window,'URLPARAMS.actId',1),
                         groupId:this.groupInfo.id,
                         pageUrl:'/pages/groupBuy.html',
                         pageName:'拼团页',
@@ -209,7 +210,7 @@
             inGroup(){
                 this.showMobile = true;
                 let reportLog = {
-                    activityId:window.URLPARAMS.actId || 1,
+                    activityId:G(window,'URLPARAMS.actId',1),
                     groupId:this.groupInfo.id,
                     pageUrl:'/pages/groupBuy.html',
                     pageName:'拼团页',
@@ -245,12 +246,12 @@
             },
             userBuy(){
                 setTimeout(()=>{
-                    window.location.href = Config.shareUrl + 'groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + window.URLPARAMS.actId || 1 + '&status=' + window.URLPARAMS.status + '&pay=1&sellId=' + window.URLPARAMS.sellId || -1
+                    window.location.href = Config.shareUrl + 'groupBuy.html?groupId='+window.URLPARAMS.groupId + '&leaderId=' + window.URLPARAMS.leaderId+'&actId=' + G(window,'URLPARAMS.actId',1) + '&status=' + window.URLPARAMS.status + '&pay=1&sellId=' + window.URLPARAMS.sellId || -1
                 },300)
             },
             wxPay(mobile){
                 let reportLog = {
-                    activityId:window.URLPARAMS.actId || 1,
+                    activityId:G(window,'URLPARAMS.actId',1),
                     groupId:this.groupInfo.id,
                     pageUrl:'/pages/groupBuy.html',
                     pageName:'拼团页',
@@ -259,7 +260,7 @@
                 };
                 accessLog(reportLog);
                 creatGeneralOrder({
-                    activityId: window.URLPARAMS.actId || 1,
+                    activityId: G(window,'URLPARAMS.actId',1),
                     groupId:this.groupInfo.id,
                     mobile:mobile,
                 }).then(r=>{

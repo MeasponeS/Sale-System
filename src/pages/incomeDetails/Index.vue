@@ -65,6 +65,7 @@
     import {accessLog} from "../../utils/app";
     import Header from '../../components/Header'
     import Config from '../../config/app'
+    import G from 'lodash/get'
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -88,7 +89,7 @@
                 let config = {
                     shareTitle:'邀请人主页',
                     shareBody:'赶快进入主页参与活动吧',
-                    shareUrl: Config.shareUrl +'activityPage.html?recommenderUserId='+ this.recommenderId + '&actId=' + window.URLPARAMS.actId || 1 ,
+                    shareUrl: Config.shareUrl +'activityPage.html?recommenderUserId='+ this.recommenderId + '&actId=' + G(window,'URLPARAMS.actId',1) ,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };
 
@@ -130,11 +131,11 @@
             },
             goDetails(){
                 // 去收支明细页
-                window.location.href = './withdrawDetails.html?groupId=' + URLPARAMS.groupId || '' + '&actId=' + window.URLPARAMS.actId || 1;
+                window.location.href = './withdrawDetails.html?groupId=' + URLPARAMS.groupId || '' + '&actId=' + G(window,'URLPARAMS.actId',1);
             },
             goRecords(){
                 // 去提现记录页
-                window.location.href = './withdrawRecords.html?groupId=' + URLPARAMS.groupId || '' + 'actId=' + window.URLPARAMS.actId || 1;
+                window.location.href = './withdrawRecords.html?groupId=' + URLPARAMS.groupId || '' + 'actId=' + G(window,'URLPARAMS.actId',1);
             },
             withdraw(){
                 // 提现
@@ -142,7 +143,7 @@
                 let idNum = this.income.userInfo.identityCard;
                 if(name && name != null && idNum && idNum != null){
                     let reportLog = {
-                        activityId:window.URLPARAMS.actId || 1,
+                        activityId:G(window,'URLPARAMS.actId',1),
                         pageUrl:'/pages/incomeDetails.html',
                         pageName:'活动收益页',
                         clickEvent:'点击提现',
@@ -150,26 +151,26 @@
                     };
                     accessLog(reportLog);
                     withdraw({
-                        activityId:window.URLPARAMS.actId || 1,
+                        activityId:G(window,'URLPARAMS.actId',1),
                         applyMoney:this.getMoney*100
                     }).then(r=>{
                         Toast('申请提现成功')
                         this.getMoney = ''
-                        activityReward({activityId:window.URLPARAMS.actId || 1}).then(r=>{
+                        activityReward({activityId:G(window,'URLPARAMS.actId',1)}).then(r=>{
                             this.income = {...r}
                         }).catch(_=>{})
                     }).catch(_=>{})
                 } else {
-                    window.location.href = './realNameAuth.html?getMoney=' + this.getMoney + '&actId=' + window.URLPARAMS.actId || 1;
+                    window.location.href = './realNameAuth.html?getMoney=' + this.getMoney + '&actId=' + G(window,'URLPARAMS.actId',1);
                 }
             }
 
         },
         mounted() {
-            activityReward({activityId:window.URLPARAMS.actId || 1}).then(r=>{
+            activityReward({activityId:G(window,'URLPARAMS.actId',1)}).then(r=>{
                 this.income = {...r}
                 let reportLog = {
-                    activityId:window.URLPARAMS.actId || 1,
+                    activityId:G(window,'URLPARAMS.actId',1),
                     pageUrl:'/pages/incomeDetails.html',
                     pageName:'活动收益页',
                     clickEvent:'',

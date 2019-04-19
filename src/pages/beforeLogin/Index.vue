@@ -15,7 +15,7 @@
     import {Button as vantButton,Toast} from 'vant';
     import {Icon as vantIcon} from 'vant';
     import {sendSmsCode} from '../../api/recommender'
-    import {setActId,getActId} from "../../utils/dataStorage";
+    import {getActId} from "../../utils/dataStorage";
     import G from 'lodash/get'
     export default {
         name: 'app',
@@ -38,7 +38,6 @@
         mounted() {
             this.showBlock = window.URLPARAMS.hasOwnProperty('student')?'none':'block'
 
-            setActId(window.URLPARAMS.actId)
         },
         beforeDestroy: function () {
 

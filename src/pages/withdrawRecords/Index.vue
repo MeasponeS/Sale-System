@@ -46,6 +46,8 @@
     import wx from 'weixin-js-sdk';
     import {accessLog} from "../../utils/app";
     import Header from '../../components/Header'
+
+    import G from 'lodash/get'
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -102,10 +104,10 @@
             }
         },
         mounted() {
-            withdrawList({activityId:window.URLPARAMS.actId || 1}).then(r=>{
+            withdrawList({activityId:G(window,'URLPARAMS.actId',1)}).then(r=>{
                 this.list = r
                 let reportLog = {
-                    activityId:window.URLPARAMS.actId || 1,
+                    activityId:G(window,'URLPARAMS.actId',1),
                     pageUrl:'/pages/withdrawRecords.html',
                     pageName:'提现记录页',
                     clickEvent:'',

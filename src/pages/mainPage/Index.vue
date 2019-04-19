@@ -146,7 +146,7 @@
 
             },
             goWithdraw(){
-                window.location.href = './withdraw.html?actId=' + window.URLPARAMS.actId || 1;
+                window.location.href = './withdraw.html?actId=' + G(window,'URLPARAMS.actId',1);
             },
             // openGroupByShare(){
             //     this.share = true;

@@ -136,6 +136,7 @@
     import {accessLog} from "../../utils/app";
     import Config from '../../config/app'
     import {wxQueryOrder} from "../../api/order";
+    import G from 'lodash/get'
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -166,7 +167,7 @@
                 if((this.groupInfo.status == 1 || this.groupInfo.status == 2) && this.groupInfo.id != null){
                     clearInterval(window.Countdown)
                     this.countDownSenconds = ''
-                    window.location.href = './groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.URLPARAMS.actId || 1 + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || -1
+                    window.location.href = './groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + G(window,'URLPARAMS.actId',1) + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || -1
                 } else {
                     console.log('======');
                 }
@@ -175,7 +176,7 @@
             shareToFriend(){
                 this.share = true;
                 let reportLog = {
-                    activityId:window.URLPARAMS.actId || 1,
+                    activityId:G(window,'URLPARAMS.actId',1),
                     groupId:this.groupInfo.id || '',
                     pageUrl:'/pages/activityPage.html',
                     pageName:'活动主页',
@@ -191,7 +192,7 @@
                     this.showOpen = true;
                 }
                 let reportLog = {
-                    activityId:window.URLPARAMS.actId || 1,
+                    activityId:G(window,'URLPARAMS.actId',1),
                     groupId:this.groupInfo.id || '',
                     pageUrl:'/pages/activityPage.html',
                     pageName:'活动主页',
@@ -204,14 +205,14 @@
                 let config = {
                     shareTitle:'我已领取团购优惠，你也来吧',
                     shareBody:this.goodsInfo.name+'，现在团购立减￥'+ this.groupInfo.saveMoney/100,
-                    shareUrl:Config.shareUrl +'groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.URLPARAMS.actId || 1 + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || -1,
+                    shareUrl:Config.shareUrl +'groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + G(window,'URLPARAMS.actId',1) + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || -1,
                     shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                 };
                 shareFriend(config)
                 shareFriendQ(config)
             },
             wxSignatureCallback(){
-                leaderActivity({activityId:window.URLPARAMS.actId || 1,kolStatus:this.kolStatus}).then(r=>{
+                leaderActivity({activityId:G(window,'URLPARAMS.actId',1),kolStatus:this.kolStatus}).then(r=>{
                     this.leaderHasBuy = r.leaderHasBuy;
                     if(r.groupInfo.kolStatus == this.kolStatus){
                         this.groupInfo = {...r.groupInfo};
@@ -229,7 +230,7 @@
                     this.countDownSenconds = r.countDownSenconds;
                     this.quickGroupList = r.quickGroupList || [];
                     let reportLog = {
-                        activityId:window.URLPARAMS.actId || 1,
+                        activityId:G(window,'URLPARAMS.actId',1),
                         groupId:this.groupInfo.id || '',
                         pageUrl:'/pages/activityPage.html',
                         pageName:'活动主页',
@@ -243,7 +244,7 @@
             },
             goIncome(){
                 let reportLog = {
-                    activityId:window.URLPARAMS.actId ||1,
+                    activityId:G(window,'URLPARAMS.actId',1),
                     groupId:this.groupInfo.id || '',
                     pageUrl:'/pages/activityPage.html',
                     pageName:'活动主页',
@@ -251,13 +252,13 @@
                     clickEventName:'查看活动收益'
                 };
                 accessLog(reportLog);
-                window.location.href = './incomeDetails.html?groupId='+ this.groupInfo.id || '' + '&actId=' + window.URLPARAMS.actId || 1;
+                window.location.href = './incomeDetails.html?groupId='+ this.groupInfo.id || '' + '&actId=' + G(window,'URLPARAMS.actId',1);
             },
             goCheckMobile(){
                 this.showOpen = false;
                 this.showMobile = true;
                 let reportLog = {
-                    activityId:window.URLPARAMS.actId || 1,
+                    activityId:G(window,'URLPARAMS.actId',1),
                     groupId:this.groupInfo.id || '',
                     pageUrl:'/pages/activityPage.html',
                     pageName:'活动主页',
@@ -269,7 +270,7 @@
             know(){
                 this.showOpen = false;
                 this.share = false;
-                leaderActivity({activityId:window.URLPARAMS.actId || 1,kolStatus:this.kolStatus}).then(r=>{
+                leaderActivity({activityId:G(window,'URLPARAMS.actId',1),kolStatus:this.kolStatus}).then(r=>{
                     this.leaderHasBuy = r.leaderHasBuy;
                     this.goodsInfo = {...r.goodsInfo};
                     this.activity = {...r.activity};
@@ -292,7 +293,7 @@
                     console.log(response);
                 });
 
-                leaderActivity({activityId:window.URLPARAMS.actId || 1,kolStatus:this.kolStatus}).then(res=>{
+                leaderActivity({activityId:G(window,'URLPARAMS.actId',1),kolStatus:this.kolStatus}).then(res=>{
                     console.log(res);
                     this.leaderHasBuy = res.leaderHasBuy;
                     this.goodsInfo = {...res.goodsInfo};
@@ -312,7 +313,7 @@
                     window.setTimeout(()=>{
                         clearInterval(window.Countdown)
                         this.countDownSenconds = ''
-                        window.location.href = Config.shareUrl +'groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.URLPARAMS.actId || 1 + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || -1
+                        window.location.href = Config.shareUrl +'groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + G(window,'URLPARAMS.actId',1) + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || -1
                     },1000)
                 }).catch(_=>{});
 
@@ -320,7 +321,7 @@
             },
             wxPay(mobile){
                 let reportLog = {
-                    activityId:window.URLPARAMS.actId || 1,
+                    activityId:G(window,'URLPARAMS.actId',1),
                     groupId:'',
                     pageUrl:'/pages/activityPage.html',
                     pageName:'活动主页',
@@ -329,7 +330,7 @@
                 };
                 accessLog(reportLog);
                 creatLeaderOrder({
-                    activityId: window.URLPARAMS.actId || 1,
+                    activityId: G(window,'URLPARAMS.actId',1),
                     groupId:this.groupInfo.id,
                     mobile:mobile,
                     groupKolStatus:this.kolStatus,
@@ -341,7 +342,7 @@
             },
             openGroup(){
                 let reportLog = {
-                    activityId:window.URLPARAMS.actId || 1,
+                    activityId:G(window,'URLPARAMS.actId',1),
                     groupId:this.groupInfo.id || '',
                     pageUrl:'/pages/activityPage.html',
                     pageName:'活动主页',
@@ -350,12 +351,12 @@
                 };
                 accessLog(reportLog);
                 crtGroupOpen({
-                    activityId: window.URLPARAMS.actId || 1,
+                    activityId: G(window,'URLPARAMS.actId',1),
                     groupId: this.groupInfo.id,
                     groupKolStatus:this.kolStatus,
                     recommenderUserId: window.URLPARAMS.recommenderUserId
                 }).then(r=>{
-                    leaderActivity({activityId:window.URLPARAMS.actId || 1,kolStatus:this.kolStatus}).then(res=>{
+                    leaderActivity({activityId:G(window,'URLPARAMS.actId',1),kolStatus:this.kolStatus}).then(res=>{
                         this.leaderHasBuy = res.leaderHasBuy;
                         this.goodsInfo = {...res.goodsInfo};
                         this.activity = {...res.activity};
@@ -373,7 +374,7 @@
                         window.setTimeout(()=>{
                             clearInterval(window.Countdown)
                             this.countDownSenconds = ''
-                            window.location.href = './groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + window.URLPARAMS.actId || 1 + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || -1
+                            window.location.href = './groupBuy.html?groupId='+this.groupInfo.id + '&leaderId=' + this.groupInfo.leaderId+'&actId=' + G(window,'URLPARAMS.actId',1) + '&status=' + this.groupInfo.status + '&sellId=' + window.URLPARAMS.sellId || -1
                         },1000)
 
 
@@ -381,7 +382,7 @@
                 }).catch(_=>{})
             },
             timeOut(){
-                leaderActivity({activityId:window.URLPARAMS.actId || 1,kolStatus:this.kolStatus}).then(r=>{
+                leaderActivity({activityId:G(window,'URLPARAMS.actId',1),kolStatus:this.kolStatus}).then(r=>{
                     this.leaderHasBuy = r.leaderHasBuy;
                     this.goodsInfo = {...r.goodsInfo};
                     this.activity = {...r.activity};
@@ -401,7 +402,7 @@
             updateList(){
                 let time = this.quickGroupList.length === 0? 2500:this.quickGroupList.length * 3000 - 500;
                 if(this.kolStatus == 0){
-                    quickGroupList({activityId:window.URLPARAMS.actId || 1}).then(r=>{
+                    quickGroupList({activityId:G(window,'URLPARAMS.actId',1)}).then(r=>{
                         if(this.quickGroupList.length > 0){
                             if(this.quickGroupList[this.quickGroupList.length -1].groupId == r[0].groupId){
                                 r.push(r[0])
@@ -451,7 +452,7 @@
 
 
                 if(document.visibilityState=="visible"){
-                    leaderActivity({activityId:window.URLPARAMS.actId || 1,kolStatus:that.kolStatus}).then(r=>{
+                    leaderActivity({activityId:G(window,'URLPARAMS.actId',1),kolStatus:that.kolStatus}).then(r=>{
                         that.leaderHasBuy = r.leaderHasBuy;
                         that.goodsInfo = {...r.goodsInfo};
                         that.activity = {...r.activity};
@@ -472,7 +473,7 @@
             })
 
 
-            leaderActivity({activityId:window.URLPARAMS.actId || 1,kolStatus:that.kolStatus}).then(r=>{
+            leaderActivity({activityId:G(window,'URLPARAMS.actId',1),kolStatus:that.kolStatus}).then(r=>{
                 this.leaderHasBuy = r.leaderHasBuy;
                 this.goodsInfo = {...r.goodsInfo};
                 this.activity = {...r.activity};
@@ -487,7 +488,7 @@
                 this.countDownSenconds = r.countDownSenconds;
                 this.quickGroupList = r.quickGroupList || [];
                 let reportLog = {
-                    activityId:window.URLPARAMS.actId || 1,
+                    activityId:G(window,'URLPARAMS.actId',1),
                     groupId:this.groupInfo.id || '',
                     pageUrl:'/pages/activityPage.html',
                     pageName:'活动主页',

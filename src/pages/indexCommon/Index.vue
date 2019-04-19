@@ -23,6 +23,7 @@
     import {shareFriendQ,shareFriend} from "../../utils/weixin";
     import Config from '../../config/app'
     import {generateLeader} from '../../api/recommender'
+    import G from 'lodash/get'
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -41,13 +42,13 @@
                     shareText = '健康管理师＆护理评估师，现在团购立减¥1278'
                 }
                 generateLeader({
-                    activityId:window.URLPARAMS.actId || 1,
+                    activityId:G(window,'URLPARAMS.actId',1),
                     inviteCode:this.inviteCode
                 }).then(r=>{
                     let config = {
                         shareTitle:'团购优惠已送达，快来领取',
                         shareBody:shareText,
-                        shareUrl:Config.shareUrl+'activityPage.html?actId=' + window.URLPARAMS.actId || 1 + '&kolStatus=0&sellId=' + r  ,
+                        shareUrl:Config.shareUrl+'activityPage.html?actId=' + G(window,'URLPARAMS.actId',1) + '&kolStatus=0&sellId=' + r  ,
                         shareImg:'http://static.hulian120.com/activity/sale/saleicon.png'
                     };
                     shareFriend(config);

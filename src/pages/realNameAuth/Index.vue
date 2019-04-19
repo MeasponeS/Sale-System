@@ -52,6 +52,7 @@
     import Config from '../../config/app'
     import {sendMsgCode,randomImg,realNameAuth} from "../../api/activity";
     import Header from '../../components/Header'
+    import G from 'lodash/get'
     export default {
         name: 'app',
         mixins: [CommonMixin],
@@ -81,7 +82,7 @@
                     this.verifyCodeInfo.randomImg = r.verifyCodeInfo.imageBase64;
                     this.verifyCodeInfo.key = r.verifyCodeInfo.validateKey;
                     let reportLog = {
-                        activityId:window.URLPARAMS.actId || 1,
+                        activityId:G(window,'URLPARAMS.actId',1),
                         groupId:'',
                         pageUrl:'/pages/realNameAuth.html',
                         pageName:'实名认证页',
@@ -169,7 +170,7 @@
                     smsCode: data.code
                 }).then(r=>{
                     let reportLog = {
-                        activityId:window.URLPARAMS.actId || 1,
+                        activityId:G(window,'URLPARAMS.actId',1),
                         groupId:'',
                         pageUrl:'/pages/realNameAuth.html',
                         pageName:'实名认证页',
@@ -180,14 +181,14 @@
 
                     if(window.URLPARAMS.getMoney > 0){
                         withdraw({
-                            activityId:window.URLPARAMS.actId || 1,
+                            activityId:G(window,'URLPARAMS.actId',1),
                             applyMoney:window.URLPARAMS.getMoney*100
                         }).then(r=>{
                             Toast('申请提现成功');
                             if(window.URLPARAMS.type == 1){
-                                window.location.href = './withdraw.html?actId='+ window.URLPARAMS.actId || 1;
+                                window.location.href = './withdraw.html?actId='+ G(window,'URLPARAMS.actId',1);
                             } else {
-                                window.location.href = './incomeDetails.html?actId='+ window.URLPARAMS.actId || 1;
+                                window.location.href = './incomeDetails.html?actId='+ G(window,'URLPARAMS.actId',1);
                             }
                         }).catch(_=>{})
                     }
