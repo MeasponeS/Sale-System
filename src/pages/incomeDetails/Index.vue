@@ -131,11 +131,11 @@
             },
             goDetails(){
                 // 去收支明细页
-                window.location.href = './withdrawDetails.html?groupId=' + URLPARAMS.groupId || '' + '&actId=' + G(window,'URLPARAMS.actId',1);
+                window.location.href = './withdrawDetails.html?actId='  + G(window,'URLPARAMS.actId',1);
             },
             goRecords(){
                 // 去提现记录页
-                window.location.href = './withdrawRecords.html?groupId=' + URLPARAMS.groupId || '' + 'actId=' + G(window,'URLPARAMS.actId',1);
+                window.location.href = './withdrawRecords.html?actId='  + G(window,'URLPARAMS.actId',1);
             },
             withdraw(){
                 // 提现
