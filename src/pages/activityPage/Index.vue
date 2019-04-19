@@ -253,7 +253,7 @@
                     clickEventName:'查看活动收益'
                 };
                 accessLog(reportLog);
-                window.location.href = './incomeDetails.html?groupId='+ this.groupInfo.id || '' + '&actId=' + this.actId
+                window.location.href = './incomeDetails.html?actId=' + this.actId
             },
             goCheckMobile(){
                 this.showOpen = false;
