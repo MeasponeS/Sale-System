@@ -1,4 +1,4 @@
-import {getToken,isLogin} from '../../utils/dataStorage.js'
+import {getToken,setActId} from '../../utils/dataStorage.js'
 import {setCurrentPage} from "../../utils/dataStorage";
 import {wxSignature} from "../../api/wechat";
 import wx from 'weixin-js-sdk';
@@ -22,6 +22,7 @@ export default {
     methods: {
     },
     mounted() {
+        setActId(G(window,'URLPARAMS.actId',1))
         let that = this;
         wxSignature({url:window.location.href}).then(r=>{
             if (r.resultCode == 500) return;

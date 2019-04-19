@@ -15,6 +15,8 @@
     import {Button as vantButton,Toast} from 'vant';
     import {Icon as vantIcon} from 'vant';
     import {sendSmsCode} from '../../api/recommender'
+    import {setActId,getActId} from "../../utils/dataStorage";
+    import G from 'lodash/get'
     export default {
         name: 'app',
         data: function () {
@@ -28,13 +30,15 @@
                     Toast('请输入正确的手机号');
                     return;
                 }
-                sendSmsCode({mobile:this.mobile,activityId:window.URLPARAMS.actId || 1}).then(r=>{
-                    window.location.href = './login.html?mobile=' + this.mobile + '&code=' + window.URLPARAMS.code + '&actId=' + window.URLPARAMS.actId||1;
+                sendSmsCode({mobile:this.mobile,activityId:getActId()}).then(r=>{
+                    window.location.href = './login.html?mobile=' + this.mobile + '&code=' + window.URLPARAMS.code + '&actId=' + getActId()
                 }).catch(_=>{});
             }
         },
         mounted() {
             this.showBlock = window.URLPARAMS.hasOwnProperty('student')?'none':'block'
+
+            setActId(window.URLPARAMS.actId)
         },
         beforeDestroy: function () {
 
