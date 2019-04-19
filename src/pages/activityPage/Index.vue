@@ -56,7 +56,7 @@
                         </div>
                         <div class="goodDetails " id="scroll" >
                             <h3>商品详情</h3>
-                            <img src="../../assets/img/0.png" alt="">
+                            <img src="../../assets/img/0.png" alt="" v-if="actId != 2">
                             <img src="../../assets/img/1.png" alt="">
                             <img src="../../assets/img/2.png" alt="">
                             <img src="../../assets/img/3.png" alt="">
