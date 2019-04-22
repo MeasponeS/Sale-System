@@ -406,6 +406,9 @@
                 if(this.kolStatus == 0){
                     quickGroupList({activityId:G(window,'URLPARAMS.actId',1)}).then(r=>{
                         if(this.quickGroupList.length > 0 && r.length > 0){
+                            r = r.filter(item=>{
+                                return  item.surplusCount != 0
+                            });
                             if(this.quickGroupList[this.quickGroupList.length -1].groupId == r[0].groupId){
                                 r.push(r[0])
                                 r.shift()
