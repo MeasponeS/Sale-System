@@ -204,6 +204,7 @@
                 accessLog(reportLog);
             },
             shareFriend(){
+                console.log(this.goodsInfo);
                 let config = {
                     shareTitle:'我已领取团购优惠，你也来吧',
                     shareBody:this.goodsInfo.name+'，现在团购立减￥'+ this.goodsInfo.saveMoney/100,
@@ -214,6 +215,7 @@
                 shareFriendQ(config)
             },
             wxSignatureCallback(){
+                console.log(1111);
                 leaderActivity({activityId:G(window,'URLPARAMS.actId',1),kolStatus:this.kolStatus}).then(r=>{
                     this.leaderHasBuy = r.leaderHasBuy;
                     if(r.groupInfo.kolStatus == this.kolStatus){
