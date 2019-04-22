@@ -204,7 +204,6 @@
                 accessLog(reportLog);
             },
             shareFriend(){
-                console.log(this.goodsInfo);
                 let config = {
                     shareTitle:'我已领取团购优惠，你也来吧',
                     shareBody:this.goodsInfo.name+'，现在团购立减￥'+ this.goodsInfo.saveMoney/100,
@@ -218,6 +217,10 @@
                 console.log(1111);
                 leaderActivity({activityId:G(window,'URLPARAMS.actId',1),kolStatus:this.kolStatus}).then(r=>{
                     this.leaderHasBuy = r.leaderHasBuy;
+                    this.goodsInfo = {...r.goodsInfo};
+                    this.activity = {...r.activity};
+                    this.countDownSenconds = r.countDownSenconds;
+                    this.quickGroupList = r.quickGroupList || [];
                     if(r.groupInfo.kolStatus == this.kolStatus){
                         this.groupInfo = {...r.groupInfo};
                         if(r.groupInfo.status == 0){
@@ -229,10 +232,6 @@
                             this.shareFriend()
                         }
                     }
-                    this.goodsInfo = {...r.goodsInfo};
-                    this.activity = {...r.activity};
-                    this.countDownSenconds = r.countDownSenconds;
-                    this.quickGroupList = r.quickGroupList || [];
                     let reportLog = {
                         activityId:G(window,'URLPARAMS.actId',1),
                         groupId:this.groupInfo.id || '',
@@ -298,7 +297,6 @@
                 });
 
                 leaderActivity({activityId:G(window,'URLPARAMS.actId',1),kolStatus:this.kolStatus}).then(res=>{
-                    console.log(res);
                     this.leaderHasBuy = res.leaderHasBuy;
                     this.goodsInfo = {...res.goodsInfo};
                     this.activity = {...res.activity};
