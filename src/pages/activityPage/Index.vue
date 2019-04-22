@@ -28,7 +28,7 @@
                                         class="quickGroup"
                             >
                                 <RollNoticeItem v-for="(item) in quickGroupList" >
-                                    <a class="roll" :href="'./groupBuy.html?groupId='+item.groupId">
+                                    <a class="roll" :href="'./groupBuy.html?groupId='+item.groupId + '&actId=' + actId">
                                         <img :src="item.leaderHeadUrl" alt="">
                                         <h3>
                                             <span class="quickName">{{item.leaderName}}</span>
@@ -405,7 +405,7 @@
                 let time = this.quickGroupList.length === 0? 2500:this.quickGroupList.length * 3000 - 500;
                 if(this.kolStatus == 0){
                     quickGroupList({activityId:G(window,'URLPARAMS.actId',1)}).then(r=>{
-                        if(this.quickGroupList.length > 0){
+                        if(this.quickGroupList.length > 0 && r.length > 0){
                             if(this.quickGroupList[this.quickGroupList.length -1].groupId == r[0].groupId){
                                 r.push(r[0])
                                 r.shift()
@@ -480,35 +480,6 @@
                 }
 
             })
-
-
-            leaderActivity({activityId:G(window,'URLPARAMS.actId',1),kolStatus:that.kolStatus}).then(r=>{
-                this.leaderHasBuy = r.leaderHasBuy;
-                this.goodsInfo = {...r.goodsInfo};
-                this.activity = {...r.activity};
-                if(r.groupInfo.kolStatus == this.kolStatus){
-                    this.groupInfo = {...r.groupInfo};
-                    if(r.groupInfo.status == 0){
-                        this.orderCount = 0
-                    } else {
-                        this.orderCount = r.orderCount;
-                    }
-                }
-                this.countDownSenconds = r.countDownSenconds;
-                this.quickGroupList = r.quickGroupList || [];
-                let reportLog = {
-                    activityId:G(window,'URLPARAMS.actId',1),
-                    groupId:this.groupInfo.id || '',
-                    pageUrl:'/pages/activityPage.html',
-                    pageName:'活动主页',
-                    clickEvent:'',
-                    clickEventName:''
-                };
-                accessLog(reportLog);
-                if((this.groupInfo.status == 1 || this.groupInfo.status == 2 ) && this.groupInfo.id != null ){
-                    this.shareFriend()
-                }
-            }).catch(_=>{});
 
             this.updateList()
 
