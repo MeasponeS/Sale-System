@@ -79,10 +79,11 @@
                         <img src="../../assets/img/6.png" alt="">
                         <img src="../../assets/img/7.png" alt="">
                         <img src="../../assets/img/8.png" alt="">
+                        <img src="../../assets/img/8.5.png" alt="" v-if="actId == 2">
                         <img src="../../assets/img/9.jpg" alt="" v-if="actId != 2">
                         <img src="../../assets/img/10.jpg" alt="" v-if="actId != 2">
                         <img src="../../assets/img/11.jpg" alt="" v-if="actId != 2">
-                        <img src="../../assets/img/12.jpg" alt="" v-if="actId != 2">
+                        <img src="../../assets/img/12.png" alt="" v-if="actId != 2">
                         <!-- <img src="../../assets/img/13.png" alt=""> -->
                         <!-- <img src="../../assets/img/14.png" alt="">
                         <img src="../../assets/img/15.png" alt="">
