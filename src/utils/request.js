@@ -3,6 +3,7 @@ import Config from '../config/app.js'
 import { Toast } from 'vant';
 import {getToken,removeToken} from '../utils/dataStorage.js'
 import {setCurrentPage} from "../utils/dataStorage";
+import G from 'lodash/get'
 
 const service = Axios.create({
     baseURL: Config.apiUrl + '/' + Config.apiPrefix,
