@@ -409,9 +409,12 @@
                             r = r.filter(item=>{
                                 return  item.surplusCount != 0
                             });
-                            if(this.quickGroupList[this.quickGroupList.length -1].groupId == r[0].groupId){
-                                r.push(r[0])
-                                r.shift()
+                            console.log(r);
+                            if(r.length > 0){
+                                if(this.quickGroupList[this.quickGroupList.length -1].groupId == r[0].groupId){
+                                    r.push(r[0])
+                                    r.shift()
+                                }
                             }
                         }
                         this.quickGroupList = []
