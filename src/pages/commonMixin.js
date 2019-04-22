@@ -1,4 +1,4 @@
-import {getToken} from '../utils/dataStorage.js'
+import {getToken,isLogin} from '../utils/dataStorage.js'
 import {setCurrentPage} from "../utils/dataStorage";
 import {wxSignature} from "../api/wechat";
 import wx from 'weixin-js-sdk';

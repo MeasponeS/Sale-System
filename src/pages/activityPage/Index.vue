@@ -136,6 +136,7 @@
     import {accessLog} from "../../utils/app";
     import Config from '../../config/app'
     import {wxQueryOrder} from "../../api/order";
+    import {setActId} from "../../utils/dataStorage";
     import G from 'lodash/get'
     export default {
         name: 'app',
@@ -423,8 +424,14 @@
             }
         },
         mounted() {
-
-
+            // 将活动id存入本地缓存
+            if(window.URLPARAMS.hasOwnProperty('actId') && window.URLPARAMS.actId == 2){
+                this.actId = 2
+                setActId(this.actId)
+            } else {
+                this.actId = 1
+                setActId(this.actId)
+            }
 
 
             let wrapper = document.querySelector('#app')
