@@ -29,7 +29,7 @@ export default {
             if(!getToken()){
                 setCurrentPage(window.location.href);
                 window.location.href =  "https://open.weixin.qq.com/connect/oauth2/authorize?appid="  +
-                    r.signature.appId  + "&redirect_uri=" + encodeURIComponent(Config.wxUrl)  +   "&response_type=code&scope=snsapi_userinfo&state=needJump#wechat_redirect";
+                    r.signature.appId  + "&redirect_uri=" + encodeURIComponent(Config.wxUrl)  +   "&response_type=code&scope=snsapi_userinfo&state=hus#wechat_redirect";
                 return
             }
 
